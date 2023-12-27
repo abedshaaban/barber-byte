@@ -98,6 +98,9 @@ importers:
       '@repo/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@repo/tailwind-config':
+        specifier: workspace:*
+        version: link:../../packages/tailwind-config
       '@repo/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
