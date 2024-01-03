@@ -1,7 +1,7 @@
 module.exports = {
-  content: ["src/**/*.{ts,tsx}", "../../packages/ui/**/*.{ts,tsx}"],
+  content: ['src/**/*.{ts,tsx}', '../../packages/ui/**/*.{ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
-};
+  plugins: []
+}

@@ -5,9 +5,13 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A mobile app for ordering coffee on-the-go, making it easier for coffee lovers to get their favorite beverages without waiting in line.
+> A mobile app for ordering coffee on-the-go, making it easier for coffee lovers to get
+> their favorite beverages without waiting in line.
 >
-> Coffee Express aims to streamline the coffee-ordering process by providing a user-friendly platform for customers to place orders and pick up their coffee at their convenience. We believe in enhancing the coffee experience by saving time and ensuring customer satisfaction.
+> Coffee Express aims to streamline the coffee-ordering process by providing a
+> user-friendly platform for customers to place orders and pick up their coffee at their
+> convenience. We believe in enhancing the coffee experience by saving time and ensuring
+> customer satisfaction.
 
 # User Stories
 
@@ -25,15 +29,18 @@
 ### client Users:
 
 - As a client, I want to search for close and good barber shops around me.
-- As a client, I want to look for upcoming trends to style my hair and get hair cut suggestions.
-- As a client, I want to book appointments at barber shops rather than waiting for a bunch of clients before me.
+- As a client, I want to look for upcoming trends to style my hair and get hair cut
+  suggestions.
+- As a client, I want to book appointments at barber shops rather than waiting for a bunch
+  of clients before me.
 
 <br><br>
 
 <!-- Prototyping -->
 <img src="./readme/title3.svg"/>
 
-> We designed Coffee Express using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
+> We designed Coffee Express using wireframes and mockups, iterating on the design until
+> we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Wireframes
 
@@ -52,7 +59,8 @@
 <!-- Implementation -->
 <img src="./readme/title4.svg"/>
 
-> Using the wireframes and mockups as a guide, we implemented the Coffee Express app with the following features:
+> Using the wireframes and mockups as a guide, we implemented the Coffee Express app with
+> the following features:
 
 ### User Screens (Mobile)
 
@@ -77,11 +85,18 @@
 
 ### Coffee Express is built using the following technologies:
 
-- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter is a cross-platform hybrid app development platform which allows us to use a single codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package which allows the app to create a custom storage schema and save it to a local database.
-- To send local push notifications, the app uses the [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) package which supports Android, iOS, and macOS.
-  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are working to resolve!
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
+- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter
+  is a cross-platform hybrid app development platform which allows us to use a single
+  codebase for apps on mobile, desktop, and the web.
+- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package
+  which allows the app to create a custom storage schema and save it to a local database.
+- To send local push notifications, the app uses the
+  [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+  package which supports Android, iOS, and macOS.
+  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are
+    working to resolve!
+- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its
+  main font, and the design of the app adheres to the material design guidelines.
 
 <br><br>
 
@@ -92,7 +107,8 @@
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+This is an example of how to list things you need to use the software and how to install
+them.
 
 - npm
   ```sh
@@ -101,7 +117,8 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_Below is an example of how you can instruct your audience on installing and setting up
+your app. This template doesn't rely on any external dependencies or services._
 
 1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
@@ -114,7 +131,7 @@ _Below is an example of how you can instruct your audience on installing and set
    ```
 4. Enter your API in `config.js`
    ```js
-   const API_KEY = "ENTER YOUR API";
+   const API_KEY = 'ENTER YOUR API'
    ```
 
 Now, you should be able to run Coffee Express locally and explore its features.
