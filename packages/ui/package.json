@@ -9,11 +9,12 @@
     "./button": "./src/button.tsx"
   },
   "scripts": {
-    "build": "tailwindcss -i ./src/global.css -o dist/index.css",
-    "lint": "eslint . --max-warnings 0",
-    "generate:component": "turbo gen react-component",
+    "dev-styles": "tailwindcss -i ./src/global.css -o dist/index.css --watch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-styles": "tailwindcss -i ./src/global.css -o dist/index.css",
+    "build-storybook": "storybook build",
+    "lint": "eslint . --max-warnings 0",
+    "generate:component": "turbo gen react-component"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
