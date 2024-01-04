@@ -1019,6 +1019,10 @@ body {
   max-width: max-content;
 }
 
+.max-w-sm {
+  max-width: 24rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -1541,6 +1545,11 @@ body {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .font-medium {
@@ -2581,6 +2590,16 @@ body {
 
   .md\:max-w-\[420px\] {
     max-width: 420px;
+  }
+
+  .md\:basis-1\/2 {
+    flex-basis: 50%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:basis-1\/3 {
+    flex-basis: 33.333333%;
   }
 }
 
