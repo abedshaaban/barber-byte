@@ -969,6 +969,10 @@ body {
   width: 1px;
 }
 
+.w-\[450px\] {
+  width: 450px;
+}
+
 .w-full {
   width: 100%;
 }
@@ -990,28 +994,16 @@ body {
   min-width: 12rem;
 }
 
+.min-w-\[300px\] {
+  min-width: 300px;
+}
+
 .min-w-\[8rem\] {
   min-width: 8rem;
 }
 
 .min-w-\[var\(--radix-select-trigger-width\)\] {
   min-width: var(--radix-select-trigger-width);
-}
-
-.min-w-\[300px\] {
-  min-width: 300px;
-}
-
-.min-w-full {
-  min-width: 100%;
-}
-
-.min-w-\[\] {
-  min-width: ;
-}
-
-.min-w-\[500px\] {
-  min-width: 500px;
 }
 
 .max-w-\[300px\] {
@@ -1025,10 +1017,6 @@ body {
 .max-w-max {
   max-width: -moz-max-content;
   max-width: max-content;
-}
-
-.max-w-\[500px\] {
-  max-width: 500px;
 }
 
 .flex-1 {
@@ -1376,6 +1364,11 @@ body {
 
 .fill-primary {
   fill: hsl(var(--primary));
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .p-0 {
