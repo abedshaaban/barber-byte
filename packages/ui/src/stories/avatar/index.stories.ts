@@ -1,17 +1,17 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import AspectRatio from './component'
+import Avatar from './component'
 
-const meta: Meta<typeof AspectRatio> = {
+const meta: Meta<typeof Avatar> = {
   title: 'components/Avatar',
-  component: AspectRatio,
+  component: Avatar,
   tags: ['autodocs'],
   argTypes: {}
 }
 
 export default meta
 
-type Story = StoryObj<typeof AspectRatio>
+type Story = StoryObj<typeof Avatar>
 
 export const WithImage: Story = {
   args: {
