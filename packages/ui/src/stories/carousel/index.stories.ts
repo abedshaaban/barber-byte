@@ -33,9 +33,9 @@ export const Vertical: Story = {
 }
 
 export const Loop: Story = {
-  args: { orientation: 'vertical', loop: true }
+  args: { orientation: 'horizontal', loop: true }
 }
 
 export const NOLoop: Story = {
-  args: { orientation: 'vertical', loop: false }
+  args: { orientation: 'horizontal', loop: false }
 }
