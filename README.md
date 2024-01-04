@@ -5,13 +5,12 @@
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
 
-> A mobile app for ordering coffee on-the-go, making it easier for coffee lovers to get
-> their favorite beverages without waiting in line.
+> A website for men and women to discover the best barber shops and reserve an appointment
+> easily for their haircut.
 >
-> Coffee Express aims to streamline the coffee-ordering process by providing a
-> user-friendly platform for customers to place orders and pick up their coffee at their
-> convenience. We believe in enhancing the coffee experience by saving time and ensuring
-> customer satisfaction.
+> Barber Byte also enables barbershop owners to manage their business on the desktop
+> application. It helps them view their shop's data and clients' activity to help them
+> predict their next move.
 
 # User Stories
 
