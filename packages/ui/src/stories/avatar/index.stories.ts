@@ -22,7 +22,6 @@ export const WithImage: Story = {
 
 export const WithOutImage: Story = {
   args: {
-    url: '',
     fallback: 'AB'
   }
 }
