@@ -797,6 +797,10 @@ body {
   margin-top: auto;
 }
 
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .block {
   display: block;
 }
@@ -988,6 +992,10 @@ body {
 
 .w-\[350px\] {
   width: 350px;
+}
+
+.w-\[200px\] {
+  width: 200px;
 }
 
 .min-w-0 {
@@ -1660,6 +1668,10 @@ body {
 
 .opacity-90 {
   opacity: 0.9;
+}
+
+.opacity-100 {
+  opacity: 1;
 }
 
 .shadow {
