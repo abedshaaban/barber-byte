@@ -917,6 +917,10 @@ body {
   height: 1px;
 }
 
+.h-\[200px\] {
+  height: 200px;
+}
+
 .max-h-96 {
   max-height: 24rem;
 }
@@ -1085,6 +1089,10 @@ body {
 
 .max-w-sm {
   max-width: 24rem;
+}
+
+.max-w-md {
+  max-width: 28rem;
 }
 
 .flex-1 {
