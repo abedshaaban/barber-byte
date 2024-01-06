@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Command from './component'
 
 const meta: Meta<typeof Command> = {
-  title: 'components/Command',
+  title: 'core/Command',
   component: Command,
   tags: ['autodocs'],
   argTypes: {}

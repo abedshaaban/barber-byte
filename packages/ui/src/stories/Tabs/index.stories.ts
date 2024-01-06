@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Tabs from './component'
 
 const meta: Meta<typeof Tabs> = {
-  title: 'components/Tabs',
+  title: 'core/Tabs',
   component: Tabs,
   tags: ['autodocs'],
   argTypes: {}

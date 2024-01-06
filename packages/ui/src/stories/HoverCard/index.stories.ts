@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import HoverCard from './component'
 
 const meta: Meta<typeof HoverCard> = {
-  title: 'components/Hover Card',
+  title: 'core/Hover Card',
   component: HoverCard,
   tags: ['autodocs'],
   argTypes: {}

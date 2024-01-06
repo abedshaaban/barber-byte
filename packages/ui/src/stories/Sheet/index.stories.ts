@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Sheet from './component'
 
 const meta: Meta<typeof Sheet> = {
-  title: 'components/Sheet',
+  title: 'core/Sheet',
   component: Sheet,
   tags: ['autodocs'],
   argTypes: {

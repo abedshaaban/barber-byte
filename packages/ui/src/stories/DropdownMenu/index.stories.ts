@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import DropdownMenu from './component'
 
 const meta: Meta<typeof DropdownMenu> = {
-  title: 'components/Dropdown Menu',
+  title: 'core/Dropdown Menu',
   component: DropdownMenu,
   tags: ['autodocs'],
   argTypes: {}

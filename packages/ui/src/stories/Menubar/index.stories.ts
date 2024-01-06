@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Menubar from './component'
 
 const meta: Meta<typeof Menubar> = {
-  title: 'components/Menubar',
+  title: 'core/Menubar',
   component: Menubar,
   tags: ['autodocs'],
   argTypes: {}

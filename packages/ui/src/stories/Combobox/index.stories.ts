@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Combobox from './component'
 
 const meta: Meta<typeof Combobox> = {
-  title: 'components/Combobox',
+  title: 'core/Combobox',
   component: Combobox,
   tags: ['autodocs'],
   argTypes: {}

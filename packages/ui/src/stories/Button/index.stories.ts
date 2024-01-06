@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Button } from '../../button'
 
 const meta: Meta<typeof Button> = {
-  title: 'components/Button',
+  title: 'core/Button',
   component: Button,
   tags: ['autodocs'],
   argTypes: { onClick: { action: 'clicked' } }

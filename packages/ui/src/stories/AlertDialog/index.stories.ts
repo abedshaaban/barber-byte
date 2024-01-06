@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import AlertDialog from './component'
 
 const meta: Meta<typeof AlertDialog> = {
-  title: 'components/Alert Dialog',
+  title: 'core/Alert Dialog',
   component: AlertDialog,
   tags: ['autodocs'],
   argTypes: {}

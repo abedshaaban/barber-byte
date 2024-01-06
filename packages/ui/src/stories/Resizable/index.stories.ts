@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Resizable from './component'
 
 const meta: Meta<typeof Resizable> = {
-  title: 'components/Resizable',
+  title: 'core/Resizable',
   component: Resizable,
   tags: ['autodocs'],
   argTypes: {}

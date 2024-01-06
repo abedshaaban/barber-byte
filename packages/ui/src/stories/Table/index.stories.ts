@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Table from './component'
 
 const meta: Meta<typeof Table> = {
-  title: 'components/Table',
+  title: 'core/Table',
   component: Table,
   tags: ['autodocs'],
   argTypes: {}

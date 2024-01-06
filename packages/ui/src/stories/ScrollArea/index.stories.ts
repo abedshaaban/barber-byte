@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import ScrollArea from './component'
 
 const meta: Meta<typeof ScrollArea> = {
-  title: 'components/Scroll Area',
+  title: 'core/Scroll Area',
   component: ScrollArea,
   tags: ['autodocs'],
   argTypes: {}

@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Label from './component'
 
 const meta: Meta<typeof Label> = {
-  title: 'components/Label',
+  title: 'core/Label',
   component: Label,
   tags: ['autodocs'],
   argTypes: {}

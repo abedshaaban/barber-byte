@@ -3,7 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import Collapsible from './component'
 
 const meta: Meta<typeof Collapsible> = {
-  title: 'components/Collapsible',
+  title: 'core/Collapsible',
   component: Collapsible,
   tags: ['autodocs'],
   argTypes: {}
