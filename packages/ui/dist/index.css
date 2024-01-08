@@ -1017,6 +1017,10 @@ body {
   max-height: 100vh;
 }
 
+.max-h-\[350px\] {
+  max-height: 350px;
+}
+
 .min-h-\[60px\] {
   min-height: 60px;
 }
@@ -1169,6 +1173,10 @@ body {
 
 .w-px {
   width: 1px;
+}
+
+.w-\[95px\] {
+  width: 95px;
 }
 
 .min-w-0 {
@@ -1405,6 +1413,10 @@ body {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-\[6px\] {
+  gap: 6px;
 }
 
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
@@ -1845,6 +1857,10 @@ body {
 
 .pb-2 {
   padding-bottom: 0.5rem;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
 }
 
 .text-left {
