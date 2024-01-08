@@ -55,7 +55,7 @@
   "scripts": {
     "dev-styles": "tailwindcss -i ./src/global.css -o dist/index.css --watch",
     "storybook": "storybook dev -p 6006",
-    "build-styles": "tailwindcss -i ./src/global.css -o dist/index.css",
+    "build": "tailwindcss -i ./src/global.css -o dist/index.css",
     "build-storybook": "storybook build",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component"
