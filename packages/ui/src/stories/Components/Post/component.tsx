@@ -4,6 +4,7 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { Avatar, AvatarFallback, AvatarImage } from '../../../avatar'
 import { Button } from '../../../button'
 import { Card, CardContent, CardFooter, CardHeader } from '../../../card'
+import PostImage from '../../@assets/post.png'
 
 type UserProps = {
   first_name: string
@@ -16,9 +17,9 @@ type Props = { user: UserProps }
 
 export default function Index({ user }: Props) {
   return (
-    <Card className="w-80 max-w-80">
+    <Card className="w-[350px] max-w-[350px]">
       {/* user info */}
-      <CardHeader>
+      <CardHeader className="pb-2">
         <div className="flex w-full flex-row items-center gap-3">
           <Avatar>
             <AvatarImage src={user?.url} />
@@ -38,7 +39,9 @@ export default function Index({ user }: Props) {
       </CardHeader>
 
       {/* img */}
-      <CardContent></CardContent>
+      <CardContent className="h-[350px] w-[350px]">
+        <img src={PostImage} alt="" className="h-full w-full" />
+      </CardContent>
 
       {/* caption, likes, ... */}
       <CardFooter></CardFooter>

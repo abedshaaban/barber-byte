@@ -1001,6 +1001,10 @@ body {
   height: 1px;
 }
 
+.h-\[350px\] {
+  height: 350px;
+}
+
 .max-h-96 {
   max-height: 24rem;
 }
@@ -1214,6 +1218,10 @@ body {
 
 .max-w-sm {
   max-width: 24rem;
+}
+
+.max-w-\[350px\] {
+  max-width: 350px;
 }
 
 .flex-1 {
@@ -1829,6 +1837,14 @@ body {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pb-0 {
+  padding-bottom: 0px;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .text-left {
