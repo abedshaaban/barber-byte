@@ -1,3 +1,5 @@
+import Button from '@repo/ui/button'
+
 const LINKS = [
   {
     title: 'Docs',
