@@ -18,6 +18,8 @@ export const Base: Story = {
       fallback: 'AB',
       first_name: 'Abed',
       last_name: 'Shaaban'
-    }
+    },
+    created_at: '12:00pm 1-01-2004',
+    caption: 'Be the reason someone smiles today.'
   }
 }

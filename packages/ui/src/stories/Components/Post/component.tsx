@@ -13,9 +13,9 @@ type UserProps = {
   fallback: string
 }
 
-type Props = { user: UserProps }
+type Props = { user: UserProps; created_at: string; caption: string }
 
-export default function Index({ user }: Props) {
+export default function Index({ user, created_at, caption }: Props) {
   const [likesCount, setLikesCount] = useState(0)
 
   function handleLike() {
@@ -36,10 +36,12 @@ export default function Index({ user }: Props) {
             <AvatarFallback>{user?.fallback}</AvatarFallback>
           </Avatar>
 
-          <div className="flex h-full w-full items-center">
+          <div className="flex h-full w-full flex-col items-start text-start">
             <span className="">
               {user?.first_name} {user?.last_name}
             </span>
+
+            <span className="text-xs text-gray-600">{created_at}</span>
           </div>
 
           <Button variant={'ghost'} size={'icon'}>
@@ -56,7 +58,7 @@ export default function Index({ user }: Props) {
       </CardContent>
 
       {/* caption, likes, ... */}
-      <CardFooter className="">
+      <CardFooter className="flex flex-col justify-start">
         <div className="flex w-full flex-row gap-2">
           <div className="flex w-[95px] flex-row items-center justify-center gap-[6px]">
             <span>{likesCount}</span>
@@ -135,6 +137,8 @@ export default function Index({ user }: Props) {
             </Button>
           </div>
         </div>
+
+        <p className="w-full px-1 text-start text-sm text-gray-600">{caption}</p>
       </CardFooter>
     </Card>
   )
