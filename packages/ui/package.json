@@ -52,6 +52,7 @@
     "./tooltip": "./src/core/tooltip.tsx",
     "./use-toast": "./src/core/use-toast.ts",
     "./header": "./src/elements/header/index.tsx",
+    "./footer": "./src/elements/footer/index.tsx",
     "./util": "./src/lib/utils.ts"
   },
   "scripts": {
