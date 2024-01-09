@@ -53,9 +53,9 @@
     "./use-toast": "./src/core/use-toast.ts"
   },
   "scripts": {
-    "dev-styles": "tailwindcss -i ./src/core/global.css -o dist/index.css --watch",
+    "dev-styles": "tailwindcss -i ./src/global.css -o dist/index.css --watch",
     "storybook": "storybook dev -p 6006",
-    "build": "tailwindcss -i ./src/core/global.css -o dist/index.css",
+    "build": "tailwindcss -i ./src/global.css -o dist/index.css",
     "build-storybook": "storybook build",
     "lint": "eslint . --max-warnings 0",
     "generate:component": "turbo gen react-component"
@@ -127,6 +127,7 @@
     "autoprefixer": "^10.4.16",
     "eslint": "^8.53.0",
     "eslint-plugin-storybook": "^0.6.15",
+    "next": "^14.0.3",
     "postcss": "^8.4.32",
     "react": "^18.2.0",
     "react-dom": "18.2.0",
