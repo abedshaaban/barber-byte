@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import Link, { LinkProps } from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
@@ -50,12 +52,12 @@ function MobileLink({
   children,
   ...props
 }: MobileLinkProps) {
-  // const router = useRouter()
+  const router = useRouter()
   return (
     <Link
       href={href}
       onClick={() => {
-        // router.push(href.toString())
+        router.push(href.toString())
         onOpenChange?.(false)
       }}
       className={cn(className)}
@@ -133,7 +135,11 @@ function MainNav({ name, img_url, links }: MainNavProps) {
   return (
     <div className="mr-4 hidden flex-row items-center sm:flex">
       <Link href="/" className="mr-6 flex items-center space-x-2">
-        <img src={img_url || Logo} alt="" className="h-9 w-9" />
+        {img_url === '' ? (
+          <Logo />
+        ) : (
+          <img src={`${img_url}`} alt={name} className="h-9 w-9" />
+        )}
         <span className="font-bold">{name}</span>
       </Link>
 
@@ -146,6 +152,7 @@ function MainNav({ name, img_url, links }: MainNavProps) {
                 'hover:text-foreground/80 transition-colors',
                 pathname === link.path ? 'text-foreground' : 'text-foreground/60'
               )}
+              key={link.path}
             >
               {link.name}
             </Link>
@@ -160,7 +167,11 @@ export default function Index({ user, metaData }: HeaderProps) {
   return (
     <header className="supports-backdrop-blur:bg-background/60 bg-background/95 sticky top-0 z-40 w-full border-b backdrop-blur">
       <div className="container flex h-14 items-center">
-        <MainNav name={metaData?.name} links={metaData?.links} />
+        <MainNav
+          name={metaData?.name}
+          links={metaData?.links}
+          img_url={metaData?.img_url}
+        />
         <div className="sm:hidden">
           <MobileNav name={metaData?.name} links={metaData?.links} />
         </div>
