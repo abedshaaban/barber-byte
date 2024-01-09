@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Label } from '../../../label'
-import { Switch } from '../../../switch'
+import { Label } from '../../../core/label'
+import { Switch } from '../../../core/switch'
 
 export default function Index() {
   return (

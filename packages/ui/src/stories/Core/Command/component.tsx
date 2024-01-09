@@ -17,7 +17,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut
-} from '../../../command'
+} from '../../../core/command'
 
 export default function Index() {
   const [open, setOpen] = React.useState(false)

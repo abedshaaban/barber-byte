@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Label } from '../../../label'
+import { Label } from '../../../core/label'
 
 type Props = {
   text: string

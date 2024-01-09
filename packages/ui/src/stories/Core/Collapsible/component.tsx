@@ -1,8 +1,12 @@
 import React from 'react'
 import { CaretDownIcon, CaretSortIcon } from '@radix-ui/react-icons'
 
-import { Button } from '../../../button'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../../../collapsible'
+import { Button } from '../../../core/button'
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger
+} from '../../../core/collapsible'
 
 export default function Index() {
   const [isOpen, setIsOpen] = React.useState(false)

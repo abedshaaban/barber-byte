@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Checkbox } from '../../../checkbox'
+import { Checkbox } from '../../../core/checkbox'
 
 export default function Index() {
   return (

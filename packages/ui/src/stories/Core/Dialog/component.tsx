@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Button } from '../../../button'
+import { Button } from '../../../core/button'
 import {
   Dialog,
   DialogContent,
@@ -8,7 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger
-} from '../../../dialog'
+} from '../../../core/dialog'
 
 export default function Index() {
   return (

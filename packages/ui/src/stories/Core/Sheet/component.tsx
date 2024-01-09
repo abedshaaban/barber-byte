@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { Button } from '../../../button'
-import { Input } from '../../../input'
-import { Label } from '../../../label'
+import { Button } from '../../../core/button'
+import { Input } from '../../../core/input'
+import { Label } from '../../../core/label'
 import {
   Sheet,
   SheetClose,
@@ -12,7 +12,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger
-} from '../../../sheet'
+} from '../../../core/sheet'
 
 type Props = {
   side: 'top' | 'right' | 'bottom' | 'left'

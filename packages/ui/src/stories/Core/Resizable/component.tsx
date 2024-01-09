@@ -1,6 +1,10 @@
 import React from 'react'
 
-import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '../../../resizable'
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup
+} from '../../../core/resizable'
 
 export default function Index() {
   return (

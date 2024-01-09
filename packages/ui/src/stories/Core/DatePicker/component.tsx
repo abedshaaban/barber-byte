@@ -2,10 +2,10 @@ import React from 'react'
 import { format } from 'date-fns'
 import { Calendar as CalendarIcon } from 'lucide-react'
 
-import { Button } from '../../../button'
-import { Calendar } from '../../../calendar'
+import { Button } from '../../../core/button'
+import { Calendar } from '../../../core/calendar'
+import { Popover, PopoverContent, PopoverTrigger } from '../../../core/popover'
 import { cn } from '../../../lib/utils'
-import { Popover, PopoverContent, PopoverTrigger } from '../../../popover'
 
 export default function Index() {
   const [date, setDate] = React.useState<Date>()

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ScrollArea } from '../../../scroll-area'
+import { ScrollArea } from '../../../core/scroll-area'
 
 export default function Index() {
   return (

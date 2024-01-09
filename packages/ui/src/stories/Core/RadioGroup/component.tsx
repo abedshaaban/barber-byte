@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Label } from '../../../label'
-import { RadioGroup, RadioGroupItem } from '../../../radio-group'
+import { Label } from '../../../core/label'
+import { RadioGroup, RadioGroupItem } from '../../../core/radio-group'
 
 export default function Index() {
   return (

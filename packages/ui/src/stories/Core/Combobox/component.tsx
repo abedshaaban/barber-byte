@@ -1,16 +1,16 @@
 import React from 'react'
 import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
 
-import { Button } from '../../../button'
+import { Button } from '../../../core/button'
 import {
   Command,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem
-} from '../../../command'
+} from '../../../core/command'
+import { Popover, PopoverContent, PopoverTrigger } from '../../../core/popover'
 import { cn } from '../../../lib/utils'
-import { Popover, PopoverContent, PopoverTrigger } from '../../../popover'
 
 export default function Index() {
   const [open, setOpen] = React.useState(false)

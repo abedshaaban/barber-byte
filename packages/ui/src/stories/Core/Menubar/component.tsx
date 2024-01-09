@@ -14,7 +14,7 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger
-} from '../../../menubar'
+} from '../../../core/menubar'
 
 export default function Index() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Separator } from '../../../separator'
+import { Separator } from '../../../core/separator'
 
 export default function Index() {
   return (

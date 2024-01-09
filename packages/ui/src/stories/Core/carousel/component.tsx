@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { Card, CardContent } from '../../../card'
+import { Card, CardContent } from '../../../core/card'
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious
-} from '../../../carousel'
+} from '../../../core/carousel'
 
 type Props = {
   orientation: 'horizontal' | 'vertical'

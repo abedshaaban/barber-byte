@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Avatar, AvatarFallback, AvatarImage } from '../../../avatar'
-import { Button } from '../../../button'
+import { Avatar, AvatarFallback, AvatarImage } from '../../../core/avatar'
+import { Button } from '../../../core/button'
 import { cn } from '../../../lib/utils'
 import Logo from '../../@assets/logo.svg'
 

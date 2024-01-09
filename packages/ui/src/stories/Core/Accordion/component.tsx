@@ -5,7 +5,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger
-} from '../../../accordion'
+} from '../../../core/accordion'
 
 export default function Index() {
   return (

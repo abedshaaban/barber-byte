@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Skeleton } from '../../../skeleton'
+import { Skeleton } from '../../../core/skeleton'
 
 export default function Index() {
   return (

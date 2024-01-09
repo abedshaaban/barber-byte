@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontBoldIcon } from '@radix-ui/react-icons'
 
-import { Toggle } from '../../../toggle'
+import { Toggle } from '../../../core/toggle'
 
 export default function Index() {
   return (

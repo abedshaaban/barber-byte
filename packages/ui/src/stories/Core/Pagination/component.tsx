@@ -8,7 +8,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious
-} from '../../../pagination'
+} from '../../../core/pagination'
 
 export default function Index() {
   return (

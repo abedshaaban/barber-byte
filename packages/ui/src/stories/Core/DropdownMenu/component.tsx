@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Button } from '../../../button'
+import { Button } from '../../../core/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,7 +14,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger
-} from '../../../dropdown-menu'
+} from '../../../core/dropdown-menu'
 
 export default function Index() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Input } from '../../../input'
+import { Input } from '../../../core/input'
 
 type Props = {
   type:

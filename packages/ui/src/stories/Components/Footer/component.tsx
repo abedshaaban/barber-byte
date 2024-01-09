@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 
-import { Button } from '../../../button'
+import { Button } from '../../../core/button'
 import {
   Select,
   SelectContent,
@@ -10,7 +10,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue
-} from '../../../select'
+} from '../../../core/select'
 import Logo from '../../@assets/logo.svg'
 
 export default function Index() {

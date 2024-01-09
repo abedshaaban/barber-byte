@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 
-import { Avatar, AvatarFallback, AvatarImage } from '../../../avatar'
-import { Button } from '../../../button'
-import { Card, CardContent, CardFooter, CardHeader } from '../../../card'
+import { Avatar, AvatarFallback, AvatarImage } from '../../../core/avatar'
+import { Button } from '../../../core/button'
+import { Card, CardContent, CardFooter, CardHeader } from '../../../core/card'
 import PostImage from '../../@assets/post.png'
 
 type UserProps = {

@@ -14,7 +14,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger
-} from '../../../context-menu'
+} from '../../../core/context-menu'
 
 export default function Index() {
   return (

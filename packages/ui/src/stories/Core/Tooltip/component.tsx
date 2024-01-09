@@ -1,7 +1,12 @@
 import React from 'react'
 
-import { Button } from '../../../button'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../../tooltip'
+import { Button } from '../../../core/button'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '../../../core/tooltip'
 
 export default function Index() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Calendar } from '../../../calendar'
+import { Calendar } from '../../../core/calendar'
 
 type Props = {
   mode: 'default' | 'single' | 'multiple' | 'range'

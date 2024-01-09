@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { AspectRatio } from '../../../aspect-ratio'
+import { AspectRatio } from '../../../core/aspect-ratio'
 import Gamer from '../../@assets/gamer.png'
 
 type Props = {

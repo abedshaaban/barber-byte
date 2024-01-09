@@ -10,7 +10,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger
-} from '../../../alert-dialog'
+} from '../../../core/alert-dialog'
 
 type Props = {
   trigger: string

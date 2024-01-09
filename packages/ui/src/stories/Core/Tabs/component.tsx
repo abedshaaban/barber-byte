@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../core/tabs'
 
 export default function Index() {
   return (

@@ -7,7 +7,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle
-} from '../../../card'
+} from '../../../core/card'
 
 export default function Index() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Avatar, AvatarFallback, AvatarImage } from '../../../avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '../../../core/avatar'
 
 type Props = {
   url: string

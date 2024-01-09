@@ -8,7 +8,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue
-} from '../../../select'
+} from '../../../core/select'
 
 export default function Index() {
   return (

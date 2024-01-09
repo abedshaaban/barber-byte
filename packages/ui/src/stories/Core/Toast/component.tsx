@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { Button } from '../../../button'
-import { ToastAction } from '../../../toast'
-import { Toaster } from '../../../toaster'
-import { useToast } from '../../../use-toast'
+import { Button } from '../../../core/button'
+import { ToastAction } from '../../../core/toast'
+import { Toaster } from '../../../core/toaster'
+import { useToast } from '../../../core/use-toast'
 
 export default function Index() {
   const { toast } = useToast()

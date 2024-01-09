@@ -1,7 +1,7 @@
 import React from 'react'
 import { RocketIcon } from '@radix-ui/react-icons'
 
-import { Alert, AlertDescription, AlertTitle } from '../../../alert'
+import { Alert, AlertDescription, AlertTitle } from '../../../core/alert'
 
 type Props = {
   variant: 'default' | 'destructive'

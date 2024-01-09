@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Badge } from '../../../badge'
+import { Badge } from '../../../core/badge'
 
 type Props = {
   text: string

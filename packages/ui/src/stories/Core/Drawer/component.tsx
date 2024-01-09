@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Button } from '../../../button'
+import { Button } from '../../../core/button'
 import {
   Drawer,
   DrawerClose,
@@ -10,7 +10,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger
-} from '../../../drawer'
+} from '../../../core/drawer'
 
 export default function Index() {
   return (

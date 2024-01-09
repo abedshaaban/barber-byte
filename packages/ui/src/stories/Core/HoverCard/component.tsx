@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Button } from '../../../button'
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '../../../hover-card'
+import { Button } from '../../../core/button'
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../../../core/hover-card'
 
 export default function Index() {
   return (

@@ -8,7 +8,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger
-} from '../../../navigation-menu'
+} from '../../../core/navigation-menu'
 
 export default function Index() {
   return (

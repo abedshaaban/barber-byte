@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Progress } from '../../../progress'
+import { Progress } from '../../../core/progress'
 
 type Props = {
   value: number

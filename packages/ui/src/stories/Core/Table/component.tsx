@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow
-} from '../../../table'
+} from '../../../core/table'
 
 const invoices = [
   {
