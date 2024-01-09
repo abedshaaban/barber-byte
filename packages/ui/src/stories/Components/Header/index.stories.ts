@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import Header from './component'
+import Header from '../../../elements/header'
 
 const meta: Meta<typeof Header> = {
   title: 'components/Header',
@@ -19,8 +19,25 @@ export const LoggedIn: Story = {
     user: {
       name: 'Abed Shaaban',
       img_url: 'https://github.com/abedshaaban.png'
+    },
+    metaData: {
+      name: 'Barber Byte',
+      links: [
+        { name: 'Home', path: '/' },
+        { name: 'Browse', path: '/feed' }
+      ]
     }
   }
 }
 
-export const LoggedOut: Story = {}
+export const LoggedOut: Story = {
+  args: {
+    metaData: {
+      name: 'Barber Byte',
+      links: [
+        { name: 'Home', path: '/' },
+        { name: 'Browse', path: '/feed' }
+      ]
+    }
+  }
+}
