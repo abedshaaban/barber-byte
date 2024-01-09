@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import { useTheme } from 'next-themes'
 
@@ -14,7 +14,27 @@ import {
 } from '../../core/select'
 import Logo from '../logo.svg'
 
-export default function Index() {
+type NavLink = {
+  name: string
+  path: string
+}
+
+type NavSection = {
+  title: string
+  links: NavLink[]
+}
+
+type LinkProps = {
+  name: string
+  img_url?: string
+  nav?: NavSection[]
+}
+
+export type FooterProps = {
+  metaData: LinkProps
+}
+
+export default function Index({ metaData }: FooterProps) {
   const { theme, setTheme } = useTheme()
 
   const toggleTheme = () => {
@@ -27,8 +47,11 @@ export default function Index() {
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="mb-9 flex w-full flex-row justify-start gap-3">
           <Button variant="ghost" className="w-9 px-0" onClick={toggleTheme}>
-            <MoonIcon className="h-0 w-0 rotate-90 scale-0 transition-all dark:h-[1.2rem] dark:w-[1.2rem] dark:rotate-0 dark:scale-100" />
-            <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:h-0 dark:w-0 dark:-rotate-90 dark:scale-0" />
+            {theme === 'dark' ? (
+              <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:h-0 dark:w-0 dark:-rotate-90 dark:scale-0" />
+            ) : (
+              <MoonIcon className="h-0 w-0 rotate-90 scale-0 transition-all dark:h-[1.2rem] dark:w-[1.2rem] dark:rotate-0 dark:scale-100" />
+            )}
             <span className="sr-only">Toggle theme</span>
           </Button>
 
@@ -63,91 +86,51 @@ export default function Index() {
           <div className="mb-6 md:mb-0">
             <a href="" className="flex items-center">
               <Button variant={'ghost'} size={'icon'} className="m-4 scale-[2]">
-                <img src={Logo} alt="" className="h-9 w-9" />
-                <span className="sr-only">barber byte logo</span>
+                <img
+                  src={metaData?.img_url ? metaData?.img_url : Logo}
+                  alt=""
+                  className="h-9 w-9"
+                />
+
+                <span className="sr-only">logo</span>
               </Button>
             </a>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-6">
-            <div>
-              <p className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
-                Resources
-              </p>
-              <ul className="font-medium text-gray-500 dark:text-gray-400">
-                <li className="mb-4">
-                  <a
-                    href={'/'}
-                    className="hover:underline"
-                    aria-label="barber byte home page"
-                  >
-                    Home
-                  </a>
-                </li>
+            {metaData?.nav?.map((section) => {
+              return (
+                <div key={section?.title}>
+                  <p className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
+                    {section?.title}
+                  </p>
 
-                <li className="mb-4">
-                  <a href={''} className="hover:underline" aria-label="about barber byte">
-                    About
-                  </a>
-                </li>
-                <li className="mb-4">
-                  <a
-                    href={''}
-                    className="hover:underline"
-                    aria-label="contact barber byte"
-                  >
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
-                Follow us
-              </p>
-              <ul className="font-medium text-gray-500 dark:text-gray-400">
-                <li>
-                  <a
-                    href={'/'}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="hover:underline"
-                    aria-label="github page of barber byte"
-                  >
-                    GitHub
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
-                Legal
-              </p>
-              <ul className="font-medium text-gray-500 dark:text-gray-400">
-                <li className="mb-4">
-                  <a href={''} className="hover:underline" aria-label="privacy policy">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={''}
-                    className="hover:underline"
-                    aria-label="terms & conditions"
-                  >
-                    Terms &amp; Conditions
-                  </a>
-                </li>
-              </ul>
-            </div>
+                  <ul className="font-medium text-gray-500 dark:text-gray-400">
+                    {section?.links?.map((link) => {
+                      return (
+                        <li className="mb-4" key={link?.name}>
+                          <a
+                            href={link?.path}
+                            className="hover:underline"
+                            aria-label="barber byte home page"
+                          >
+                            {link?.name}
+                          </a>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </div>
+              )
+            })}
           </div>
         </div>
         <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8 dark:border-gray-700" />
 
         <div className="flex w-full flex-col justify-center text-center sm:flex-row sm:items-center">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-            © 2023{' '}
+            © {new Date().getFullYear()}{' '}
             <a href="" className="hover:underline" aria-label="barber byte home page">
-              Barber Byte
+              {metaData?.name}
             </a>
             . All Rights Reserved.
           </span>
