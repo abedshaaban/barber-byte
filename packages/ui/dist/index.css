@@ -768,10 +768,6 @@ body {
   grid-column: span 3 / span 3;
 }
 
-.row-auto {
-  grid-row: auto;
-}
-
 .m-4 {
   margin: 1rem;
 }
@@ -3054,10 +3050,6 @@ body {
 
   .sm\:mt-0 {
     margin-top: 0px;
-  }
-
-  .sm\:inline-block {
-    display: inline-block;
   }
 
   .sm\:flex {

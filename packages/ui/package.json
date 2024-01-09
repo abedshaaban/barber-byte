@@ -50,7 +50,8 @@
     "./toggle-group": "./src/core/toggle-group.tsx",
     "./toggle": "./src/core/toggle.tsx",
     "./tooltip": "./src/core/tooltip.tsx",
-    "./use-toast": "./src/core/use-toast.ts"
+    "./use-toast": "./src/core/use-toast.ts",
+    "./element/header": "./src/elements/header/index.tsx"
   },
   "scripts": {
     "dev-styles": "tailwindcss -i ./src/global.css -o dist/index.css --watch",
