@@ -40,6 +40,7 @@ export default function Page() {
         </div>
       </section>
 
+      {/* call to action */}
       <section className="flex w-full justify-center p-3 md:p-9">
         <p className="max-w-[700px] text-center text-2xl">
           Barber Byte is the go-to platform for both men and women seeking top-notch hair
@@ -48,6 +49,7 @@ export default function Page() {
         </p>
       </section>
 
+      {/* client showcase */}
       <LayoutTextImage
         title={'Discover Your Style with Ease'}
         description={`Unearth the finest barber shops tailored to your preferences. Browse through a curated list of top-rated establishments, ensuring a match for every style seeker.`}
@@ -58,7 +60,7 @@ export default function Page() {
         title={'Hassle-Free Appointment Booking'}
         description={`Say goodbye to waiting in queues. With Barber Byte, scheduling your next haircut is just a click away. Reserve your slot at the best barber shops effortlessly.`}
         img_url={'/turborepo.svg'}
-        reverse={true}
+        reverse
       />
 
       <LayoutTextImage
@@ -67,6 +69,7 @@ export default function Page() {
         img_url={'/turborepo.svg'}
       />
 
+      {/* call to action */}
       <section className="flex w-full flex-col items-center justify-center gap-6 border-y-2 p-3  md:flex-row md:p-9">
         <p className="max-w-[700px] text-center text-xl">
           Discover, book, and thrive with Barber Byte! Whether you're a client seeking the
@@ -77,6 +80,30 @@ export default function Page() {
           <Button className="w-fit">Register</Button>
         </Link>
       </section>
+
+      {/* barbershop owner showcase */}
+      <span className="w-full text-center text-3xl font-bold md:text-5xl">
+        For Barbershop Owners/Managers
+      </span>
+
+      <LayoutTextImage
+        description={`Dive into your shop's data effortlessly. Barber Byte's desktop application provides invaluable insights into client activity, empowering you to make informed decisions for the growth of your business.`}
+        img_url={'/turborepo.svg'}
+        variant={'description'}
+      />
+
+      <LayoutTextImage
+        description={`Stay ahead of the curve with predictive analytics. Barber Byte helps you foresee trends and plan strategically, ensuring your barbershop is always one step ahead in meeting client demands.`}
+        img_url={'/turborepo.svg'}
+        variant={'description'}
+        reverse
+      />
+
+      <LayoutTextImage
+        description={`Barber Byte simplifies business management. From appointment tracking to client engagement, our desktop application is your one-stop solution to streamline operations and elevate customer satisfaction.`}
+        img_url={'/turborepo.svg'}
+        variant={'description'}
+      />
     </div>
   )
 }
