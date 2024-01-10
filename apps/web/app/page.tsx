@@ -9,7 +9,7 @@ export default function Page() {
       <section className="relative h-[calc(100vh-56px)] max-h-[900px] w-full">
         <div className="absolute left-0 z-0 h-[calc(100vh-56px)] max-h-[900px] w-full">
           <img
-            src="/images/home/barbershop.png"
+            src="/images/home/barbershop.webp"
             alt=""
             className="h-full w-full object-cover object-center"
           />
@@ -32,7 +32,7 @@ export default function Page() {
 
           <div className="h-full max-h-[240px] w-full max-w-[240px]">
             <img
-              src="/images/home/haircut.png"
+              src="/images/home/haircut.webp"
               alt=""
               className="h-full w-full rounded-[42px] object-cover object-center"
             />
@@ -53,20 +53,20 @@ export default function Page() {
       <LayoutTextImage
         title={'Discover Your Style with Ease'}
         description={`Unearth the finest barber shops tailored to your preferences. Browse through a curated list of top-rated establishments, ensuring a match for every style seeker.`}
-        img_url={'/turborepo.svg'}
+        img_url={'/images/home/image-1.webp'}
       />
 
       <LayoutTextImage
         title={'Hassle-Free Appointment Booking'}
         description={`Say goodbye to waiting in queues. With Barber Byte, scheduling your next haircut is just a click away. Reserve your slot at the best barber shops effortlessly.`}
-        img_url={'/turborepo.svg'}
+        img_url={'/images/home/image-2.webp'}
         reverse
       />
 
       <LayoutTextImage
         title={'Personalized Grooming Experience'}
         description={`Tailor your grooming journey. Barber Byte keeps track of your style preferences, ensuring each visit surpasses expectations. Your haircut, your way, every time.`}
-        img_url={'/turborepo.svg'}
+        img_url={'/images/home/image-3.webp'}
       />
 
       {/* call to action */}
@@ -88,21 +88,22 @@ export default function Page() {
 
       <LayoutTextImage
         description={`Dive into your shop's data effortlessly. Barber Byte's desktop application provides invaluable insights into client activity, empowering you to make informed decisions for the growth of your business.`}
-        img_url={'/turborepo.svg'}
-        variant={'description'}
-      />
-
-      <LayoutTextImage
-        description={`Stay ahead of the curve with predictive analytics. Barber Byte helps you foresee trends and plan strategically, ensuring your barbershop is always one step ahead in meeting client demands.`}
-        img_url={'/turborepo.svg'}
+        img_url={'/images/home/image-4.webp'}
         variant={'description'}
         reverse
       />
 
       <LayoutTextImage
-        description={`Barber Byte simplifies business management. From appointment tracking to client engagement, our desktop application is your one-stop solution to streamline operations and elevate customer satisfaction.`}
-        img_url={'/turborepo.svg'}
+        description={`Stay ahead of the curve with predictive analytics. Barber Byte helps you foresee trends and plan strategically, ensuring your barbershop is always one step ahead in meeting client demands.`}
+        img_url={'/images/home/image-5.webp'}
         variant={'description'}
+      />
+
+      <LayoutTextImage
+        description={`Barber Byte simplifies business management. From appointment tracking to client engagement, our desktop application is your one-stop solution to streamline operations and elevate customer satisfaction.`}
+        img_url={'/images/home/image-6.webp'}
+        variant={'description'}
+        reverse
       />
     </div>
   )

@@ -1907,6 +1907,30 @@ body {
   border-radius: 45px;
 }
 
+.rounded-\[900px\] {
+  border-radius: 900px;
+}
+
+.rounded-\[0px\] {
+  border-radius: 0px;
+}
+
+.rounded-\[180px\] {
+  border-radius: 180px;
+}
+
+.rounded-\[10px\] {
+  border-radius: 10px;
+}
+
+.rounded-\[120px\] {
+  border-radius: 120px;
+}
+
+.rounded-\[150px\] {
+  border-radius: 150px;
+}
+
 .rounded-b {
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
