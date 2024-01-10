@@ -195,11 +195,11 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
               </>
             ) : (
               <>
-                <Link href={`${lang}/auth/login`}>
+                <Link href={`/${lang}/auth/login`}>
                   <Button variant={'outline'}>{authText.login}</Button>
                 </Link>
 
-                <Link href={`${lang}/auth/register`}>
+                <Link href={`/${lang}/auth/register`}>
                   <Button variant={'default'}>{authText.register}</Button>
                 </Link>
               </>
