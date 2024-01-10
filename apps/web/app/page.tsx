@@ -23,7 +23,7 @@ export default function Page() {
               seamlessly, and elevate your haircut experience
             </p>
 
-            <Link href={'/'}>
+            <Link href={'/auth/register'}>
               <Button variant={'outline'} className="w-fit text-black">
                 Register
               </Button>
@@ -76,7 +76,7 @@ export default function Page() {
           perfect cut or a barbershop owner ready to elevate your business!
         </p>
 
-        <Link href={'/'}>
+        <Link href={'/auth/register'}>
           <Button className="w-fit">Register</Button>
         </Link>
       </section>
@@ -113,7 +113,7 @@ export default function Page() {
           journey today.{' '}
         </p>
 
-        <Link href={'/'}>
+        <Link href={'/auth/register'}>
           <Button className="w-fit">Register</Button>
         </Link>
       </section>
