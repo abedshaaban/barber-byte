@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import { useTheme } from 'next-themes'
 
@@ -83,17 +84,17 @@ export default function Index({ metaData }: FooterProps) {
 
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <a href="" className="flex items-center">
-              <Button variant={'ghost'} size={'icon'} className="m-4 scale-[2]">
+            <Link href="/" className="flex items-center">
+              <Button variant={'link'} size={'icon'} className="m-4 scale-[2]">
                 <img
                   src={metaData?.img_url ? metaData?.img_url : Logo}
                   alt=""
-                  className="h-9 w-9"
+                  className="h-9 w-9 rounded-full"
                 />
 
                 <span className="sr-only">logo</span>
               </Button>
-            </a>
+            </Link>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-6">
             {metaData?.nav?.map((section) => {
@@ -107,13 +108,13 @@ export default function Index({ metaData }: FooterProps) {
                     {section?.links?.map((link) => {
                       return (
                         <li className="mb-4" key={link?.name}>
-                          <a
+                          <Link
                             href={link?.path}
                             className="hover:underline"
                             aria-label="barber byte home page"
                           >
                             {link?.name}
-                          </a>
+                          </Link>
                         </li>
                       )
                     })}
@@ -128,9 +129,9 @@ export default function Index({ metaData }: FooterProps) {
         <div className="flex w-full flex-col justify-center text-center sm:flex-row sm:items-center">
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © {new Date().getFullYear()}{' '}
-            <a href="" className="hover:underline" aria-label="barber byte home page">
+            <Link href="/" className="hover:underline" aria-label="barber byte home page">
               {metaData?.name}
-            </a>
+            </Link>
             . All Rights Reserved.
           </span>
         </div>
