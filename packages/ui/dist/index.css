@@ -1899,6 +1899,14 @@ body {
   border-radius: 42px;
 }
 
+.rounded-3xl {
+  border-radius: 1.5rem;
+}
+
+.rounded-\[45px\] {
+  border-radius: 45px;
+}
+
 .rounded-b {
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
