@@ -35,7 +35,7 @@ export default function RootLayout({
             <div className="bg-background relative flex min-h-screen flex-col">
               <SiteHeader />
               <main className="container flex-1">{children}</main>
-              <SiteFooter />
+              <SiteFooter params={params} />
             </div>
           </div>
         </ThemeProvider>

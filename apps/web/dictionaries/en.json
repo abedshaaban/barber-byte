@@ -3,6 +3,10 @@
     "home": "Home",
     "dashboard": "Dashboard"
   },
+  "auth": {
+    "login": "Login",
+    "register": "Register"
+  },
   "home": {
     "hero": {
       "title": "Recreate Yourself",
@@ -55,8 +59,29 @@
     "cta1": "Discover, book, and thrive with Barber Byte! Whether you're a client seeking the perfect cut or a barbershop owner ready to elevate your business!",
     "cta2": "Join Barber Byte – Where Style Meets Simplicity, and Barbers Shine! Start your journey today."
   },
-  "auth": {
-    "login": "Login",
-    "register": "Register"
+  "footer": {
+    "name": "Barber Byte",
+    "img_url": "/icons/logo.svg",
+    "nav": [
+      {
+        "title": "RESOURCES",
+        "links": [
+          { "name": "Home", "path": "" },
+          { "name": "About", "path": "" },
+          { "name": "Contact", "path": "" }
+        ]
+      },
+      {
+        "title": "FOLLOW US",
+        "links": [{ "name": "Github", "path": "" }]
+      },
+      {
+        "title": "LEGAL",
+        "links": [
+          { "name": "Privacy Policy", "path": "" },
+          { "name": "Terms & Conditions", "path": "" }
+        ]
+      }
+    ]
   }
 }
