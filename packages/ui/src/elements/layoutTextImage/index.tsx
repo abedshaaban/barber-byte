@@ -34,7 +34,8 @@ export default function Index({ reverse = false, title, description, img_url }: 
             alt=""
             className={cn(
               'flex h-full w-full min-w-60 gap-5 object-cover object-center',
-              'rotate-[9deg] rounded-[90px] shadow-[0px_7px_11px_0px_#00000025]'
+              'rounded-[90px] shadow-[0px_7px_11px_0px_#00000025]',
+              reverse ? 'rotate-[-6deg]' : 'rotate-[6deg]'
             )}
           />
         </div>
