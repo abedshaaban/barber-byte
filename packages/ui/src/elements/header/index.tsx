@@ -188,8 +188,13 @@ export default function Index({ user, metaData }: HeaderProps) {
               </>
             ) : (
               <>
-                <Button variant={'outline'}>Login</Button>
-                <Button variant={'default'}>Register</Button>
+                <Link href={'/auth/login'}>
+                  <Button variant={'outline'}>Login</Button>
+                </Link>
+
+                <Link href={'/auth/register'}>
+                  <Button variant={'default'}>Register</Button>
+                </Link>
               </>
             )}
           </nav>
