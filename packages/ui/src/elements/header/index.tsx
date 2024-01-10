@@ -10,6 +10,7 @@ import { Button } from '../../core/button'
 import { ScrollArea } from '../../core/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '../../core/sheet'
 import { cn } from '../../lib/utils'
+import LanguageSwitch from '../languageSwitch'
 import Logo from '../logo.svg'
 
 type User = {
@@ -181,6 +182,8 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
           <div className="w-full flex-1 md:w-auto md:flex-none"></div>
 
           <nav className="flex items-center gap-2">
+            <LanguageSwitch />
+
             {user ? (
               <>
                 <Button variant={'link'}>
