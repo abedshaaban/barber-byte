@@ -6,7 +6,7 @@ import { Button } from '@repo/ui/button'
 import LayoutTextImage from '@repo/ui/layoutTextImage'
 
 export default async function Page({ params: { lang } }: { params: { lang: Locale } }) {
-  const { home } = await getDictionary(lang)
+  const { home, auth } = await getDictionary(lang)
 
   return (
     <div className="ml-[-2rem] mr-[-2rem] flex flex-col gap-9">
@@ -29,7 +29,7 @@ export default async function Page({ params: { lang } }: { params: { lang: Local
                 variant={'outline'}
                 className="w-fit bg-white text-black hover:bg-slate-200 hover:text-black"
               >
-                Register
+                {auth.register}
               </Button>
             </Link>
           </div>
@@ -67,7 +67,7 @@ export default async function Page({ params: { lang } }: { params: { lang: Local
         <p className="max-w-[700px] text-center text-xl">{home.cta2}</p>
 
         <Link href={'/auth/register'}>
-          <Button className="w-fit">Register</Button>
+          <Button className="w-fit">{auth.register}</Button>
         </Link>
       </section>
 
@@ -93,7 +93,7 @@ export default async function Page({ params: { lang } }: { params: { lang: Local
         <p className="max-w-[700px] text-center text-xl">{home.cta2}</p>
 
         <Link href={'/auth/register'}>
-          <Button className="w-fit">Register</Button>
+          <Button className="w-fit">{auth.register}</Button>
         </Link>
       </section>
     </div>
