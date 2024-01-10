@@ -10,6 +10,7 @@ import { Button } from '../../core/button'
 import { ScrollArea } from '../../core/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '../../core/sheet'
 import { cn } from '../../lib/utils'
+import Logo from '../logo.svg'
 
 type User = {
   name: string
@@ -134,9 +135,7 @@ function MainNav({ name, img_url, links }: MainNavProps) {
   return (
     <div className="mr-4 hidden flex-row items-center sm:flex">
       <Link href="/" className="mr-6 flex items-center space-x-2">
-        {img_url === '' ? null : (
-          <img src={img_url} alt={name} className="h-9 w-9 rounded-full" />
-        )}
+        <img src={img_url ? img_url : Logo} alt={name} className="h-9 w-9 rounded-full" />
         <span className="font-bold">{name}</span>
       </Link>
 
