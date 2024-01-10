@@ -8,6 +8,16 @@
     "register": "Register"
   },
   "home": {
+    "metadata": {
+      "title": "",
+      "description": "Check the best barber shops online and reserve an appointment for your next hair cut. Keep up with the new haircut trends online.",
+      "keywords": ["barber shop", "barbers", "haircut", "hair salon"],
+      "authors": [
+        {
+          "name": "Abed Al Ghani Mosbah Shaaban"
+        }
+      ]
+    },
     "hero": {
       "title": "Recreate Yourself",
       "description": "Discover the best barber shops effortlessly, reserve appointments seamlessly, and elevate your haircut experience",
