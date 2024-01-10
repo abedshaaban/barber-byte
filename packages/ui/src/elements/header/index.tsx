@@ -37,6 +37,11 @@ type MainNavProps = {
 type HeaderProps = {
   user?: User
   metaData: MainNavProps
+  lang: string
+  authText: {
+    login: string
+    register: string
+  }
 }
 
 interface MobileLinkProps extends LinkProps {
@@ -159,7 +164,7 @@ function MainNav({ name, img_url, links }: MainNavProps) {
   )
 }
 
-export default function Index({ user, metaData }: HeaderProps) {
+export default function Index({ user, metaData, lang, authText }: HeaderProps) {
   return (
     <header className="supports-backdrop-blur:bg-background/60 bg-background/95 sticky top-0 z-40 w-full border-b backdrop-blur">
       <div className="container flex h-14 items-center">
@@ -187,12 +192,12 @@ export default function Index({ user, metaData }: HeaderProps) {
               </>
             ) : (
               <>
-                <Link href={'/auth/login'}>
-                  <Button variant={'outline'}>Login</Button>
+                <Link href={`${lang}/auth/login`}>
+                  <Button variant={'outline'}>{authText.login}</Button>
                 </Link>
 
-                <Link href={'/auth/register'}>
-                  <Button variant={'default'}>Register</Button>
+                <Link href={`${lang}/auth/register`}>
+                  <Button variant={'default'}>{authText.register}</Button>
                 </Link>
               </>
             )}

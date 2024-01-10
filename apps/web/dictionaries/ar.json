@@ -65,7 +65,12 @@
     "links": [
       { "name": "المنزل", "path": "/ar" },
       { "name": "الصفحة", "path": "/ar/feed" }
-    ]
+    ],
+    "lang": "ar",
+    "authText": {
+      "login": "تسجيل الدخول",
+      "register": "تسجيل المستخدم"
+    }
   },
   "footer": {
     "name": "Barber Byte",

@@ -12,7 +12,7 @@ export default async function SiteFooter({
 
   return (
     <>
-      <Header metaData={metaData} />
+      <Header metaData={metaData} lang={metaData.lang} authText={metaData.authText} />
     </>
   )
 }

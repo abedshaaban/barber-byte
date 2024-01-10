@@ -65,7 +65,12 @@
     "links": [
       { "name": "Home", "path": "/en" },
       { "name": "Feed", "path": "/en/feed" }
-    ]
+    ],
+    "lang": "en",
+    "authText": {
+      "login": "Login",
+      "register": "Register"
+    }
   },
   "footer": {
     "name": "Barber Byte",
