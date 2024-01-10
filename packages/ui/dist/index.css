@@ -2471,6 +2471,11 @@ body {
   line-height: 1;
 }
 
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -3858,6 +3863,10 @@ body {
 
   .md\:p-9 {
     padding: 2.25rem;
+  }
+
+  .md\:text-center {
+    text-align: center;
   }
 
   .md\:text-start {

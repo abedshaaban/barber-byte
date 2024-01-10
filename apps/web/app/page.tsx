@@ -66,6 +66,17 @@ export default function Page() {
         description={`Tailor your grooming journey. Barber Byte keeps track of your style preferences, ensuring each visit surpasses expectations. Your haircut, your way, every time.`}
         img_url={'/turborepo.svg'}
       />
+
+      <section className="flex w-full flex-col items-center justify-center gap-6 border-y-2 p-3  md:flex-row md:p-9">
+        <p className="max-w-[700px] text-center text-xl">
+          Discover, book, and thrive with Barber Byte! Whether you're a client seeking the
+          perfect cut or a barbershop owner ready to elevate your business!
+        </p>
+
+        <Link href={'/'}>
+          <Button className="w-fit">Register</Button>
+        </Link>
+      </section>
     </div>
   )
 }
