@@ -105,6 +105,18 @@ export default function Page() {
         variant={'description'}
         reverse
       />
+
+      {/* call to action */}
+      <section className="flex w-full flex-col items-center justify-center gap-6 border-y-2 p-3  md:flex-row md:p-9">
+        <p className="max-w-[700px] text-center text-xl">
+          Join Barber Byte – Where Style Meets Simplicity, and Barbers Shine! Start your
+          journey today.{' '}
+        </p>
+
+        <Link href={'/'}>
+          <Button className="w-fit">Register</Button>
+        </Link>
+      </section>
     </div>
   )
 }
