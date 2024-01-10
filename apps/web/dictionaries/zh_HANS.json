@@ -1,0 +1,102 @@
+{
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard"
+  },
+  "auth": {
+    "login": "登录",
+    "register": "登记"
+  },
+  "home": {
+    "hero": {
+      "title": "重塑自我",
+      "description": "轻松发现最好的理发店，无缝预约，提升您的理发体验",
+      "subHero": "Barber Byte 是寻求一流美发服务的男性和女性的首选平台。沉浸在时尚、便利和个性化的美容世界中。与我们一起重新定义您下一次理发的方式！"
+    },
+    "client": {
+      "title": "",
+      "section": [
+        {
+          "id": 1,
+          "title": "轻松发现您的风格",
+          "description": "发掘根据您的喜好量身定制的最好的理发店。浏览精选的顶级酒店列表，确保适合每一位风格追求者。",
+          "img_url": "/images/home/image-1.webp"
+        },
+        {
+          "id": 2,
+          "title": "轻松预约",
+          "description": "告别排队等候。有了 Barber Byte，只需点击一下即可安排您的下一次理发。轻松预订最好的理发店的位置。",
+          "img_url": "/images/home/image-2.webp"
+        },
+        {
+          "id": 3,
+          "title": "个性化美容体验",
+          "description": "定制您的美容之旅。 Barber Byte 会跟踪您的风格偏好，确保每次访问都超出预期。每次你的发型，你的方式。",
+          "img_url": "/images/home/image-3.webp"
+        }
+      ]
+    },
+    "barberShop": {
+      "title": "对于理发店老板/经理",
+      "section": [
+        {
+          "id": 1,
+          "description": "轻松深入了解您商店的数据。 Barber Byte 的桌面应用程序提供有关客户活动的宝贵见解，使您能够为业务增长做出明智的决策。",
+          "img_url": "/images/home/image-4.webp"
+        },
+        {
+          "id": 2,
+          "description": "通过预测分析保持领先地位。 Barber Byte 可帮助您预见趋势并进行战略规划，确保您的理发店在满足客户需求方面始终领先一步。",
+          "img_url": "/images/home/image-5.webp"
+        },
+        {
+          "id": 3,
+          "description": "Barber Byte 简化了业务管理。从预约跟踪到客户参与，我们的桌面应用程序是您简化运营和提高客户满意度的一站式解决方案。",
+          "img_url": "/images/home/image-6.webp"
+        }
+      ]
+    },
+    "cta1": "与 Barber Byte 一起探索、预订并茁壮成长！无论您是寻求完美剪发的客户，还是准备提升业务的理发店老板！",
+    "cta2": "加入 Barber Byte – 风格与简约相遇，理发师大放异彩！今天开始您的旅程。"
+  },
+  "header": {
+    "name": "Barber Byte",
+    "img_url": "/icons/logo.svg",
+    "links": [
+      { "name": "家", "path": "/zh_HANS" },
+      { "name": "喂养", "path": "/zh_HANS/feed" }
+    ],
+    "lang": "en",
+    "authText": {
+      "login": "登录",
+      "register": "登记"
+    }
+  },
+  "footer": {
+    "name": "Barber Byte",
+    "img_url": "/icons/logo.svg",
+    "nav": [
+      {
+        "title": "资源",
+        "links": [
+          { "name": "家", "path": "/enzh_HANS" },
+          { "name": "关于", "path": "" },
+          { "name": "接触", "path": "" }
+        ]
+      },
+      {
+        "title": "跟着我们",
+        "links": [
+          { "name": "Github", "path": "https://github.com/abedshaaban/barber-byte" }
+        ]
+      },
+      {
+        "title": "合法的",
+        "links": [
+          { "name": "隐私政策", "path": "" },
+          { "name": "条款及条件", "path": "" }
+        ]
+      }
+    ]
+  }
+}
