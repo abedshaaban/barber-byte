@@ -40,7 +40,7 @@ export default function Index({
         <div className={cn('flex h-full max-h-[373px] w-full max-w-[373px]')}>
           <img
             src={img_url}
-            alt=""
+            alt={title || 'barbershop'}
             className={cn(
               'flex h-full w-full min-w-60 gap-5 object-cover object-center',
               variant === 'default'
