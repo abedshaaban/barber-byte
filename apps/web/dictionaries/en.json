@@ -1,0 +1,62 @@
+{
+  "navigation": {
+    "home": "Home",
+    "dashboard": "Dashboard"
+  },
+  "home": {
+    "hero": {
+      "title": "Recreate Yourself",
+      "description": "Discover the best barber shops effortlessly, reserve appointments seamlessly, and elevate your haircut experience",
+      "subHero": "Barber Byte is the go-to platform for both men and women seeking top-notch hair services. Dive into a world of style, convenience, and personalized grooming. Join us in redefining the way you approach your next haircut!"
+    },
+    "client": {
+      "title": "",
+      "section": [
+        {
+          "id": 1,
+          "title": "Discover Your Style with Ease",
+          "description": "Unearth the finest barber shops tailored to your preferences. Browse through a curated list of top-rated establishments, ensuring a match for every style seeker.",
+          "img_url": "/images/home/image-1.webp"
+        },
+        {
+          "id": 2,
+          "title": "Hassle-Free Appointment Booking",
+          "description": "Say goodbye to waiting in queues. With Barber Byte, scheduling your next haircut is just a click away. Reserve your slot at the best barber shops effortlessly.",
+          "img_url": "/images/home/image-2.webp"
+        },
+        {
+          "id": 3,
+          "title": "Personalized Grooming Experience",
+          "description": "Tailor your grooming journey. Barber Byte keeps track of your style preferences, ensuring each visit surpasses expectations. Your haircut, your way, every time.",
+          "img_url": "/images/home/image-3.webp"
+        }
+      ]
+    },
+    "barberShop": {
+      "title": "For Barbershop Owners/Managers",
+      "section": [
+        {
+          "id": 1,
+          "description": "Dive into your shop's data effortlessly. Barber Byte's desktop application provides invaluable insights into client activity, empowering you to make informed decisions for the growth of your business.",
+          "img_url": "/images/home/image-4.webp"
+        },
+        {
+          "id": 2,
+          "description": "Stay ahead of the curve with predictive analytics. Barber Byte helps you foresee trends and plan strategically, ensuring your barbershop is always one step ahead in meeting client demands.",
+          "img_url": "/images/home/image-5.webp"
+        },
+        {
+          "id": 3,
+          "description": "Barber Byte simplifies business management. From appointment tracking to client engagement, our desktop application is your one-stop solution to streamline operations and elevate customer satisfaction.",
+          "img_url": "/images/home/image-6.webp"
+        }
+      ]
+    },
+    "cta1": "Discover, book, and thrive with Barber Byte! Whether you're a client seeking the perfect cut or a barbershop owner ready to elevate your business!",
+    "cta2": "Join Barber Byte – Where Style Meets Simplicity, and Barbers Shine! Start your journey today."
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register"
+  }
+}

@@ -20,7 +20,10 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.5.2",
+    "@types/negotiator": "^0.6.3",
     "autoprefixer": "^10.4.16",
+    "negotiator": "^0.6.3",
     "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0"
   }

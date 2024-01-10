@@ -1,6 +1,7 @@
 import '@repo/ui/styles.css'
 
 import type { Metadata } from 'next'
+import { i18n, Locale } from '@root/i18n.config'
 import SiteFooter from '@web/components/site-footer'
 import SiteHeader from '@web/components/site-header'
 
@@ -14,9 +15,15 @@ export const metadata: Metadata = {
   description: ''
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+  params
+}: {
+  children: React.ReactNode
+  params: { lang: Locale }
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={params.lang} suppressHydrationWarning>
       <body className={cn('bg-background min-h-screen font-sans antialiased')}>
         <ThemeProvider
           attribute="class"
