@@ -3267,11 +3267,6 @@ body {
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
 
-:is(:where(.dark) .dark\:bg-white) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
 :is(:where(.dark) .dark\:bg-gray-900) {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
