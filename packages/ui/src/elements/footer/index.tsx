@@ -2,9 +2,11 @@
 
 import React from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import { useTheme } from 'next-themes'
 
+import { i18n } from '../../../../../i18n.config'
 import { Button } from '../../core/button'
 import {
   Select,
@@ -45,6 +47,15 @@ export default function Index({ metaData }: FooterProps) {
     else setTheme('dark')
   }
 
+  const pathName = usePathname()
+
+  const redirectedPathName = (locale: string) => {
+    if (!pathName) return '/'
+    const segments = pathName.split('/')
+    segments[1] = locale
+    return segments.join('/')
+  }
+
   return (
     <footer className="dark:bg-gray-900">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
@@ -56,7 +67,7 @@ export default function Index({ metaData }: FooterProps) {
           </Button>
 
           <Select defaultValue={'en'}>
-            <SelectTrigger className="w-[126px]">
+            <SelectTrigger className="w-[100px]">
               <svg
                 viewBox="0 0 24 24"
                 width="20"
@@ -74,9 +85,13 @@ export default function Index({ metaData }: FooterProps) {
             <SelectContent>
               <SelectGroup>
                 <SelectLabel>Language</SelectLabel>
-                <SelectItem value="en">Engish</SelectItem>
-                <SelectItem value="ar">Arabic</SelectItem>
-                <SelectItem value="ch-sm">简体中文</SelectItem>
+                {i18n.locales.map((locale) => {
+                  return (
+                    <Link href={redirectedPathName(locale)} key={locale}>
+                      <SelectItem value={locale}>{locale.toUpperCase()}</SelectItem>
+                    </Link>
+                  )
+                })}
               </SelectGroup>
             </SelectContent>
           </Select>
