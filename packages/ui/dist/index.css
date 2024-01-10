@@ -467,6 +467,28 @@ video {
   --radius: 0.5rem;
 }
 
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 210 40% 98%;
+  --primary-foreground: 222.2 47.4% 11.2%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9;
+}
+
 * {
   border-color: hsl(var(--border));
 }
@@ -901,6 +923,10 @@ body {
   aspect-ratio: 1 / 1;
 }
 
+.h-0 {
+  height: 0px;
+}
+
 .h-1 {
   height: 0.25rem;
 }
@@ -1027,6 +1053,10 @@ body {
 
 .min-h-\[60px\] {
   min-height: 60px;
+}
+
+.w-0 {
+  width: 0px;
 }
 
 .w-10 {
@@ -1309,6 +1339,12 @@ body {
 
 .rotate-\[9deg\] {
   --tw-rotate: 9deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.scale-0 {
+  --tw-scale-x: 0;
+  --tw-scale-y: 0;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
@@ -1691,11 +1727,6 @@ body {
 
 .bg-transparent {
   background-color: transparent;
-}
-
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-60 {
@@ -3189,45 +3220,69 @@ body {
   }
 }
 
-:is(:where([data-mode="dark"]) .dark\:h-0) {
+:is(:where(.dark) .dark\:h-0) {
   height: 0px;
 }
 
-:is(:where([data-mode="dark"]) .dark\:w-0) {
+:is(:where(.dark) .dark\:h-\[1\.2rem\]) {
+  height: 1.2rem;
+}
+
+:is(:where(.dark) .dark\:w-0) {
   width: 0px;
 }
 
-:is(:where([data-mode="dark"]) .dark\:-rotate-90) {
+:is(:where(.dark) .dark\:w-\[1\.2rem\]) {
+  width: 1.2rem;
+}
+
+:is(:where(.dark) .dark\:-rotate-90) {
   --tw-rotate: -90deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-:is(:where([data-mode="dark"]) .dark\:scale-0) {
+:is(:where(.dark) .dark\:rotate-0) {
+  --tw-rotate: 0deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+:is(:where(.dark) .dark\:scale-0) {
   --tw-scale-x: 0;
   --tw-scale-y: 0;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-:is(:where([data-mode="dark"]) .dark\:border-destructive) {
+:is(:where(.dark) .dark\:scale-100) {
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+:is(:where(.dark) .dark\:border-destructive) {
   border-color: hsl(var(--destructive));
 }
 
-:is(:where([data-mode="dark"]) .dark\:border-gray-700) {
+:is(:where(.dark) .dark\:border-gray-700) {
   --tw-border-opacity: 1;
   border-color: rgb(55 65 81 / var(--tw-border-opacity));
 }
 
-:is(:where([data-mode="dark"]) .dark\:bg-gray-900) {
+:is(:where(.dark) .dark\:bg-white) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+:is(:where(.dark) .dark\:bg-gray-900) {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
 
-:is(:where([data-mode="dark"]) .dark\:text-gray-400) {
+:is(:where(.dark) .dark\:text-gray-400) {
   --tw-text-opacity: 1;
   color: rgb(156 163 175 / var(--tw-text-opacity));
 }
 
-:is(:where([data-mode="dark"]) .dark\:text-white) {
+:is(:where(.dark) .dark\:text-white) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }

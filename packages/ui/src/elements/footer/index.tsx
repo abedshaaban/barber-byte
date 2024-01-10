@@ -45,15 +45,12 @@ export default function Index({ metaData }: FooterProps) {
   }
 
   return (
-    <footer className="bg-white dark:bg-gray-900">
+    <footer className="dark:bg-gray-900">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="mb-9 flex w-full flex-row justify-start gap-3">
           <Button variant="ghost" className="w-9 px-0" onClick={toggleTheme}>
-            {theme === 'dark' ? (
-              <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:h-0 dark:w-0 dark:-rotate-90 dark:scale-0" />
-            ) : (
-              <MoonIcon className="h-0 w-0 rotate-90 scale-0 transition-all dark:h-[1.2rem] dark:w-[1.2rem] dark:rotate-0 dark:scale-100" />
-            )}
+            <MoonIcon className="h-0 w-0 rotate-90 scale-0 transition-all dark:h-[1.2rem] dark:w-[1.2rem] dark:rotate-0 dark:scale-100" />
+            <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:h-0 dark:w-0 dark:-rotate-90 dark:scale-0" />
             <span className="sr-only">Toggle theme</span>
           </Button>
 
