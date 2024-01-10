@@ -63,8 +63,8 @@
     "name": "Barber Byte",
     "img_url": "/icons/logo.svg",
     "links": [
-      { "name": "المنزل", "path": "/" },
-      { "name": "الصفحة", "path": "/feed" }
+      { "name": "المنزل", "path": "/ar" },
+      { "name": "الصفحة", "path": "/ar/feed" }
     ]
   },
   "footer": {
@@ -81,7 +81,9 @@
       },
       {
         "title": "تابعنا",
-        "links": [{ "name": "Github", "path": "" }]
+        "links": [
+          { "name": "Github", "path": "https://github.com/abedshaaban/barber-byte" }
+        ]
       },
       {
         "title": "قانوني",

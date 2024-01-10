@@ -63,8 +63,8 @@
     "name": "Barber Byte",
     "img_url": "/icons/logo.svg",
     "links": [
-      { "name": "Home", "path": "/" },
-      { "name": "Feed", "path": "/feed" }
+      { "name": "Home", "path": "/en" },
+      { "name": "Feed", "path": "/en/feed" }
     ]
   },
   "footer": {
@@ -74,14 +74,16 @@
       {
         "title": "RESOURCES",
         "links": [
-          { "name": "Home", "path": "" },
+          { "name": "Home", "path": "/en" },
           { "name": "About", "path": "" },
           { "name": "Contact", "path": "" }
         ]
       },
       {
         "title": "FOLLOW US",
-        "links": [{ "name": "Github", "path": "" }]
+        "links": [
+          { "name": "Github", "path": "https://github.com/abedshaaban/barber-byte" }
+        ]
       },
       {
         "title": "LEGAL",
