@@ -53,6 +53,7 @@
     "./use-toast": "./src/core/use-toast.ts",
     "./header": "./src/elements/header/index.tsx",
     "./footer": "./src/elements/footer/index.tsx",
+    "./layoutTextImage": "./src/elements/layoutTextImage/index.tsx",
     "./util": "./src/lib/utils.ts"
   },
   "scripts": {

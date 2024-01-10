@@ -1237,6 +1237,10 @@ body {
   min-width: var(--radix-select-trigger-width);
 }
 
+.min-w-60 {
+  min-width: 15rem;
+}
+
 .max-w-96 {
   max-width: 24rem;
 }
@@ -1412,6 +1416,10 @@ body {
   flex-direction: row;
 }
 
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+
 .flex-col {
   flex-direction: column;
 }
@@ -1482,6 +1490,10 @@ body {
 
 .gap-\[6px\] {
   gap: 6px;
+}
+
+.gap-9 {
+  gap: 2.25rem;
 }
 
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
@@ -1955,6 +1967,10 @@ body {
 
 .text-right {
   text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
 }
 
 .text-start {
@@ -3179,6 +3195,10 @@ body {
     width: auto;
   }
 
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
   .md\:max-w-\[420px\] {
     max-width: 420px;
   }
@@ -3195,12 +3215,20 @@ body {
     flex-direction: row;
   }
 
+  .md\:flex-row-reverse {
+    flex-direction: row-reverse;
+  }
+
   .md\:justify-end {
     justify-content: flex-end;
   }
 
   .md\:justify-between {
     justify-content: space-between;
+  }
+
+  .md\:text-start {
+    text-align: start;
   }
 }
 
