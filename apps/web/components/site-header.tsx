@@ -1,14 +1,16 @@
-import { Locale } from '@root/i18n.config'
-import { getDictionary } from '@web/lib/dictionary'
+'use client'
+
+import { usePathname } from 'next/navigation'
 
 import Header from '@repo/ui/header'
 
-export default async function SiteFooter({
-  params: { lang }
-}: {
-  params: { lang: Locale }
-}) {
-  const { header: metaData } = await getDictionary(lang)
+export default function SiteFooter({ metaData }: { metaData: any }) {
+  const pathname = usePathname()
+  const excludePaths: string[] = []
+
+  if (excludePaths.includes(pathname)) {
+    return null
+  }
 
   return (
     <>

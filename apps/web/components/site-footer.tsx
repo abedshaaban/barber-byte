@@ -6,7 +6,7 @@ import Footer from '@repo/ui/footer'
 
 export default function SiteFooter({ metaData }: { metaData: any }) {
   const pathname = usePathname()
-  const excludePaths = [
+  const excludePaths: string[] = [
     '/en/auth/register',
     '/ar/auth/register',
     '/zh_HANS/auth/register'

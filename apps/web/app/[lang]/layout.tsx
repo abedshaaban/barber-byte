@@ -60,7 +60,7 @@ export default async function RootLayout({
   children: React.ReactNode
   params: { lang: Locale }
 }) {
-  const { footer } = await getDictionary(params.lang)
+  const { footer, header } = await getDictionary(params.lang)
 
   return (
     <html lang={params.lang} suppressHydrationWarning>
@@ -75,9 +75,9 @@ export default async function RootLayout({
         >
           <div vaul-drawer-wrapper="">
             <div className="bg-background relative flex min-h-screen flex-col">
-              <SiteHeader params={params} />
+              <SiteHeader metaData={header} />
               <main className="container flex-1">{children}</main>
-              <SiteFooter params={params} metaData={footer} />
+              <SiteFooter metaData={footer} />
             </div>
           </div>
         </ThemeProvider>
