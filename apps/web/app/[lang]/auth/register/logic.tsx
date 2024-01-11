@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { cn } from '@root/packages/ui/src/lib/utils'
+import { cn } from '@repo/ui/cn'
 
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
