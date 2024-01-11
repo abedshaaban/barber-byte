@@ -9,6 +9,7 @@ import { cn } from '@repo/ui/util'
 
 import BarberLocation from './barber-location'
 import UserEmail from './user-email'
+import UserPassword from './user-password'
 import UserType from './user-type'
 import UserForm from './userForm'
 
@@ -24,7 +25,7 @@ export default function Logic() {
     <UserForm />,
     <BarberLocation />,
     <UserEmail />,
-    <>3</>
+    <UserPassword />
   ])
 
   return (
