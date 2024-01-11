@@ -38,6 +38,10 @@ export const LoggedOut: Story = {
         { name: 'Home', path: '/' },
         { name: 'Browse', path: '/feed' }
       ]
+    },
+    authText: {
+      login: 'Login',
+      register: 'Register'
     }
   }
 }
