@@ -4,7 +4,15 @@ import { Button } from '@repo/ui/button'
 import { Home, Person } from '@repo/ui/icons'
 import { cn } from '@repo/ui/util'
 
-export default function Index() {
+type UserData = {
+  is_barber_shop: boolean
+}
+
+type UserTypeProps = UserData & {
+  updateFields: (fields: Partial<UserData>) => void
+}
+
+export default function Index({}: UserTypeProps) {
   const userTypes: { name: string; icon: ReactElement }[] = [
     { name: 'User', icon: <Person className={'h-32 w-32'} /> },
     { name: 'Barber', icon: <Home className={'h-32 w-32'} /> }
