@@ -14,19 +14,36 @@ import UserPassword from './user-password'
 import UserType from './user-type'
 
 export default function Logic() {
-  const [credentials, setCredentials] = useState({
+  const [credentials, setCredentials] = useState<{
+    is_barber_shop: boolean
+    first_name: string
+    last_name: string
+    birth_date: string
+    location: string
+    email: string
+    password: string
+  }>({
+    is_barber_shop: true,
     first_name: '',
     last_name: '',
-    birth_date: ''
+    birth_date: '',
+    location: '',
+    email: '',
+    password: ''
   })
 
-  const { step, next, back, isFirstStep, isLastStep } = useMultistepForm([
+  const normalUserForm = [<UserType />, <UserForm />, <UserEmail />, <UserPassword />]
+  const BarberShopUserForm = [
     <UserType />,
     <UserForm />,
     <BarberLocation />,
     <UserEmail />,
     <UserPassword />
-  ])
+  ]
+
+  const { step, next, back, isFirstStep, isLastStep } = useMultistepForm(
+    credentials?.is_barber_shop ? BarberShopUserForm : normalUserForm
+  )
 
   return (
     <Card className={'w-full max-w-[400px] p-3'}>
