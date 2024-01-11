@@ -57,12 +57,14 @@ export default function Logic() {
         className={cn('flex items-end', isFirstStep ? 'justify-end' : 'justify-between')}
       >
         {!isFirstStep && (
-          <Button variant={'secondary'} onClick={back}>
-            Back
-          </Button>
-        )}
+          <>
+            <Button variant={'secondary'} onClick={back}>
+              Back
+            </Button>
 
-        <Button onClick={next}>{isLastStep ? 'Finish' : 'Next'}</Button>
+            <Button onClick={next}>{isLastStep ? 'Finish' : 'Next'}</Button>
+          </>
+        )}
       </CardFooter>
     </Card>
   )
