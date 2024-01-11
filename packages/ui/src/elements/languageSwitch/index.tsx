@@ -16,7 +16,7 @@ import {
 import { i18n } from '../../../../../i18n.config'
 
 export default function Index() {
-  const [localValue, setLocalValue] = useState<string | undefined>('')
+  const [localValue, setLocalValue] = useState<string | undefined>(i18n.defaultLocale)
   const pathName = usePathname()
 
   const redirectedPathName = (locale: string) => {
