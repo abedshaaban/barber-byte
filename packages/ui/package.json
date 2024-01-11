@@ -55,6 +55,7 @@
     "./footer": "./src/elements/footer/index.tsx",
     "./layoutTextImage": "./src/elements/layoutTextImage/index.tsx",
     "./languageSwitch": "./src/elements/languageSwitch/index.tsx",
+    "./multistepForm": "./src/elements/multistepForm/index.tsx",
     "./util": "./src/lib/utils.ts"
   },
   "scripts": {
