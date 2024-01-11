@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
 import useMultistepForm from '@repo/ui/multistepForm'
 import { cn } from '@repo/ui/util'
 
+import UserType from './user-type'
 import UserForm from './userForm'
 
 export default function Logic() {
@@ -17,7 +18,7 @@ export default function Logic() {
   })
 
   const { step, next, back, isFirstStep, isLastStep } = useMultistepForm([
-    <>1</>,
+    <UserType />,
     <UserForm />,
     <>3</>
   ])
