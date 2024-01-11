@@ -13,16 +13,18 @@ import UserForm from './user-form'
 import UserPassword from './user-password'
 import UserType from './user-type'
 
+type FormDataType = {
+  is_barber_shop: boolean
+  first_name: string
+  last_name: string
+  birth_date: string
+  location: string
+  email: string
+  password: string
+}
+
 export default function Logic() {
-  const [credentials, setCredentials] = useState<{
-    is_barber_shop: boolean
-    first_name: string
-    last_name: string
-    birth_date: string
-    location: string
-    email: string
-    password: string
-  }>({
+  const [credentials, setCredentials] = useState<FormDataType>({
     is_barber_shop: true,
     first_name: '',
     last_name: '',
@@ -31,6 +33,12 @@ export default function Logic() {
     email: '',
     password: ''
   })
+
+  function updateFields(fields: Partial<FormDataType>) {
+    setCredentials((prev) => {
+      return { ...prev, ...fields }
+    })
+  }
 
   const normalUserForm = [<UserType />, <UserForm />, <UserEmail />, <UserPassword />]
   const BarberShopUserForm = [
