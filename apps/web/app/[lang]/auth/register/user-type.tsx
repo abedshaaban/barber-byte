@@ -11,7 +11,7 @@ export default function Index() {
   ]
 
   return (
-    <div className="flex items-center justify-center gap-6">
+    <div className="flex flex-col items-center justify-center gap-6 sm:flex-row">
       {userTypes?.map((item, index) => {
         return (
           <Button
