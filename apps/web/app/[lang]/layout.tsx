@@ -53,13 +53,15 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   }
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params
 }: {
   children: React.ReactNode
   params: { lang: Locale }
 }) {
+  const { footer } = await getDictionary(params.lang)
+
   return (
     <html lang={params.lang} suppressHydrationWarning>
       <head />
@@ -75,7 +77,7 @@ export default function RootLayout({
             <div className="bg-background relative flex min-h-screen flex-col">
               <SiteHeader params={params} />
               <main className="container flex-1">{children}</main>
-              <SiteFooter params={params} />
+              <SiteFooter params={params} metaData={footer} />
             </div>
           </div>
         </ThemeProvider>
