@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
 import useMultistepForm from '@repo/ui/multistepForm'
 import { cn } from '@repo/ui/util'
 
+import BarberLocation from './barber-location'
 import UserType from './user-type'
 import UserForm from './userForm'
 
@@ -20,6 +21,7 @@ export default function Logic() {
   const { step, next, back, isFirstStep, isLastStep } = useMultistepForm([
     <UserType />,
     <UserForm />,
+    <BarberLocation />,
     <>3</>
   ])
 
