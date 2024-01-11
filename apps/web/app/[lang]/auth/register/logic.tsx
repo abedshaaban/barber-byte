@@ -1,11 +1,11 @@
 'use client'
 
 import React from 'react'
-import { cn } from '@repo/ui/cn'
 
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
 import useMultistepForm from '@repo/ui/multistepForm'
+import { cn } from '@repo/ui/util'
 
 export default function Logic() {
   const { step, next, back, isFirstStep, isLastStep } = useMultistepForm([

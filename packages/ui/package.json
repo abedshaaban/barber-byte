@@ -6,7 +6,6 @@
   ],
   "exports": {
     "./styles.css": "./dist/index.css",
-    "./cn": "./src/lib/utils.ts",
     "./accordion": "./src/core/accordion.tsx",
     "./alert-dialog": "./src/core/alert-dialog.tsx",
     "./alert": "./src/core/alert.tsx",
