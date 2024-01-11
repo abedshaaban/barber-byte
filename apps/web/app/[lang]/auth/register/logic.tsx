@@ -40,10 +40,15 @@ export default function Logic() {
     })
   }
 
-  const normalUserForm = [<UserType />, <UserForm />, <UserEmail />, <UserPassword />]
+  const normalUserForm = [
+    <UserType />,
+    <UserForm {...credentials} updateFields={updateFields} />,
+    <UserEmail />,
+    <UserPassword />
+  ]
   const BarberShopUserForm = [
     <UserType />,
-    <UserForm />,
+    <UserForm {...credentials} updateFields={updateFields} />,
     <BarberLocation />,
     <UserEmail />,
     <UserPassword />
