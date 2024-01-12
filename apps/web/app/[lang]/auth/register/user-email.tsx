@@ -11,9 +11,18 @@ type UserEmailProps = UserData & {
 
 export default function Index({ email, updateFields }: UserEmailProps) {
   return (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
+    <div className={'grid w-full max-w-sm items-center gap-1.5'}>
       <Label htmlFor={'email'}>Email</Label>
-      <Input type={'email'} id={'email'} placeholder={'example@domian'} required />
+      <Input
+        type={'email'}
+        id={'email'}
+        placeholder={'example@domian'}
+        required
+        value={email}
+        onChange={(e) => {
+          updateFields({ email: e.target.value })
+        }}
+      />
     </div>
   )
 }
