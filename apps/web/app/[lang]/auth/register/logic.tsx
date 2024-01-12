@@ -1,6 +1,7 @@
 'use client'
 
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
+import { checkEmailFormat } from '@web/helpers'
 
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
@@ -24,6 +25,7 @@ type FormDataType = {
 }
 
 export default function Logic() {
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [credentials, setCredentials] = useState<FormDataType>({
     is_barber_shop: null,
     first_name: '',
@@ -49,17 +51,27 @@ export default function Logic() {
   const BarberShopUserForm = [
     <UserType {...credentials} updateFields={updateFields} />,
     <UserForm {...credentials} updateFields={updateFields} />,
-    <BarberLocation {...credentials} updateFields={updateFields} />,
     <UserEmail {...credentials} updateFields={updateFields} />,
+    <BarberLocation {...credentials} updateFields={updateFields} />,
     <UserPassword {...credentials} updateFields={updateFields} />
   ]
 
-  const { step, next, back, isFirstStep, isLastStep } = useMultistepForm(
-    credentials?.is_barber_shop ? BarberShopUserForm : normalUserForm
-  )
+  const { step, next, back, isFirstStep, isLastStep, currentStepIndex } =
+    useMultistepForm(credentials?.is_barber_shop ? BarberShopUserForm : normalUserForm)
+
+  useEffect(() => {}, [credentials.email])
 
   function onSubmitForm(e: FormEvent) {
     e.preventDefault()
+
+    if (currentStepIndex === 2) {
+      if (checkEmailFormat(credentials?.email)) {
+        setErrorMessage(null)
+      } else {
+        setErrorMessage('incorrect email format')
+        return
+      }
+    }
 
     if (!isLastStep) return next()
 
@@ -78,16 +90,13 @@ export default function Logic() {
                 : 'User'
               : null}
           </h2>
+
+          <div className={'text-red-600'}>{errorMessage}</div>
         </CardHeader>
 
         <CardContent className={'px-1 sm:px-6'}>{step}</CardContent>
 
-        <CardFooter
-          className={cn(
-            'flex items-end',
-            isFirstStep ? 'justify-end' : 'justify-between'
-          )}
-        >
+        <CardFooter className={cn('flex items-end justify-between', '')}>
           {!isFirstStep && (
             <>
               <Button type={'button'} variant={'secondary'} onClick={back}>
