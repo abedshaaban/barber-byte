@@ -75,7 +75,7 @@ export default function Logic() {
         </h2>
       </CardHeader>
 
-      <CardContent className="text-center">{step}</CardContent>
+      <CardContent className="">{step}</CardContent>
 
       <CardFooter
         className={cn('flex items-end', isFirstStep ? 'justify-end' : 'justify-between')}

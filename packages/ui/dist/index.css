@@ -1951,10 +1951,6 @@ body {
   border-top-width: 1px;
 }
 
-.border-t-2 {
-  border-top-width: 2px;
-}
-
 .border-dashed {
   border-style: dashed;
 }
@@ -1990,11 +1986,6 @@ body {
 
 .border-l-transparent {
   border-left-color: transparent;
-}
-
-.border-t-lime-200 {
-  --tw-border-opacity: 1;
-  border-top-color: rgb(217 249 157 / var(--tw-border-opacity));
 }
 
 .border-t-transparent {
