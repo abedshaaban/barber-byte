@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 import Logic from './logic'
 
 export default function Page() {
