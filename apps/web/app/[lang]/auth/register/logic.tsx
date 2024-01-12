@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
@@ -41,13 +41,13 @@ export default function Logic() {
   }
 
   const normalUserForm = [
-    <UserType {...credentials} updateFields={updateFields} next={nextCard} />,
+    <UserType {...credentials} updateFields={updateFields} />,
     <UserForm {...credentials} updateFields={updateFields} />,
     <UserEmail {...credentials} updateFields={updateFields} />,
     <UserPassword {...credentials} updateFields={updateFields} />
   ]
   const BarberShopUserForm = [
-    <UserType {...credentials} updateFields={updateFields} next={nextCard} />,
+    <UserType {...credentials} updateFields={updateFields} />,
     <UserForm {...credentials} updateFields={updateFields} />,
     <BarberLocation {...credentials} updateFields={updateFields} />,
     <UserEmail {...credentials} updateFields={updateFields} />,
@@ -58,38 +58,47 @@ export default function Logic() {
     credentials?.is_barber_shop ? BarberShopUserForm : normalUserForm
   )
 
-  function nextCard() {
-    next()
+  function onSubmitForm(e: FormEvent) {
+    e.preventDefault()
+
+    if (!isLastStep) return next()
+
+    alert('registered')
   }
 
   return (
-    <Card className={'w-full max-w-[400px] p-3'}>
-      <CardHeader className="flex w-full items-center">
-        <h1 className="text-3xl font-semibold">Register</h1>
-        <h2 className="w-full text-center">
-          {credentials?.is_barber_shop !== null && !isFirstStep
-            ? credentials?.is_barber_shop
-              ? 'Barber Shop'
-              : 'User'
-            : null}
-        </h2>
-      </CardHeader>
+    <form onSubmit={onSubmitForm} className={'flex w-full justify-center'}>
+      <Card className={'w-full max-w-[400px] p-3'}>
+        <CardHeader className="flex w-full items-center">
+          <h1 className="text-3xl font-semibold">Register</h1>
+          <h2 className="w-full text-center">
+            {credentials?.is_barber_shop !== null && !isFirstStep
+              ? credentials?.is_barber_shop
+                ? 'Barber Shop'
+                : 'User'
+              : null}
+          </h2>
+        </CardHeader>
 
-      <CardContent className="">{step}</CardContent>
+        <CardContent className={'px-1 sm:px-6'}>{step}</CardContent>
 
-      <CardFooter
-        className={cn('flex items-end', isFirstStep ? 'justify-end' : 'justify-between')}
-      >
-        {!isFirstStep && (
-          <>
-            <Button variant={'secondary'} onClick={back}>
-              Back
-            </Button>
+        <CardFooter
+          className={cn(
+            'flex items-end',
+            isFirstStep ? 'justify-end' : 'justify-between'
+          )}
+        >
+          {!isFirstStep && (
+            <>
+              <Button type={'button'} variant={'secondary'} onClick={back}>
+                Back
+              </Button>
 
-            <Button onClick={next}>{isLastStep ? 'Finish' : 'Next'}</Button>
-          </>
-        )}
-      </CardFooter>
-    </Card>
+              <Button type={'submit'}>{isLastStep ? 'Finish' : 'Next'}</Button>
+            </>
+          )}
+        </CardFooter>
+      </Card>
+    </form>
   )
 }

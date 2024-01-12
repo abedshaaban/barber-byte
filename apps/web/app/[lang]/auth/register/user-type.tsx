@@ -6,24 +6,20 @@ import { cn } from '@repo/ui/util'
 
 type UserData = {
   is_barber_shop: boolean | null
-  next: () => void
 }
 
 type UserTypeProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-export default function Index({ updateFields, next }: UserTypeProps) {
+export default function Index({ updateFields }: UserTypeProps) {
   const userTypes: { name: string; icon: ReactElement }[] = [
     { name: 'User', icon: <Person className={'h-32 w-32'} /> },
     { name: 'Barber', icon: <Home className={'h-32 w-32'} /> }
   ]
 
   function handleClick(name: string) {
-    console.log(name)
     updateFields({ is_barber_shop: name === 'Barber' })
-
-    next()
   }
 
   return (
@@ -41,6 +37,7 @@ export default function Index({ updateFields, next }: UserTypeProps) {
             onClick={() => {
               handleClick(item?.name)
             }}
+            type={'submit'}
           >
             {item?.icon}
 
