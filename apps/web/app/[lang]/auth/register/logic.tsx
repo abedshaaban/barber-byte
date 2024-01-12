@@ -44,14 +44,14 @@ export default function Logic() {
     <UserType {...credentials} updateFields={updateFields} />,
     <UserForm {...credentials} updateFields={updateFields} />,
     <UserEmail {...credentials} updateFields={updateFields} />,
-    <UserPassword />
+    <UserPassword {...credentials} updateFields={updateFields} />
   ]
   const BarberShopUserForm = [
     <UserType {...credentials} updateFields={updateFields} />,
     <UserForm {...credentials} updateFields={updateFields} />,
     <BarberLocation {...credentials} updateFields={updateFields} />,
     <UserEmail {...credentials} updateFields={updateFields} />,
-    <UserPassword />
+    <UserPassword {...credentials} updateFields={updateFields} />
   ]
 
   const { step, next, back, isFirstStep, isLastStep } = useMultistepForm(
