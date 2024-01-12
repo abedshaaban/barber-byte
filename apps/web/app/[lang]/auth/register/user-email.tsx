@@ -1,3 +1,6 @@
+import { Input } from '@repo/ui/input'
+import { Label } from '@repo/ui/label'
+
 type UserData = {
   email: string
 }
@@ -6,6 +9,11 @@ type UserEmailProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-export default function Index({}: UserEmailProps) {
-  return <div>email</div>
+export default function Index({ email, updateFields }: UserEmailProps) {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label htmlFor={'email'}>Email</Label>
+      <Input type={'email'} id={'email'} placeholder={'example@domian'} required />
+    </div>
+  )
 }
