@@ -13,34 +13,43 @@ type formDataProps = {
   label: string
   placeholder?: string
   type: string
+  value: string | number
 }
 
 type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
 }
 
-const formData: formDataProps[] = [
-  {
-    name: 'first_name',
-    label: 'First Name',
-    type: 'text',
-    placeholder: 'John'
-  },
-  {
-    name: 'last_name',
-    label: 'Last Name',
-    type: 'text',
-    placeholder: 'Smith'
-  },
-  {
-    name: 'birth_date',
-    label: 'Birth Date',
-    type: 'date',
-    placeholder: ''
-  }
-]
+export default function Index({
+  first_name,
+  last_name,
+  birth_date,
+  updateFields
+}: UserFormProps) {
+  const formData: formDataProps[] = [
+    {
+      name: 'first_name',
+      label: 'First Name',
+      type: 'text',
+      placeholder: 'John',
+      value: first_name
+    },
+    {
+      name: 'last_name',
+      label: 'Last Name',
+      type: 'text',
+      placeholder: 'Smith',
+      value: last_name
+    },
+    {
+      name: 'birth_date',
+      label: 'Birth Date',
+      type: 'date',
+      placeholder: '',
+      value: birth_date
+    }
+  ]
 
-export default function Index({}: UserFormProps) {
   return (
     <div className={cn('flex flex-col gap-6')}>
       {formData?.map((item, index) => {
@@ -52,6 +61,10 @@ export default function Index({}: UserFormProps) {
               id={item?.name}
               placeholder={item?.placeholder}
               required
+              value={item?.value}
+              onChange={(e) => {
+                updateFields({ [item?.name]: e.target.value })
+              }}
             />
           </div>
         )
