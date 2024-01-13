@@ -2,9 +2,9 @@
   "name": "@repo/helpers",
   "version": "0.0.0",
   "private": true,
-  "files": [
-    "index.ts"
-  ],
+  "exports": {
+    "./auth": "./src/auth/index.ts"
+  },
   "scripts": {
     "dev": "tsup index.ts --watch",
     "build": "tsc"
