@@ -19,30 +19,61 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-        $credentials = $request->only('email', 'password');
+        $res = [];
 
-        $token = Auth::attempt($credentials);
-        if (!$token) {
+        try{
+            $credentials = $request->only('email', 'password');   
+            $token = Auth::attempt($credentials);
+
+            if (!$token) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Invalid credentials',
+                    'data' => '',
+                    'error' => 'Unauthorized'
+                ], 401);
+            }
+    
+            $token_payload = auth()->payload();
+
+            $user = User::
+                select(
+                    'first_name',
+                    'last_name',
+                    'birth_date',
+                    'roles.name as role_name',
+                    'genders.name as gender_name',
+                    'account_status.name as account_status'
+                )
+                    ->join('roles', 'users.role_id','=','roles.id')
+                    ->join('genders', 'users.gender_id','=','genders.id')
+                    ->join('account_status', 'users.account_status_id','=','account_status.id')
+                    ->where('email', $token_payload['email'])->first();
+
+            $res = [
+                'status' => true,
+                'message' => 'User created successfully',
+                'data' => [
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
+                    'birth_date' => $user->birth_date,
+                    'token' => $token,
+                    'role' => $user->role_name,
+                    'gender' => $user->gender_name,
+                    'account_status' => $user->account_status,
+                ],
+                'error' => '' 
+            ];
+        }catch(\Exception $exception){
             return response()->json([
-                'status' => 'error',
+                'status' => false,
                 'message' => 'Unauthorized',
-            ], 401);
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ], 403);
         }
 
-        $user = Auth::user();
-        return response()->json([
-                'status' => 'success',
-                'user' => $user,
-                'authorisation' => [
-                    'token' => $token,
-                    'type' => 'bearer',
-                ]
-            ]);
-
+        return response()->json($res, 200);
     }
 
     public function register(Request $request){
@@ -99,7 +130,6 @@ class AuthController extends Controller
                     'data' => [
                         'first_name' => $user->first_name,
                         'last_name' => $user->last_name,
-                        'email' => $user->email,
                         'birth_date' => $user->birth_date,
                         'token' => $token,
                         'role' => $db_user->role_name,
