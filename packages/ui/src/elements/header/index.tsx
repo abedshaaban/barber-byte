@@ -27,12 +27,14 @@ type MobileNavProps = {
   name: string
   img_url?: string
   links?: NavLink[]
+  lang: string
 }
 
 type MainNavProps = {
   name: string
   img_url?: string
   links?: NavLink[]
+  lang: string
 }
 
 type HeaderProps = {
@@ -74,7 +76,7 @@ function MobileLink({
   )
 }
 
-function MobileNav({ name, links }: MobileNavProps) {
+function MobileNav({ name, links, lang }: MobileNavProps) {
   const [open, setOpen] = React.useState(false)
 
   return (
@@ -117,7 +119,11 @@ function MobileNav({ name, links }: MobileNavProps) {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="pr-0">
-        <MobileLink href="/" className="flex items-center" onOpenChange={setOpen}>
+        <MobileLink
+          href={`/${lang}`}
+          className="flex items-center"
+          onOpenChange={setOpen}
+        >
           <HamburgerMenuIcon className="mr-2 h-4 w-4" />
           <span className="font-bold">{name}</span>
         </MobileLink>
@@ -135,12 +141,12 @@ function MobileNav({ name, links }: MobileNavProps) {
   )
 }
 
-function MainNav({ name, img_url, links }: MainNavProps) {
+function MainNav({ name, img_url, links, lang }: MainNavProps) {
   const pathname = usePathname()
 
   return (
     <div className="mr-4 hidden flex-row items-center sm:flex">
-      <Link href="/" className="mr-6 flex items-center space-x-2">
+      <Link href={`/${lang}`} className="mr-6 flex items-center space-x-2">
         <img src={img_url ? img_url : Logo} alt={name} className="h-9 w-9 rounded-full" />
         <span className="font-bold">{name}</span>
       </Link>
@@ -173,9 +179,10 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
           name={metaData?.name}
           links={metaData?.links}
           img_url={metaData?.img_url}
+          lang={lang}
         />
         <div className="sm:hidden">
-          <MobileNav name={metaData?.name} links={metaData?.links} />
+          <MobileNav name={metaData?.name} links={metaData?.links} lang={lang} />
         </div>
 
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
