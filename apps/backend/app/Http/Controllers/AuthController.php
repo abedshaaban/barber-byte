@@ -45,11 +45,11 @@ class AuthController extends Controller
                     'img_url',
                     'roles.name as role_name',
                     'genders.name as gender_name',
-                    'account_status.name as account_status'
+                    'account_statuses.name as account_status'
                 )
                     ->join('roles', 'users.role_id','=','roles.id')
                     ->join('genders', 'users.gender_id','=','genders.id')
-                    ->join('account_status', 'users.account_status_id','=','account_status.id')
+                    ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
                     ->where('email', $token_payload['email'])->first();
 
             $res = [
@@ -123,11 +123,11 @@ class AuthController extends Controller
                     'img_url',
                     'roles.name as role_name',
                     'genders.name as gender_name',
-                    'account_status.name as account_status'
+                    'account_statuses.name as account_status'
                 )
                     ->join('roles', 'users.role_id','=','roles.id')
                     ->join('genders', 'users.gender_id','=','genders.id')
-                    ->join('account_status', 'users.account_status_id','=','account_status.id')
+                    ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
                     ->where('email', $token_payload['email'])->first();
 
                 $res = [

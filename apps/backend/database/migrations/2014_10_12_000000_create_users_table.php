@@ -47,12 +47,12 @@ return new class extends Migration
              
          ]);
 
-        Schema::create('account_status', function (Blueprint $table) {
+        Schema::create('account_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
         });
 
-        DB::table('account_status')->insert([
+        DB::table('account_statuses')->insert([
             [ 
              'name' => 'private',
              ],
@@ -81,7 +81,7 @@ return new class extends Migration
                     ->on('genders');
             $table->foreignId('account_status_id')
                     ->references('id')
-                    ->on('account_status');
+                    ->on('account_statuses');
         });
     }
 
