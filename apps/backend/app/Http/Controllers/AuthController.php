@@ -78,17 +78,25 @@ class AuthController extends Controller
                 ]);
                 
                 $token = Auth::login($user);
+
+                $token_payload = auth()->payload();
+
+                $db_user = User::
+                select('roles.name as role_name','genders.name as gender_name')
+                    ->join('roles', 'users.role_id','=','roles.id')
+                    ->join('genders', 'users.gender_id','=','genders.id')
+                    ->where('email', $token_payload['email'])->first();
                 $res = [
                     'status' => true,
                     'message' => 'User created successfully',
                     'data' => [
-                        'role_id' => $user->role_id,
-                        'gender_id' => $user->gender_id,
                         'first_name' => $user->first_name,
                         'last_name' => $user->last_name,
                         'email' => $user->email,
                         'birth_date' => $user->birth_date,
                         'token' => $token,
+                        'role' => $db_user->role_name,
+                        'gender' => $db_user->gender_name,
                     ],
                     'error' => '' 
                 ];
