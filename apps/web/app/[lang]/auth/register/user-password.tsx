@@ -11,6 +11,12 @@ import {
 } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@repo/ui/tooltip'
 import { cn } from '@repo/ui/util'
 
 type UserData = {
@@ -30,27 +36,44 @@ export default function Index({ password, updateFields }: UserPasswordProps) {
   }[] = [
     {
       name: 'Use special character.',
-      icon: <AtMark className={'h-12 w-12'} />
+      icon: <AtMark className={'h-14 w-14'} />
     },
     {
       name: 'Use upper case letters.',
-      icon: <UpperCaseLetter className={'h-12 w-12'} />
+      icon: <UpperCaseLetter className={'h-14 w-14'} />
     },
     {
       name: 'Use lower case letters.',
-      icon: <LowerCaseLetter className={'h-12 w-12'} />
+      icon: <LowerCaseLetter className={'h-14 w-14'} />
     },
     {
       name: 'Password must be eight plus characters.',
-      icon: <EightPlus className={'h-12 w-12'} />
+      icon: <EightPlus className={'h-14 w-14'} />
     }
   ]
 
   return (
-    <div className={'flex w-full flex-col'}>
-      <div className={'flex flex-row '}>
+    <div className={'flex w-full flex-col gap-9'}>
+      <div className={'flex flex-row justify-between'}>
         {PasswordRequirements?.map((item, index) => {
-          return <div key={index}>{item.icon}</div>
+          return (
+            <TooltipProvider key={index}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    type={'button'}
+                    variant={'outline'}
+                    className={'h-fit w-fit rounded-lg p-2 hover:bg-white'}
+                  >
+                    {item.icon}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{item.name}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )
         })}
       </div>
 
