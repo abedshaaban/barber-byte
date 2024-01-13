@@ -10,7 +10,7 @@ export async function Register({
   password
 }: RegisterProps): Promise<RegisterResponseProps> {
   const res = await axios.post(
-    'http://127.0.0.1:8000/api/auth/register',
+    `${process.env.NEXT_PUBLIC_DB_URL}/auth/register`,
     {
       is_barber_shop: is_barber_shop,
       first_name: first_name,
@@ -36,7 +36,7 @@ export async function Register({
 
 export async function Login({ email, password }: LoginProps) {
   const res = await axios.post(
-    'http://127.0.0.1:8000/api/auth/login',
+    `${process.env.NEXT_PUBLIC_DB_URL}/auth/login`,
     {
       email: email,
       password: password
