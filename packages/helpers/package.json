@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
+    "./types": "./src/types/index.d.ts",
     "./auth": "./src/auth/index.ts"
   },
   "scripts": {
