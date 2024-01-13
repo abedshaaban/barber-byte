@@ -110,7 +110,7 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
 
   return (
     <form onSubmit={onSubmitForm} className={'flex w-full justify-center'}>
-      <Card className={'w-full max-w-[400px] p-3'}>
+      <Card className={'w-full max-w-[400px] bg-slate-50 p-3 dark:bg-slate-900'}>
         <CardHeader className="flex w-full items-center">
           <h1 className="text-3xl font-semibold">Register</h1>
           <h2 className="w-full text-center">
