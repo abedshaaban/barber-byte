@@ -1,6 +1,7 @@
 'use client'
 
 import React, { FormEvent, useEffect, useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Register } from '@repo/helpers/auth'
 import { Locale } from '@root/i18n.config'
@@ -128,7 +129,15 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
           <div className={'pb-3 text-center'}>Loading ...</div>
         ) : (
           <>
-            <CardContent className={'px-1 sm:px-6'}>{step}</CardContent>
+            <CardContent className={'flex flex-col gap-3 px-1 sm:px-6'}>
+              {step}
+              <p className={'w-full text-end'}>
+                Already have an account?{' '}
+                <Link href={`/${params.lang}/auth/register`} className={'underline'}>
+                  Login here.
+                </Link>
+              </p>
+            </CardContent>
 
             <CardFooter className={cn('flex items-end justify-between', '')}>
               {!isFirstStep && (
