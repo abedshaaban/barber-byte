@@ -105,7 +105,7 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
       setErrorMessage(data?.message)
     }
 
-    setLoading(true)
+    setLoading(false)
   }
 
   return (
