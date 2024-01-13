@@ -1,7 +1,9 @@
 'use client'
 
 import React, { FormEvent, useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { Register } from '@repo/helpers/auth'
+import { Locale } from '@root/i18n.config'
 import { checkEmailFormat } from '@web/helpers'
 
 import { Button } from '@repo/ui/button'
@@ -25,7 +27,8 @@ type FormDataType = {
   password: string
 }
 
-export default function Logic() {
+export default function Logic({ params }: { params: { lang: Locale } }) {
+  const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const [nextButton, setNextButton] = useState<'button' | 'submit'>('submit')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -97,6 +100,7 @@ export default function Logic() {
 
     if (data?.status) {
       console.log('user:', data?.data)
+      router.push(`/${params.lang}/feed`)
     } else {
       setErrorMessage(data?.message)
     }
