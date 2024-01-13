@@ -25,6 +25,7 @@ type FormDataType = {
 }
 
 export default function Logic() {
+  const [nextButton, setNextButton] = useState<'button' | 'submit'>('submit')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [credentials, setCredentials] = useState<FormDataType>({
     is_barber_shop: null,
@@ -43,23 +44,34 @@ export default function Logic() {
   }
 
   const normalUserForm = [
-    <UserPassword {...credentials} updateFields={updateFields} />,
-    <UserType {...credentials} updateFields={updateFields} />,
-    <UserForm {...credentials} updateFields={updateFields} />,
-    <UserEmail {...credentials} updateFields={updateFields} />
-  ]
-  const BarberShopUserForm = [
-    <UserPassword {...credentials} updateFields={updateFields} />,
     <UserType {...credentials} updateFields={updateFields} />,
     <UserForm {...credentials} updateFields={updateFields} />,
     <UserEmail {...credentials} updateFields={updateFields} />,
-    <BarberLocation {...credentials} updateFields={updateFields} />
+    <UserPassword {...credentials} updateFields={updateFields} />
+  ]
+  const BarberShopUserForm = [
+    <UserType {...credentials} updateFields={updateFields} />,
+    <UserForm {...credentials} updateFields={updateFields} />,
+    <UserEmail {...credentials} updateFields={updateFields} />,
+    <BarberLocation {...credentials} updateFields={updateFields} />,
+    <UserPassword {...credentials} updateFields={updateFields} />
   ]
 
-  const { step, next, back, isFirstStep, isLastStep, currentStepIndex } =
+  const { step, next, back, isFirstStep, isLastStep, currentStepIndex, steps } =
     useMultistepForm(credentials?.is_barber_shop ? BarberShopUserForm : normalUserForm)
 
-  useEffect(() => {}, [credentials.email])
+  useEffect(() => {
+    if (currentStepIndex === steps.length - 1) {
+      if (
+        /[!@#$%&]/g.test(credentials.password) &&
+        /[a-z]/.test(credentials.password) &&
+        /[A-Z]/.test(credentials.password) &&
+        credentials.password.length >= 8
+      ) {
+        setNextButton('submit')
+      } else setNextButton('button')
+    }
+  }, [credentials.password])
 
   function onSubmitForm(e: FormEvent) {
     e.preventDefault()
@@ -103,7 +115,9 @@ export default function Logic() {
                 Back
               </Button>
 
-              <Button type={'submit'}>{isLastStep ? 'Finish' : 'Next'}</Button>
+              <Button type={nextButton} disabled={nextButton === 'button'}>
+                {isLastStep ? 'Finish' : 'Next'}
+              </Button>
             </>
           )}
         </CardFooter>
