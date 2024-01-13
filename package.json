@@ -11,6 +11,7 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@repo/eslint-config": "workspace:*",
     "@repo/tsconfig": "workspace:*",
+    "@repo/helpers": "workspace:*",
     "prettier": "^3.1.0",
     "prettier-plugin-tailwindcss": "^0.5.10",
     "turbo": "latest"
