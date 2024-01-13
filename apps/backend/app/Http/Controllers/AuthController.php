@@ -75,6 +75,7 @@ class AuthController extends Controller
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                     'birth_date' => $request->birth_date,
+                    'account_status_id' => 1,
                 ]);
                 
                 $token = Auth::login($user);
@@ -82,10 +83,16 @@ class AuthController extends Controller
                 $token_payload = auth()->payload();
 
                 $db_user = User::
-                select('roles.name as role_name','genders.name as gender_name')
+                select(
+                    'roles.name as role_name',
+                    'genders.name as gender_name',
+                    'account_status.name as account_status'
+                )
                     ->join('roles', 'users.role_id','=','roles.id')
                     ->join('genders', 'users.gender_id','=','genders.id')
+                    ->join('account_status', 'users.account_status_id','=','account_status.id')
                     ->where('email', $token_payload['email'])->first();
+
                 $res = [
                     'status' => true,
                     'message' => 'User created successfully',
@@ -97,6 +104,7 @@ class AuthController extends Controller
                         'token' => $token,
                         'role' => $db_user->role_name,
                         'gender' => $db_user->gender_name,
+                        'account_status' => $db_user->account_status,
                     ],
                     'error' => '' 
                 ];

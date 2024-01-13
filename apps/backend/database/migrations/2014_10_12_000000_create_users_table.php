@@ -47,6 +47,20 @@ return new class extends Migration
              
          ]);
 
+        Schema::create('account_status', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+        });
+
+        DB::table('account_status')->insert([
+            [ 
+             'name' => 'private',
+             ],
+            [ 
+             'name' => 'public',
+             ],             
+         ]);
+
         Schema::create('users', function (Blueprint $table) {
             $table->uuid()->default(DB::raw('(UUID())'))->primary();
             $table->string('email')->unique();
@@ -65,7 +79,9 @@ return new class extends Migration
             $table->foreignId('gender_id')
                     ->references('id')
                     ->on('genders');
-            $table->boolean('public')->default(true);
+            $table->foreignId('account_status_id')
+                    ->references('id')
+                    ->on('account_status');
         });
     }
 
@@ -76,6 +92,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('roles');
         Schema::dropIfExists('genders');
+        Schema::dropIfExists('account_status');
         Schema::dropIfExists('users');
     }
 };
