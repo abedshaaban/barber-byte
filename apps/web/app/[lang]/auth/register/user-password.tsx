@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Button } from '@repo/ui/button'
 import {
@@ -30,33 +30,55 @@ type UserPasswordProps = UserData & {
 
 export default function Index({ password, updateFields }: UserPasswordProps) {
   const [showPassword, setShowPassword] = useState(false)
+  const [checked, setChecked] = useState({
+    special: false,
+    capital: false,
+    lower: false,
+    more: false
+  })
 
   const PasswordRequirements: {
     name: string
     icon: any
+    label: string
   }[] = [
     {
       name: 'Use special character.',
-      icon: <AtMark className={'h-12 w-12'} />
+      icon: <AtMark className={'h-12 w-12'} />,
+      label: 'special'
     },
     {
       name: 'Use upper case letters.',
-      icon: <UpperCaseLetter className={'h-12 w-12'} />
+      icon: <UpperCaseLetter className={'h-12 w-12'} />,
+      label: 'capital'
     },
     {
       name: 'Use lower case letters.',
-      icon: <LowerCaseLetter className={'h-12 w-12'} />
+      icon: <LowerCaseLetter className={'h-12 w-12'} />,
+      label: 'lower'
     },
     {
       name: 'Password must be eight plus characters.',
-      icon: <EightPlus className={'h-12 w-12'} />
+      icon: <EightPlus className={'h-12 w-12'} />,
+      label: 'more'
     }
   ]
+
+  useEffect(() => {
+    setChecked({
+      special: /[!@#$%&]/g.test(password),
+      lower: /[a-z]/.test(password),
+      capital: /[A-Z]/.test(password),
+      more: password.length >= 8
+    })
+  }, [password])
 
   return (
     <div className={'flex w-full flex-col gap-9'}>
       <div className={'flex flex-row justify-between'}>
         {PasswordRequirements?.map((item, index) => {
+          const labelKey = item?.label as keyof typeof checked
+
           return (
             <TooltipProvider key={index}>
               <Tooltip>
@@ -64,9 +86,13 @@ export default function Index({ password, updateFields }: UserPasswordProps) {
                   <Button
                     type={'button'}
                     variant={'outline'}
-                    className={
-                      'relative flex h-[70px] w-[70px] flex-row items-center justify-center rounded-lg p-2 hover:bg-white'
-                    }
+                    className={cn(
+                      'relative flex flex-row items-center justify-center',
+                      'h-[70px] w-[70px] rounded-lg p-2',
+                      checked[labelKey]
+                        ? 'bg-green-300 hover:bg-green-300'
+                        : 'hover:bg-white'
+                    )}
                   >
                     {item.icon}
                     <div className={'absolute flex h-full w-full items-end justify-end'}>
@@ -108,6 +134,7 @@ export default function Index({ password, updateFields }: UserPasswordProps) {
             onClick={() => {
               setShowPassword(!showPassword)
             }}
+            type={'button'}
           >
             {showPassword ? <OpenEye /> : <ClosedEye />}
           </Button>
