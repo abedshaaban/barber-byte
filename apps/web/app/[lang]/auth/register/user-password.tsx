@@ -5,6 +5,7 @@ import {
   AtMark,
   ClosedEye,
   EightPlus,
+  InfoCircle,
   LowerCaseLetter,
   OpenEye,
   UpperCaseLetter
@@ -36,19 +37,19 @@ export default function Index({ password, updateFields }: UserPasswordProps) {
   }[] = [
     {
       name: 'Use special character.',
-      icon: <AtMark className={'h-14 w-14'} />
+      icon: <AtMark className={'h-12 w-12'} />
     },
     {
       name: 'Use upper case letters.',
-      icon: <UpperCaseLetter className={'h-14 w-14'} />
+      icon: <UpperCaseLetter className={'h-12 w-12'} />
     },
     {
       name: 'Use lower case letters.',
-      icon: <LowerCaseLetter className={'h-14 w-14'} />
+      icon: <LowerCaseLetter className={'h-12 w-12'} />
     },
     {
       name: 'Password must be eight plus characters.',
-      icon: <EightPlus className={'h-14 w-14'} />
+      icon: <EightPlus className={'h-12 w-12'} />
     }
   ]
 
@@ -63,9 +64,14 @@ export default function Index({ password, updateFields }: UserPasswordProps) {
                   <Button
                     type={'button'}
                     variant={'outline'}
-                    className={'h-fit w-fit rounded-lg p-2 hover:bg-white'}
+                    className={
+                      'relative flex h-[70px] w-[70px] flex-row items-center justify-center rounded-lg p-2 hover:bg-white'
+                    }
                   >
                     {item.icon}
+                    <div className={'absolute flex h-full w-full items-end justify-end'}>
+                      <InfoCircle className={'scale-75 text-gray-400'} />
+                    </div>
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
