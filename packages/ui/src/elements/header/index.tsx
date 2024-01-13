@@ -145,7 +145,7 @@ function MainNav({ name, img_url, links }: MainNavProps) {
         <span className="font-bold">{name}</span>
       </Link>
 
-      <nav className="items-center space-x-6 text-sm font-medium md:flex">
+      <nav className="flex items-center gap-3 space-x-6 text-sm font-medium">
         {links?.map((link) => {
           return (
             <Link
