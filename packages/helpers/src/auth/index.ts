@@ -1,5 +1,4 @@
-import { LocalStorage } from '@/storage'
-import type { RegisterProps, RegisterResponseProps } from '@/types'
+import type { LoginProps, RegisterProps, RegisterResponseProps } from '@/types'
 import axios from 'axios'
 
 export async function Register({
@@ -28,9 +27,31 @@ export async function Register({
     }
   )
 
-  localStorage.setItem('token', res?.data?.data?.token)
+  if (res?.data?.data) {
+    localStorage.setItem('token', res?.data?.data?.token)
+  }
 
   return res?.data
 }
 
-export function Login() {}
+export async function Login({ email, password }: LoginProps) {
+  const res = await axios.post(
+    'http://127.0.0.1:8000/api/auth/login',
+    {
+      email: email,
+      password: password
+    },
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+  )
+
+  if (res?.data?.data) {
+    localStorage.setItem('token', res?.data?.data?.token)
+  }
+
+  return res?.data
+}

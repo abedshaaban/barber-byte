@@ -13,10 +13,8 @@ export type LoginProps = {
   password: string
 }
 
-export type RegisterProps = {
+export type RegisterProps = LoginProps & {
   is_barber_shop: boolean
-  email: string
-  password: string
   first_name: string
   last_name: string
   birth_date: Date
