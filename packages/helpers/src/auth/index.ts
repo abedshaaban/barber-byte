@@ -1,4 +1,4 @@
-import type { RegisterProps } from '@/types'
+import type { RegisterProps, RegisterResponseProps } from '@/types'
 import axios from 'axios'
 
 export async function Register({
@@ -8,9 +8,9 @@ export async function Register({
   last_name,
   email,
   password
-}: RegisterProps) {
+}: RegisterProps): Promise<RegisterResponseProps> {
   const res = await axios.post(
-    'http://127.0.0.1:8000/api/register',
+    'http://127.0.0.1:8000/api/auth/register',
     {
       is_barber_shop: is_barber_shop,
       first_name: first_name,
@@ -27,7 +27,7 @@ export async function Register({
     }
   )
 
-  return res
+  return res?.data
 }
 
 export function Login() {}

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { FormEvent, useEffect, useState } from 'react'
+import { Register } from '@repo/helpers/auth'
 import { checkEmailFormat } from '@web/helpers'
 
 import { Button } from '@repo/ui/button'
@@ -25,6 +26,7 @@ type FormDataType = {
 }
 
 export default function Logic() {
+  const [loading, setLoading] = useState<boolean>(false)
   const [nextButton, setNextButton] = useState<'button' | 'submit'>('submit')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const [credentials, setCredentials] = useState<FormDataType>({
@@ -73,7 +75,7 @@ export default function Logic() {
     }
   }, [credentials.password])
 
-  function onSubmitForm(e: FormEvent) {
+  async function onSubmitForm(e: FormEvent) {
     e.preventDefault()
 
     if (currentStepIndex === 2) {
@@ -87,7 +89,19 @@ export default function Logic() {
 
     if (!isLastStep) return next()
 
-    alert('registered')
+    setLoading(true)
+
+    const data = await Register({ ...credentials })
+
+    console.log('res:', data)
+
+    if (data?.status) {
+      console.log('user:', data?.data)
+    } else {
+      setErrorMessage(data?.message)
+    }
+
+    setLoading(true)
   }
 
   return (
@@ -106,21 +120,27 @@ export default function Logic() {
           <div className={'text-red-600'}>{errorMessage}</div>
         </CardHeader>
 
-        <CardContent className={'px-1 sm:px-6'}>{step}</CardContent>
+        {loading ? (
+          <div className={'pb-3 text-center'}>Loading ...</div>
+        ) : (
+          <>
+            <CardContent className={'px-1 sm:px-6'}>{step}</CardContent>
 
-        <CardFooter className={cn('flex items-end justify-between', '')}>
-          {!isFirstStep && (
-            <>
-              <Button type={'button'} variant={'secondary'} onClick={back}>
-                Back
-              </Button>
+            <CardFooter className={cn('flex items-end justify-between', '')}>
+              {!isFirstStep && (
+                <>
+                  <Button type={'button'} variant={'secondary'} onClick={back}>
+                    Back
+                  </Button>
 
-              <Button type={nextButton} disabled={nextButton === 'button'}>
-                {isLastStep ? 'Finish' : 'Next'}
-              </Button>
-            </>
-          )}
-        </CardFooter>
+                  <Button type={nextButton} disabled={nextButton === 'button'}>
+                    {isLastStep ? 'Finish' : 'Next'}
+                  </Button>
+                </>
+              )}
+            </CardFooter>
+          </>
+        )}
       </Card>
     </form>
   )
