@@ -10,3 +10,7 @@ export function LocalStorage({ key, value = undefined }: LocalStorageProps) {
     localStorage.setItem(key, value)
   }
 }
+
+export function ClearLocalStorage() {
+  localStorage.clear()
+}
