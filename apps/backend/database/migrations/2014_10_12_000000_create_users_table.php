@@ -21,7 +21,7 @@ return new class extends Migration
              'name' => 'user',
              ],
             [ 
-             'name' => 'seller',
+             'name' => 'shop',
              ],
             [ 
              'name' => 'admin',
