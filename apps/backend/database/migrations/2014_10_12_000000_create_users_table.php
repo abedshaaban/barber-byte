@@ -41,6 +41,9 @@ return new class extends Migration
             [ 
              'name' => 'female',
              ],
+            [ 
+             'name' => 'null',
+             ],
              
          ]);
 
