@@ -1,6 +1,7 @@
 import {
   EyeClosedIcon as ClosedEye,
   HomeIcon as Home,
+  InfoCircledIcon as InfoCircle,
   LetterCaseLowercaseIcon as LowerCaseLetter,
   EyeOpenIcon as OpenEye,
   PersonIcon as Person,
@@ -53,5 +54,6 @@ export {
   OpenEye,
   ClosedEye,
   EightPlus,
-  AtMark
+  AtMark,
+  InfoCircle
 }
