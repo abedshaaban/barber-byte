@@ -1,3 +1,4 @@
+import { LocalStorage } from '@/storage'
 import type { RegisterProps, RegisterResponseProps } from '@/types'
 import axios from 'axios'
 
@@ -26,6 +27,8 @@ export async function Register({
       }
     }
   )
+
+  localStorage.setItem('token', res?.data?.data?.token)
 
   return res?.data
 }
