@@ -41,6 +41,8 @@ class AuthController extends Controller
                     'first_name',
                     'last_name',
                     'birth_date',
+                    'description',
+                    'img_url',
                     'roles.name as role_name',
                     'genders.name as gender_name',
                     'account_status.name as account_status'
@@ -57,6 +59,8 @@ class AuthController extends Controller
                     'first_name' => $user->first_name,
                     'last_name' => $user->last_name,
                     'birth_date' => $user->birth_date,
+                    'description' => $user->description,
+                    'img_url' => $user->img_url,
                     'token' => $token,
                     'role' => $user->role_name,
                     'gender' => $user->gender_name,
@@ -115,6 +119,8 @@ class AuthController extends Controller
 
                 $db_user = User::
                 select(
+                    'description',
+                    'img_url',
                     'roles.name as role_name',
                     'genders.name as gender_name',
                     'account_status.name as account_status'
@@ -131,6 +137,8 @@ class AuthController extends Controller
                         'first_name' => $user->first_name,
                         'last_name' => $user->last_name,
                         'birth_date' => $user->birth_date,
+                        'description' => $user->description,
+                        'img_url' => $user->img_url,
                         'token' => $token,
                         'role' => $db_user->role_name,
                         'gender' => $db_user->gender_name,
