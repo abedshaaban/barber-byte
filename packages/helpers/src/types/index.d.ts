@@ -4,6 +4,7 @@ export type LoginProps = {
 }
 
 export type RegisterProps = {
+  is_barber_shop: boolean
   email: string
   password: string
   first_name: string
