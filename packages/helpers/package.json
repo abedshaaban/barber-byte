@@ -7,7 +7,7 @@
     "./auth": "./src/auth/index.ts"
   },
   "scripts": {
-    "dev": "tsup index.ts --watch",
+    "dev": "tsup src/auth/index.ts --watch",
     "build": "tsc"
   },
   "dependencies": {

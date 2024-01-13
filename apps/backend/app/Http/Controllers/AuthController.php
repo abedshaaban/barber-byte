@@ -31,7 +31,7 @@ class AuthController extends Controller
                     'message' => 'Invalid credentials',
                     'data' => '',
                     'error' => 'Unauthorized'
-                ], 401);
+                ]);
             }
     
             $token_payload = auth()->payload();

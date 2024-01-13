@@ -1,5 +1,11 @@
-import React from 'react'
+import { Locale } from '@root/i18n.config'
 
-export default function Page() {
-  return <div>login</div>
+import Logic from './logic'
+
+export default function Page({ params }: { params: { lang: Locale } }) {
+  return (
+    <section className={'flex min-h-[calc(100vh-60px)] items-center justify-center'}>
+      <Logic params={params} />
+    </section>
+  )
 }
