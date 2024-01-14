@@ -2,6 +2,8 @@ import type { LoginProps, RegisterProps, RegisterResponseProps } from '@/types'
 import axios from 'axios'
 import { nanoid } from 'nanoid'
 
+import { Storage } from '../storage'
+
 export async function Register({
   is_barber_shop,
   birth_date,
@@ -40,7 +42,7 @@ export async function Register({
   )
 
   if (res?.data?.data) {
-    localStorage.setItem('token', res?.data?.data?.token)
+    Storage({ key: 'token', value: res?.data?.data?.token })
   }
 
   return res?.data
@@ -62,7 +64,29 @@ export async function Login({ email, password }: LoginProps) {
   )
 
   if (res?.data?.data) {
-    localStorage.setItem('token', res?.data?.data?.token)
+    Storage({ key: 'token', value: res?.data?.data?.token })
+  }
+
+  return res?.data
+}
+
+export async function Refresh() {
+  const token = Storage({ key: 'token' })
+
+  const res = await axios.post(
+    `http://localhost:8000/api/auth/refresh`,
+    {},
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `bearer ${token}`
+      }
+    }
+  )
+
+  if (res?.data?.data) {
+    Storage({ key: 'token', value: res?.data?.data?.token })
   }
 
   return res?.data

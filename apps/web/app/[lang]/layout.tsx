@@ -1,6 +1,7 @@
 import '@repo/ui/styles.css'
 
 import { Locale } from '@root/i18n.config'
+import RefreshToken from '@web/components/refresh-token'
 import SiteFooter from '@web/components/site-footer'
 import SiteHeader from '@web/components/site-header'
 import { getDictionary } from '@web/lib/dictionary'
@@ -68,6 +69,8 @@ export default async function RootLayout({
         <head />
 
         <body className={cn('bg-background min-h-screen font-sans antialiased')}>
+          <RefreshToken />
+
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

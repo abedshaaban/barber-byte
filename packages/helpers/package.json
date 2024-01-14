@@ -4,7 +4,8 @@
   "private": true,
   "exports": {
     "./types": "./src/types/index.d.ts",
-    "./auth": "./src/auth/index.ts"
+    "./auth": "./src/auth/index.ts",
+    "./storage": "./src/storage/index.ts"
   },
   "scripts": {
     "dev": "tsup src/auth/index.ts --watch",
