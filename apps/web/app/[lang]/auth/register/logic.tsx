@@ -24,7 +24,7 @@ type FormDataType = {
   first_name: string
   last_name: string
   birth_date: string
-  location: string
+  location: [number, number]
   email: string
   password: string
   shop_name: string
@@ -40,7 +40,7 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
     first_name: '',
     last_name: '',
     birth_date: '',
-    location: '',
+    location: [0, 0],
     email: '',
     password: '',
     shop_name: ''
@@ -61,8 +61,8 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
   const BarberShopUserForm = [
     <UserType {...credentials} updateFields={updateFields} />,
     <BarberForm {...credentials} updateFields={updateFields} />,
-    <BarberLocation {...credentials} updateFields={updateFields} />,
     <UserEmail {...credentials} updateFields={updateFields} />,
+    <BarberLocation {...credentials} updateFields={updateFields} />,
     <UserPassword {...credentials} updateFields={updateFields} />
   ]
 
