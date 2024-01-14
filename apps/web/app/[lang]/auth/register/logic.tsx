@@ -28,6 +28,9 @@ type FormDataType = {
   email: string
   password: string
   shop_name: string
+  country: string
+  city: string
+  street: string
 }
 
 export default function Logic({ params }: { params: { lang: Locale } }) {
@@ -43,7 +46,10 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
     location: [0, 0],
     email: '',
     password: '',
-    shop_name: ''
+    shop_name: '',
+    country: '',
+    city: '',
+    street: ''
   })
 
   function updateFields(fields: Partial<FormDataType>) {
