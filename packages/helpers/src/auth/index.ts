@@ -4,6 +4,10 @@ import { nanoid } from 'nanoid'
 
 import { Storage } from '../storage'
 
+/**
+ * Register a user as a normal user type or barber shop depending on the params passed
+ * @param RegisterProps
+ */
 export async function Register({
   is_barber_shop,
   birth_date,
@@ -48,6 +52,10 @@ export async function Register({
   return res?.data
 }
 
+/**
+ * Login user and return user data
+ * @param LoginProps
+ */
 export async function Login({ email, password }: LoginProps) {
   const res = await axios.post(
     `http://localhost:8000/api/auth/login`,
@@ -70,6 +78,9 @@ export async function Login({ email, password }: LoginProps) {
   return res?.data
 }
 
+/**
+ * Get user data a with token only
+ */
 export async function Refresh() {
   const token = Storage({ key: 'token' })
 
@@ -92,6 +103,9 @@ export async function Refresh() {
   return res?.data
 }
 
+/**
+ * Logout user
+ */
 export async function Logout() {
   const token = Storage({ key: 'token' })
 
