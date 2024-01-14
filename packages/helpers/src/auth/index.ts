@@ -91,3 +91,23 @@ export async function Refresh() {
 
   return res?.data
 }
+
+export async function Logout() {
+  const token = Storage({ key: 'token' })
+
+  const res = await axios.post(
+    `http://localhost:8000/api/auth/logout`,
+    {},
+    {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: `bearer ${token}`
+      }
+    }
+  )
+
+  if (res?.data?.data) {
+    Storage({ key: 'token', remove: true })
+  }
+}
