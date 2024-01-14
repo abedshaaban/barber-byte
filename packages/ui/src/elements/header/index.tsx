@@ -4,6 +4,7 @@ import React from 'react'
 import Link, { LinkProps } from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { HamburgerMenuIcon } from '@radix-ui/react-icons'
+import { UserType } from '@repo/helpers/types'
 
 import { Avatar, AvatarFallback, AvatarImage } from '../../core/avatar'
 import { Button } from '../../core/button'
@@ -12,11 +13,6 @@ import { Sheet, SheetContent, SheetTrigger } from '../../core/sheet'
 import { cn } from '../../lib/utils'
 import LanguageSwitch from '../languageSwitch'
 import Logo from '../logo.svg'
-
-type User = {
-  name: string
-  img_url: string
-}
 
 type NavLink = {
   name: string
@@ -38,7 +34,7 @@ type MainNavProps = {
 }
 
 type HeaderProps = {
-  user?: User
+  user: UserType | null
   metaData: MainNavProps
   lang: string
   authText: {
@@ -193,12 +189,22 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
 
             {user ? (
               <>
-                <Button variant={'link'}>
-                  <Avatar>
-                    <AvatarImage src={user?.img_url} />
-                    <AvatarFallback>{user?.name[0]}</AvatarFallback>
-                  </Avatar>
-                </Button>
+                <Link href={`/${lang}/@${user?.handle}`}>
+                  <Button variant={'link'} className={'rounded-full p-0'}>
+                    <Avatar>
+                      <AvatarImage src={user?.img_url} />
+                      <AvatarFallback
+                        className={'flex items-center justify-center text-center'}
+                      >
+                        {user?.role === 'user'
+                          ? user?.first_name[0]
+                          : user?.role === 'shop'
+                            ? user.shop_name[0]
+                            : 'u'}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </Link>
               </>
             ) : (
               <>

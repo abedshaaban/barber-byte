@@ -45,8 +45,8 @@ export type RegisterResponseProps = ResponseType & {
 export type UserType = {
   handle: string
   birth_date: Date
-  description: null | string
-  img_url: null | string
+  description: string | null
+  img_url: string | undefined
   gender: GenderType
   account_status: AccountStatusType
   token: string
