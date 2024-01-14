@@ -304,6 +304,9 @@ importers:
       next-themes:
         specifier: ^0.2.1
         version: 0.2.1(next@14.0.4)(react-dom@18.2.0)(react@18.2.0)
+      pigeon-maps:
+        specifier: ^0.21.3
+        version: 0.21.3(react@18.2.0)
       react-day-picker:
         specifier: ^8.10.0
         version: 8.10.0(date-fns@3.0.6)(react@18.2.0)
@@ -10783,6 +10786,14 @@ packages:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
     dev: true
+
+  /pigeon-maps@0.21.3(react@18.2.0):
+    resolution: {integrity: sha512-NbzISHHvMrcYBMBJ6NSSdTC1iGshSYOvsql9AqBfsE7KXni9xFIV9dkIWAfkKGCbafZ/0JysWZSp7zfg2piOFg==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /pirates@4.0.6:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
