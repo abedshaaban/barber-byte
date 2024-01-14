@@ -4,6 +4,10 @@ type LocalStorageProps = {
   remove?: boolean
 }
 
+/**
+ * Get, set or remove data from local storage
+ * @param LocalStorageProps
+ */
 export function Storage({ key, value, remove = false }: LocalStorageProps) {
   if (value) {
     localStorage?.setItem(key, value)
@@ -18,6 +22,9 @@ export function Storage({ key, value, remove = false }: LocalStorageProps) {
   }
 }
 
+/**
+ * Clear local storage
+ */
 export function ClearStorage() {
   localStorage?.clear()
 }
