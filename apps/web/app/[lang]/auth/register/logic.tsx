@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation'
 import { Register } from '@repo/helpers/auth'
 import { Locale } from '@root/i18n.config'
 import { checkEmailFormat } from '@web/helpers'
+import { setUser } from '@web/provider/userSlice'
+import { useDispatch } from 'react-redux'
 
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
@@ -34,6 +36,7 @@ type FormDataType = {
 }
 
 export default function Logic({ params }: { params: { lang: Locale } }) {
+  const dispatch = useDispatch()
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const [nextButton, setNextButton] = useState<'button' | 'submit'>('submit')
@@ -106,9 +109,8 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
 
     const data = await Register({ ...credentials })
 
-    console.log('res:', data)
-
     if (data?.status) {
+      dispatch(setUser(await data?.data))
       router.push(`/${params.lang}/feed`)
     } else {
       setErrorMessage(data?.message)

@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation'
 import { Login } from '@repo/helpers/auth'
 import type { LoginProps } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
+import { setUser } from '@web/provider/userSlice'
+import { useDispatch } from 'react-redux'
 
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
@@ -22,6 +24,7 @@ type formDataProps = {
 }
 
 export default function Logic({ params }: { params: { lang: Locale } }) {
+  const dispatch = useDispatch()
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -60,11 +63,9 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
 
     const data = await Login({ ...credentials })
 
-    console.log('res:', data)
-
     if (data?.status) {
-      console.log('user:', data?.data)
-      // router.push(`/${params.lang}/feed`)
+      dispatch(setUser(await data?.data))
+      router.push(`/${params.lang}/feed`)
     } else {
       setErrorMessage(data?.message)
       setLoading(false)
