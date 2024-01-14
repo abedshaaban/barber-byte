@@ -84,22 +84,23 @@ return new class extends Migration
                     ->on('account_statuses');
         });
 
+        Schema::create('shops', function (Blueprint $table) {
+            $table->foreignUuid('owner_id')
+                    ->references('uuid')
+                    ->on('users');
+            $table->string('name');
+            
+        });
+
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('country');
             $table->string('city');
             $table->string('street');
             $table->json('location');
-        });
-        
-        Schema::create('shops', function (Blueprint $table) {
-            $table->foreignUuid('owner_id')
-                    ->references('uuid')
-                    ->on('users');
-            $table->string('name');
-            $table->foreignId('address_id')
-                    ->references('id')
-                    ->on('addresses');
+            $table->foreignUuid('shop_id')
+                    ->references('owner_id')
+                    ->on('shops');
         });
     }
 
@@ -112,7 +113,7 @@ return new class extends Migration
         Schema::dropIfExists('genders');
         Schema::dropIfExists('account_status');
         Schema::dropIfExists('users');
-        Schema::dropIfExists('addresses');
         Schema::dropIfExists('shops');
+        Schema::dropIfExists('addresses');
     }
 };
