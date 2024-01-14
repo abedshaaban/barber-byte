@@ -12,6 +12,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
 import useMultistepForm from '@repo/ui/multistepForm'
 import { cn } from '@repo/ui/util'
 
+import BarberForm from './barber-form'
 import BarberLocation from './barber-location'
 import UserEmail from './user-email'
 import UserForm from './user-form'
@@ -26,6 +27,7 @@ type FormDataType = {
   location: string
   email: string
   password: string
+  shop_name: string
 }
 
 export default function Logic({ params }: { params: { lang: Locale } }) {
@@ -40,7 +42,8 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
     birth_date: '',
     location: '',
     email: '',
-    password: ''
+    password: '',
+    shop_name: ''
   })
 
   function updateFields(fields: Partial<FormDataType>) {
@@ -57,9 +60,9 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
   ]
   const BarberShopUserForm = [
     <UserType {...credentials} updateFields={updateFields} />,
-    <UserForm {...credentials} updateFields={updateFields} />,
-    <UserEmail {...credentials} updateFields={updateFields} />,
+    <BarberForm {...credentials} updateFields={updateFields} />,
     <BarberLocation {...credentials} updateFields={updateFields} />,
+    <UserEmail {...credentials} updateFields={updateFields} />,
     <UserPassword {...credentials} updateFields={updateFields} />
   ]
 
