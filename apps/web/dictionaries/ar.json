@@ -109,5 +109,50 @@
         ]
       }
     ]
+  },
+  "register": {
+    "title": "التسجيل",
+    "barberShop": "صالون الحلاقة",
+    "user": "المستخدم",
+    "loading": "جار التحميل ...",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "loginHere": "تسجيل الدخول هنا",
+    "back": "رجوع",
+    "finish": "انتهاء",
+    "next": "التالي",
+    "userForm": {
+      "firstName": "الاسم الأول",
+      "firstNameExample": "عبد لله",
+      "lastName": "اسم العائلة",
+      "lastNameExample": "ياسين",
+      "birthDate": "تاريخ الميلاد"
+    },
+    "userEmail": {
+      "email": "البريد الإلكتروني"
+    },
+    "userPassword": {
+      "password": "كلمة المرور",
+      "requirements": {
+        "special": "خاصة",
+        "specialDescription": "استخدم حرفًا خاصًا",
+        "capital": "كبيرة",
+        "capitalDescription": "استخدم أحرفًا كبيرة",
+        "lower": "صغيرة",
+        "lowerDescription": "استخدم أحرفًا صغيرة",
+        "more": "أكثر",
+        "moreDescription": "يجب أن تكون كلمة المرور ثمانية أحرف على الأقل"
+      }
+    },
+    "barberForm": {
+      "shopName": "اسم المحل",
+      "shopNameExample": "اناقه",
+      "dateOfOpening": "تاريخ الافتتاح"
+    },
+    "barberLocation": {
+      "location": "الموقع",
+      "country": "الدولة",
+      "city": "المدينة",
+      "street": "الشارع"
+    }
   }
 }

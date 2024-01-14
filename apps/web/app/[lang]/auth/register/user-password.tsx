@@ -26,9 +26,10 @@ type UserData = {
 
 type UserPasswordProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
+  register: any
 }
 
-export default function Index({ password, updateFields }: UserPasswordProps) {
+export default function Index({ password, updateFields, register }: UserPasswordProps) {
   const [showPassword, setShowPassword] = useState(false)
   const [checked, setChecked] = useState({
     special: false,
@@ -43,24 +44,24 @@ export default function Index({ password, updateFields }: UserPasswordProps) {
     label: string
   }[] = [
     {
-      name: 'Use special character.',
+      name: register.userPassword.requirements.specialDescription,
       icon: <AtMark className={'h-12 w-12'} />,
-      label: 'special'
+      label: register.userPassword.requirements.special
     },
     {
-      name: 'Use upper case letters.',
+      name: register.userPassword.requirements.capitalDescription,
       icon: <UpperCaseLetter className={'h-12 w-12'} />,
-      label: 'capital'
+      label: register.userPassword.requirements.capital
     },
     {
-      name: 'Use lower case letters.',
+      name: register.userPassword.requirements.lowerDescription,
       icon: <LowerCaseLetter className={'h-12 w-12'} />,
-      label: 'lower'
+      label: register.userPassword.requirements.lower
     },
     {
-      name: 'Password must be eight plus characters.',
+      name: register.userPassword.requirements.moreDescription,
       icon: <EightPlus className={'h-12 w-12'} />,
-      label: 'more'
+      label: register.userPassword.requirements.more
     }
   ]
 
@@ -110,7 +111,7 @@ export default function Index({ password, updateFields }: UserPasswordProps) {
       </div>
 
       <div className={'grid w-full max-w-sm items-center gap-1.5'}>
-        <Label htmlFor={'email'}>Password</Label>
+        <Label htmlFor={'email'}>{register.userPassword.password}</Label>
 
         <div className="flex w-full">
           <Input

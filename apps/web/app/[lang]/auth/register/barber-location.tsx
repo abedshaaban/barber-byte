@@ -20,6 +20,7 @@ type formDataProps = {
 
 type UserLocationProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
+  register: any
 }
 
 export default function Index({
@@ -27,28 +28,29 @@ export default function Index({
   location,
   country,
   city,
-  street
+  street,
+  register
 }: UserLocationProps) {
   const formData: formDataProps[] = [
     {
       name: 'country',
-      label: 'Country',
+      label: register.barberLocation.country,
       type: 'text',
-      placeholder: 'Country',
+      placeholder: register.barberLocation.country,
       value: country
     },
     {
       name: 'city',
-      label: 'City',
+      label: register.barberLocation.city,
       type: 'text',
-      placeholder: 'City',
+      placeholder: register.barberLocation.city,
       value: city
     },
     {
       name: 'street',
-      label: 'Street',
+      label: register.barberLocation.street,
       type: 'text',
-      placeholder: 'Street',
+      placeholder: register.barberLocation.street,
       value: street
     }
   ]
@@ -76,7 +78,7 @@ export default function Index({
       </div>
 
       <div className="grid w-full max-w-sm items-center gap-1.5">
-        <Label>Location</Label>
+        <Label>{register.barberLocation.location}</Label>
         <Map updateState={updateFields} location={location} />
       </div>
     </div>

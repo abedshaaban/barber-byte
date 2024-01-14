@@ -7,12 +7,13 @@ type UserData = {
 
 type UserEmailProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
+  register: any
 }
 
-export default function Index({ email, updateFields }: UserEmailProps) {
+export default function Index({ email, updateFields, register }: UserEmailProps) {
   return (
     <div className={'grid w-full max-w-sm items-center gap-1.5'}>
-      <Label htmlFor={'email'}>Email</Label>
+      <Label htmlFor={'email'}>{register.userEmail.email}</Label>
       <Input
         type={'email'}
         id={'email'}

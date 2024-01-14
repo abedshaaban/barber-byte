@@ -18,32 +18,34 @@ type formDataProps = {
 
 type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
+  register: any
 }
 
 export default function Index({
   first_name,
   last_name,
   birth_date,
-  updateFields
+  updateFields,
+  register
 }: UserFormProps) {
   const formData: formDataProps[] = [
     {
       name: 'first_name',
-      label: 'First Name',
+      label: register.userForm.firstName,
       type: 'text',
-      placeholder: 'John',
+      placeholder: register.userForm.firstNameExample,
       value: first_name
     },
     {
       name: 'last_name',
-      label: 'Last Name',
+      label: register.userForm.lastName,
       type: 'text',
-      placeholder: 'Smith',
+      placeholder: register.userForm.lastNameExample,
       value: last_name
     },
     {
       name: 'birth_date',
-      label: 'Birth Date',
+      label: register.userForm.birthDate,
       type: 'date',
       placeholder: '',
       value: birth_date

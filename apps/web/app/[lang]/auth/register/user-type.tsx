@@ -10,12 +10,13 @@ type UserData = {
 
 type UserTypeProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
+  register: any
 }
 
-export default function Index({ updateFields }: UserTypeProps) {
-  const userTypes: { name: string; icon: ReactElement }[] = [
-    { name: 'User', icon: <Person className={'h-32 w-32'} /> },
-    { name: 'Barber', icon: <Home className={'h-32 w-32'} /> }
+export default function Index({ updateFields, register }: UserTypeProps) {
+  const userTypes: { name: string; icon: ReactElement; label: string }[] = [
+    { label: register.user, name: 'User', icon: <Person className={'h-32 w-32'} /> },
+    { label: register.barberShop, name: 'Barber', icon: <Home className={'h-32 w-32'} /> }
   ]
 
   function handleClick(name: string) {
@@ -41,7 +42,7 @@ export default function Index({ updateFields }: UserTypeProps) {
           >
             {item?.icon}
 
-            <span className={'w-full text-center text-xl'}>{item?.name}</span>
+            <span className={'w-full text-center text-xl'}>{item?.label}</span>
           </Button>
         )
       })}

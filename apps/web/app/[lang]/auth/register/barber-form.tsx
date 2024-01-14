@@ -17,20 +17,26 @@ type formDataProps = {
 
 type UserFormProps = UserData & {
   updateFields: (fields: Partial<UserData>) => void
+  register: any
 }
 
-export default function Index({ shop_name, birth_date, updateFields }: UserFormProps) {
+export default function Index({
+  shop_name,
+  birth_date,
+  updateFields,
+  register
+}: UserFormProps) {
   const formData: formDataProps[] = [
     {
       name: 'shop_name',
-      label: 'Shop Name',
+      label: register.barberForm.shopName,
       type: 'text',
-      placeholder: 'Barber Bandits',
+      placeholder: register.barberForm.shopNameExample,
       value: shop_name
     },
     {
       name: 'birth_date',
-      label: 'Date of Opening',
+      label: register.barberForm.dateOfOpening,
       type: 'date',
       placeholder: '',
       value: birth_date

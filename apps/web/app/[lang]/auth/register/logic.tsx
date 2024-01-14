@@ -35,7 +35,13 @@ type FormDataType = {
   street: string
 }
 
-export default function Logic({ params }: { params: { lang: Locale } }) {
+export default function Logic({
+  params,
+  register
+}: {
+  params: { lang: Locale }
+  register: any
+}) {
   const dispatch = useDispatch()
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
@@ -62,17 +68,17 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
   }
 
   const normalUserForm = [
-    <UserType {...credentials} updateFields={updateFields} />,
-    <UserForm {...credentials} updateFields={updateFields} />,
-    <UserEmail {...credentials} updateFields={updateFields} />,
-    <UserPassword {...credentials} updateFields={updateFields} />
+    <UserType {...credentials} updateFields={updateFields} register={register} />,
+    <UserForm {...credentials} updateFields={updateFields} register={register} />,
+    <UserEmail {...credentials} updateFields={updateFields} register={register} />,
+    <UserPassword {...credentials} updateFields={updateFields} register={register} />
   ]
   const BarberShopUserForm = [
-    <UserType {...credentials} updateFields={updateFields} />,
-    <BarberForm {...credentials} updateFields={updateFields} />,
-    <UserEmail {...credentials} updateFields={updateFields} />,
-    <BarberLocation {...credentials} updateFields={updateFields} />,
-    <UserPassword {...credentials} updateFields={updateFields} />
+    <UserType {...credentials} updateFields={updateFields} register={register} />,
+    <BarberForm {...credentials} updateFields={updateFields} register={register} />,
+    <UserEmail {...credentials} updateFields={updateFields} register={register} />,
+    <BarberLocation {...credentials} updateFields={updateFields} register={register} />,
+    <UserPassword {...credentials} updateFields={updateFields} register={register} />
   ]
 
   const { step, next, back, isFirstStep, isLastStep, currentStepIndex, steps } =
@@ -122,12 +128,12 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
     <form onSubmit={onSubmitForm} className={'flex w-full justify-center'}>
       <Card className={'w-full max-w-[400px] bg-slate-50 p-3 dark:bg-slate-900'}>
         <CardHeader className="flex w-full items-center">
-          <h1 className="text-3xl font-semibold">Register</h1>
+          <h1 className="text-3xl font-semibold">{register.title}</h1>
           <h2 className="w-full text-center">
             {credentials?.is_barber_shop !== null && !isFirstStep
               ? credentials?.is_barber_shop
-                ? 'Barber Shop'
-                : 'User'
+                ? register.barberShop
+                : register.user
               : null}
           </h2>
 
@@ -135,15 +141,15 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
         </CardHeader>
 
         {loading ? (
-          <div className={'pb-3 text-center'}>Loading ...</div>
+          <div className={'pb-3 text-center'}>{register.loading}</div>
         ) : (
           <>
             <CardContent className={'flex flex-col gap-3 px-1 sm:px-6'}>
               {step}
               <p className={'w-full text-end'}>
-                Already have an account?{' '}
+                {register.haveAccount}{' '}
                 <Link href={`/${params.lang}/auth/register`} className={'underline'}>
-                  Login here.
+                  {register.loginHere}
                 </Link>
               </p>
             </CardContent>
@@ -152,11 +158,11 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
               {!isFirstStep && (
                 <>
                   <Button type={'button'} variant={'secondary'} onClick={back}>
-                    Back
+                    {register.back}
                   </Button>
 
                   <Button type={nextButton} disabled={nextButton === 'button'}>
-                    {isLastStep ? 'Finish' : 'Next'}
+                    {isLastStep ? register.finish : register.next}
                   </Button>
                 </>
               )}

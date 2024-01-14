@@ -108,5 +108,48 @@
         ]
       }
     ]
+  },
+  "register": {
+    "title": "Register",
+    "barberShop": "Barber Shop",
+    "user": "User",
+    "loading": "Loading ...",
+    "haveAccount": "Already have an account?",
+    "loginHere": "Login here",
+    "back": "Back",
+    "finish": "Finish",
+    "next": "Next",
+    "userForm": {
+      "firstName": "First Name",
+      "firstNameExample": "John",
+      "lastName": "Last Name",
+      "lastNameExample": "Smith",
+      "birthDate": "Birth Date"
+    },
+    "userEmail": { "email": "Email" },
+    "userPassword": {
+      "password": "Password",
+      "requirements": {
+        "special": "special",
+        "specialDescription": "Use special character",
+        "capital": "capital",
+        "capitalDescription": "Use upper case letters",
+        "lower": "lower",
+        "lowerDescription": "Use lower case letters",
+        "more": "more",
+        "moreDescription": "Password must be eight plus characters"
+      }
+    },
+    "barberForm": {
+      "shopName": "Shop Name",
+      "shopNameExample": "Barber Bandits",
+      "dateOfOpening": "Date of Opening"
+    },
+    "barberLocation": {
+      "location": "Location",
+      "country": "Country",
+      "city": "city",
+      "street": "street"
+    }
   }
 }
