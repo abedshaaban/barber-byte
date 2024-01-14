@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Shop;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -92,7 +94,91 @@ class AuthController extends Controller
 
 
             if($is_barber_shop){
-                // todo handle barber shop register
+                $request->validate([
+                    'email' => 'required|string|email|unique:users',
+                    'password' => 'required|string|min:8',
+                    'birth_date' => 'required|date',
+                    'shop_name' => 'required|string',
+                    'country' => 'required|string',
+                    'city' => 'required|string',
+                    'street' => 'required|string',
+                    'location' => 'required|array'
+                ]);
+
+                $user = User::create([
+                    'role_id' => 2,
+                    'gender_id' => 3,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'birth_date' => $request->birth_date,
+                    'account_status_id' => 1,
+                    'shop_name' => $request->shop_name,
+                    'country' => $request->country,
+                    'city' => $request->city,
+                    'street' => $request->street,
+                    'location' => $request->location,
+                ]);
+
+                $token = Auth::guard('api')->login($user);
+
+                $token_payload = auth()->payload();
+
+                $db_user = User::select()
+                    ->where('email', $token_payload['email'])->first();
+
+                $db_shop = Shop::create([
+                    'owner_id' => $db_user->uuid,
+                    'name' => $request->shop_name,
+                ]);
+
+                $db_address = Address::create([
+                    'shop_id' => $db_user->uuid,
+                    'country' => $request->country,
+                    'city' => $request->city,
+                    'street' => $request->street,
+                    'location' => $request->location,
+                ]);
+
+                $shop = User::
+                    select(
+                        'description',
+                        'img_url',
+                        'birth_date',
+                        'roles.name as role_name',
+                        'genders.name as gender_name',
+                        'account_statuses.name as account_status',
+                        'shops.name as shop_name',
+                        'addresses.country as country',
+                        'addresses.city as city',
+                        'addresses.street as street',
+                        'addresses.location as location',
+                    )
+                    ->join('roles', 'users.role_id','=','roles.id')
+                    ->join('genders', 'users.gender_id','=','genders.id')
+                    ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
+                    ->join('shops', 'users.uuid','=','shops.owner_id')
+                    ->join('addresses', 'shops.owner_id','=','addresses.shop_id')
+                    ->where('email', $token_payload['email'])->first();
+
+                    $res = [
+                        'status' => true,
+                        'message' => 'User created successfully',
+                        'data' => [
+                            'birth_date' => $shop->birth_date,
+                            'description' => $shop->description,
+                            'img_url' => $shop->img_url,
+                            'token' => $token,
+                            'role' => $shop->role_name,
+                            'gender' => $shop->gender_name,
+                            'account_status' => $shop->account_status,
+                            'shop_name' => $shop->shop_name,
+                            'country' => $shop->country,
+                            'city' => $shop->city,
+                            'street' => $shop->street,
+                            'location' => $shop->location
+                        ],
+                        'error' => '' 
+                    ];
             } else {
                 $request->validate([
                     'first_name' => 'required|string|max:255',
@@ -113,7 +199,7 @@ class AuthController extends Controller
                     'account_status_id' => 1,
                 ]);
                 
-                $token = Auth::login($user);
+                $token = Auth::guard('api')->login($user);
 
                 $token_payload = auth()->payload();
 

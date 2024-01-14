@@ -65,8 +65,8 @@ return new class extends Migration
             $table->uuid()->default(DB::raw('(UUID())'))->primary();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('description', 255)->nullable();
             $table->text('img_url')->nullable();
             $table->timestamp('email_verified_at')->nullable();
