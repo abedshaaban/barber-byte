@@ -103,6 +103,7 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
     if (!isLastStep) return next()
 
     setLoading(true)
+    console.log(credentials)
 
     const data = await Register({ ...credentials })
 

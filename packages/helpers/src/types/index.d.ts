@@ -18,6 +18,10 @@ export type RegisterProps = LoginProps & {
   first_name: string
   last_name: string
   birth_date: Date
+  shop_name: string
+  country: string
+  city: string
+  street: string
 }
 
 export type RegisterResponseProps = ResponseType & {
