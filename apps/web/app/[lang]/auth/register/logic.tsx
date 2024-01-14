@@ -103,20 +103,17 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
     if (!isLastStep) return next()
 
     setLoading(true)
-    console.log(credentials)
 
     const data = await Register({ ...credentials })
 
     console.log('res:', data)
 
     if (data?.status) {
-      console.log('user:', data?.data)
       router.push(`/${params.lang}/feed`)
     } else {
       setErrorMessage(data?.message)
+      setLoading(false)
     }
-
-    setLoading(false)
   }
 
   return (

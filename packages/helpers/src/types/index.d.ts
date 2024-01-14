@@ -39,3 +39,20 @@ export type RegisterResponseProps = ResponseType & {
     location: [number, number]
   }
 }
+
+export type UserType =
+  | ({
+      birth_date: Date
+      description: null | string
+      img_url: null | string
+      gender: GenderType
+      account_status: AccountStatusType
+      token: string
+    } & {
+      role: 'user'
+      first_name: string
+      last_name: string
+    })
+  | {
+      role: 'shop'
+    }

@@ -64,12 +64,11 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
 
     if (data?.status) {
       console.log('user:', data?.data)
-      router.push(`/${params.lang}/feed`)
+      // router.push(`/${params.lang}/feed`)
     } else {
       setErrorMessage(data?.message)
+      setLoading(false)
     }
-
-    setLoading(false)
   }
 
   return (
