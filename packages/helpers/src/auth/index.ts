@@ -11,7 +11,8 @@ export async function Register({
   shop_name,
   country,
   city,
-  street
+  street,
+  location
 }: RegisterProps): Promise<RegisterResponseProps> {
   const res = await axios.post(
     `http://localhost:8000/api/auth/register`,
@@ -25,7 +26,8 @@ export async function Register({
       shop_name: shop_name,
       country: country,
       city: city,
-      street: street
+      street: street,
+      location: location
     },
     {
       headers: {

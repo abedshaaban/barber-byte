@@ -22,6 +22,7 @@ export type RegisterProps = LoginProps & {
   country: string
   city: string
   street: string
+  location: [number, number]
 }
 
 export type RegisterResponseProps = ResponseType & {
@@ -35,5 +36,6 @@ export type RegisterResponseProps = ResponseType & {
     role: RoleType
     gender: GenderType
     account_status: AccountStatusType
+    location: [number, number]
   }
 }
