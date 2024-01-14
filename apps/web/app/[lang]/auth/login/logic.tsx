@@ -23,7 +23,15 @@ type formDataProps = {
   value: string | number
 }
 
-export default function Logic({ params }: { params: { lang: Locale } }) {
+export default function Logic({
+  params,
+  register,
+  authText
+}: {
+  params: { lang: Locale }
+  register: any
+  authText: any
+}) {
   const dispatch = useDispatch()
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
@@ -42,14 +50,14 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
   const formData: formDataProps[] = [
     {
       name: 'email',
-      label: 'Email',
+      label: register.userEmail.email,
       type: 'email',
       placeholder: 'example@domain',
       value: credentials.email
     },
     {
       name: 'password',
-      label: 'Password',
+      label: register.userPassword.password,
       type: 'password',
       placeholder: '********',
       value: credentials.password
@@ -76,13 +84,13 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
     <form onSubmit={onSubmitForm} className={'flex w-full justify-center'}>
       <Card className={'w-full max-w-[400px] bg-slate-50 p-3 dark:bg-slate-900'}>
         <CardHeader className="flex w-full items-center">
-          <h1 className="text-3xl font-semibold">Login</h1>
+          <h1 className="text-3xl font-semibold">{authText.login}</h1>
 
           <div className={'text-red-600'}>{errorMessage}</div>
         </CardHeader>
 
         {loading ? (
-          <div className={'pb-3 text-center'}>Loading ...</div>
+          <div className={'pb-3 text-center'}>{register.loading}</div>
         ) : (
           <>
             <CardContent className={'flex flex-col gap-6 px-1 sm:px-6'}>
@@ -105,15 +113,15 @@ export default function Logic({ params }: { params: { lang: Locale } }) {
               })}
 
               <p className={'w-full text-end'}>
-                Don&#39;t have an account?{' '}
+                {register.noAccount}{' '}
                 <Link href={`/${params.lang}/auth/register`} className={'underline'}>
-                  Register here.
+                  {register.registerHere}
                 </Link>
               </p>
             </CardContent>
 
             <CardFooter className={cn('flex items-end justify-end')}>
-              <Button type={'submit'}>Login</Button>
+              <Button type={'submit'}>{authText.login}</Button>
             </CardFooter>
           </>
         )}

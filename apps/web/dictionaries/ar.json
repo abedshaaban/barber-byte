@@ -117,6 +117,8 @@
     "loading": "جار التحميل ...",
     "haveAccount": "لديك حساب بالفعل؟",
     "loginHere": "تسجيل الدخول هنا",
+    "noAccount": "ليس لديك حساب؟",
+    "registerHere": "سجّل هنا",
     "back": "رجوع",
     "finish": "انتهاء",
     "next": "التالي",
