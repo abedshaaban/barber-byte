@@ -14,6 +14,7 @@ export type LoginProps = {
 }
 
 export type RegisterProps = LoginProps & {
+  handle: string
   is_barber_shop: boolean
   first_name: string
   last_name: string
@@ -27,6 +28,7 @@ export type RegisterProps = LoginProps & {
 
 export type RegisterResponseProps = ResponseType & {
   data: {
+    handle: string
     first_name: string
     last_name: string
     birth_date: Date
@@ -41,6 +43,7 @@ export type RegisterResponseProps = ResponseType & {
 }
 
 export type UserType = {
+  handle: string
   birth_date: Date
   description: null | string
   img_url: null | string

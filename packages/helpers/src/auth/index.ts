@@ -1,5 +1,6 @@
 import type { LoginProps, RegisterProps, RegisterResponseProps } from '@/types'
 import axios from 'axios'
+import { nanoid } from 'nanoid'
 
 export async function Register({
   is_barber_shop,
@@ -17,6 +18,7 @@ export async function Register({
   const res = await axios.post(
     `http://localhost:8000/api/auth/register`,
     {
+      handle: nanoid(9),
       is_barber_shop: is_barber_shop,
       first_name: first_name,
       last_name: last_name,
