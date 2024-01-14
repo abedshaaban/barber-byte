@@ -60,7 +60,7 @@
     "./util": "./src/lib/utils.ts"
   },
   "scripts": {
-    "dev-styles": "tailwindcss -i ./src/global.css -o dist/index.css --watch",
+    "dev": "tailwindcss -i ./src/global.css -o dist/index.css --watch",
     "storybook": "storybook dev -p 6006",
     "build": "tailwindcss -i ./src/global.css -o dist/index.css",
     "build-storybook": "storybook build",
