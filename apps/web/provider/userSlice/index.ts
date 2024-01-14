@@ -1,31 +1,21 @@
-import type { } from '@repo/helpers/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import type { UserType } from '@repo/helpers/types'
 
-interface UserState {
-  user: User | null
-}
+const initialState: UserType | null = null
 
-const initialState: UserState = {
-  user: null
-}
-
-export const selfUserSlice = createSlice({
-  name: 'selfUser',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<User | null>) => {
-      if (window.localStorage && action.payload?.token) {
-        window.localStorage.setItem('cookie', action.payload?.token)
-      }
-
-      state.user = action.payload
+    setUser: (state: UserType | null, action: PayloadAction<UserType | null>) => {
+      state = action.payload
     },
 
     logoutUser: (state) => {
-      state.user = null
+      state = null
     }
   }
 })
 
-export const { setUser, logoutUser } = selfUserSlice.actions
-export default selfUserSlice.reducer
+export const { setUser, logoutUser } = userSlice.actions
+export default userSlice.reducer

@@ -1,10 +1,10 @@
 import '@repo/ui/styles.css'
 
-import type { Metadata } from 'next'
-import { i18n, Locale } from '@root/i18n.config'
+import { Locale } from '@root/i18n.config'
 import SiteFooter from '@web/components/site-footer'
 import SiteHeader from '@web/components/site-header'
 import { getDictionary } from '@web/lib/dictionary'
+import StoreProvider from '@web/provider/storeProvider'
 
 import { cn, ThemeProvider } from '@repo/ui/util'
 
@@ -63,25 +63,27 @@ export default async function RootLayout({
   const { footer, header } = await getDictionary(params.lang)
 
   return (
-    <html lang={params.lang} suppressHydrationWarning>
-      <head />
+    <StoreProvider>
+      <html lang={params.lang} suppressHydrationWarning>
+        <head />
 
-      <body className={cn('bg-background min-h-screen font-sans antialiased')}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div vaul-drawer-wrapper="">
-            <div className="bg-background relative flex min-h-screen flex-col">
-              <SiteHeader metaData={header} />
-              <main className="container flex-1">{children}</main>
-              <SiteFooter metaData={footer} />
+        <body className={cn('bg-background min-h-screen font-sans antialiased')}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <div vaul-drawer-wrapper="">
+              <div className="bg-background relative flex min-h-screen flex-col">
+                <SiteHeader metaData={header} />
+                <main className="container flex-1">{children}</main>
+                <SiteFooter metaData={footer} />
+              </div>
             </div>
-          </div>
-        </ThemeProvider>
-      </body>
-    </html>
+          </ThemeProvider>
+        </body>
+      </html>
+    </StoreProvider>
   )
 }
