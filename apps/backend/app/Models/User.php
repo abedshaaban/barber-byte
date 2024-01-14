@@ -20,6 +20,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'uuid',
+        'handle',
         'first_name',
         'last_name',
         'email',
@@ -68,6 +69,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return [
             'uuid'=>$this->uuid,
+            'handle'=>$this->handle,
             'email'=>$this->email,
             'role_id'=>$this->role_id,
         ];

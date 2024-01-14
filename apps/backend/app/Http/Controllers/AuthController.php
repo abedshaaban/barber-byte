@@ -39,6 +39,7 @@ class AuthController extends Controller
             if($token_payload['role_id'] === 1){
                 $user = User::
                     select(
+                        'handle',
                         'first_name',
                         'last_name',
                         'birth_date',
@@ -57,6 +58,7 @@ class AuthController extends Controller
                     'status' => true,
                     'message' => 'User created successfully',
                     'data' => [
+                        'handle' => $user->handle,
                         'first_name' => $user->first_name,
                         'last_name' => $user->last_name,
                         'birth_date' => $user->birth_date,
@@ -72,6 +74,7 @@ class AuthController extends Controller
             } else if($token_payload['role_id'] === 2){
                 $user = User::
                 select(
+                    'handle',
                     'description',
                     'img_url',
                     'birth_date',
@@ -95,6 +98,7 @@ class AuthController extends Controller
                     'status' => true,
                     'message' => 'User created successfully',
                     'data' => [
+                        'handle' => $user->handle,
                         'birth_date' => $user->birth_date,
                         'description' => $user->description,
                         'img_url' => $user->img_url,
@@ -136,6 +140,7 @@ class AuthController extends Controller
 
             if($is_barber_shop){
                 $request->validate([
+                    'handle' => 'required|string',
                     'email' => 'required|string|email|unique:users',
                     'password' => 'required|string|min:8',
                     'birth_date' => 'required|date',
@@ -158,6 +163,7 @@ class AuthController extends Controller
                     'city' => $request->city,
                     'street' => $request->street,
                     'location' => $request->location,
+                    'handle' => $request->handle
                 ]);
 
                 $token = Auth::guard('api')->login($user);
@@ -182,6 +188,7 @@ class AuthController extends Controller
 
                 $shop = User::
                     select(
+                        'handle',
                         'description',
                         'img_url',
                         'birth_date',
@@ -205,6 +212,7 @@ class AuthController extends Controller
                         'status' => true,
                         'message' => 'User created successfully',
                         'data' => [
+                            'handle' => $shop->handle,
                             'birth_date' => $shop->birth_date,
                             'description' => $shop->description,
                             'img_url' => $shop->img_url,
@@ -222,6 +230,7 @@ class AuthController extends Controller
                     ];
             } else {
                 $request->validate([
+                    'handle' => 'required|string',
                     'first_name' => 'required|string|max:255',
                     'last_name' => 'required|string|max:255',
                     'email' => 'required|string|email|unique:users',
@@ -237,6 +246,7 @@ class AuthController extends Controller
                     'email' => $request->email,
                     'password' => Hash::make($request->password),
                     'birth_date' => $request->birth_date,
+                    'handle' => $request->handle,
                     'account_status_id' => 1,
                 ]);
                 
@@ -246,6 +256,7 @@ class AuthController extends Controller
 
                 $db_user = User::
                 select(
+                    'handle',
                     'description',
                     'img_url',
                     'roles.name as role_name',
@@ -270,6 +281,7 @@ class AuthController extends Controller
                         'role' => $db_user->role_name,
                         'gender' => $db_user->gender_name,
                         'account_status' => $db_user->account_status,
+                        'handle' => $db_user->handle,
                     ],
                     'error' => '' 
                 ];
