@@ -14,13 +14,11 @@ use App\Http\Controllers\Controller;
 class AuthController extends Controller
 {
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
-    public function login(Request $request)
-    {
+    public function login(Request $request){
         $res = [];
 
         try{
@@ -35,41 +33,84 @@ class AuthController extends Controller
                     'error' => 'Unauthorized'
                 ]);
             }
-    
+
             $token_payload = auth()->payload();
 
-            $user = User::
+            if($token_payload['role_id'] === 1){
+                $user = User::
+                    select(
+                        'first_name',
+                        'last_name',
+                        'birth_date',
+                        'description',
+                        'img_url',
+                        'roles.name as role_name',
+                        'genders.name as gender_name',
+                        'account_statuses.name as account_status'
+                    )
+                        ->join('roles', 'users.role_id','=','roles.id')
+                        ->join('genders', 'users.gender_id','=','genders.id')
+                        ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
+                        ->where('email', $token_payload['email'])->first();
+
+                $res = [
+                    'status' => true,
+                    'message' => 'User created successfully',
+                    'data' => [
+                        'first_name' => $user->first_name,
+                        'last_name' => $user->last_name,
+                        'birth_date' => $user->birth_date,
+                        'description' => $user->description,
+                        'img_url' => $user->img_url,
+                        'token' => $token,
+                        'role' => $user->role_name,
+                        'gender' => $user->gender_name,
+                        'account_status' => $user->account_status,
+                    ],
+                    'error' => '' 
+                ];
+            } else if($token_payload['role_id'] === 2){
+                $user = User::
                 select(
-                    'first_name',
-                    'last_name',
-                    'birth_date',
                     'description',
                     'img_url',
+                    'birth_date',
                     'roles.name as role_name',
                     'genders.name as gender_name',
-                    'account_statuses.name as account_status'
+                    'account_statuses.name as account_status',
+                    'shops.name as shop_name',
+                    'addresses.country as country',
+                    'addresses.city as city',
+                    'addresses.street as street',
+                    'addresses.location as location',
                 )
-                    ->join('roles', 'users.role_id','=','roles.id')
-                    ->join('genders', 'users.gender_id','=','genders.id')
-                    ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
-                    ->where('email', $token_payload['email'])->first();
+                ->join('roles', 'users.role_id','=','roles.id')
+                ->join('genders', 'users.gender_id','=','genders.id')
+                ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
+                ->join('shops', 'users.uuid','=','shops.owner_id')
+                ->join('addresses', 'shops.owner_id','=','addresses.shop_id')
+                ->where('email', $token_payload['email'])->first();
 
-            $res = [
-                'status' => true,
-                'message' => 'User created successfully',
-                'data' => [
-                    'first_name' => $user->first_name,
-                    'last_name' => $user->last_name,
-                    'birth_date' => $user->birth_date,
-                    'description' => $user->description,
-                    'img_url' => $user->img_url,
-                    'token' => $token,
-                    'role' => $user->role_name,
-                    'gender' => $user->gender_name,
-                    'account_status' => $user->account_status,
-                ],
-                'error' => '' 
-            ];
+                $res = [
+                    'status' => true,
+                    'message' => 'User created successfully',
+                    'data' => [
+                        'birth_date' => $user->birth_date,
+                        'description' => $user->description,
+                        'img_url' => $user->img_url,
+                        'token' => $token,
+                        'role' => $user->role_name,
+                        'gender' => $user->gender_name,
+                        'account_status' => $user->account_status,
+                        'shop_name' => $user->shop_name,
+                        'country' => $user->country,
+                        'city' => $user->city,
+                        'street' => $user->street,
+                        'location' => json_decode($user->location)
+                    ],
+                    'error' => '' 
+                ];
+            }
         }catch(\Exception $exception){
             return response()->json([
                 'status' => false,
@@ -245,8 +286,7 @@ class AuthController extends Controller
         return response()->json($res, 200);
     }
 
-    public function logout()
-    {
+    public function logout(){
         Auth::logout();
         return response()->json([
             'status' => true,
