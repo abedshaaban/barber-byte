@@ -55,4 +55,9 @@ export type UserType =
     })
   | {
       role: 'shop'
+      shop_name: string
+      country: string
+      city: string
+      street: string
+      location: [number, number]
     }
