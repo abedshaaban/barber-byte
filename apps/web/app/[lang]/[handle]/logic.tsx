@@ -11,7 +11,15 @@ import { useSelector } from 'react-redux'
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { buttonVariants } from '@repo/ui/button'
 
-export default function Logic({ handle, lang }: { handle: string; lang: Locale }) {
+export default function Logic({
+  handle,
+  lang,
+  navigationText
+}: {
+  handle: string
+  lang: Locale
+  navigationText: any
+}) {
   const user = useSelector((state: RootState) => state.user.user)
   const [profile, setProfile] = useState<UserType | null>()
 
@@ -20,7 +28,6 @@ export default function Logic({ handle, lang }: { handle: string; lang: Locale }
 
     if (data?.status === true) {
       setProfile(await data?.data)
-      console.log(data?.data)
     }
   }
 
@@ -78,14 +85,18 @@ export default function Logic({ handle, lang }: { handle: string; lang: Locale }
             ) : null}
           </div>
 
-          <p>{profile?.description === null ? 'No description' : profile?.description}</p>
+          <p>
+            {profile?.description === null
+              ? navigationText.nodescription
+              : profile?.description}
+          </p>
 
           {user?.handle === profile?.handle ? (
             <Link
               href={`/${lang}/@${user?.handle}/edit`}
               className={buttonVariants({ variant: 'outline' })}
             >
-              Edit profile
+              {navigationText.editProfile}
             </Link>
           ) : null}
         </div>

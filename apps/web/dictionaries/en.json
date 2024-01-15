@@ -1,7 +1,9 @@
 {
   "navigation": {
     "home": "Home",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "editProfile": "Edit profile",
+    "nodescription": "No description"
   },
   "auth": {
     "login": "Login",

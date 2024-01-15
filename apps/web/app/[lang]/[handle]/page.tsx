@@ -9,11 +9,11 @@ export default async function Page({
   params: { handle: string; lang: Locale }
 }) {
   const handle = params.handle.substring(3)
-  const {} = await getDictionary(params.lang)
+  const {navigation} = await getDictionary(params.lang)
 
   return (
     <>
-      <Logic handle={handle} lang={params.lang} />
+      <Logic handle={handle} lang={params.lang} navigationText={navigation} />
     </>
   )
 }

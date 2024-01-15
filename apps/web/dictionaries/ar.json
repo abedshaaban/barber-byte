@@ -1,7 +1,9 @@
 {
   "navigation": {
     "home": "Startseite",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "editProfile": "تعديل الملف الشخصي",
+    "nodescription": "لا يوجد وصف"
   },
   "auth": {
     "login": "تسجيل الدخول",

@@ -1,7 +1,9 @@
 {
   "navigation": {
     "home": "Home",
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "editProfile": "编辑个人资料",
+    "nodescription": "无描述"
   },
   "auth": {
     "login": "登录",
