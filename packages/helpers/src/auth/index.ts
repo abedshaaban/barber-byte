@@ -1,4 +1,4 @@
-import type { LoginProps, RegisterProps, RegisterResponseProps } from '@/types'
+import type { LoginProps, RegisterProps, RegisterResponseProps, UserType } from '@/types'
 import axios from 'axios'
 import { nanoid } from 'nanoid'
 
@@ -81,7 +81,7 @@ export async function Login({ email, password }: LoginProps) {
 /**
  * Get user data a with token only
  */
-export async function Refresh() {
+export async function Refresh():Promise<UserType> {
   const token = Storage({ key: 'token' })
 
   const res = await axios.post(
