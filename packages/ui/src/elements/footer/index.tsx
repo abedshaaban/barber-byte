@@ -38,7 +38,7 @@ export default function Index({ metaData }: FooterProps) {
   }
 
   return (
-    <footer className="dark:bg-gray-900">
+    <footer className="dark:bg-neutral-900">
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="mb-9 flex w-full flex-row justify-start gap-3">
           <Button variant="ghost" className="w-9 px-0" onClick={toggleTheme}>

@@ -27,7 +27,7 @@ export default async function Page({ params: { lang } }: { params: { lang: Local
             <Link href={'/auth/register'}>
               <Button
                 variant={'outline'}
-                className="w-fit bg-white text-black hover:bg-slate-200 hover:text-black"
+                className="w-fit bg-white text-black hover:bg-neutral-200 hover:text-black"
               >
                 {auth.register}
               </Button>

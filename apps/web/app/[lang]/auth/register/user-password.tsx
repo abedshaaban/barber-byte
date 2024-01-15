@@ -89,10 +89,10 @@ export default function Index({ password, updateFields, register }: UserPassword
                     variant={'outline'}
                     className={cn(
                       'relative flex flex-row items-center justify-center',
-                      'h-[70px] w-[70px] rounded-lg bg-white p-2 dark:bg-slate-800',
+                      'h-[70px] w-[70px] rounded-lg bg-white p-2 dark:bg-neutral-800',
                       checked[labelKey]
                         ? 'bg-green-200 hover:bg-green-300 dark:bg-green-500'
-                        : 'hover:bg-slate-100 dark:hover:bg-slate-700'
+                        : 'hover:bg-neutral-100 dark:hover:bg-neutral-700'
                     )}
                   >
                     {item.icon}
@@ -117,7 +117,7 @@ export default function Index({ password, updateFields, register }: UserPassword
           <Input
             className={cn(
               'rounded-r-none border-r-0 outline-none focus-visible:ring-0',
-              'bg-white dark:bg-slate-800'
+              'bg-white dark:bg-neutral-800'
             )}
             type={showPassword ? 'text' : 'password'}
             id={'email'}
