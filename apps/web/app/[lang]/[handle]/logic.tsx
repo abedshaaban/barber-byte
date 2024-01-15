@@ -1,13 +1,18 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { getProfileByHandle } from '@repo/helpers/account'
 import type { UserType } from '@repo/helpers/types'
+import type { Locale } from '@root/i18n.config'
+import type { RootState } from '@web/provider/store'
+import { useSelector } from 'react-redux'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
-import { Button } from '@repo/ui/button'
+import { buttonVariants } from '@repo/ui/button'
 
-export default function Logic({ handle }: { handle: string }) {
+export default function Logic({ handle, lang }: { handle: string; lang: Locale }) {
+  const user = useSelector((state: RootState) => state.user.user)
   const [profile, setProfile] = useState<UserType | null>()
 
   async function getUserData() {
@@ -75,9 +80,14 @@ export default function Logic({ handle }: { handle: string }) {
 
           <p>{profile?.description === null ? 'No description' : profile?.description}</p>
 
-          <Button variant={'secondary'} size={'sm'}>
-            Edit profile
-          </Button>
+          {user?.handle === profile?.handle ? (
+            <Link
+              href={`/${lang}/@${user?.handle}/edit`}
+              className={buttonVariants({ variant: 'outline' })}
+            >
+              Edit profile
+            </Link>
+          ) : null}
         </div>
       </div>
     </section>
