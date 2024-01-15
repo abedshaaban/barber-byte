@@ -3,6 +3,7 @@
 import { useEffect } from 'react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
+import { Button } from '@repo/ui/button'
 
 export default function page({ params }: { params: { handle: string } }) {
   const handle = params.handle.substring(3)
@@ -12,8 +13,8 @@ export default function page({ params }: { params: { handle: string } }) {
   }, [])
 
   return (
-    <section className={''}>
-      <div>
+    <section className={'flex flex-col'}>
+      <div className="flex flex-col items-center justify-start gap-9 sm:flex-row">
         <Avatar className={'aspect-square h-48 w-48'}>
           <AvatarImage
             src={
@@ -26,9 +27,16 @@ export default function page({ params }: { params: { handle: string } }) {
           <AvatarFallback>User</AvatarFallback>
         </Avatar>
 
-        <div>
-          <h1>First Name</h1>
-          <p>Last Name</p>
+        <div className={'flex flex-col gap-3'}>
+          <div>
+            <h1 className={'text-xl font-bold md:text-3xl'}>Full Name</h1>
+            <h2 className={'text-base text-neutral-500 md:text-2xl'}>@{handle}</h2>
+          </div>
+          <p>bio</p>
+
+          <Button variant={'secondary'} size={'sm'}>
+            Edit profile
+          </Button>
         </div>
       </div>
     </section>
