@@ -40,10 +40,10 @@ export default function Logic({
   }, [])
 
   return (
-    <section className={'flex flex-col pb-3'}>
+    <section className={'flex flex-col'}>
       <div
         className={
-          'flex flex-col items-center justify-start gap-9 border-b-2 sm:flex-row'
+          'flex flex-col items-center justify-start gap-9 border-b-2 pb-9 sm:flex-row'
         }
       >
         <Avatar className={'aspect-square h-48 w-48'}>

@@ -1074,6 +1074,10 @@ body {
   height: 1rem;
 }
 
+.h-48 {
+  height: 12rem;
+}
+
 .h-5 {
   height: 1.25rem;
 }
@@ -1149,10 +1153,6 @@ body {
 
 .h-px {
   height: 1px;
-}
-
-.h-48 {
-  height: 12rem;
 }
 
 .max-h-96 {
@@ -1963,6 +1963,10 @@ body {
   border-bottom-width: 1px;
 }
 
+.border-b-2 {
+  border-bottom-width: 2px;
+}
+
 .border-e {
   border-inline-end-width: 1px;
 }
@@ -2154,11 +2158,6 @@ body {
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.object-fill {
-  -o-object-fit: fill;
-     object-fit: fill;
 }
 
 .object-center {
@@ -2357,6 +2356,14 @@ body {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pb-6 {
+  padding-bottom: 1.5rem;
+}
+
+.pb-9 {
+  padding-bottom: 2.25rem;
 }
 
 .text-left {
@@ -2599,6 +2606,11 @@ body {
   color: hsl(var(--muted-foreground));
 }
 
+.text-neutral-500 {
+  --tw-text-opacity: 1;
+  color: rgb(115 115 115 / var(--tw-text-opacity));
+}
+
 .text-popover-foreground {
   color: hsl(var(--popover-foreground));
 }
@@ -2623,11 +2635,6 @@ body {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-neutral-500 {
-  --tw-text-opacity: 1;
-  color: rgb(115 115 115 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -3975,9 +3982,9 @@ body {
     text-align: start;
   }
 
-  .md\:text-5xl {
-    font-size: 3rem;
-    line-height: 1;
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 
   .md\:text-3xl {
@@ -3985,14 +3992,9 @@ body {
     line-height: 2.25rem;
   }
 
-  .md\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-  }
-
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
+  .md\:text-5xl {
+    font-size: 3rem;
+    line-height: 1;
   }
 }
 
