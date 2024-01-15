@@ -80,10 +80,10 @@ export default async function Page({ params: { lang } }: { params: { lang: Local
         return (
           <LayoutTextImage
             key={section.id}
+            title={section.title}
             description={section.description}
             img_url={section.img_url}
             reverse={(index + 1) % 2 !== 0}
-            variant={'description'}
           />
         )
       })}
