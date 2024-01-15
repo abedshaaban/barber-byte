@@ -115,6 +115,16 @@
     ]
   },
   "register": {
+    "metaData": {
+      "login": {
+        "title": "Login",
+        "description": "Login into your account."
+      },
+      "register": {
+        "title": "Register",
+        "description": "Create an account easily."
+      }
+    },
     "title": "Register",
     "barberShop": "Barber Shop",
     "user": "User",

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { getProfileByHandle } from '@repo/helpers/account'
 import type { UserType } from '@repo/helpers/types'
-import type { Locale } from '@root/i18n.config'
+import { Locale } from '@root/i18n.config'
 import type { RootState } from '@web/provider/store'
 import { useSelector } from 'react-redux'
 

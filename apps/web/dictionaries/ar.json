@@ -116,6 +116,16 @@
     ]
   },
   "register": {
+    "metaData": {
+      "login": {
+        "title": "تسجيل الدخول",
+        "description": "تسجيل الدخول إلى حسابك."
+      },
+      "register": {
+        "title": "التسجيل",
+        "description": "إنشاء حساب بسهولة."
+      }
+    },
     "title": "التسجيل",
     "barberShop": "صالون الحلاقة",
     "user": "المستخدم",

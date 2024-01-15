@@ -116,6 +116,16 @@
     ]
   },
   "register": {
+    "metaData": {
+      "login": {
+        "title": "登录",
+        "description": "登录到您的账户。"
+      },
+      "register": {
+        "title": "注册",
+        "description": "轻松创建账户。"
+      }
+    },
     "title": "注册",
     "barberShop": "理发店",
     "user": "用户",
