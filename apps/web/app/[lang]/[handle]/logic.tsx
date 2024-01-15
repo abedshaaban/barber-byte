@@ -3,13 +3,25 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { getProfileByHandle } from '@repo/helpers/account'
+import { Logout } from '@repo/helpers/auth'
 import type { UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 import type { RootState } from '@web/provider/store'
-import { useSelector } from 'react-redux'
+import { logoutUser } from '@web/provider/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
-import { buttonVariants } from '@repo/ui/button'
+import { Button, buttonVariants } from '@repo/ui/button'
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@repo/ui/dialog'
 
 export default function Logic({
   handle,
@@ -20,8 +32,10 @@ export default function Logic({
   lang: Locale
   navigationText: any
 }) {
+  const dispatch = useDispatch()
   const user = useSelector((state: RootState) => state.user.user)
   const [profile, setProfile] = useState<UserType | null>()
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   async function getUserData() {
     const data = await getProfileByHandle({ handle: handle })
@@ -38,6 +52,13 @@ export default function Logic({
 
     getData()
   }, [])
+
+  async function handleLogout() {
+    dispatch(logoutUser())
+    await Logout()
+
+    setIsDialogOpen(false)
+  }
 
   return (
     <section className={'flex flex-col'}>
@@ -92,12 +113,49 @@ export default function Logic({
           </p>
 
           {user?.handle === profile?.handle ? (
-            <Link
-              href={`/${lang}/@${user?.handle}/edit`}
-              className={buttonVariants({ variant: 'outline' })}
-            >
-              {navigationText.editProfile}
-            </Link>
+            <>
+              <Link
+                href={`/${lang}/@${user?.handle}/edit`}
+                className={buttonVariants({ variant: 'outline' })}
+              >
+                {navigationText.editProfile}
+              </Link>
+
+              <Dialog open={isDialogOpen}>
+                <DialogTrigger
+                  asChild
+                  onClick={() => {
+                    setIsDialogOpen(true)
+                  }}
+                >
+                  <Button variant={'destructive'}>Logout</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Logout</DialogTitle>
+                    <DialogDescription>
+                      Are you sure you want to logout from your account?
+                    </DialogDescription>
+                  </DialogHeader>
+
+                  <DialogFooter className={'flex w-full flex-row justify-between'}>
+                    <Button
+                      type="button"
+                      variant={'secondary'}
+                      onClick={() => {
+                        setIsDialogOpen(false)
+                      }}
+                    >
+                      Close
+                    </Button>
+
+                    <Button type="submit" variant={'destructive'} onClick={handleLogout}>
+                      Logout
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </>
           ) : null}
         </div>
       </div>

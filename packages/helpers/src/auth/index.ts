@@ -116,19 +116,25 @@ export async function Refresh(): Promise<UserType> {
 export async function Logout() {
   const token = Storage({ key: 'token' })
 
-  const res = await axios.post(
-    `http://localhost:8000/api/auth/logout`,
-    {},
-    {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `bearer ${token}`
+  try {
+    const res = await axios.post(
+      `http://localhost:8000/api/auth/logout`,
+      {},
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
       }
-    }
-  )
+    )
 
-  if (res?.data?.data) {
-    Storage({ key: 'token', remove: true })
+    if (res?.data?.data) {
+      Storage({ key: 'token', remove: true })
+    }
+
+    return res?.data
+  } catch (error) {
+    console.log(error)
   }
 }
