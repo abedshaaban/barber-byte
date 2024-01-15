@@ -10,12 +10,18 @@ type AccountHnalde = {
  * @param handle
  */
 export async function getProfileByHandle({ handle }: AccountHnalde): Promise<UserType> {
-  const res = await axios.get(`http://localhost:8000/api/account/${handle}`, {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  })
+  let res
+
+  try {
+    res = await axios.get(`http://localhost:8000/api/account/${handle}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+  } catch (error) {
+    console.error(error?.message)
+  }
 
   return res?.data
 }

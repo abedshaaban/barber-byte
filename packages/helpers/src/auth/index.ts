@@ -81,23 +81,30 @@ export async function Login({ email, password }: LoginProps) {
 /**
  * Get user data a with token only
  */
-export async function Refresh():Promise<UserType> {
-  const token = Storage({ key: 'token' })
+export async function Refresh(): Promise<UserType> {
+  let res
 
-  const res = await axios.post(
-    `http://localhost:8000/api/auth/refresh`,
-    {},
-    {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `bearer ${token}`
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `http://localhost:8000/api/auth/refresh`,
+      {},
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
       }
-    }
-  )
+    )
 
-  if (res?.data?.data) {
-    Storage({ key: 'token', value: res?.data?.data?.token })
+    if (res?.data?.data) {
+      Storage({ key: 'token', value: res?.data?.data?.token })
+    }
+  } catch (error) {
+    console.log(error)
+    Storage({ key: 'token', remove: true })
   }
 
   return res?.data
