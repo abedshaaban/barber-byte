@@ -146,7 +146,7 @@ export default function Logic({
           <>
             <CardContent className={'flex flex-col gap-3 px-1 sm:px-6'}>
               {step}
-              <p className={'w-full text-end'}>
+              <p className={'w-full text-end text-sm'}>
                 {register.haveAccount}{' '}
                 <Link href={`/${params.lang}/auth/register`} className={'underline'}>
                   {register.loginHere}

@@ -45,22 +45,22 @@ export default function Index({ password, updateFields, register }: UserPassword
   }[] = [
     {
       name: register.userPassword.requirements.specialDescription,
-      icon: <AtMark className={'h-12 w-12'} />,
+      icon: <AtMark className={'h-12 w-12 dark:fill-white'} />,
       label: register.userPassword.requirements.special
     },
     {
       name: register.userPassword.requirements.capitalDescription,
-      icon: <UpperCaseLetter className={'h-12 w-12'} />,
+      icon: <UpperCaseLetter className={'h-12 w-12 dark:fill-white'} />,
       label: register.userPassword.requirements.capital
     },
     {
       name: register.userPassword.requirements.lowerDescription,
-      icon: <LowerCaseLetter className={'h-12 w-12'} />,
+      icon: <LowerCaseLetter className={'h-12 w-12 dark:fill-white'} />,
       label: register.userPassword.requirements.lower
     },
     {
       name: register.userPassword.requirements.moreDescription,
-      icon: <EightPlus className={'h-12 w-12'} />,
+      icon: <EightPlus className={'h-12 w-12 dark:fill-white'} />,
       label: register.userPassword.requirements.more
     }
   ]
@@ -89,10 +89,10 @@ export default function Index({ password, updateFields, register }: UserPassword
                     variant={'outline'}
                     className={cn(
                       'relative flex flex-row items-center justify-center',
-                      'h-[70px] w-[70px] rounded-lg p-2',
+                      'h-[70px] w-[70px] rounded-lg bg-white p-2 dark:bg-slate-800',
                       checked[labelKey]
-                        ? 'bg-green-300 hover:bg-green-300'
-                        : 'hover:bg-white'
+                        ? 'bg-green-200 hover:bg-green-300 dark:bg-green-500'
+                        : 'hover:bg-slate-100 dark:hover:bg-slate-700'
                     )}
                   >
                     {item.icon}
@@ -115,7 +115,10 @@ export default function Index({ password, updateFields, register }: UserPassword
 
         <div className="flex w-full">
           <Input
-            className={cn('rounded-r-none border-r-0 outline-none focus-visible:ring-0')}
+            className={cn(
+              'rounded-r-none border-r-0 outline-none focus-visible:ring-0',
+              'bg-white dark:bg-slate-800'
+            )}
             type={showPassword ? 'text' : 'password'}
             id={'email'}
             placeholder={'********'}

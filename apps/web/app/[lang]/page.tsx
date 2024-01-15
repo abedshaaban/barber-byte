@@ -64,7 +64,7 @@ export default async function Page({ params: { lang } }: { params: { lang: Local
 
       {/* call to action */}
       <section className="flex w-full flex-col items-center justify-center gap-6 border-y-2 p-3  md:flex-row md:p-9">
-        <p className="max-w-[700px] text-center text-xl">{home.cta2}</p>
+        <p className="max-w-[700px] text-center text-xl">{home.cta1}</p>
 
         <Link href={'/auth/register'}>
           <Button className="w-fit">{auth.register}</Button>

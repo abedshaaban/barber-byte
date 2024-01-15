@@ -96,7 +96,10 @@ export default function Logic({
             <CardContent className={'flex flex-col gap-6 px-1 sm:px-6'}>
               {formData?.map((item, index) => {
                 return (
-                  <div className="grid w-full max-w-sm items-center gap-1.5" key={index}>
+                  <div
+                    className={'grid w-full max-w-sm items-center gap-1.5'}
+                    key={index}
+                  >
                     <Label htmlFor={item?.name}>{item?.label}</Label>
                     <Input
                       type={item?.type}
@@ -107,12 +110,13 @@ export default function Logic({
                       onChange={(e) => {
                         updateFields({ [item?.name]: e.target.value })
                       }}
+                      className={'bg-white dark:bg-slate-800'}
                     />
                   </div>
                 )
               })}
 
-              <p className={'w-full text-end'}>
+              <p className={'-mt-4 w-full text-end text-sm'}>
                 {register.noAccount}{' '}
                 <Link href={`/${params.lang}/auth/register`} className={'underline'}>
                   {register.registerHere}
@@ -121,7 +125,9 @@ export default function Logic({
             </CardContent>
 
             <CardFooter className={cn('flex items-end justify-end')}>
-              <Button type={'submit'}>{authText.login}</Button>
+              <Button type={'submit'} className={'w-full'}>
+                {authText.login}
+              </Button>
             </CardFooter>
           </>
         )}

@@ -23,6 +23,7 @@ export default function Index({ email, updateFields, register }: UserEmailProps)
         onChange={(e) => {
           updateFields({ email: e.target.value })
         }}
+        className={'bg-white dark:bg-slate-800'}
       />
     </div>
   )

@@ -58,6 +58,7 @@ export default function Index({
               onChange={(e) => {
                 updateFields({ [item?.name]: e.target.value })
               }}
+              className={'bg-white dark:bg-slate-800'}
             />
           </div>
         )
