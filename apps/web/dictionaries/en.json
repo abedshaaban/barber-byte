@@ -47,20 +47,23 @@
       ]
     },
     "barberShop": {
-      "title": "For Barbershop Owners/Managers",
+      "title": "For Barbershop Owners and Managers",
       "section": [
         {
           "id": 1,
+          "title": "Empowering Growth Through Data Insights",
           "description": "Dive into your shop's data effortlessly. Barber Byte's desktop application provides invaluable insights into client activity, empowering you to make informed decisions for the growth of your business.",
           "img_url": "/images/home/image-4.webp"
         },
         {
           "id": 2,
+          "title": "Sharp Strategies with Predictive Analytics",
           "description": "Stay ahead of the curve with predictive analytics. Barber Byte helps you foresee trends and plan strategically, ensuring your barbershop is always one step ahead in meeting client demands.",
           "img_url": "/images/home/image-5.webp"
         },
         {
           "id": 3,
+          "title": "Elevate Your Shop with Seamless Management",
           "description": "Barber Byte simplifies business management. From appointment tracking to client engagement, our desktop application is your one-stop solution to streamline operations and elevate customer satisfaction.",
           "img_url": "/images/home/image-6.webp"
         }

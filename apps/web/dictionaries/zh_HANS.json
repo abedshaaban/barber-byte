@@ -48,20 +48,23 @@
       ]
     },
     "barberShop": {
-      "title": "对于理发店老板/经理",
+      "title": "适用于理发店业主和经理",
       "section": [
         {
           "id": 1,
+          "title": "通过数据洞察实现增长",
           "description": "轻松深入了解您商店的数据。 Barber Byte 的桌面应用程序提供有关客户活动的宝贵见解，使您能够为业务增长做出明智的决策。",
           "img_url": "/images/home/image-4.webp"
         },
         {
           "id": 2,
+          "title": "利用预测分析的锋利战略",
           "description": "通过预测分析保持领先地位。 Barber Byte 可帮助您预见趋势并进行战略规划，确保您的理发店在满足客户需求方面始终领先一步。",
           "img_url": "/images/home/image-5.webp"
         },
         {
           "id": 3,
+          "title": "通过无缝管理提升您的店铺",
           "description": "Barber Byte 简化了业务管理。从预约跟踪到客户参与，我们的桌面应用程序是您简化运营和提高客户满意度的一站式解决方案。",
           "img_url": "/images/home/image-6.webp"
         }
