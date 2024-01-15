@@ -8,7 +8,7 @@ type MapProps = {
 
 export default function MyMap({ updateState, location }: MapProps) {
   function handleMarkOnMap({ latLng }: { latLng: [number, number] }) {
-    updateState({ location : latLng })
+    updateState({ location: latLng })
   }
 
   return (
