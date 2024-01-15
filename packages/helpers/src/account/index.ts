@@ -5,6 +5,10 @@ type AccountHnalde = {
   handle: string
 }
 
+/**
+ * Get user profile from handle if the user account status is public.
+ * @param handle
+ */
 export async function getProfileByHandle({ handle }: AccountHnalde): Promise<UserType> {
   const res = await axios.get(`http://localhost:8000/api/account/${handle}`, {
     headers: {
