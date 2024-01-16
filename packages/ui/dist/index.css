@@ -1434,18 +1434,6 @@ body {
   max-width: 24rem;
 }
 
-.max-w-\[\] {
-  max-width: ;
-}
-
-.max-w-\[600px\] {
-  max-width: 600px;
-}
-
-.max-w-\[500px\] {
-  max-width: 500px;
-}
-
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -1675,12 +1663,12 @@ body {
   gap: 0.375rem;
 }
 
-.gap-2 {
-  gap: 0.5rem;
+.gap-10 {
+  gap: 2.5rem;
 }
 
-.gap-24 {
-  gap: 6rem;
+.gap-2 {
+  gap: 0.5rem;
 }
 
 .gap-3 {
@@ -1709,10 +1697,6 @@ body {
 
 .gap-\[6px\] {
   gap: 6px;
-}
-
-.gap-10 {
-  gap: 2.5rem;
 }
 
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {

@@ -311,8 +311,8 @@ class AuthController extends Controller
     public function refresh(){
         $current_user = Auth::user();
         
-        if($current_user){
-            if(!$current_user['email']){
+        try{
+            if(!$current_user || !$current_user->email){
                 $res = [
                     'status' => false,
                     'message' => 'Unauthorized',
@@ -322,98 +322,104 @@ class AuthController extends Controller
                 return response()->json($res, 200);
             }
 
-            try{
-                if($current_user['role_id'] === 1){
-                    $db_user = User::
-                    select(
-                        'handle',
-                        'first_name',
-                        'last_name',
-                        'birth_date',
-                        'description',
-                        'img_url',
-                        'roles.name as role_name',
-                        'genders.name as gender_name',
-                        'account_statuses.name as account_status'
-                    )
-                        ->join('roles', 'users.role_id','=','roles.id')
-                        ->join('genders', 'users.gender_id','=','genders.id')
-                        ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
-                        ->where('email', $current_user['email'])->first();
-
-                        $res = [
-                            'status' => true,
-                            'message' => 'Got user data',
-                            'data' => [
-                                'first_name' => $db_user->first_name,
-                                'last_name' => $db_user->last_name,
-                                'birth_date' => $db_user->birth_date,
-                                'description' => $db_user->description,
-                                'img_url' => $db_user->img_url,
-                                'token' => Auth::refresh(),
-                                'role' => $db_user->role_name,
-                                'gender' => $db_user->gender_name,
-                                'account_status' => $db_user->account_status,
-                                'handle' => $db_user->handle,
-                            ],
-                            'error' => '' 
-                        ];
-                        return response()->json($res, 200);
-
-                } else if($current_user['role_id'] === 2){
-                    $user = User::
-                    select(
-                        'handle',
-                        'description',
-                        'img_url',
-                        'birth_date',
-                        'roles.name as role_name',
-                        'genders.name as gender_name',
-                        'account_statuses.name as account_status',
-                        'shops.name as shop_name',
-                        'addresses.country as country',
-                        'addresses.city as city',
-                        'addresses.street as street',
-                        'addresses.location as location',
-                    )
+            if($current_user['role_id'] === 1){
+                $db_user = User::
+                select(
+                    'handle',
+                    'first_name',
+                    'last_name',
+                    'birth_date',
+                    'description',
+                    'img_url',
+                    'roles.name as role_name',
+                    'genders.name as gender_name',
+                    'account_statuses.name as account_status'
+                )
                     ->join('roles', 'users.role_id','=','roles.id')
                     ->join('genders', 'users.gender_id','=','genders.id')
                     ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
-                    ->join('shops', 'users.uuid','=','shops.owner_id')
-                    ->join('addresses', 'shops.owner_id','=','addresses.shop_id')
                     ->where('email', $current_user['email'])->first();
-    
+
                     $res = [
                         'status' => true,
                         'message' => 'Got user data',
                         'data' => [
-                            'handle' => $user->handle,
-                            'birth_date' => $user->birth_date,
-                            'description' => $user->description,
-                            'img_url' => $user->img_url,
+                            'first_name' => $db_user->first_name,
+                            'last_name' => $db_user->last_name,
+                            'birth_date' => $db_user->birth_date,
+                            'description' => $db_user->description,
+                            'img_url' => $db_user->img_url,
                             'token' => Auth::refresh(),
-                            'role' => $user->role_name,
-                            'gender' => $user->gender_name,
-                            'account_status' => $user->account_status,
-                            'shop_name' => $user->shop_name,
-                            'country' => $user->country,
-                            'city' => $user->city,
-                            'street' => $user->street,
-                            'location' => json_decode($user->location)
+                            'role' => $db_user->role_name,
+                            'gender' => $db_user->gender_name,
+                            'account_status' => $db_user->account_status,
+                            'handle' => $db_user->handle,
                         ],
                         'error' => '' 
                     ];
                     return response()->json($res, 200);
-                }
-            }catch(\Exception $exception){
+
+            } else if($current_user['role_id'] === 2){
+                $user = User::
+                select(
+                    'handle',
+                    'description',
+                    'img_url',
+                    'birth_date',
+                    'roles.name as role_name',
+                    'genders.name as gender_name',
+                    'account_statuses.name as account_status',
+                    'shops.name as shop_name',
+                    'addresses.country as country',
+                    'addresses.city as city',
+                    'addresses.street as street',
+                    'addresses.location as location',
+                )
+                ->join('roles', 'users.role_id','=','roles.id')
+                ->join('genders', 'users.gender_id','=','genders.id')
+                ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
+                ->join('shops', 'users.uuid','=','shops.owner_id')
+                ->join('addresses', 'shops.owner_id','=','addresses.shop_id')
+                ->where('email', $current_user['email'])->first();
+
+                $res = [
+                    'status' => true,
+                    'message' => 'Got user data',
+                    'data' => [
+                        'handle' => $user->handle,
+                        'birth_date' => $user->birth_date,
+                        'description' => $user->description,
+                        'img_url' => $user->img_url,
+                        'token' => Auth::refresh(),
+                        'role' => $user->role_name,
+                        'gender' => $user->gender_name,
+                        'account_status' => $user->account_status,
+                        'shop_name' => $user->shop_name,
+                        'country' => $user->country,
+                        'city' => $user->city,
+                        'street' => $user->street,
+                        'location' => json_decode($user->location)
+                    ],
+                    'error' => '' 
+                ];
+                return response()->json($res, 200);
+            } else {
                 $res = [
                     'status' => false,
-                    'message' => 'Error occurred while getting user data',
+                    'message' => 'Unauthorized',
                     'data' => '',
-                    'error' => $exception->getMessage() 
+                    'error' => 'user not authorized' 
                 ];
                 return response()->json($res, 200);
             }
+        }catch(\Exception $exception){
+            $res = [
+                'status' => false,
+                'message' => 'Error occurred while getting user data',
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ];
+            return response()->json($res, 200);
         }
     }
 }
