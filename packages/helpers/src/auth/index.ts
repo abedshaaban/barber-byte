@@ -101,8 +101,6 @@ export async function Refresh(): Promise<UserType> {
 
     if (res?.data?.status === true) {
       Storage({ key: 'token', value: res?.data?.data?.token })
-    } else {
-      Storage({ key: 'token', remove: true })
     }
   } catch (error) {}
 

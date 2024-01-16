@@ -109,7 +109,7 @@ class AccountController extends Controller
                 $res =[
                     'status' => true,
                     'message' => 'User not found',
-                    'data' => 'private',
+                    'data' => '',
                     'error' => '' 
                 ];
             }

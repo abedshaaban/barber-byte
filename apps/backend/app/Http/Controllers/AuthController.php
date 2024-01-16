@@ -310,7 +310,6 @@ class AuthController extends Controller
 
     public function refresh(){
         $current_user = Auth::user();
-        $res = [];
         
         if($current_user){
             if(!$current_user['email']){
@@ -320,6 +319,7 @@ class AuthController extends Controller
                     'data' => '',
                     'error' => 'user not authorized' 
                 ];
+                return response()->json($res, 200);
             }
 
             try{
@@ -358,6 +358,8 @@ class AuthController extends Controller
                             ],
                             'error' => '' 
                         ];
+                        return response()->json($res, 200);
+
                 } else if($current_user['role_id'] === 2){
                     $user = User::
                     select(
@@ -401,6 +403,7 @@ class AuthController extends Controller
                         ],
                         'error' => '' 
                     ];
+                    return response()->json($res, 200);
                 }
             }catch(\Exception $exception){
                 $res = [
@@ -409,8 +412,8 @@ class AuthController extends Controller
                     'data' => '',
                     'error' => $exception->getMessage() 
                 ];
+                return response()->json($res, 200);
             }
         }
-        return response()->json($res, 200);
     }
 }
