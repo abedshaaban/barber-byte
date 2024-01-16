@@ -49,12 +49,16 @@ export default async function Page({
 
   if (data?.status === false) {
     notFound()
-    // return <p>user not found</p>
   }
 
   return (
     <>
-      <Logic handle={handle} lang={params.lang} navigationText={navigation} />
+      <Logic
+        handle={handle}
+        lang={params.lang}
+        navigationText={navigation}
+        profile={data?.data}
+      />
     </>
   )
 }

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { getProfileByHandle } from '@repo/helpers/account'
 import { Logout } from '@repo/helpers/auth'
 import type { UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
@@ -25,35 +24,22 @@ import {
 export default function Logic({
   handle,
   lang,
-  navigationText
+  navigationText,
+  profile: initial_profile
 }: {
   handle: string
   lang: Locale
   navigationText: any
+  profile: UserType | null
 }) {
   const dispatch = useDispatch()
   const user = useSelector((state: RootState) => state.user.user)
-  const [profile, setProfile] = useState<UserType | null>()
+  const [profile, setProfile] = useState<UserType | null>(initial_profile)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
-
-  async function getUserData() {
-    const data = await getProfileByHandle({ handle: handle })
-
-    if (data?.status === true) {
-      setProfile(await data?.data)
-    } else {
-    }
-  }
 
   useEffect(() => {
     if (user?.handle === handle) {
       setProfile(user)
-    } else {
-      async function getData() {
-        await getUserData()
-      }
-
-      getData()
     }
   }, [user])
 
