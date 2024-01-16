@@ -42,6 +42,7 @@ export default function Logic({
   lang: string
 }) {
   const user = useSelector((state: RootState) => state.user.user)
+  const [loading, setLoading] = useState<boolean>(false)
   const [credentials, setCredentials] = useState<Partial<UserCredentials>>({
     handle: user ? user?.handle : '',
     first_name: user?.role === 'user' ? user?.first_name : '',
@@ -62,6 +63,7 @@ export default function Logic({
   }
 
   function handleUpdateProfile() {
+    setLoading(true)
     console.log(credentials)
   }
 
@@ -157,34 +159,42 @@ export default function Logic({
 
   return (
     <section className={'flex w-full max-w-[400px] flex-col gap-10'}>
-      <div className={cn('flex w-full flex-col justify-center gap-6')}>
-        {normalUserData?.map((item, index) => {
-          return (
-            <div className="grid w-full max-w-[400px] items-center gap-1.5" key={index}>
-              <Label htmlFor={item?.name}>{item?.label}</Label>
-              <Input
-                type={item?.type}
-                id={item?.name}
-                placeholder={item?.placeholder}
-                required
-                value={item?.value}
-                onChange={(e) => {
-                  updateFields({ [item?.name]: e.target.value })
-                }}
-                className={'bg-white dark:bg-neutral-800'}
-              />
-            </div>
-          )
-        })}
-      </div>
+      {loading ? (
+        <>Saving ...</>
+      ) : (
+        <>
+          <div className={cn('flex w-full flex-col justify-center gap-6')}>
+            {normalUserData?.map((item, index) => {
+              return (
+                <div
+                  className="grid w-full max-w-[400px] items-center gap-1.5"
+                  key={index}
+                >
+                  <Label htmlFor={item?.name}>{item?.label}</Label>
+                  <Input
+                    type={item?.type}
+                    id={item?.name}
+                    placeholder={item?.placeholder}
+                    required
+                    value={item?.value}
+                    onChange={(e) => {
+                      updateFields({ [item?.name]: e.target.value })
+                    }}
+                    className={'bg-white dark:bg-neutral-800'}
+                  />
+                </div>
+              )
+            })}
+          </div>
+          <div className={'flex flex-row items-center justify-between'}>
+            <Link href={`/${lang}`}>
+              <Button variant={'secondary'}>{register.cancel}</Button>
+            </Link>
 
-      <div className={'flex flex-row items-center justify-between'}>
-        <Link href={`/${lang}`}>
-          <Button variant={'secondary'}>{register.cancel}</Button>
-        </Link>
-
-        <Button onClick={handleUpdateProfile}>{register.save}</Button>
-      </div>
+            <Button onClick={handleUpdateProfile}>{register.save}</Button>
+          </div>
+        </>
+      )}
     </section>
   )
 }
