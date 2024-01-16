@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { updateProfile } from '@repo/helpers/account'
 import { RootState } from '@web/provider/store'
 import { useSelector } from 'react-redux'
 
@@ -24,7 +25,6 @@ type UserCredentials = {
   last_name: string
   birth_date: string
   location: [number, number]
-  email: string
   password: string
   shop_name: string
   country: string
@@ -49,7 +49,6 @@ export default function Logic({
     last_name: user?.role === 'user' ? user?.last_name : '',
     birth_date: user?.birth_date as unknown as string,
     location: user?.role === 'shop' ? user?.location : [0, 0],
-    email: '',
     shop_name: user?.role === 'shop' ? user?.shop_name : '',
     country: user?.role === 'shop' ? user?.country : '',
     city: user?.role === 'shop' ? user?.city : '',
@@ -62,9 +61,14 @@ export default function Logic({
     })
   }
 
-  function handleUpdateProfile() {
+  async function handleUpdateProfile() {
     setLoading(true)
+
     console.log(credentials)
+    const res = await updateProfile({ ...credentials })
+    console.log(res)
+
+    setLoading(false)
   }
 
   if (user?.handle !== handle) {
