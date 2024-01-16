@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { getProfileByHandle } from '@repo/helpers/account'
 import type { UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
-import { getProfileByHandle } from '@root/packages/helpers/src/account'
 import { getDictionary } from '@web/lib/dictionary'
 
 import Logic from './logic'
@@ -47,7 +47,7 @@ export default async function Page({
   const { navigation } = await getDictionary(params.lang)
   const data = await getProfileByHandle({ handle: handle })
 
-  if (data?.status === false) {
+  if (data?.status === false || data?.error?.length > 0) {
     notFound()
   }
 

@@ -107,10 +107,10 @@ class AccountController extends Controller
                 }
             } else {
                 $res =[
-                    'status' => false,
+                    'status' => true,
                     'message' => 'User not found',
-                    'data' => '',
-                    'error' => 'User not found' 
+                    'data' => 'private',
+                    'error' => '' 
                 ];
             }
 
