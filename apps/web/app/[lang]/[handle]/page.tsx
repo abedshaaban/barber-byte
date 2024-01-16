@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import type { UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 import { getProfileByHandle } from '@root/packages/helpers/src/account'
@@ -44,6 +45,12 @@ export default async function Page({
 }) {
   const handle = params.handle.substring(3)
   const { navigation } = await getDictionary(params.lang)
+  const data = await getProfileByHandle({ handle: handle })
+
+  if (data?.status === false) {
+    notFound()
+    // return <p>user not found</p>
+  }
 
   return (
     <>
