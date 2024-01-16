@@ -137,6 +137,9 @@
     "back": "رجوع",
     "finish": "انتهاء",
     "next": "التالي",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "handle": "اسم المستخدم @",
     "userForm": {
       "firstName": "الاسم الأول",
       "firstNameExample": "عبد لله",

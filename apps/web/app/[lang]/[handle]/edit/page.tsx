@@ -9,11 +9,11 @@ export default async function page({
   params: { handle: string; lang: Locale }
 }) {
   const handle = params.handle.substring(3)
-  const { navigation } = await getDictionary(params.lang)
+  const { register } = await getDictionary(params.lang)
 
   return (
-    <>
-      <Logic handle={handle} editText={navigation} />
-    </>
+    <section className={'flex w-full justify-center'}>
+      <Logic handle={handle} register={register} lang={params?.lang} />
+    </section>
   )
 }

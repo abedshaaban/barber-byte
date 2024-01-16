@@ -136,6 +136,9 @@
     "back": "Back",
     "finish": "Finish",
     "next": "Next",
+    "save": "Save",
+    "cancel": "Cancel",
+    "handle": "User handle @",
     "userForm": {
       "firstName": "First Name",
       "firstNameExample": "John",
@@ -165,8 +168,8 @@
     "barberLocation": {
       "location": "Location",
       "country": "Country",
-      "city": "city",
-      "street": "street"
+      "city": "City",
+      "street": "Street"
     }
   }
 }

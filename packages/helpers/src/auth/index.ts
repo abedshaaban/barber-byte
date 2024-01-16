@@ -126,9 +126,7 @@ export async function Logout() {
       }
     )
 
-    if (res?.data?.data) {
-      Storage({ key: 'token', remove: true })
-    }
+    Storage({ key: 'token', remove: true })
 
     return res?.data
   } catch (error) {

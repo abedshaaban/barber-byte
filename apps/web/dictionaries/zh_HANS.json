@@ -137,6 +137,9 @@
     "back": "返回",
     "finish": "完成",
     "next": "下一步",
+    "save": "保存",
+    "cancel": "取消",
+    "handle": "用户用户名 @",
     "userForm": {
       "firstName": "名字",
       "firstNameExample": "李",

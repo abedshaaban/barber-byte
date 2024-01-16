@@ -81,8 +81,8 @@ export default async function RootLayout({
               <div className="bg-background relative flex min-h-screen flex-col">
                 <SiteHeader metaData={header} />
                 <main className="container flex-1">{children}</main>
-                <SiteFooter metaData={footer} />
               </div>
+              <SiteFooter metaData={footer} />
             </div>
           </ThemeProvider>
         </body>
