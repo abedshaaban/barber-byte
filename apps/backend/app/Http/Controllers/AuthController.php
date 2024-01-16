@@ -15,7 +15,7 @@ class AuthController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'refresh']]);
     }
 
     public function login(Request $request){
@@ -310,53 +310,53 @@ class AuthController extends Controller
 
     public function refresh(){
         $current_user = Auth::user();
-        $token = Auth::guard('api')->login($current_user);
 
-        if(!$current_user['email']){
-            return response()->json([
-                'status' => false,
-                'message' => 'Unauthorized',
-                'data' => '',
-                'error' => 'user not authorized' 
-            ], 401);
-        }
+        if($current_user){
+            if(!$current_user['email']){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Unauthorized',
+                    'data' => '',
+                    'error' => 'user not authorized' 
+                ], 401);
+            }
 
-        try{
-            if($current_user['role_id'] === 1){
-                $db_user = User::
-                select(
-                    'handle',
-                    'first_name',
-                    'last_name',
-                    'birth_date',
-                    'description',
-                    'img_url',
-                    'roles.name as role_name',
-                    'genders.name as gender_name',
-                    'account_statuses.name as account_status'
-                )
-                    ->join('roles', 'users.role_id','=','roles.id')
-                    ->join('genders', 'users.gender_id','=','genders.id')
-                    ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
-                    ->where('email', $current_user['email'])->first();
+            try{
+                if($current_user['role_id'] === 1){
+                    $db_user = User::
+                    select(
+                        'handle',
+                        'first_name',
+                        'last_name',
+                        'birth_date',
+                        'description',
+                        'img_url',
+                        'roles.name as role_name',
+                        'genders.name as gender_name',
+                        'account_statuses.name as account_status'
+                    )
+                        ->join('roles', 'users.role_id','=','roles.id')
+                        ->join('genders', 'users.gender_id','=','genders.id')
+                        ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
+                        ->where('email', $current_user['email'])->first();
 
-                    $res = [
-                        'status' => true,
-                        'message' => 'Got user data',
-                        'data' => [
-                            'first_name' => $db_user->first_name,
-                            'last_name' => $db_user->last_name,
-                            'birth_date' => $db_user->birth_date,
-                            'description' => $db_user->description,
-                            'img_url' => $db_user->img_url,
-                            'token' => $token,
-                            'role' => $db_user->role_name,
-                            'gender' => $db_user->gender_name,
-                            'account_status' => $db_user->account_status,
-                            'handle' => $db_user->handle,
-                        ],
-                        'error' => '' 
-                    ];
+                        $res = [
+                            'status' => true,
+                            'message' => 'Got user data',
+                            'data' => [
+                                'first_name' => $db_user->first_name,
+                                'last_name' => $db_user->last_name,
+                                'birth_date' => $db_user->birth_date,
+                                'description' => $db_user->description,
+                                'img_url' => $db_user->img_url,
+                                'token' => Auth::refresh(),
+                                'role' => $db_user->role_name,
+                                'gender' => $db_user->gender_name,
+                                'account_status' => $db_user->account_status,
+                                'handle' => $db_user->handle,
+                            ],
+                            'error' => '' 
+                        ];
                 } else if($current_user['role_id'] === 2){
                     $user = User::
                     select(
@@ -388,7 +388,7 @@ class AuthController extends Controller
                             'birth_date' => $user->birth_date,
                             'description' => $user->description,
                             'img_url' => $user->img_url,
-                            'token' => $token,
+                            'token' => Auth::refresh(),
                             'role' => $user->role_name,
                             'gender' => $user->gender_name,
                             'account_status' => $user->account_status,
@@ -409,6 +409,7 @@ class AuthController extends Controller
                     'error' => $exception->getMessage() 
                 ], 500);
             }
+        }
         return response()->json($res, 200);
     }
 }

@@ -101,11 +101,10 @@ export async function Refresh(): Promise<UserType> {
 
     if (res?.data?.data) {
       Storage({ key: 'token', value: res?.data?.data?.token })
+    } else {
+      Storage({ key: 'token', remove: true })
     }
-  } catch (error) {
-    console.log(error)
-    Storage({ key: 'token', remove: true })
-  }
+  } catch (error) {}
 
   return res?.data
 }
