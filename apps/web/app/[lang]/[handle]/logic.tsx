@@ -14,7 +14,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button, buttonVariants } from '@repo/ui/button'
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -42,16 +41,21 @@ export default function Logic({
 
     if (data?.status === true) {
       setProfile(await data?.data)
+    } else {
     }
   }
 
   useEffect(() => {
-    async function getData() {
-      await getUserData()
-    }
+    if (user?.handle === handle) {
+      setProfile(user)
+    } else {
+      async function getData() {
+        await getUserData()
+      }
 
-    getData()
-  }, [])
+      getData()
+    }
+  }, [user])
 
   async function handleLogout() {
     dispatch(logoutUser())

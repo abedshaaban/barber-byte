@@ -310,15 +310,16 @@ class AuthController extends Controller
 
     public function refresh(){
         $current_user = Auth::user();
-
+        $res = [];
+        
         if($current_user){
             if(!$current_user['email']){
-                return response()->json([
+                $res = [
                     'status' => false,
                     'message' => 'Unauthorized',
                     'data' => '',
                     'error' => 'user not authorized' 
-                ], 401);
+                ];
             }
 
             try{
@@ -402,12 +403,12 @@ class AuthController extends Controller
                     ];
                 }
             }catch(\Exception $exception){
-                return response()->json([
+                $res = [
                     'status' => false,
                     'message' => 'Error occurred while getting user data',
                     'data' => '',
                     'error' => $exception->getMessage() 
-                ], 500);
+                ];
             }
         }
         return response()->json($res, 200);

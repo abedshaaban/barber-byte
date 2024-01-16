@@ -20,7 +20,7 @@ export async function getProfileByHandle({ handle }: AccountHnalde): Promise<Use
       }
     })
   } catch (error) {
-    console.error(error)
+    // console.error(error)
   }
 
   return res?.data

@@ -106,12 +106,12 @@ class AccountController extends Controller
                     ];
                 }
             } else {
-                return response()->json([
+                $res =[
                     'status' => false,
                     'message' => 'User not found',
                     'data' => '',
                     'error' => 'User not found' 
-                ], 403);
+                ];
             }
 
         } catch (\Exception $exception){
