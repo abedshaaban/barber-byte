@@ -14,6 +14,7 @@ import { Button } from '@repo/ui/button'
 import { AtMark } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
+import { Switch } from '@repo/ui/switch'
 import { useToast } from '@repo/ui/use-toast'
 import { cn } from '@repo/ui/util'
 
@@ -37,6 +38,7 @@ type UserCredentials = {
   city: string
   street: string
   description: null | string
+  account_status: boolean | null
 }
 
 export default function Logic({
@@ -64,7 +66,8 @@ export default function Logic({
     shop_name: user?.role === 'shop' ? user?.shop_name : '',
     country: user?.role === 'shop' ? user?.country : '',
     city: user?.role === 'shop' ? user?.city : '',
-    street: user?.role === 'shop' ? user?.street : ''
+    street: user?.role === 'shop' ? user?.street : '',
+    account_status: user?.account_status === 'public'
   })
 
   function updateFields(fields: Partial<UserCredentials>) {
@@ -291,6 +294,18 @@ export default function Logic({
                 }}
                 className={cn('bg-white dark:bg-neutral-800')}
               />
+            </div>
+            <div className="flex w-full max-w-[400px] justify-start">
+              <div className="flex items-center space-x-2">
+                <Switch
+                  id="account-status"
+                  checked={credentials?.account_status as boolean}
+                  onCheckedChange={(val) => {
+                    updateFields({ account_status: val })
+                  }}
+                />
+                <Label htmlFor="account-status">Public account</Label>
+              </div>
             </div>
 
             {normalUserData?.map((item, index) => {
