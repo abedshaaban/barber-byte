@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Shop;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,6 +13,7 @@ class User extends Authenticatable implements JWTSubject
     use HasFactory, Notifiable;
 
     protected $primaryKey = 'uuid';
+    protected $keyType = 'uuid';
 
     /**
      * The attributes that are mass assignable.
@@ -73,5 +75,11 @@ class User extends Authenticatable implements JWTSubject
             'email'=>$this->email,
             'role_id'=>$this->role_id,
         ];
+    }
+
+    public function shop(){
+        return Shop::
+        select('name')
+        ->where('owner_id', $this->uuid)->first();
     }
 }

@@ -11,6 +11,8 @@ class Shop extends Model
 
     public $timestamps = false;
     public $incrementing = false;
+    protected $primaryKey = 'owner_id';
+    protected $keyType = 'uuid';
 
     protected $fillable = [
         'owner_id',

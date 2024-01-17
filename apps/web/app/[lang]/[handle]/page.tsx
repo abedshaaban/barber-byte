@@ -14,23 +14,22 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const handle = params.handle.substring(3)
 
-  const { data: user, status }: { status: boolean; data: UserType; message: string } =
-    await getProfileByHandle({
-      handle: handle
-    })
+  const data = await getProfileByHandle({
+    handle: handle
+  })
 
   let meta = {}
 
-  if (status === true) {
-    if (user?.role === 'user') {
+  if (data?.status === true) {
+    if (data?.data?.role === 'user') {
       meta = {
-        title: `${user.first_name} ${user.last_name}`,
-        description: user.description
+        title: `${data?.data?.first_name} ${data?.data?.last_name}`,
+        description: data?.data?.description
       }
-    } else if (user?.role === 'shop') {
+    } else if (data?.data?.role === 'shop') {
       meta = {
-        title: user.shop_name,
-        description: user.description
+        title: data?.data?.shop_name,
+        description: data?.data?.description
       }
     }
   }

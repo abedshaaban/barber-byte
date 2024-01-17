@@ -18,6 +18,7 @@ export type RegisterProps = LoginProps & {
   is_barber_shop: boolean
   img_url: null | string
   gender: GenderType
+  account_status: AccountStatusType
   first_name: string
   last_name: string
   birth_date: Date

@@ -15,13 +15,10 @@ export async function getProfileByHandle({ handle }: AccountHnalde): Promise<Use
   let res
 
   try {
-    const token = Storage({ key: 'token' })
-
     res = await axios.get(`http://localhost:8000/api/account/${handle}`, {
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: `bearer ${token}`
+        'Content-Type': 'application/json'
       }
     })
   } catch (error) {
@@ -36,12 +33,9 @@ export async function getProfileByHandle({ handle }: AccountHnalde): Promise<Use
  * @param RegisterProps
  */
 export async function updateProfile({
-  is_barber_shop,
   birth_date,
   first_name,
   last_name,
-  email,
-  password,
   shop_name,
   country,
   city,
@@ -49,11 +43,14 @@ export async function updateProfile({
   location,
   handle,
   img_url,
-  gender
+  gender,
+  account_status
 }: RegisterProps): Promise<RegisterProps> {
   let res
 
   try {
+    const token = Storage({ key: 'token' })
+
     res = await axios.post(
       `http://localhost:8000/api/user/update-profile`,
       {
@@ -61,25 +58,26 @@ export async function updateProfile({
         first_name: first_name,
         last_name: last_name,
         birth_date: birth_date,
-        email: email,
-        password: password,
         shop_name: shop_name,
         country: country,
         city: city,
         street: street,
         location: location,
         img_url: img_url,
-        gender: gender
+        gender: gender === 'male' ? 1 : gender === 'female' ? 2 : 3,
+        account_status:
+          account_status === 'public' ? 1 : account_status === 'private' ? 2 : null
       },
       {
         headers: {
           Accept: 'application/json',
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
         }
       }
     )
   } catch (error) {
-    // console.error(error)
+    console.error(error)
   }
 
   return res?.data
