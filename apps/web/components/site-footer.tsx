@@ -6,6 +6,8 @@ import Footer from '@repo/ui/footer'
 
 export default function SiteFooter({ metaData }: { metaData: any }) {
   const pathname = usePathname()
+  const excludePathsPattern = /^(\/(en|ar|zh_HANS)\/@[\w-]+(\/(register|login|edit))?)$/
+
   const excludePaths: string[] = [
     '/en/auth/register',
     '/ar/auth/register',
@@ -15,7 +17,7 @@ export default function SiteFooter({ metaData }: { metaData: any }) {
     '/zh_HANS/auth/login'
   ]
 
-  if (excludePaths.includes(pathname)) {
+  if (excludePaths.includes(pathname) || excludePathsPattern.test(pathname)) {
     return null
   }
 

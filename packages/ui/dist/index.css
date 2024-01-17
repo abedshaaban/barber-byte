@@ -1183,6 +1183,10 @@ body {
   max-height: 100vh;
 }
 
+.min-h-\[50vh\] {
+  min-height: 50vh;
+}
+
 .min-h-\[60px\] {
   min-height: 60px;
 }

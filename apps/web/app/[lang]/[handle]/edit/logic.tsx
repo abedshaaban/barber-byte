@@ -173,7 +173,7 @@ export default function Logic({
   return (
     <form
       onSubmit={handleUpdateProfile}
-      className={'flex w-full max-w-[400px] flex-col gap-10'}
+      className={'flex w-full max-w-[400px] flex-col items-center justify-center gap-10'}
     >
       {loading ? (
         <>Saving ...</>
@@ -262,7 +262,7 @@ export default function Logic({
               )
             })}
           </div>
-          <div className={'flex flex-row items-center justify-between'}>
+          <div className={'flex w-full flex-row items-center justify-between'}>
             <Link href={`/${lang}`}>
               <Button variant={'secondary'}>{register.cancel}</Button>
             </Link>
