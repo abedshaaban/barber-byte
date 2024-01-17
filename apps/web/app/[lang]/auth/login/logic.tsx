@@ -13,6 +13,7 @@ import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
+import { useToast } from '@repo/ui/use-toast'
 import { cn } from '@repo/ui/util'
 
 type formDataProps = {
@@ -32,6 +33,7 @@ export default function Logic({
   register: any
   authText: any
 }) {
+  const { toast } = useToast()
   const dispatch = useDispatch()
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
@@ -73,6 +75,9 @@ export default function Logic({
 
     if (data?.status) {
       dispatch(setUser(await data?.data))
+      toast({
+        title: data?.message
+      })
       router.push(`/${params.lang}/feed`)
     } else {
       setErrorMessage(data?.message)

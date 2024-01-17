@@ -7,6 +7,7 @@ import SiteHeader from '@web/components/site-header'
 import { getDictionary } from '@web/lib/dictionary'
 import StoreProvider from '@web/provider/storeProvider'
 
+import { Toaster } from '@repo/ui/toaster'
 import { cn, ThemeProvider } from '@repo/ui/util'
 
 export async function generateMetadata({ params }: { params: { lang: Locale } }) {
@@ -83,6 +84,8 @@ export default async function RootLayout({
                 <main className="container flex-1">{children}</main>
               </div>
               <SiteFooter metaData={footer} />
+
+              <Toaster />
             </div>
           </ThemeProvider>
         </body>

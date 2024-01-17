@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
 import useMultistepForm from '@repo/ui/multistepForm'
+import { useToast } from '@repo/ui/use-toast'
 import { cn } from '@repo/ui/util'
 
 import BarberForm from './barber-form'
@@ -42,6 +43,7 @@ export default function Logic({
   params: { lang: Locale }
   register: any
 }) {
+  const { toast } = useToast()
   const dispatch = useDispatch()
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
@@ -117,6 +119,9 @@ export default function Logic({
 
     if (data?.status) {
       dispatch(setUser(await data?.data))
+      toast({
+        title: data?.message
+      })
       router.push(`/${params.lang}/feed`)
     } else {
       setErrorMessage(data?.message)

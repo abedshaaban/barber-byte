@@ -14,6 +14,7 @@ import { Button } from '@repo/ui/button'
 import { AtMark } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
+import { useToast } from '@repo/ui/use-toast'
 import { cn } from '@repo/ui/util'
 
 type formDataProps = {
@@ -47,6 +48,7 @@ export default function Logic({
   register: any
   lang: string
 }) {
+  const { toast } = useToast()
   const dispatch = useDispatch()
   const router = useRouter()
   const user = useSelector((state: RootState) => state.user.user)
@@ -78,8 +80,14 @@ export default function Logic({
 
       if (res?.status === true) {
         dispatch(setUser({ ...user, img_url: res?.data?.img_url } as UserType))
+        toast({
+          title: res?.message
+        })
       } else {
-        // handle error
+        toast({
+          variant: 'destructive',
+          title: res?.message
+        })
       }
     } else {
       return
@@ -103,8 +111,15 @@ export default function Logic({
 
     if (res?.status === false) {
       setErrorMessage(res?.message)
+      toast({
+        variant: 'destructive',
+        title: res?.message
+      })
     } else {
       dispatch(setUser(await res?.data))
+      toast({
+        title: res?.message
+      })
 
       router.push(`/${lang}/@${res?.data?.handle}`)
     }
