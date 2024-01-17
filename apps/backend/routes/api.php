@@ -19,4 +19,5 @@ Route::controller(AccountController::class)->group(function(){
 
 Route::middleware('auth:api')->group(function(){
     Route::post('/user/update-profile', [UserController::class, 'update_profile']);
+    Route::post('/user/update-profile-img', [UserController::class, 'update_profile_image']);
 });

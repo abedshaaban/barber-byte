@@ -160,4 +160,51 @@ class UserController extends Controller
         return response()->json($res);
     }
 
+    public function update_profile_image(Request $request){
+        try{
+            $request->validate([
+                'img_url' => 'required|image|mimes:jpeg,png,jpg,webp',
+            ]);
+
+            if ($this->user && $request->hasFile('img_url')) {
+                $image_name = time() . '.' . $request->img_url->extension();
+
+                $folder_path = 'images/ppf/' . $this->user->uuid;
+                
+                if (!file_exists(public_path($folder_path))) {
+                    mkdir(public_path($folder_path), 0755, true);
+                }
+                
+                $request->img_url->move(public_path($folder_path), $image_name);
+                
+                $this->user->update(['img_url' => $folder_path . '/' . $image_name]);
+
+                return response()->json([
+                    'status'=> true,
+                    'message'=> 'Updated image successfully',
+                    'data'=> [
+                        'img_url' => $this->user->img_url
+                    ],
+                    'error'=> '',
+                ]);
+
+            } else {
+
+                return response()->json([
+                    'status'=> false,
+                    'message'=> 'Unauthorized',
+                    'data'=> '',
+                    'error'=> 'unauthorized',
+                ]);
+            }
+        }catch(\Exception $exception){
+            return response()->json([
+                'status' => false,
+                'message' => 'Error occurred while uploading profile image.',
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ]);
+        }
+    }
+
 }
