@@ -8,6 +8,7 @@ import { RootState } from '@web/provider/store'
 import { setUser } from '@web/provider/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button } from '@repo/ui/button'
 import { AtMark } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
@@ -179,7 +180,19 @@ export default function Logic({
         <>Saving ...</>
       ) : (
         <>
-          <div className={cn('flex w-full flex-col justify-center gap-6')}>
+          <div className={cn('flex w-full flex-col items-center justify-center gap-6')}>
+            <Avatar className={'aspect-square h-48 w-48 cursor-pointer'}>
+              <AvatarImage
+                src={user?.img_url}
+                alt={'user profile picture'}
+                className={'object-cover object-center'}
+              />
+
+              <AvatarFallback className={'duration-300 hover:bg-neutral-300'}>
+                Edit
+              </AvatarFallback>
+            </Avatar>
+
             <div className={'w-full text-center text-red-600'}>{errorMessage}</div>
 
             <div className="grid w-full max-w-[400px] items-center gap-1.5">
@@ -191,7 +204,7 @@ export default function Logic({
                   className={cn('rounded-r-none border-r-0')}
                   type={'button'}
                 >
-                  <AtMark />
+                  <AtMark className={'dark:fill-white'} />
                 </Button>
 
                 <Input
