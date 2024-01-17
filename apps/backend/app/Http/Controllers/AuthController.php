@@ -56,7 +56,7 @@ class AuthController extends Controller
 
                 $res = [
                     'status' => true,
-                    'message' => 'User created successfully',
+                    'message' => 'User logged in',
                     'data' => [
                         'handle' => $user->handle,
                         'first_name' => $user->first_name,
@@ -96,7 +96,7 @@ class AuthController extends Controller
 
                 $res = [
                     'status' => true,
-                    'message' => 'User created successfully',
+                    'message' => 'User logged in',
                     'data' => [
                         'handle' => $user->handle,
                         'birth_date' => $user->birth_date,
