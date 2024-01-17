@@ -20,6 +20,28 @@ class UserController extends Controller
     public function update_profile(Request $request){
         $res = [];
 
+        if($this->user->handle === $request->handle){
+            // continue
+        }else if($this->user->handle !== $request->handle && strlen($request->handle) > 1){
+            $db_handles = User::
+                select('handle')
+                ->where('handle', $request->handle)
+                ->get();
+            
+            if(count($db_handles) === 0){
+                $this->user->handle = $request->handle;
+
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Handle is taken.',
+                    'data' => '',
+                    'error' => 'handle is taken'
+                ]);
+            }
+        }
+
+
         if($this->user['role_id'] === 1){
 
             $db_user = User::
@@ -98,7 +120,7 @@ class UserController extends Controller
                 'country' => $request->country ?? $address['country'],
                 'city' => $request->city ?? $address['city'],
                 'street' => $request->street ?? $address['street'],
-                'location' => json_encode($request->location) ?? json_encode($address['location']),
+                'location' => $request->location ?? $address['location'],
             ]);
 
             $db_user_meta_data = User::
