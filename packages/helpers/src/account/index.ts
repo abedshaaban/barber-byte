@@ -84,3 +84,35 @@ export async function updateProfile({
 
   return res?.data
 }
+
+/**
+ * Update user's profile image
+ * @param RegisterProps
+ */
+export async function updateProfileImage({
+  img_url
+}: RegisterProps): Promise<RegisterProps> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `http://localhost:8000/api/user/update-profile-img`,
+      {
+        img_url: img_url
+      },
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'multipart/form-data',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
