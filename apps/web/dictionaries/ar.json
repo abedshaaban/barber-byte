@@ -139,13 +139,14 @@
     "next": "التالي",
     "save": "حفظ",
     "cancel": "إلغاء",
-    "handle": "اسم المستخدم @",
+    "handle": "اسم المستخدم",
     "userForm": {
       "firstName": "الاسم الأول",
       "firstNameExample": "عبد لله",
       "lastName": "اسم العائلة",
       "lastNameExample": "ياسين",
-      "birthDate": "تاريخ الميلاد"
+      "birthDate": "تاريخ الميلاد",
+      "description": "الوصف"
     },
     "userEmail": {
       "email": "البريد الإلكتروني"

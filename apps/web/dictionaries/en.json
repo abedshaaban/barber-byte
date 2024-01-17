@@ -138,13 +138,14 @@
     "next": "Next",
     "save": "Save",
     "cancel": "Cancel",
-    "handle": "User handle @",
+    "handle": "User handle",
     "userForm": {
       "firstName": "First Name",
       "firstNameExample": "John",
       "lastName": "Last Name",
       "lastNameExample": "Smith",
-      "birthDate": "Birth Date"
+      "birthDate": "Birth Date",
+      "description": "Description"
     },
     "userEmail": { "email": "Email" },
     "userPassword": {

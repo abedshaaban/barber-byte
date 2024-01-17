@@ -207,7 +207,7 @@ export default function Logic({
               </div>
             </div>
             <div className="grid w-full max-w-[400px] items-center gap-1.5">
-              <Label htmlFor={'description'}>Description</Label>
+              <Label htmlFor={'description'}>{register.userForm.description}</Label>
 
               <Input
                 type={'text'}
