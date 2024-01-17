@@ -22,7 +22,7 @@ export async function Register({
   location
 }: RegisterProps): Promise<RegisterResponseProps> {
   const res = await axios.post(
-    `http://localhost:8000/api/auth/register`,
+    `${process.env.NEXT_PUBLIC_DB_URL_APIS}/auth/register`,
     {
       handle: nanoid(9),
       is_barber_shop: is_barber_shop,
@@ -58,7 +58,7 @@ export async function Register({
  */
 export async function Login({ email, password }: LoginProps) {
   const res = await axios.post(
-    `http://localhost:8000/api/auth/login`,
+    `${process.env.NEXT_PUBLIC_DB_URL_APIS}/auth/login`,
     {
       email: email,
       password: password
@@ -88,7 +88,7 @@ export async function Refresh(): Promise<UserType> {
     const token = Storage({ key: 'token' })
 
     res = await axios.post(
-      `http://localhost:8000/api/auth/refresh`,
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/auth/refresh`,
       {},
       {
         headers: {
@@ -115,7 +115,7 @@ export async function Logout() {
 
   try {
     const res = await axios.post(
-      `http://localhost:8000/api/auth/logout`,
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/auth/logout`,
       {},
       {
         headers: {

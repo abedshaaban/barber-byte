@@ -15,7 +15,7 @@ export async function getProfileByHandle({ handle }: AccountHnalde): Promise<Use
   let res
 
   try {
-    res = await axios.get(`http://localhost:8000/api/account/${handle}`, {
+    res = await axios.get(`${process.env.NEXT_PUBLIC_DB_URL_APIS}/account/${handle}`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ export async function updateProfile({
     const token = Storage({ key: 'token' })
 
     res = await axios.post(
-      `http://localhost:8000/api/user/update-profile`,
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/user/update-profile`,
       {
         handle: handle,
         description: description,
@@ -98,7 +98,7 @@ export async function updateProfileImage({
     const token = Storage({ key: 'token' })
 
     res = await axios.post(
-      `http://localhost:8000/api/user/update-profile-img`,
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/user/update-profile-img`,
       {
         img_url: img_url
       },

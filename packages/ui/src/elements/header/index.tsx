@@ -192,7 +192,9 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
                 <Link href={`/${lang}/@${user?.handle}`}>
                   <Button variant={'link'} className={'rounded-full p-0'}>
                     <Avatar>
-                      <AvatarImage src={user?.img_url} />
+                      <AvatarImage
+                        src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${user?.img_url}`}
+                      />
                       <AvatarFallback
                         className={'flex items-center justify-center text-center'}
                       >

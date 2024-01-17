@@ -201,7 +201,7 @@ export default function Logic({
             <div className={cn('flex w-full flex-col items-center justify-center gap-6')}>
               <Avatar className={'aspect-square h-48 w-48'}>
                 <AvatarImage
-                  src={`http://localhost:8000/${user?.img_url}`}
+                  src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${user?.img_url}`}
                   alt={'user profile picture'}
                   className={'object-cover object-center'}
                 />
