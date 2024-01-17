@@ -87,7 +87,7 @@ export async function updateProfile({
 
 /**
  * Update user's profile image
- * @param RegisterProps
+ * @param image
  */
 export async function updateProfileImage({
   img_url

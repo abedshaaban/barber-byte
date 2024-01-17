@@ -1,9 +1,9 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { updateProfile } from '@repo/helpers/account'
+import { updateProfile, updateProfileImage } from '@repo/helpers/account'
 import { RootState } from '@web/provider/store'
 import { setUser } from '@web/provider/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -68,6 +68,14 @@ export default function Logic({
     setCredentials((prev) => {
       return { ...prev, ...fields }
     })
+  }
+
+  async function handleProfileImageUpload(e: ChangeEvent<HTMLInputElement>) {
+    if (e.target.files && e.target.files[0]) {
+      await updateProfileImage({ img_url: e.target.files[0] })
+    } else {
+      return
+    }
   }
 
   async function handleUpdateProfile(e: FormEvent) {
@@ -181,18 +189,26 @@ export default function Logic({
       ) : (
         <>
           <div className={cn('flex w-full flex-col items-center justify-center gap-6')}>
-            <Avatar className={'aspect-square h-48 w-48 cursor-pointer'}>
-              <AvatarImage
-                src={user?.img_url}
-                alt={'user profile picture'}
-                className={'object-cover object-center'}
+            <div className={cn('flex w-full flex-col items-center justify-center gap-6')}>
+              <Avatar className={'aspect-square h-48 w-48'}>
+                <AvatarImage
+                  src={user?.img_url}
+                  alt={'user profile picture'}
+                  className={'object-cover object-center'}
+                />
+
+                <AvatarFallback>No Image</AvatarFallback>
+              </Avatar>
+
+              <Input
+                type="file"
+                className={cn(
+                  'w-full max-w-56 cursor-pointer bg-white dark:bg-neutral-800'
+                )}
+                accept=".jpg, .jpeg, .png, .webp"
+                onChange={handleProfileImageUpload}
               />
-
-              <AvatarFallback className={'duration-300 hover:bg-neutral-300'}>
-                Edit
-              </AvatarFallback>
-            </Avatar>
-
+            </div>
             <div className={'w-full text-center text-red-600'}>{errorMessage}</div>
 
             <div className="grid w-full max-w-[400px] items-center gap-1.5">

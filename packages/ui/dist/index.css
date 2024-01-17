@@ -1434,6 +1434,14 @@ body {
   max-width: 24rem;
 }
 
+.max-w-36 {
+  max-width: 9rem;
+}
+
+.max-w-56 {
+  max-width: 14rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
