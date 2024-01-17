@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { updateProfile, updateProfileImage } from '@repo/helpers/account'
+import type { UserType } from '@repo/helpers/types'
 import { RootState } from '@web/provider/store'
 import { setUser } from '@web/provider/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -71,11 +72,19 @@ export default function Logic({
   }
 
   async function handleProfileImageUpload(e: ChangeEvent<HTMLInputElement>) {
+    setLoading(true)
     if (e.target.files && e.target.files[0]) {
-      await updateProfileImage({ img_url: e.target.files[0] })
+      const res = await updateProfileImage({ img_url: e.target.files[0] })
+
+      if (res?.status === true) {
+        dispatch(setUser({ ...user, img_url: res?.data?.img_url } as UserType))
+      } else {
+        // handle error
+      }
     } else {
       return
     }
+    setLoading(false)
   }
 
   async function handleUpdateProfile(e: FormEvent) {
@@ -192,7 +201,7 @@ export default function Logic({
             <div className={cn('flex w-full flex-col items-center justify-center gap-6')}>
               <Avatar className={'aspect-square h-48 w-48'}>
                 <AvatarImage
-                  src={user?.img_url}
+                  src={`http://localhost:8000/${user?.img_url}`}
                   alt={'user profile picture'}
                   className={'object-cover object-center'}
                 />
