@@ -2,9 +2,11 @@
 
 import { FormEvent, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { updateProfile } from '@repo/helpers/account'
 import { RootState } from '@web/provider/store'
-import { useSelector } from 'react-redux'
+import { setUser } from '@web/provider/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Button } from '@repo/ui/button'
 import { AtMark } from '@repo/ui/icons'
@@ -43,6 +45,8 @@ export default function Logic({
   register: any
   lang: string
 }) {
+  const dispatch = useDispatch()
+  const router = useRouter()
   const user = useSelector((state: RootState) => state.user.user)
   const [loading, setLoading] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState('')
@@ -73,12 +77,19 @@ export default function Logic({
     }
 
     setLoading(true)
+    setErrorMessage('')
 
-    console.log(credentials)
     const res = await updateProfile({ ...credentials })
-    console.log(res)
 
     setLoading(false)
+
+    if (res?.status === false) {
+      setErrorMessage(res?.message)
+    } else {
+      dispatch(setUser(await res?.data))
+
+      router.push(`/${lang}/@${res?.data?.handle}`)
+    }
   }
 
   if (user?.handle !== handle) {
@@ -169,7 +180,8 @@ export default function Logic({
       ) : (
         <>
           <div className={cn('flex w-full flex-col justify-center gap-6')}>
-            <div className={'text-red-600'}>{errorMessage}</div>
+            <div className={'w-full text-center text-red-600'}>{errorMessage}</div>
+
             <div className="grid w-full max-w-[400px] items-center gap-1.5">
               <Label htmlFor={'handle'}>{register.handle}</Label>
               <div className="flex w-full">
