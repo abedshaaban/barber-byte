@@ -27,6 +27,7 @@ export type RegisterProps = LoginProps & {
   city: string
   street: string
   location: [number, number]
+  description: null | string
 }
 
 export type RegisterResponseProps = ResponseType & {

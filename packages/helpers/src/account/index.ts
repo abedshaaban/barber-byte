@@ -44,7 +44,8 @@ export async function updateProfile({
   handle,
   img_url,
   gender,
-  account_status
+  account_status,
+  description
 }: RegisterProps): Promise<RegisterProps> {
   let res
 
@@ -55,6 +56,7 @@ export async function updateProfile({
       `http://localhost:8000/api/user/update-profile`,
       {
         handle: handle,
+        description: description,
         first_name: first_name,
         last_name: last_name,
         birth_date: birth_date,

@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { updateProfile } from '@repo/helpers/account'
 import { RootState } from '@web/provider/store'
 import { useSelector } from 'react-redux'
 
 import { Button } from '@repo/ui/button'
+import { AtMark } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
 import { cn } from '@repo/ui/util'
@@ -30,6 +31,7 @@ type UserCredentials = {
   country: string
   city: string
   street: string
+  description: null | string
 }
 
 export default function Logic({
@@ -43,8 +45,10 @@ export default function Logic({
 }) {
   const user = useSelector((state: RootState) => state.user.user)
   const [loading, setLoading] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [credentials, setCredentials] = useState<Partial<UserCredentials>>({
     handle: user ? user?.handle : '',
+    description: user ? user?.description : '',
     first_name: user?.role === 'user' ? user?.first_name : '',
     last_name: user?.role === 'user' ? user?.last_name : '',
     birth_date: user?.birth_date as unknown as string,
@@ -61,7 +65,13 @@ export default function Logic({
     })
   }
 
-  async function handleUpdateProfile() {
+  async function handleUpdateProfile(e: FormEvent) {
+    e.preventDefault()
+
+    if (!credentials.handle || credentials.handle?.length < 1) {
+      setErrorMessage('Handle cannot be empty.')
+    }
+
     setLoading(true)
 
     console.log(credentials)
@@ -90,12 +100,6 @@ export default function Logic({
     user?.role === 'user'
       ? [
           {
-            name: 'handle',
-            label: register.handle,
-            type: 'text',
-            value: credentials.handle
-          },
-          {
             name: 'first_name',
             label: register.userForm.firstName,
             type: 'text',
@@ -118,12 +122,6 @@ export default function Logic({
         ]
       : user?.role === 'shop'
         ? [
-            {
-              name: 'handle',
-              label: register.handle,
-              type: 'text',
-              value: credentials.handle
-            },
             {
               name: 'shop_name',
               label: register.barberForm.shopName,
@@ -162,12 +160,74 @@ export default function Logic({
         : []
 
   return (
-    <section className={'flex w-full max-w-[400px] flex-col gap-10'}>
+    <form
+      onSubmit={handleUpdateProfile}
+      className={'flex w-full max-w-[400px] flex-col gap-10'}
+    >
       {loading ? (
         <>Saving ...</>
       ) : (
         <>
           <div className={cn('flex w-full flex-col justify-center gap-6')}>
+            <div className={'text-red-600'}>{errorMessage}</div>
+            <div className="grid w-full max-w-[400px] items-center gap-1.5">
+              <Label htmlFor={'handle'}>{register.handle}</Label>
+              <div className="flex w-full">
+                <Button
+                  variant={'outline'}
+                  size={'icon'}
+                  className={cn('rounded-r-none border-r-0')}
+                  type={'button'}
+                >
+                  <AtMark />
+                </Button>
+
+                <Input
+                  type={'text'}
+                  id={'handle'}
+                  min={1}
+                  minLength={1}
+                  placeholder={'example'}
+                  required
+                  value={credentials.handle}
+                  onChange={(e) => {
+                    const inputValue = e.target.value
+
+                    if (inputValue.length > 1 && !/^[a-zA-Z0-9-]+$/.test(inputValue)) {
+                      return
+                    }
+
+                    updateFields({ handle: inputValue })
+                  }}
+                  className={cn(
+                    'rounded-l-none border-l-0 outline-none focus-visible:ring-0',
+                    'bg-white dark:bg-neutral-800'
+                  )}
+                />
+              </div>
+            </div>
+            <div className="grid w-full max-w-[400px] items-center gap-1.5">
+              <Label htmlFor={'description'}>Description</Label>
+
+              <Input
+                type={'text'}
+                id={'description'}
+                max={240}
+                maxLength={240}
+                required
+                value={
+                  credentials.description === null ||
+                  credentials.description === undefined
+                    ? ''
+                    : credentials.description
+                }
+                onChange={(e) => {
+                  updateFields({ description: e.target.value })
+                }}
+                className={cn('bg-white dark:bg-neutral-800')}
+              />
+            </div>
+
             {normalUserData?.map((item, index) => {
               return (
                 <div
@@ -195,10 +255,10 @@ export default function Logic({
               <Button variant={'secondary'}>{register.cancel}</Button>
             </Link>
 
-            <Button onClick={handleUpdateProfile}>{register.save}</Button>
+            <Button type={'submit'}>{register.save}</Button>
           </div>
         </>
       )}
-    </section>
+    </form>
   )
 }
