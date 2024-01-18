@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { Locale } from '@root/i18n.config'
 import { RootState } from '@web/provider/store'
@@ -16,11 +16,26 @@ import { cn } from '@repo/ui/util'
 export default function Logic({ lang }: { lang: Locale }) {
   const reduxUser = useSelector((state: RootState) => state.user)
   const user = reduxUser?.user
-  const [previewImage, setpreviewImage] = useState('')
-  const [PostData, setPostData] = useState<{ caption: string; img_url: File | null }>({
+  const [previewImage, setPreviewImage] = useState('')
+  const [loading, setLoading] = useState<boolean>(false)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [postData, setPostData] = useState<{ caption: string; img_url: File | null }>({
     caption: '',
     img_url: null
   })
+
+  async function handleUploadPost(e: FormEvent) {
+    e.preventDefault()
+
+    setLoading(true)
+
+    if (postData.img_url === null) {
+      setErrorMessage('No image uploaded')
+      return
+    }
+
+    console.log(postData)
+  }
 
   return (
     <section className={'flex w-full justify-center py-9'}>
@@ -36,10 +51,13 @@ export default function Logic({ lang }: { lang: Locale }) {
           </p>
         </div>
       ) : (
-        <form className={'flex w-full max-w-sm flex-col gap-9'}>
+        <form
+          onSubmit={handleUploadPost}
+          className={'flex w-full max-w-sm flex-col gap-9'}
+        >
           <div className={'flex w-full flex-col gap-6'}>
             <AspectRatio ratio={1 / 1} className={'bg-muted'}>
-              {PostData?.img_url ? (
+              {postData?.img_url ? (
                 <img
                   src={previewImage}
                   alt="post image"
@@ -49,6 +67,8 @@ export default function Logic({ lang }: { lang: Locale }) {
                 <img src={'/images/assets/500x500.jpg'} alt="default image" />
               )}
             </AspectRatio>
+
+            <div className={'w-full text-center text-red-600'}>{errorMessage}</div>
 
             <div className="grid w-full max-w-sm gap-1.5">
               <Label htmlFor="message">Caption (optional)</Label>
@@ -84,14 +104,12 @@ export default function Logic({ lang }: { lang: Locale }) {
                   })
 
                   if (e.target.files && e.target.files[0]) {
-                    setpreviewImage(URL.createObjectURL(e.target.files[0]))
+                    setPreviewImage(URL.createObjectURL(e.target.files[0]))
                   }
                 }}
               />
             </div>
           </div>
-
-          {PostData.caption}
 
           <div className={'flex w-full flex-row items-center justify-between'}>
             <Link
