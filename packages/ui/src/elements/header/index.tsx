@@ -8,8 +8,17 @@ import { UserType } from '@repo/helpers/types'
 
 import { Avatar, AvatarFallback, AvatarImage } from '../../core/avatar'
 import { Button } from '../../core/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '../../core/dropdown-menu'
 import { ScrollArea } from '../../core/scroll-area'
 import { Sheet, SheetContent, SheetTrigger } from '../../core/sheet'
+import { Plus } from '../../icons'
 import { cn } from '../../lib/utils'
 import LanguageSwitch from '../languageSwitch'
 import Logo from '../logo.svg'
@@ -189,7 +198,23 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
 
             {user ? (
               <>
-                <Link href={`/${lang}/@${user?.handle}`}>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant={'outline'} size={'icon'}>
+                      <Plus />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem>
+                      <Link href={`/${lang}/create-post`}>{authText.createPost}</Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                <Link
+                  href={`/${lang}/@${user?.handle}`}
+                  className={'flex h-full items-center'}
+                >
                   <Button variant={'link'} className={'rounded-full p-0'}>
                     <Avatar>
                       <AvatarImage
