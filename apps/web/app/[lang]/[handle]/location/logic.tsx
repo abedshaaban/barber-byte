@@ -2,13 +2,12 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Logout } from '@repo/helpers/auth'
 import type { UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 import type { RootState } from '@web/provider/store'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-import { Button, buttonVariants } from '@repo/ui/button'
+import { Button } from '@repo/ui/button'
 
 export default function Logic({
   handle,
@@ -21,10 +20,8 @@ export default function Logic({
   navigationText: any
   profile: UserType | null
 }) {
-  const dispatch = useDispatch()
   const user = useSelector((state: RootState) => state.user.user)
   const [profile, setProfile] = useState<UserType | null>(initial_profile)
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   useEffect(() => {
     if (user?.handle === handle) {
@@ -46,7 +43,14 @@ export default function Logic({
           </p>
         </div>
       ) : (
-        <section className={'flex flex-col gap-9'}>location</section>
+        <section className={'flex flex-col gap-9'}>
+          {navigationText.barberLocation.location}
+          <div className={'flex w-full flex-row items-center justify-start'}>
+            <Link href={`/${lang}/@${handle}`}>
+              <Button>{navigationText.back}</Button>
+            </Link>
+          </div>
+        </section>
       )}
     </>
   )

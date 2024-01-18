@@ -36,7 +36,7 @@ export default async function Page({
   params: { handle: string; lang: Locale }
 }) {
   const handle = params.handle.substring(3)
-  const { navigation } = await getDictionary(params.lang)
+  const { register } = await getDictionary(params.lang)
   const data = await getProfileByHandle({ handle: handle })
 
   if (data?.status === false || data?.error?.length > 0) {
@@ -48,7 +48,7 @@ export default async function Page({
       <Logic
         handle={handle}
         lang={params.lang}
-        navigationText={navigation}
+        navigationText={register}
         profile={data?.data}
       />
     </>
