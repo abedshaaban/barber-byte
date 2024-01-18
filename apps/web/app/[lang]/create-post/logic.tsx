@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from 'react'
 import Link from 'next/link'
+import { createPost } from '@repo/helpers/account'
 import { Locale } from '@root/i18n.config'
 import { RootState } from '@web/provider/store'
 import { useSelector } from 'react-redux'
@@ -34,7 +35,9 @@ export default function Logic({ lang }: { lang: Locale }) {
       return
     }
 
-    console.log(postData)
+    const res = await createPost({ ...postData })
+
+    console.log(res)
   }
 
   return (

@@ -1,4 +1,9 @@
-import { getProfileByHandle, updateProfile, updateProfileImage } from './account'
+import {
+  createPost,
+  getProfileByHandle,
+  updateProfile,
+  updateProfileImage
+} from './account'
 import { Login, Logout, Refresh, Register } from './auth'
 import { ClearStorage, Storage } from './storage'
 import {
@@ -21,7 +26,8 @@ export {
   Refresh,
   Register,
   ClearStorage,
-  Storage
+  Storage,
+  createPost
 }
 
 export type {

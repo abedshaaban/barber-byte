@@ -128,3 +128,41 @@ export async function updateProfileImage({
 
   return res?.data
 }
+
+/**
+ * Preate a post
+ * @param image
+ * @param caption optional
+ */
+export async function createPost({
+  img_url,
+  caption
+}: {
+  img_url: File | null
+  caption?: string
+}): Promise<{ status: boolean; data: any; error: string; message: string }> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/user/create-post`,
+      {
+        img_url: img_url,
+        caption: caption
+      },
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'multipart/form-data',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
