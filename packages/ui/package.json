@@ -57,6 +57,7 @@
     "./layoutTextImage": "./src/elements/layoutTextImage/index.tsx",
     "./languageSwitch": "./src/elements/languageSwitch/index.tsx",
     "./multistepForm": "./src/elements/multistepForm/index.tsx",
+    "./cardImage": "./src/elements/cardImage/index.tsx",
     "./map": "./src/elements/map/index.tsx",
     "./util": "./src/lib/utils.ts"
   },
