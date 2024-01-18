@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { updateProfile, updateProfileImage } from '@repo/helpers/account'
-import type { UserType } from '@repo/helpers/types'
+import type { AccountStatusType, UserType } from '@repo/helpers/types'
 import { RootState } from '@web/provider/store'
 import { setUser } from '@web/provider/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -38,7 +38,7 @@ type UserCredentials = {
   city: string
   street: string
   description: null | string
-  account_status: boolean | null
+  account_status: AccountStatusType | undefined
 }
 
 export default function Logic({
@@ -67,7 +67,7 @@ export default function Logic({
     country: user?.role === 'shop' ? user?.country : '',
     city: user?.role === 'shop' ? user?.city : '',
     street: user?.role === 'shop' ? user?.street : '',
-    account_status: user?.account_status === 'public'
+    account_status: user?.account_status
   })
 
   function updateFields(fields: Partial<UserCredentials>) {
@@ -299,9 +299,9 @@ export default function Logic({
               <div className="flex items-center space-x-2">
                 <Switch
                   id="account-status"
-                  checked={credentials?.account_status as boolean}
+                  checked={credentials?.account_status === 'public' ? true : false}
                   onCheckedChange={(val) => {
-                    updateFields({ account_status: val })
+                    updateFields({ account_status: val ? 'public' : 'private' })
                   }}
                 />
                 <Label htmlFor="account-status">Public account</Label>
