@@ -49,6 +49,7 @@ type HeaderProps = {
   authText: {
     login: string
     register: string
+    createPost: string
   }
 }
 

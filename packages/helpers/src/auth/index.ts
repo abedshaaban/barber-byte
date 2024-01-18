@@ -1,8 +1,8 @@
-import type { LoginProps, RegisterProps, RegisterResponseProps, UserType } from '@/types'
 import axios from 'axios'
 import { nanoid } from 'nanoid'
 
 import { Storage } from '../storage'
+import type { LoginProps, RegisterProps, RegisterResponseProps, UserType } from '../types'
 
 /**
  * Register a user as a normal user type or barber shop depending on the params passed
@@ -20,7 +20,12 @@ export async function Register({
   city,
   street,
   location
-}: RegisterProps): Promise<RegisterResponseProps> {
+}: RegisterProps): Promise<{
+  status: boolean
+  data: RegisterResponseProps
+  error: string
+  message: string
+}> {
   const res = await axios.post(
     `${process.env.NEXT_PUBLIC_DB_URL_APIS}/auth/register`,
     {
@@ -81,7 +86,12 @@ export async function Login({ email, password }: LoginProps) {
 /**
  * Get user data a with token only
  */
-export async function Refresh(): Promise<UserType> {
+export async function Refresh(): Promise<{
+  status: boolean
+  data: UserType
+  error: string
+  message: string
+}> {
   let res
 
   try {

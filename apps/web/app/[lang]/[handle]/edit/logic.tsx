@@ -4,7 +4,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { updateProfile, updateProfileImage } from '@repo/helpers/account'
-import type { AccountStatusType, UserType } from '@repo/helpers/types'
+import type { AccountStatusType } from '@repo/helpers/types'
 import { RootState } from '@web/provider/store'
 import { setUser } from '@web/provider/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -79,10 +79,12 @@ export default function Logic({
   async function handleProfileImageUpload(e: ChangeEvent<HTMLInputElement>) {
     setLoading(true)
     if (e.target.files && e.target.files[0]) {
-      const res = await updateProfileImage({ img_url: e.target.files[0] })
+      const res = await updateProfileImage({
+        img_url: e.target.files[0]
+      })
 
       if (res?.status === true) {
-        dispatch(setUser({ ...user, img_url: res?.data?.img_url } as UserType))
+        dispatch(setUser({ ...user, img_url: res?.data?.img_url }))
         toast({
           title: res?.message
         })
@@ -108,7 +110,7 @@ export default function Logic({
     setLoading(true)
     setErrorMessage('')
 
-    const res = await updateProfile({ ...credentials })
+    const res = await updateProfile({ ...credentials } as any)
 
     setLoading(false)
 

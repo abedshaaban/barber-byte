@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { UserType } from '@repo/helpers/types'
 
 interface UserState {
@@ -23,5 +23,8 @@ export const userSlice = createSlice({
   }
 })
 
-export const { setUser, logoutUser } = userSlice.actions
-export default userSlice.reducer
+export const setUser = createAction<PayloadAction<UserType | null>>('user/setUser')
+export const logoutUser = createAction('user/logoutUser')
+
+const userReducer: any = userSlice.reducer
+export default userReducer

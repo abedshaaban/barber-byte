@@ -14,7 +14,7 @@ export default function Index() {
   async function getUserData() {
     const userData = await Refresh()
 
-    dispatch(setUser(await userData?.data))
+    dispatch(setUser(userData?.data))
   }
 
   useEffect(() => {

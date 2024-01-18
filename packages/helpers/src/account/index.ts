@@ -1,7 +1,7 @@
-import { RegisterProps, UserType } from '@/types'
 import axios from 'axios'
 
 import { Storage } from '../storage'
+import { RegisterProps, UserType } from '../types'
 
 type AccountHnalde = {
   handle: string
@@ -11,7 +11,12 @@ type AccountHnalde = {
  * Get user profile from handle if the user account status is public.
  * @param handle
  */
-export async function getProfileByHandle({ handle }: AccountHnalde): Promise<UserType> {
+export async function getProfileByHandle({ handle }: AccountHnalde): Promise<{
+  status: boolean
+  data: UserType
+  error: string
+  message: string
+}> {
   let res
 
   try {
@@ -46,7 +51,12 @@ export async function updateProfile({
   gender,
   account_status,
   description
-}: RegisterProps): Promise<RegisterProps> {
+}: RegisterProps): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
   let res
 
   try {
@@ -91,7 +101,9 @@ export async function updateProfile({
  */
 export async function updateProfileImage({
   img_url
-}: RegisterProps): Promise<RegisterProps> {
+}: {
+  img_url: File
+}): Promise<{ status: boolean; data: any; error: string; message: string }> {
   let res
 
   try {

@@ -53,7 +53,10 @@ export default function Logic({
             {navigationText.barberLocation.location}
           </h1>
 
-          <Map updateState={emptyFunc} location={JSON.parse(profile?.location)} />
+          <Map
+            updateState={emptyFunc}
+            location={JSON.parse(profile?.location as unknown as string)}
+          />
 
           <Link
             href={`/${lang}/@${handle}`}

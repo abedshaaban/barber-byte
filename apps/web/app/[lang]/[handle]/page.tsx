@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getProfileByHandle } from '@repo/helpers/account'
-import type { UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 import { getDictionary } from '@web/lib/dictionary'
 
