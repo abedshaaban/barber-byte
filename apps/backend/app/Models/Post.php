@@ -19,4 +19,8 @@ class Post extends Model
         'likes_count',
         'creator_id',
     ];
+
+    protected $casts = [
+        'uuid' => 'string', 
+    ];
 }
