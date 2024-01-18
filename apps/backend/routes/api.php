@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,4 +21,5 @@ Route::controller(AccountController::class)->group(function(){
 Route::middleware('auth:api')->group(function(){
     Route::post('/user/update-profile', [UserController::class, 'update_profile']);
     Route::post('/user/update-profile-img', [UserController::class, 'update_profile_image']);
+    Route::post('/user/create-post', [PostController::class, 'create_post']);
 });
