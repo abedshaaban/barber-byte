@@ -166,6 +166,10 @@ export default function Logic({
               ) : null}
             </div>
           </div>
+
+          {profile?.role === 'shop' && (
+            <div className={'flex w-full flex-wrap items-center'}></div>
+          )}
         </section>
       )}
     </>
