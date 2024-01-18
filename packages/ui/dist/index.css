@@ -1195,6 +1195,18 @@ body {
   min-height: 100vh;
 }
 
+.min-h-\[70vh\] {
+  min-height: 70vh;
+}
+
+.min-h-\[\] {
+  min-height: ;
+}
+
+.min-h-\[80vh\] {
+  min-height: 80vh;
+}
+
 .w-0 {
   width: 0px;
 }
@@ -1385,6 +1397,10 @@ body {
   min-width: var(--radix-select-trigger-width);
 }
 
+.min-w-80 {
+  min-width: 20rem;
+}
+
 .max-w-56 {
   max-width: 14rem;
 }
@@ -1436,6 +1452,10 @@ body {
 
 .max-w-sm {
   max-width: 24rem;
+}
+
+.max-w-80 {
+  max-width: 20rem;
 }
 
 .flex-1 {

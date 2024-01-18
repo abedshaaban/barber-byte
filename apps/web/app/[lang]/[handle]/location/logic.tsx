@@ -7,7 +7,9 @@ import { Locale } from '@root/i18n.config'
 import type { RootState } from '@web/provider/store'
 import { useSelector } from 'react-redux'
 
-import { Button } from '@repo/ui/button'
+import { buttonVariants } from '@repo/ui/button'
+import Map from '@repo/ui/map'
+import { cn } from '@repo/ui/util'
 
 export default function Logic({
   handle,
@@ -22,6 +24,7 @@ export default function Logic({
 }) {
   const user = useSelector((state: RootState) => state.user.user)
   const [profile, setProfile] = useState<UserType | null>(initial_profile)
+  function emptyFunc(_: any) {}
 
   useEffect(() => {
     if (user?.handle === handle) {
@@ -31,7 +34,7 @@ export default function Logic({
 
   return (
     <>
-      {!profile ? (
+      {!profile || profile?.role !== 'shop' ? (
         <div className={'flex h-full w-full flex-col items-center justify-center gap-9'}>
           <h1 className={'text-2xl md:text-5xl'}>( • ᴖ • ｡) Location Not Found</h1>
 
@@ -43,13 +46,24 @@ export default function Logic({
           </p>
         </div>
       ) : (
-        <section className={'flex flex-col gap-9'}>
-          {navigationText.barberLocation.location}
-          <div className={'flex w-full flex-row items-center justify-start'}>
-            <Link href={`/${lang}/@${handle}`}>
-              <Button>{navigationText.back}</Button>
-            </Link>
-          </div>
+        <section
+          className={'flex min-h-[80vh] flex-col items-center justify-center gap-9'}
+        >
+          <h1 className={'w-full text-center'}>
+            {navigationText.barberLocation.location}
+          </h1>
+
+          <Map updateState={emptyFunc} location={JSON.parse(profile?.location)} />
+
+          <Link
+            href={`/${lang}/@${handle}`}
+            className={cn(
+              buttonVariants({ variant: 'default' }),
+              'w-full min-w-80 max-w-96'
+            )}
+          >
+            {navigationText.back}
+          </Link>
         </section>
       )}
     </>
