@@ -89,7 +89,8 @@
     "lang": "en",
     "authText": {
       "login": "Login",
-      "register": "Register"
+      "register": "Register",
+      "createPost": "Create post"
     }
   },
   "footer": {

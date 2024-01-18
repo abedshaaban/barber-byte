@@ -90,7 +90,8 @@
     "lang": "ar",
     "authText": {
       "login": "تسجيل الدخول",
-      "register": "تسجيل المستخدم"
+      "register": "تسجيل المستخدم",
+      "createPost": "إنشاء منشور"
     }
   },
   "footer": {

@@ -90,7 +90,8 @@
     "lang": "en",
     "authText": {
       "login": "登录",
-      "register": "登记"
+      "register": "登记",
+      "createPost": "创建帖子"
     }
   },
   "footer": {
