@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button, buttonVariants } from '@repo/ui/button'
+import CardImage from '@repo/ui/cardImage'
 import {
   Dialog,
   DialogContent,
@@ -64,7 +65,7 @@ export default function Logic({
           </p>
         </div>
       ) : (
-        <section className={'flex flex-col'}>
+        <section className={'flex flex-col gap-9'}>
           <div
             className={
               'flex flex-col items-center justify-start gap-9 border-b-2 pb-9 sm:flex-row'
@@ -168,7 +169,11 @@ export default function Logic({
           </div>
 
           {profile?.role === 'shop' && (
-            <div className={'flex w-full flex-wrap items-center'}></div>
+            <div className={'flex w-full flex-wrap items-center justify-evenly'}>
+              <Link href={`/${lang}/@${user?.handle}/location`}>
+                <CardImage title={'Location'} img_url={'/images/assets/map.jpg'} />
+              </Link>
+            </div>
           )}
         </section>
       )}
