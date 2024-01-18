@@ -26,5 +26,5 @@ export const userSlice = createSlice({
 export const setUser = createAction<PayloadAction<UserType | null>>('user/setUser')
 export const logoutUser = createAction('user/logoutUser')
 
-const userReducer: any = userSlice.reducer
+const userReducer = userSlice.reducer
 export default userReducer

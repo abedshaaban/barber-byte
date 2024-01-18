@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { UserType } from '@repo/helpers/types'
 
 import UserReducer from './userSlice'
 
-export const store: any = configureStore({
+export const store = configureStore({
   reducer: {
     user: UserReducer
   }

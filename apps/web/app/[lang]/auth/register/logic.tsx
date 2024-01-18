@@ -118,7 +118,7 @@ export default function Logic({
     const data = await Register({ ...credentials } as any)
 
     if (data?.status) {
-      dispatch(setUser({  data.data }))
+      dispatch(setUser(data.data))
       toast({
         title: data?.message
       })
