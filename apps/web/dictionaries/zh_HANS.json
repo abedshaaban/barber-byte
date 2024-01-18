@@ -151,7 +151,9 @@
       "lastName": "姓氏",
       "lastNameExample": "华",
       "birthDate": "出生日期",
-      "description": "描述"
+      "description": "描述",
+      "noImage": "没有图片",
+      "publicAccount": "公共账户"
     },
     "userEmail": {
       "email": "电子邮件"

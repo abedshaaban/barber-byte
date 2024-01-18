@@ -151,7 +151,9 @@
       "lastName": "اسم العائلة",
       "lastNameExample": "ياسين",
       "birthDate": "تاريخ الميلاد",
-      "description": "الوصف"
+      "description": "الوصف",
+      "noImage": "لا يوجد صورة",
+      "publicAccount": "حساب عام"
     },
     "userEmail": {
       "email": "البريد الإلكتروني"

@@ -224,7 +224,7 @@ export default function Logic({
                   className={'object-cover object-center'}
                 />
 
-                <AvatarFallback>No Image</AvatarFallback>
+                <AvatarFallback>{register.userForm.noImage}</AvatarFallback>
               </Avatar>
 
               <Input
@@ -304,7 +304,7 @@ export default function Logic({
                     updateFields({ account_status: val ? 'public' : 'private' })
                   }}
                 />
-                <Label htmlFor="account-status">Public account</Label>
+                <Label htmlFor="account-status">{register.userForm.publicAccount}</Label>
               </div>
             </div>
 

@@ -150,7 +150,9 @@
       "lastName": "Last Name",
       "lastNameExample": "Smith",
       "birthDate": "Birth Date",
-      "description": "Description"
+      "description": "Description",
+      "noImage": "No Image",
+      "publicAccount": "Public account"
     },
     "userEmail": { "email": "Email" },
     "userPassword": {
