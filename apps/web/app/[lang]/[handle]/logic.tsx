@@ -51,104 +51,123 @@ export default function Logic({
   }
 
   return (
-    <section className={'flex flex-col'}>
-      <div
-        className={
-          'flex flex-col items-center justify-start gap-9 border-b-2 pb-9 sm:flex-row'
-        }
-      >
-        <Avatar className={'aspect-square h-48 w-48'}>
-          <AvatarImage
-            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${profile?.img_url}`}
-            alt={'user profile picture'}
-            className={'object-cover object-center'}
-          />
-
-          <AvatarFallback>
-            {profile?.role === 'user'
-              ? profile?.first_name[0]
-              : profile?.role === 'shop'
-                ? profile?.shop_name[0]
-                : null}
-          </AvatarFallback>
-        </Avatar>
-
-        <div className={'flex w-full max-w-96 flex-col gap-3'}>
-          <div>
-            <h1 className={'text-xl font-bold md:text-3xl'}>
-              {profile?.role === 'user' ? (
-                <>
-                  {profile?.first_name} {profile?.last_name}
-                </>
-              ) : profile?.role === 'shop' ? (
-                <>{profile?.shop_name}</>
-              ) : null}
-            </h1>
-
-            <h2 className={'text-base text-neutral-500 md:text-2xl'}>
-              @{profile?.handle}
-            </h2>
-
-            {profile?.role === 'shop' ? (
-              <p className={'text-neutral-500'}>
-                {profile.country}, {profile.city}, {profile.street}
-              </p>
-            ) : null}
-          </div>
+    <>
+      {!profile ? (
+        <div className={'flex h-full w-full flex-col items-center justify-center gap-9'}>
+          <h1 className={'text-2xl md:text-5xl'}>( • ᴖ • ｡) User Not Found</h1>
 
           <p>
-            {profile?.description === null
-              ? navigationText.nodescription
-              : profile?.description}
+            User page is not found. Go{' '}
+            <Link href={`/`} className={'underline'}>
+              to home
+            </Link>
           </p>
+        </div>
+      ) : (
+        <section className={'flex flex-col'}>
+          <div
+            className={
+              'flex flex-col items-center justify-start gap-9 border-b-2 pb-9 sm:flex-row'
+            }
+          >
+            <Avatar className={'aspect-square h-48 w-48'}>
+              <AvatarImage
+                src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${profile?.img_url}`}
+                alt={'user profile picture'}
+                className={'object-cover object-center'}
+              />
 
-          {user?.handle === profile?.handle ? (
-            <>
-              <Link
-                href={`/${lang}/@${user?.handle}/edit`}
-                className={buttonVariants({ variant: 'outline' })}
-              >
-                {navigationText.editProfile}
-              </Link>
+              <AvatarFallback>
+                {profile?.role === 'user'
+                  ? profile?.first_name[0]
+                  : profile?.role === 'shop'
+                    ? profile?.shop_name[0]
+                    : null}
+              </AvatarFallback>
+            </Avatar>
 
-              <Dialog open={isDialogOpen}>
-                <DialogTrigger
-                  asChild
-                  onClick={() => {
-                    setIsDialogOpen(true)
-                  }}
-                >
-                  <Button variant={'destructive'}>Logout</Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-md">
-                  <DialogHeader>
-                    <DialogTitle>Logout</DialogTitle>
-                    <DialogDescription>
-                      Are you sure you want to logout from your account?
-                    </DialogDescription>
-                  </DialogHeader>
+            <div className={'flex w-full max-w-96 flex-col gap-3'}>
+              <div>
+                <h1 className={'text-xl font-bold md:text-3xl'}>
+                  {profile?.role === 'user' ? (
+                    <>
+                      {profile?.first_name} {profile?.last_name}
+                    </>
+                  ) : profile?.role === 'shop' ? (
+                    <>{profile?.shop_name}</>
+                  ) : null}
+                </h1>
 
-                  <DialogFooter className={'flex w-full flex-row justify-between'}>
-                    <Button
-                      type="button"
-                      variant={'secondary'}
+                <h2 className={'text-base text-neutral-500 md:text-2xl'}>
+                  @{profile?.handle}
+                </h2>
+
+                {profile?.role === 'shop' ? (
+                  <p className={'text-neutral-500'}>
+                    {profile.country}, {profile.city}, {profile.street}
+                  </p>
+                ) : null}
+              </div>
+
+              <p>
+                {profile?.description === null
+                  ? navigationText.nodescription
+                  : profile?.description}
+              </p>
+
+              {user?.handle === profile?.handle ? (
+                <>
+                  <Link
+                    href={`/${lang}/@${user?.handle}/edit`}
+                    className={buttonVariants({ variant: 'outline' })}
+                  >
+                    {navigationText.editProfile}
+                  </Link>
+
+                  <Dialog open={isDialogOpen}>
+                    <DialogTrigger
+                      asChild
                       onClick={() => {
-                        setIsDialogOpen(false)
+                        setIsDialogOpen(true)
                       }}
                     >
-                      Close
-                    </Button>
+                      <Button variant={'destructive'}>Logout</Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-md">
+                      <DialogHeader>
+                        <DialogTitle>Logout</DialogTitle>
+                        <DialogDescription>
+                          Are you sure you want to logout from your account?
+                        </DialogDescription>
+                      </DialogHeader>
 
-                    <Button type="submit" variant={'destructive'} onClick={handleLogout}>
-                      Logout
-                    </Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
-            </>
-          ) : null}
-        </div>
-      </div>
-    </section>
+                      <DialogFooter className={'flex w-full flex-row justify-between'}>
+                        <Button
+                          type="button"
+                          variant={'secondary'}
+                          onClick={() => {
+                            setIsDialogOpen(false)
+                          }}
+                        >
+                          Close
+                        </Button>
+
+                        <Button
+                          type="submit"
+                          variant={'destructive'}
+                          onClick={handleLogout}
+                        >
+                          Logout
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                </>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      )}
+    </>
   )
 }
