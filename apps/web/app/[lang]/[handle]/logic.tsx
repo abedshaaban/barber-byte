@@ -132,13 +132,15 @@ export default function Logic({
                         setIsDialogOpen(true)
                       }}
                     >
-                      <Button variant={'destructive'}>Logout</Button>
+                      <Button variant={'destructive'}>
+                        {navigationText.logout.title}
+                      </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-md">
                       <DialogHeader>
-                        <DialogTitle>Logout</DialogTitle>
+                        <DialogTitle>{navigationText.logout.title}</DialogTitle>
                         <DialogDescription>
-                          Are you sure you want to logout from your account?
+                          {navigationText.logout.description}
                         </DialogDescription>
                       </DialogHeader>
 
@@ -150,7 +152,7 @@ export default function Logic({
                             setIsDialogOpen(false)
                           }}
                         >
-                          Close
+                          {navigationText.close}
                         </Button>
 
                         <Button
@@ -158,7 +160,7 @@ export default function Logic({
                           variant={'destructive'}
                           onClick={handleLogout}
                         >
-                          Logout
+                          {navigationText.logout.title}
                         </Button>
                       </DialogFooter>
                     </DialogContent>

@@ -3,7 +3,12 @@
     "home": "Startseite",
     "dashboard": "Dashboard",
     "editProfile": "تعديل الملف الشخصي",
-    "nodescription": "لا يوجد وصف"
+    "nodescription": "لا يوجد وصف",
+    "logout": {
+      "title": "تسجيل الخروج",
+      "description": "هل أنت متأكد أنك تريد تسجيل الخروج من حسابك؟"
+    },
+    "close": "إغلاق"
   },
   "auth": {
     "login": "تسجيل الدخول",

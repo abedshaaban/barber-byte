@@ -3,7 +3,12 @@
     "home": "Home",
     "dashboard": "Dashboard",
     "editProfile": "编辑个人资料",
-    "nodescription": "无描述"
+    "nodescription": "无描述",
+    "logout": {
+      "title": "注销",
+      "description": "您确定要从您的账户注销吗？"
+    },
+    "close": "关闭"
   },
   "auth": {
     "login": "登录",
