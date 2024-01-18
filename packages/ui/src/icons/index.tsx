@@ -5,6 +5,7 @@ import {
   LetterCaseLowercaseIcon as LowerCaseLetter,
   EyeOpenIcon as OpenEye,
   PersonIcon as Person,
+  PlusIcon as Plus,
   LetterCaseUppercaseIcon as UpperCaseLetter
 } from '@radix-ui/react-icons'
 
@@ -49,5 +50,6 @@ export {
   ClosedEye,
   EightPlus,
   AtMark,
-  InfoCircle
+  InfoCircle,
+  Plus
 }
