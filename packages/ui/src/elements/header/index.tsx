@@ -194,6 +194,8 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
                     <Avatar>
                       <AvatarImage
                         src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${user?.img_url}`}
+                        alt={'user profile picture'}
+                        className={'object-cover object-center'}
                       />
                       <AvatarFallback
                         className={'flex items-center justify-center text-center'}
