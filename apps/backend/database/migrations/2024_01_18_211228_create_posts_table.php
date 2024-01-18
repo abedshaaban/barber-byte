@@ -23,6 +23,7 @@ return new class extends Migration
         });
 
         Schema::create('likes', function (Blueprint $table) {
+            $table->id();
             $table->foreignUuid('post_id')
                     ->references('uuid')
                     ->on('posts');
