@@ -8,7 +8,8 @@
       "title": "注销",
       "description": "您确定要从您的账户注销吗？"
     },
-    "close": "关闭"
+    "close": "关闭",
+    "location": "位置"
   },
   "auth": {
     "login": "登录",

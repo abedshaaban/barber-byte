@@ -8,7 +8,8 @@
       "title": "Logout",
       "description": "Are you sure you want to logout from your account?"
     },
-    "close": "Close"
+    "close": "Close",
+    "location": "Location"
   },
   "auth": {
     "login": "Login",

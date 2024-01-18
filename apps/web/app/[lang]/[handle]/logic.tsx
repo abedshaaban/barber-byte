@@ -173,7 +173,10 @@ export default function Logic({
           {profile?.role === 'shop' && (
             <div className={'flex w-full flex-wrap items-center justify-evenly'}>
               <Link href={`/${lang}/@${user?.handle}/location`}>
-                <CardImage title={'Location'} img_url={'/images/assets/map.jpg'} />
+                <CardImage
+                  title={navigationText.location}
+                  img_url={'/images/assets/map.jpg'}
+                />
               </Link>
             </div>
           )}
