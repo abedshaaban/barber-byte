@@ -68,7 +68,7 @@ export async function updateProfile({
         img_url: img_url,
         gender: gender === 'male' ? 1 : gender === 'female' ? 2 : 3,
         account_status:
-          account_status === 'public' ? 1 : account_status === 'private' ? 2 : null
+          account_status === 'public' ? 2 : account_status === 'private' ? 1 : null
       },
       {
         headers: {
