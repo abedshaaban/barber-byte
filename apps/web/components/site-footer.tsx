@@ -14,7 +14,10 @@ export default function SiteFooter({ metaData }: { metaData: any }) {
     '/zh_HANS/auth/register',
     '/en/auth/login',
     '/ar/auth/login',
-    '/zh_HANS/auth/login'
+    '/zh_HANS/auth/login',
+    '/en/create-post',
+    '/ar/create-post',
+    '/zh_HANS/create-post'
   ]
 
   if (excludePaths.includes(pathname) || excludePathsPattern.test(pathname)) {
