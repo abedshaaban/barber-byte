@@ -181,5 +181,12 @@
       "city": "City",
       "street": "Street"
     }
+  },
+  "createPost": {
+    "loading": "Loading ...",
+    "captionOptional": "Caption (optional)",
+    "caption": "Caption",
+    "post": "Post",
+    "cancel": "Cancel"
   }
 }

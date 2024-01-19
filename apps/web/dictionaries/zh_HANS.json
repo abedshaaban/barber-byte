@@ -184,5 +184,12 @@
       "city": "城市",
       "street": "街道"
     }
+  },
+  "createPost": {
+    "loading": "加载中...",
+    "captionOptional": "标题（可选）",
+    "caption": "标题",
+    "post": "发布",
+    "cancel": "取消"
   }
 }

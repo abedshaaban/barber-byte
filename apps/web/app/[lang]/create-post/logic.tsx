@@ -16,7 +16,7 @@ import { Textarea } from '@repo/ui/textarea'
 import { useToast } from '@repo/ui/use-toast'
 import { cn } from '@repo/ui/util'
 
-export default function Logic({ lang }: { lang: Locale }) {
+export default function Logic({ lang, createPost }: { lang: Locale; createPost: any }) {
   const { toast } = useToast()
   const router = useRouter()
   const reduxUser = useSelector((state: RootState) => state.user)
@@ -66,7 +66,7 @@ export default function Logic({ lang }: { lang: Locale }) {
           </p>
         </div>
       ) : loading ? (
-        <div className={'pb-3 text-center'}>Loading ...</div>
+        <div className={'pb-3 text-center'}>{createPost.loading}</div>
       ) : (
         <form
           onSubmit={handleUploadPost}
@@ -88,9 +88,9 @@ export default function Logic({ lang }: { lang: Locale }) {
             <div className={'w-full text-center text-red-600'}>{errorMessage}</div>
 
             <div className="grid w-full max-w-sm gap-1.5">
-              <Label htmlFor="message">Caption (optional)</Label>
+              <Label htmlFor="message">{createPost.captionOptional}</Label>
               <Textarea
-                placeholder={'Caption'}
+                placeholder={createPost.caption}
                 id="message"
                 maxLength={255}
                 className={cn('cursor-pointer bg-white dark:bg-neutral-800')}
@@ -103,7 +103,7 @@ export default function Logic({ lang }: { lang: Locale }) {
             </div>
 
             <div className="grid w-full max-w-sm gap-1.5">
-              <Label>Post </Label>
+              <Label>{createPost.post}</Label>
               <Input
                 type="file"
                 className={cn(
@@ -133,10 +133,10 @@ export default function Logic({ lang }: { lang: Locale }) {
               href={`/${lang}`}
               className={cn(buttonVariants({ variant: 'secondary' }), '')}
             >
-              cancel
+              {createPost.cancel}
             </Link>
 
-            <Button type={'submit'}>post</Button>
+            <Button type={'submit'}>{createPost.post}</Button>
           </div>
         </form>
       )}

@@ -184,5 +184,12 @@
       "city": "المدينة",
       "street": "الشارع"
     }
+  },
+  "createPost": {
+    "loading": "جار التحميل ...",
+    "captionOptional": "التسمية (اختياري)",
+    "caption": "التسمية",
+    "post": "نشر",
+    "cancel": "إلغاء"
   }
 }
