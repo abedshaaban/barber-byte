@@ -9,7 +9,7 @@ import Post from '@web/components/post'
 import { RootState } from '@web/provider/store'
 import { useSelector } from 'react-redux'
 
-import { Button, buttonVariants } from '@repo/ui/button'
+import { buttonVariants } from '@repo/ui/button'
 import { cn } from '@repo/ui/util'
 
 export default function Logic({ lang }: { lang: Locale }) {
@@ -21,13 +21,12 @@ export default function Logic({ lang }: { lang: Locale }) {
   const [loading, setLoading] = useState(true)
 
   async function getData() {
-    console.log(pageNumber.lastPage, pageNumber.currentPage)
+    setLoading(true)
 
     if (pageNumber.currentPage <= pageNumber.lastPage) {
       const res = await getPosts({ page: pageNumber.currentPage })
 
       if (res?.data?.data !== '') {
-        console.log(pageNumber)
         const newData = [...posts, ...(res?.data?.data || [])]
 
         setPosts(newData)
@@ -39,28 +38,47 @@ export default function Logic({ lang }: { lang: Locale }) {
       }
 
       console.log(res)
-      setLoading(false)
     }
-  }
-
-  async function updatePage() {
-    setLoading(true)
-
-    await getData()
-
-    console.log(pageNumber.currentPage)
 
     setLoading(false)
   }
 
   async function runFunc() {
-    console.log('get data')
     await getData()
   }
 
   useEffect(() => {
     runFunc()
   }, [])
+
+  useEffect(() => {
+    function isInViewport(element: any) {
+      const rect = element.getBoundingClientRect()
+
+      return (
+        rect.bottom - (window.innerHeight || document.documentElement.clientHeight) < 600
+      )
+    }
+
+    const handleScroll = () => {
+      const targetDiv = document?.getElementById('trigger-new-fetch')
+
+      if (targetDiv) {
+        console.log(isInViewport(targetDiv), posts.length)
+        if (isInViewport(targetDiv) && posts.length > 0) {
+          if (!loading) {
+            runFunc()
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [posts, loading])
 
   return (
     <div className={'flex w-full flex-col items-center justify-center gap-9'}>
@@ -85,8 +103,6 @@ export default function Logic({ lang }: { lang: Locale }) {
         )
       })}
 
-      <div id={'trigger-new-fetch'} className={'h-1 w-full'}></div>
-
       {loading ? (
         'loading ...'
       ) : !user?.user ? (
@@ -99,11 +115,9 @@ export default function Logic({ lang }: { lang: Locale }) {
         >
           Login to see more
         </Link>
-      ) : posts.length > 0 ? (
-        <Button onClick={updatePage} className={'w-full max-w-[400px]'}>
-          Load more
-        </Button>
-      ) : null}
+      ) : (
+        <div id={'trigger-new-fetch'} className={'h-1 w-full'}></div>
+      )}
     </div>
   )
 }
