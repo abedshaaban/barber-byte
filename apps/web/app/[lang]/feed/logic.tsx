@@ -21,7 +21,7 @@ export default function Logic({ lang }: { lang: Locale }) {
   const [loading, setLoading] = useState(true)
 
   async function getData() {
-    setLoading(true)
+    console.log(pageNumber.lastPage, pageNumber.currentPage)
 
     if (pageNumber.currentPage <= pageNumber.lastPage) {
       const res = await getPosts({ page: pageNumber.currentPage })
@@ -32,16 +32,23 @@ export default function Logic({ lang }: { lang: Locale }) {
 
         setPosts(newData)
 
-        setPageNumber((prev) => {
-          return {
-            lastPage: prev.lastPage,
-            currentPage: prev.currentPage + 1
-          }
+        setPageNumber({
+          lastPage: res?.data?.last_page,
+          currentPage: pageNumber.currentPage + 1
         })
       }
 
       console.log(res)
+      setLoading(false)
     }
+  }
+
+  async function updatePage() {
+    setLoading(true)
+
+    await getData()
+
+    console.log(pageNumber.currentPage)
 
     setLoading(false)
   }
@@ -93,7 +100,7 @@ export default function Logic({ lang }: { lang: Locale }) {
           Login to see more
         </Link>
       ) : posts.length > 0 ? (
-        <Button onClick={runFunc} className={'w-full max-w-[400px]'}>
+        <Button onClick={updatePage} className={'w-full max-w-[400px]'}>
           Load more
         </Button>
       ) : null}
