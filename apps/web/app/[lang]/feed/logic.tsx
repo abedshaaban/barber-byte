@@ -60,6 +60,7 @@ export default function Logic({ lang }: { lang: Locale }) {
             likes_count={item.likes_count}
             name={item.name}
             uuid={item.uuid}
+            profile_url={item.profile_url}
           />
         )
       })}

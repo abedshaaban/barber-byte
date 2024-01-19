@@ -80,5 +80,6 @@ type PostType = {
   handle: string | null
   first_name: string | null
   last_name: string | null
-  name: 'Hair Style'
+  name: string
+  profile_url: string
 }

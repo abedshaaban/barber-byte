@@ -27,6 +27,7 @@ export default function Post({
   likes_count,
   name,
   uuid,
+  profile_url,
   lang
 }: PostType & { lang: Locale; user: UserType | null }) {
   return (
@@ -37,7 +38,7 @@ export default function Post({
           <Link href={`/${lang}/@${handle}`}>
             <Avatar>
               <AvatarImage
-                src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${img_url}`}
+                src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${profile_url}`}
                 className={'object-cover object-center'}
               />
               <AvatarFallback>
