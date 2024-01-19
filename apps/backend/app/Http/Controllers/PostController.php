@@ -70,6 +70,7 @@ class PostController extends Controller
                 'users.handle',
                 'users.first_name',
                 'users.last_name',
+                'users.img_url as profile_url',
                 'shops.name',
             )
             ->join('users', function ($join) {
