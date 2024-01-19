@@ -47,6 +47,7 @@ export default function Logic({ lang }: { lang: Locale }) {
       {posts?.map((item, index) => {
         return (
           <Post
+            user={user?.user}
             key={index}
             lang={lang}
             caption={item.caption}

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import type { PostType } from '@repo/helpers/types'
+import type { PostType, UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
@@ -16,6 +16,7 @@ import {
 } from '@repo/ui/icons'
 
 export default function Post({
+  user,
   caption,
   created_at,
   creator_id,
@@ -27,26 +28,28 @@ export default function Post({
   name,
   uuid,
   lang
-}: PostType & { lang: Locale }) {
+}: PostType & { lang: Locale; user: UserType | null }) {
   return (
     <Card className="w-full max-w-[400px]">
       {/* user info */}
       <CardHeader className="pb-2">
-        <Link
-          href={`/${lang}/@${handle}`}
-          className="flex w-full flex-row items-center gap-3"
-        >
-          <Avatar>
-            <AvatarImage
-              src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${img_url}`}
-              className={'object-cover object-center'}
-            />
-            <AvatarFallback>
-              {name ? name[0] : first_name ? first_name[0] : ''}
-            </AvatarFallback>
-          </Avatar>
+        <div className="flex w-full flex-row items-center gap-3">
+          <Link href={`/${lang}/@${handle}`}>
+            <Avatar>
+              <AvatarImage
+                src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${img_url}`}
+                className={'object-cover object-center'}
+              />
+              <AvatarFallback>
+                {name ? name[0] : first_name ? first_name[0] : ''}
+              </AvatarFallback>
+            </Avatar>
+          </Link>
 
-          <div className="flex h-full w-full flex-col items-start text-start">
+          <Link
+            href={`/${lang}/@${handle}`}
+            className="flex h-full w-full flex-col items-start text-start"
+          >
             <span className="">
               {name ? (
                 name
@@ -60,12 +63,14 @@ export default function Post({
             <span className="text-xs text-gray-600">
               {new Date(created_at).toLocaleString()}
             </span>
-          </div>
+          </Link>
 
-          <Button variant={'ghost'} size={'icon'}>
-            <HorizontalDots className={'h-7 w-7 dark:fill-white'} />
-          </Button>
-        </Link>
+          {user && user?.handle === handle ? (
+            <Button variant={'ghost'} size={'icon'}>
+              <HorizontalDots className={'h-7 w-7 dark:fill-white'} />
+            </Button>
+          ) : null}
+        </div>
       </CardHeader>
 
       {/* img */}
