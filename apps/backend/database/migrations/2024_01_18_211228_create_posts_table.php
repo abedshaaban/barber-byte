@@ -30,6 +30,7 @@ return new class extends Migration
             $table->foreignUuid('user_id')
                     ->references('uuid')
                     ->on('users');
+            $table->timestamps();
         });
     }
 
