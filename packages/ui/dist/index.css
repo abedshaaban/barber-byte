@@ -1155,6 +1155,10 @@ body {
   height: 1px;
 }
 
+.h-\[21px\] {
+  height: 21px;
+}
+
 .max-h-96 {
   max-height: 24rem;
 }
@@ -1181,6 +1185,10 @@ body {
 
 .max-h-screen {
   max-height: 100vh;
+}
+
+.max-h-\[400px\] {
+  max-height: 400px;
 }
 
 .min-h-\[60px\] {
@@ -1363,6 +1371,22 @@ body {
 
 .w-px {
   width: 1px;
+}
+
+.w-1 {
+  width: 0.25rem;
+}
+
+.w-\[0px\] {
+  width: 0px;
+}
+
+.w-\[4000px\] {
+  width: 4000px;
+}
+
+.w-\[21px\] {
+  width: 21px;
 }
 
 .min-w-0 {

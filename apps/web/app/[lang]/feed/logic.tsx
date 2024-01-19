@@ -8,7 +8,7 @@ export default function Logic() {
   const user = useSelector((state: RootState) => state.user)
 
   return (
-    <div>
+    <div className={'flex w-full flex-col items-center justify-center'}>
       <Post />
     </div>
   )
