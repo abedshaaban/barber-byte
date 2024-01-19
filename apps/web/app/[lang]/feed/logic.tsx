@@ -19,14 +19,16 @@ export default function Logic({ lang }: { lang: Locale }) {
     if (pageNumber.currentPage <= pageNumber.lastPage) {
       const res = await getPosts({ page: pageNumber.currentPage })
 
-      setPosts((prev) => {
-        return [...prev, ...res?.data?.data]
-      })
+      if (res?.data?.data?.length > 0) {
+        setPosts((prev) => {
+          return [...prev, ...res?.data?.data]
+        })
 
-      setPageNumber({
-        currentPage: res?.data?.current_page,
-        lastPage: res?.data?.last_page
-      })
+        setPageNumber({
+          currentPage: res?.data?.current_page,
+          lastPage: res?.data?.last_page
+        })
+      }
 
       console.log(res)
     }
@@ -42,8 +44,23 @@ export default function Logic({ lang }: { lang: Locale }) {
 
   return (
     <div className={'flex w-full flex-col items-center justify-center gap-9'}>
-      {posts?.map((item) => {
-        return <Post {...item} key={item.uuid} lang={lang} />
+      {posts?.map((item, index) => {
+        return (
+          <Post
+            key={index}
+            lang={lang}
+            caption={item.caption}
+            created_at={item.created_at}
+            creator_id={item.creator_id}
+            first_name={item.first_name}
+            handle={item.handle}
+            img_url={item.img_url}
+            last_name={item.last_name}
+            likes_count={item.likes_count}
+            name={item.name}
+            uuid={item.uuid}
+          />
+        )
       })}
     </div>
   )

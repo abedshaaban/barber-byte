@@ -57,7 +57,9 @@ export default function Post({
               )}
             </span>
 
-            <span className="text-xs text-gray-600">{created_at}</span>
+            <span className="text-xs text-gray-600">
+              {new Date(created_at).toLocaleString()}
+            </span>
           </div>
 
           <Button variant={'ghost'} size={'icon'}>
