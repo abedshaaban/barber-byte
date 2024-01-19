@@ -16,7 +16,13 @@ import { Textarea } from '@repo/ui/textarea'
 import { useToast } from '@repo/ui/use-toast'
 import { cn } from '@repo/ui/util'
 
-export default function Logic({ lang, createPost }: { lang: Locale; createPost: any }) {
+export default function Logic({
+  lang,
+  createPost: postTextTranslation
+}: {
+  lang: Locale
+  createPost: any
+}) {
   const { toast } = useToast()
   const router = useRouter()
   const reduxUser = useSelector((state: RootState) => state.user)
@@ -66,7 +72,7 @@ export default function Logic({ lang, createPost }: { lang: Locale; createPost: 
           </p>
         </div>
       ) : loading ? (
-        <div className={'pb-3 text-center'}>{createPost.loading}</div>
+        <div className={'pb-3 text-center'}>{postTextTranslation.loading}</div>
       ) : (
         <form
           onSubmit={handleUploadPost}
@@ -88,9 +94,9 @@ export default function Logic({ lang, createPost }: { lang: Locale; createPost: 
             <div className={'w-full text-center text-red-600'}>{errorMessage}</div>
 
             <div className="grid w-full max-w-sm gap-1.5">
-              <Label htmlFor="message">{createPost.captionOptional}</Label>
+              <Label htmlFor="message">{postTextTranslation.captionOptional}</Label>
               <Textarea
-                placeholder={createPost.caption}
+                placeholder={postTextTranslation.caption}
                 id="message"
                 maxLength={255}
                 className={cn('cursor-pointer bg-white dark:bg-neutral-800')}
@@ -103,7 +109,7 @@ export default function Logic({ lang, createPost }: { lang: Locale; createPost: 
             </div>
 
             <div className="grid w-full max-w-sm gap-1.5">
-              <Label>{createPost.post}</Label>
+              <Label>{postTextTranslation.post}</Label>
               <Input
                 type="file"
                 className={cn(
@@ -133,10 +139,10 @@ export default function Logic({ lang, createPost }: { lang: Locale; createPost: 
               href={`/${lang}`}
               className={cn(buttonVariants({ variant: 'secondary' }), '')}
             >
-              {createPost.cancel}
+              {postTextTranslation.cancel}
             </Link>
 
-            <Button type={'submit'}>{createPost.post}</Button>
+            <Button type={'submit'}>{postTextTranslation.post}</Button>
           </div>
         </form>
       )}
