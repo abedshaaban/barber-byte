@@ -2,12 +2,13 @@
 
 import { useEffect, useState } from 'react'
 import { getPosts } from '@repo/helpers/account'
-import { PostType } from '@repo/helpers/types'
+import type { PostType } from '@repo/helpers/types'
+import { Locale } from '@root/i18n.config'
 import Post from '@web/components/post'
 import { RootState } from '@web/provider/store'
 import { useSelector } from 'react-redux'
 
-export default function Logic() {
+export default function Logic({ lang }: { lang: Locale }) {
   const user = useSelector((state: RootState) => state.user)
   const [pageNumber, setPageNumber] = useState<{ currentPage: number; lastPage: number }>(
     { currentPage: 1, lastPage: 1 }
@@ -40,10 +41,9 @@ export default function Logic() {
   }, [])
 
   return (
-    <div className={'flex w-full flex-col items-center justify-center'}>
-      <Post />
-      {posts?.map((val) => {
-        return <>{val?.handle}</>
+    <div className={'flex w-full flex-col items-center justify-center gap-9'}>
+      {posts?.map((item) => {
+        return <Post {...item} key={item.uuid} lang={lang} />
       })}
     </div>
   )
