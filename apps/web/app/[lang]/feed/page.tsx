@@ -1,11 +1,9 @@
-'use client'
-
-import { RootState } from '@web/provider/store'
-import { useSelector } from 'react-redux'
+import Logic from './logic'
 
 export default function page() {
-  const user = useSelector((state: RootState) => state.user)
-
-  console.log(user)
-  return <div>-{user?.user?.role}-</div>
+  return (
+    <section className={'flex justify-center py-9'}>
+      <Logic />
+    </section>
+  )
 }
