@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { createPost } from '@repo/helpers/account'
 import { Locale } from '@root/i18n.config'
 import { RootState } from '@web/provider/store'
@@ -12,9 +13,12 @@ import { Button, buttonVariants } from '@repo/ui/button'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
 import { Textarea } from '@repo/ui/textarea'
+import { useToast } from '@repo/ui/use-toast'
 import { cn } from '@repo/ui/util'
 
 export default function Logic({ lang }: { lang: Locale }) {
+  const { toast } = useToast()
+  const router = useRouter()
   const reduxUser = useSelector((state: RootState) => state.user)
   const user = reduxUser?.user
   const [previewImage, setPreviewImage] = useState('')
@@ -37,7 +41,15 @@ export default function Logic({ lang }: { lang: Locale }) {
 
     const res = await createPost({ ...postData })
 
-    console.log(res)
+    if (res?.status) {
+      toast({
+        title: res?.message
+      })
+      router.push(`/${lang}/feed`)
+    } else {
+      setErrorMessage(res?.message)
+      setLoading(false)
+    }
   }
 
   return (
@@ -53,6 +65,8 @@ export default function Logic({ lang }: { lang: Locale }) {
             </Link>
           </p>
         </div>
+      ) : loading ? (
+        <div className={'pb-3 text-center'}>Loading ...</div>
       ) : (
         <form
           onSubmit={handleUploadPost}
