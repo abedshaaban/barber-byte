@@ -36,8 +36,6 @@ export default function Logic({ lang }: { lang: Locale }) {
           currentPage: pageNumber.currentPage + 1
         })
       }
-
-      console.log(res)
     }
 
     setLoading(false)
@@ -64,7 +62,6 @@ export default function Logic({ lang }: { lang: Locale }) {
       const targetDiv = document?.getElementById('trigger-new-fetch')
 
       if (targetDiv) {
-        console.log(isInViewport(targetDiv), posts.length)
         if (isInViewport(targetDiv) && posts.length > 0) {
           if (!loading) {
             runFunc()
