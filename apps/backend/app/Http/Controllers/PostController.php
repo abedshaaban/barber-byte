@@ -56,25 +56,40 @@ class PostController extends Controller
     }
 
     public function get_posts(Request $request){
-        $page = intval($request->page) ?? 1;
-        
-        $posts = Post::
-        select(
-            'posts.uuid',
-            'posts.caption',
-            'posts.img_url',
-            'posts.likes_count',
-            'posts.creator_id',
-            'posts.created_at',
-            'users.handle',
-            'users.first_name',
-            'users.last_name',
-            'shops.name',
-        )
-        ->join('users', 'users.uuid', '=', 'posts.creator_id')
-        ->join('shops', 'shops.owner_id', '=', 'posts.creator_id')
-        ->latest()->paginate(2, ['*'], 'page', $page);
+        try{
+            $page = intval($request->page) ?? 1;
+            
+            $posts = Post::
+            select(
+                'posts.uuid',
+                'posts.caption',
+                'posts.img_url',
+                'posts.likes_count',
+                'posts.creator_id',
+                'posts.created_at',
+                'users.handle',
+                'users.first_name',
+                'users.last_name',
+                'shops.name',
+            )
+            ->join('users', 'users.uuid', '=', 'posts.creator_id')
+            ->join('shops', 'shops.owner_id', '=', 'posts.creator_id')
+            ->latest()->paginate(2, ['*'], 'page', $page);
 
-        return response()->json($posts);
+            return response()->json([
+                'status' => true,
+                'message' => 'Getting post.',
+                'data' => $posts,
+                'error' => ''
+            ]);
+
+        }catch(\Exception $exception){
+            return response()->json([
+                'status' => false,
+                'message' => 'Cound not get posts.',
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ]);
+        }
     }
 }
