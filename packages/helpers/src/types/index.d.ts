@@ -69,3 +69,16 @@ export type UserType = {
       location: [number, number]
     }
 )
+
+type PostType = {
+  uuid: string
+  caption: string | null
+  img_url: string
+  likes_count: number
+  creator_id: string
+  created_at: string
+  handle: string | null
+  first_name: string | null
+  last_name: string | null
+  name: 'Hair Style'
+}
