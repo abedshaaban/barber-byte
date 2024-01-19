@@ -72,7 +72,10 @@ class PostController extends Controller
                 'users.last_name',
                 'shops.name',
             )
-            ->join('users', 'users.uuid', '=', 'posts.creator_id')
+            ->join('users', function ($join) {
+                $join->on('users.uuid', '=', 'posts.creator_id')
+                ->where('users.account_status_id', '=', 2);
+            })
             ->join('shops', 'shops.owner_id', '=', 'posts.creator_id')
             ->latest()->paginate(2, ['*'], 'page', $page);
 
