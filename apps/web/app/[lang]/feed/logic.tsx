@@ -19,10 +19,10 @@ export default function Logic({ lang }: { lang: Locale }) {
     if (pageNumber.currentPage <= pageNumber.lastPage) {
       const res = await getPosts({ page: pageNumber.currentPage })
 
-      if (res?.data?.data?.length > 0) {
-        setPosts((prev) => {
-          return [...prev, ...res?.data?.data]
-        })
+      if (res?.data?.data !== '') {
+        const newData = [...posts, ...(res?.data?.data || [])]
+
+        setPosts(newData)
 
         setPageNumber({
           currentPage: res?.data?.current_page,
