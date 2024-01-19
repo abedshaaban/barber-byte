@@ -196,3 +196,36 @@ export async function getPosts({ page }: { page: number }): Promise<{
 
   return res?.data
 }
+
+/**
+ * Like or unlike a post
+ * @param post id
+ * @param user id
+ */
+export async function togglePostLike({
+  post_id
+}: {
+  post_id: string
+}): Promise<{ status: boolean; data: any; error: string; message: string }> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/post/like/${post_id}`,
+      {},
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
