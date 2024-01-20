@@ -1,6 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
+import { togglePostLike } from '@repo/helpers/account'
 import type { PostType, UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 
@@ -30,6 +32,33 @@ export default function Post({
   profile_url,
   lang
 }: PostType & { lang: Locale; user: UserType | null }) {
+  const [loading, setLoading] = useState(false)
+  const [likes, setLikes] = useState<{
+    count: number
+    isLiked: boolean
+  }>({
+    count: likes_count,
+    isLiked: false
+  })
+
+  async function handleLike() {
+    setLoading(true)
+    const res = await togglePostLike({ post_id: uuid })
+    console.log(res)
+    if (res.status === true) {
+      if (res?.data?.is_liked === true) {
+        setLikes((prev) => {
+          return { count: prev.count + 1, isLiked: res?.data?.is_liked }
+        })
+      } else {
+        setLikes((prev) => {
+          return { ...prev, isLiked: res?.data?.is_liked }
+        })
+      }
+    }
+    setLoading(false)
+  }
+
   return (
     <Card className="w-full max-w-[400px]">
       {/* user info */}
@@ -93,7 +122,8 @@ export default function Post({
             <Button
               variant={'ghost'}
               size={'icon'}
-              // onClick={handleLike}
+              onClick={handleLike}
+              disabled={loading}
             >
               {false ? (
                 <FilledHeart className={'h-6 w-6'} />
