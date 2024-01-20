@@ -18,4 +18,13 @@ class Shop extends Model
         'owner_id',
         'name',
     ];
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'uuid', 'owner_id');
+    }
+
+    public function address(){
+        return $this->hasOne(Address::class, 'shop_id', 'owner_id');
+    }
 }

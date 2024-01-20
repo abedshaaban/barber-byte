@@ -90,8 +90,6 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function shop(){
-        return Shop::
-        select('name')
-        ->where('owner_id', $this->uuid)->first();
+        return $this->hasOne(Shop::class, 'owner_id', 'uuid');
     }
 }

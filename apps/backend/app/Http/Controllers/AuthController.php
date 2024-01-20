@@ -20,8 +20,6 @@ class AuthController extends Controller
     }
 
     public function login(Request $request){
-        $res = [];
-
         try{
             $credentials = $request->only('email', 'password');   
             $token = Auth::attempt($credentials);
@@ -35,87 +33,38 @@ class AuthController extends Controller
                 ]);
             }
 
-            $token_payload = auth()->payload();
+            $user = auth()->user();
 
-            if($token_payload['role_id'] === 1){
-                $user = User::
-                    select(
-                        'handle',
-                        'first_name',
-                        'last_name',
-                        'birth_date',
-                        'description',
-                        'img_url',
-                        'roles.name as role_name',
-                        'genders.name as gender_name',
-                        'account_statuses.name as account_status'
-                    )
-                        ->join('roles', 'users.role_id','=','roles.id')
-                        ->join('genders', 'users.gender_id','=','genders.id')
-                        ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
-                        ->where('email', $token_payload['email'])->first();
+            $userData = [
+                'handle' => $user->handle,
+                'birth_date' => $user->birth_date,
+                'description' => $user->description,
+                'img_url' => $user->img_url,
+                'token' => $token,
+                'role' => $user->role->name,
+                'gender' => $user->gender->name,
+                'account_status' => $user->account_status->name,
+            ];
 
-                $res = [
-                    'status' => true,
-                    'message' => 'User logged in',
-                    'data' => [
-                        'handle' => $user->handle,
-                        'first_name' => $user->first_name,
-                        'last_name' => $user->last_name,
-                        'birth_date' => $user->birth_date,
-                        'description' => $user->description,
-                        'img_url' => $user->img_url,
-                        'token' => $token,
-                        'role' => $user->role_name,
-                        'gender' => $user->gender_name,
-                        'account_status' => $user->account_status,
-                    ],
-                    'error' => '' 
+            if ($user->role_id === 2 && $user->shop) {
+                $shopData = [
+                    'shop_name' => $user->shop->name,
+                    'country' => $user->shop->address->country,
+                    'city' => $user->shop->address->city,
+                    'street' => $user->shop->address->street,
+                    'location' => json_decode($user->shop->address->location),
                 ];
-            } else if($token_payload['role_id'] === 2){
-                $user = User::
-                select(
-                    'handle',
-                    'description',
-                    'img_url',
-                    'birth_date',
-                    'roles.name as role_name',
-                    'genders.name as gender_name',
-                    'account_statuses.name as account_status',
-                    'shops.name as shop_name',
-                    'addresses.country as country',
-                    'addresses.city as city',
-                    'addresses.street as street',
-                    'addresses.location as location',
-                )
-                ->join('roles', 'users.role_id','=','roles.id')
-                ->join('genders', 'users.gender_id','=','genders.id')
-                ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
-                ->join('shops', 'users.uuid','=','shops.owner_id')
-                ->join('addresses', 'shops.owner_id','=','addresses.shop_id')
-                ->where('email', $token_payload['email'])->first();
-
-                $res = [
-                    'status' => true,
-                    'message' => 'User logged in',
-                    'data' => [
-                        'handle' => $user->handle,
-                        'birth_date' => $user->birth_date,
-                        'description' => $user->description,
-                        'img_url' => $user->img_url,
-                        'token' => $token,
-                        'role' => $user->role_name,
-                        'gender' => $user->gender_name,
-                        'account_status' => $user->account_status,
-                        'shop_name' => $user->shop_name,
-                        'country' => $user->country,
-                        'city' => $user->city,
-                        'street' => $user->street,
-                        'location' => json_decode($user->location)
-                    ],
-                    'error' => '' 
-                ];
+    
+                $userData = array_merge($userData, $shopData);
             }
+    
+            return response()->json([
+                'status' => true,
+                'message' => 'User logged in',
+                'data' => $userData,
+                'error' => ''
+            ]);
+
         }catch(\Exception $exception){
             return response()->json([
                 'status' => false,
@@ -124,8 +73,6 @@ class AuthController extends Controller
                 'error' => $exception->getMessage() 
             ], 403);
         }
-
-        return response()->json($res, 200);
     }
 
     public function register(Request $request){

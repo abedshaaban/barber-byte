@@ -23,4 +23,8 @@ class Address extends Model
     protected $casts = [
         'location' => 'array'
     ];
+
+    public function address(){
+        return $this->belongsTo(Shop::class, 'owner_id', 'shop_id');
+    }
 }
