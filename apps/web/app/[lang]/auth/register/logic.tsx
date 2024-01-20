@@ -7,8 +7,6 @@ import { Register } from '@repo/helpers/auth'
 import type { WorkDayType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 import { checkEmailFormat } from '@web/helpers'
-import { setUser } from '@web/provider/userSlice'
-import { useDispatch } from 'react-redux'
 
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
@@ -47,7 +45,6 @@ export default function Logic({
   register: any
 }) {
   const { toast } = useToast()
-  const dispatch = useDispatch()
   const router = useRouter()
   const [loading, setLoading] = useState<boolean>(false)
   const [nextButton, setNextButton] = useState<'button' | 'submit'>('submit')
@@ -131,11 +128,10 @@ export default function Logic({
     const data = await Register({ ...credentials } as any)
 
     if (data?.status) {
-      dispatch(setUser(data.data))
       toast({
         title: data?.message
       })
-      router.push(`/${params.lang}/feed`)
+      router.push(`/${params.lang}/auth/login`)
     } else {
       setErrorMessage(data?.message)
       setLoading(false)

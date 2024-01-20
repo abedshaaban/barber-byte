@@ -52,10 +52,6 @@ export async function Register({
     }
   )
 
-  if (res?.data?.data) {
-    Storage({ key: 'token', value: res?.data?.data?.token })
-  }
-
   return res?.data
 }
 
@@ -113,6 +109,8 @@ export async function Refresh(): Promise<{
 
     if (res?.data?.status === true) {
       Storage({ key: 'token', value: res?.data?.data?.token })
+    } else {
+      Storage({ key: 'token', remove: true })
     }
   } catch (error) {}
 
