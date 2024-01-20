@@ -16,9 +16,9 @@ export type LoginProps = {
 export type WorkDayType = {
   order: number
   name: string
-  startDay: string
-  endDay: string
-  isOpen: boolean
+  start_date: string
+  end_date: string
+  is_open: boolean
 }
 
 export type RegisterProps = LoginProps & {

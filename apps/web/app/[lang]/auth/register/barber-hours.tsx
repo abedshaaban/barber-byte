@@ -1,16 +1,10 @@
+import type { WorkDayType } from '@repo/helpers/types'
+
 import { Button } from '@repo/ui/button'
 import { Check, Cross } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
 import { cn } from '@repo/ui/util'
-
-type WorkDayType = {
-  order: number
-  name: string
-  startDay: string
-  endDay: string
-  isOpen: boolean
-}
 
 type UserData = {
   work_days: WorkDayType[]
@@ -26,9 +20,9 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
     updateFields({
       work_days: work_days.map((day, i) =>
         i === index
-          ? work_days[index]?.isOpen
-            ? { ...day, isOpen: !work_days[index]?.isOpen }
-            : { ...day, isOpen: !work_days[index]?.isOpen, endDay: '', startDay: '' }
+          ? work_days[index]?.is_open
+            ? { ...day, isOpen: !work_days[index]?.is_open }
+            : { ...day, isOpen: !work_days[index]?.is_open, endDay: '', startDay: '' }
           : day
       )
     })
@@ -45,7 +39,7 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
             <Input
               type={'time'}
               required
-              value={item?.startDay}
+              value={item?.start_date}
               onChange={(e) => {
                 updateFields({
                   work_days: work_days.map((day, i) =>
@@ -54,13 +48,13 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
                 })
               }}
               className={'bg-white dark:bg-neutral-800'}
-              disabled={item.isOpen}
+              disabled={item.is_open}
             />
 
             <Input
               type={'time'}
               required
-              value={item?.endDay}
+              value={item?.end_date}
               onChange={(e) => {
                 updateFields({
                   work_days: work_days.map((day, i) =>
@@ -69,16 +63,16 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
                 })
               }}
               className={'bg-white dark:bg-neutral-800'}
-              disabled={item.isOpen}
+              disabled={item.is_open}
             />
 
             <div className={'flex flex-row'}>
               <Button
-                className={cn('rounded-r-none border-r-0', item.isOpen ? '' : '')}
+                className={cn('rounded-r-none border-r-0', item.is_open ? '' : '')}
                 size={'icon'}
                 variant={'outline'}
                 type={'button'}
-                disabled={item.isOpen ? false : true}
+                disabled={item.is_open ? false : true}
                 onClick={() => {
                   handleOpenDay(index)
                 }}
@@ -87,11 +81,11 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
               </Button>
 
               <Button
-                className={cn('rounded-l-none border-l-0', item.isOpen ? '' : '')}
+                className={cn('rounded-l-none border-l-0', item.is_open ? '' : '')}
                 size={'icon'}
                 variant={'outline'}
                 type={'button'}
-                disabled={item.isOpen ? true : false}
+                disabled={item.is_open ? true : false}
                 onClick={() => {
                   handleOpenDay(index)
                 }}

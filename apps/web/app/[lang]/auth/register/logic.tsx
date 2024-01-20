@@ -4,6 +4,7 @@ import React, { FormEvent, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Register } from '@repo/helpers/auth'
+import type { WorkDayType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 import { checkEmailFormat } from '@web/helpers'
 import { setUser } from '@web/provider/userSlice'
@@ -22,14 +23,6 @@ import UserEmail from './user-email'
 import UserForm from './user-form'
 import UserPassword from './user-password'
 import UserType from './user-type'
-
-type WorkDayType = {
-  name: string
-  startDay: string
-  endDay: string
-  isOpen: boolean
-  order: number
-}
 
 type FormDataType = {
   is_barber_shop: boolean | null
@@ -72,13 +65,13 @@ export default function Logic({
     city: '',
     street: '',
     work_days: [
-      { order: 1, name: 'Monday', startDay: '', endDay: '', isOpen: false },
-      { order: 2, name: 'Tuesday', startDay: '', endDay: '', isOpen: true },
-      { order: 3, name: 'Wednesday', startDay: '', endDay: '', isOpen: true },
-      { order: 4, name: 'Thursday', startDay: '', endDay: '', isOpen: true },
-      { order: 5, name: 'Friday', startDay: '', endDay: '', isOpen: true },
-      { order: 6, name: 'Saturday', startDay: '', endDay: '', isOpen: true },
-      { order: 7, name: 'Sunday', startDay: '', endDay: '', isOpen: true }
+      { order: 1, name: 'Monday', start_date: '', end_date: '', is_open: false },
+      { order: 2, name: 'Tuesday', start_date: '', end_date: '', is_open: true },
+      { order: 3, name: 'Wednesday', start_date: '', end_date: '', is_open: true },
+      { order: 4, name: 'Thursday', start_date: '', end_date: '', is_open: true },
+      { order: 5, name: 'Friday', start_date: '', end_date: '', is_open: true },
+      { order: 6, name: 'Saturday', start_date: '', end_date: '', is_open: true },
+      { order: 7, name: 'Sunday', start_date: '', end_date: '', is_open: true }
     ]
   })
 
