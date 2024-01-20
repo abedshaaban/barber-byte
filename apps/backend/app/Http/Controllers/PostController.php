@@ -77,7 +77,7 @@ class PostController extends Controller
                 $join->on('users.uuid', '=', 'posts.creator_id')
                 ->where('users.account_status_id', '=', 2);
             })
-            ->join('shops', 'shops.owner_id', '=', 'posts.creator_id')
+            ->leftJoin('shops', 'shops.owner_id', '=', 'posts.creator_id')
             ->latest()->paginate(2, ['*'], 'page', $page);
 
             return response()->json([
