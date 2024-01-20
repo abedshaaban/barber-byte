@@ -19,7 +19,8 @@ export async function Register({
   country,
   city,
   street,
-  location
+  location,
+  work_days
 }: RegisterProps): Promise<{
   status: boolean
   data: RegisterResponseProps
@@ -40,7 +41,8 @@ export async function Register({
       country: country,
       city: city,
       street: street,
-      location: location
+      location: location,
+      work_days: work_days
     },
     {
       headers: {

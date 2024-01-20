@@ -36,6 +36,7 @@ export type RegisterProps = LoginProps & {
   street: string
   location: [number, number]
   description: null | string
+  work_days: WorkDayType[]
 }
 
 export type RegisterResponseProps = ResponseType & {

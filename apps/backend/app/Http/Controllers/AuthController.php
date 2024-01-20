@@ -188,7 +188,6 @@ class AuthController extends Controller
                     'location' => $request->location,
                 ]);
 
-                // return response()->json($request->work_days);
                 $workDaysData = [];
 
                 foreach ($request->work_days as $day) {
@@ -202,7 +201,7 @@ class AuthController extends Controller
                     ];
                 }
 
-                $work_days = WorkDay::insert($workDaysData);
+                WorkDay::insert($workDaysData);
 
                 $shop = User::
                     select(
@@ -243,8 +242,6 @@ class AuthController extends Controller
                             'city' => $shop->city,
                             'street' => $shop->street,
                             'location' => $shop->location,
-                            'work_days' => $work_days,
-
                         ],
                         'error' => '' 
                     ];
