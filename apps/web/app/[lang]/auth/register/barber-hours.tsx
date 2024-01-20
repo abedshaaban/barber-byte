@@ -5,6 +5,7 @@ import { Label } from '@repo/ui/label'
 import { cn } from '@repo/ui/util'
 
 type WorkDayType = {
+  order: number
   name: string
   startDay: string
   endDay: string

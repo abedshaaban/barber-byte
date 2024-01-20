@@ -28,6 +28,7 @@ type WorkDayType = {
   startDay: string
   endDay: string
   isOpen: boolean
+  order: number
 }
 
 type FormDataType = {
@@ -71,13 +72,13 @@ export default function Logic({
     city: '',
     street: '',
     work_days: [
-      { name: 'Monday', startDay: '', endDay: '', isOpen: false },
-      { name: 'Tuesday', startDay: '', endDay: '', isOpen: true },
-      { name: 'Wednesday', startDay: '', endDay: '', isOpen: true },
-      { name: 'Thursday', startDay: '', endDay: '', isOpen: true },
-      { name: 'Friday', startDay: '', endDay: '', isOpen: true },
-      { name: 'Saturday', startDay: '', endDay: '', isOpen: true },
-      { name: 'Sunday', startDay: '', endDay: '', isOpen: true }
+      { order: 1, name: 'Monday', startDay: '', endDay: '', isOpen: false },
+      { order: 2, name: 'Tuesday', startDay: '', endDay: '', isOpen: true },
+      { order: 3, name: 'Wednesday', startDay: '', endDay: '', isOpen: true },
+      { order: 4, name: 'Thursday', startDay: '', endDay: '', isOpen: true },
+      { order: 5, name: 'Friday', startDay: '', endDay: '', isOpen: true },
+      { order: 6, name: 'Saturday', startDay: '', endDay: '', isOpen: true },
+      { order: 7, name: 'Sunday', startDay: '', endDay: '', isOpen: true }
     ]
   })
 

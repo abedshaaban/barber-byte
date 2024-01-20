@@ -14,6 +14,7 @@ export type LoginProps = {
 }
 
 export type WorkDayType = {
+  order: number
   name: string
   startDay: string
   endDay: string
