@@ -34,7 +34,7 @@ class LikeController extends Controller
                 return response()->json([
                     'status' => true,
                     'message' => 'Liked post',
-                    'date' => [
+                    'data' => [
                         'is_liked' => true
                     ],
                     'error' => '' 
@@ -50,7 +50,7 @@ class LikeController extends Controller
                 return response()->json([
                     'status' => true,
                     'message' => 'Unliked post',
-                    'date' => [
+                    'data' => [
                         'is_liked' => false
                     ],
                     'error' => '' 
