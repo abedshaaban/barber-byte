@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Address;
+use App\Models\WorkDay;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,7 @@ class AuthController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'refresh']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     public function login(Request $request){
@@ -148,7 +149,8 @@ class AuthController extends Controller
                     'country' => 'required|string',
                     'city' => 'required|string',
                     'street' => 'required|string',
-                    'location' => 'required|array'
+                    'location' => 'required|array',
+                    'work_days' => 'required|array'
                 ]);
 
                 $user = User::create([
@@ -173,18 +175,33 @@ class AuthController extends Controller
                 $db_user = User::select()
                     ->where('email', $token_payload['email'])->first();
 
-                $db_shop = Shop::create([
+                Shop::create([
                     'owner_id' => $db_user->uuid,
                     'name' => $request->shop_name,
                 ]);
 
-                $db_address = Address::create([
+                Address::create([
                     'shop_id' => $db_user->uuid,
                     'country' => $request->country,
                     'city' => $request->city,
                     'street' => $request->street,
                     'location' => $request->location,
                 ]);
+
+                $workDaysData = [];
+
+                foreach ($request->work_days as $day) {
+                    $workDaysData[] = [
+                        'shop_id' => $db_user->uuid,
+                        'order' => $day->order,
+                        'name' => $day->name,
+                        'start_date' => $day->start_date,
+                        'end_date' => $day->end_date,
+                        'is_open' => $day->is_open,
+                    ];
+                }
+
+                WorkDay::createMany($workDaysData);
 
                 $shop = User::
                     select(
