@@ -84,6 +84,10 @@ class User extends Authenticatable implements JWTSubject
     public function gender(){
         return $this->belongsTo(Gender::class);
     }
+    
+    public function account_status(){
+        return $this->belongsTo(AccountStatus::class);
+    }
 
     public function shop(){
         return Shop::
