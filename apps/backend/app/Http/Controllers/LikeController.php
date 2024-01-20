@@ -12,4 +12,8 @@ class LikeController extends Controller
     public function __construct(){
         $this->user = Auth::user();
     }
+
+    public function toggle_like($post_id){
+
+    }
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,4 +24,5 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/user/update-profile', [UserController::class, 'update_profile']);
     Route::post('/user/update-profile-img', [UserController::class, 'update_profile_image']);
     Route::post('/user/create-post', [PostController::class, 'create_post']);
+    Route::post('/post/like/{post_id}', [LikeController::class, 'toggle_like']);
 });
