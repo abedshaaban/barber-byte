@@ -46,15 +46,12 @@ export default function Post({
     const res = await togglePostLike({ post_id: uuid })
     console.log(res)
     if (res.status === true) {
-      if (res?.data?.is_liked === true) {
-        setLikes((prev) => {
-          return { count: prev.count + 1, isLiked: res?.data?.is_liked }
-        })
-      } else {
-        setLikes((prev) => {
-          return { ...prev, isLiked: res?.data?.is_liked }
-        })
-      }
+      setLikes((prev) => {
+        return {
+          count: res?.data?.is_liked ? prev.count + 1 : prev.count - 1,
+          isLiked: res?.data?.is_liked
+        }
+      })
     }
     setLoading(false)
   }
@@ -118,14 +115,14 @@ export default function Post({
       <CardFooter className="flex flex-col justify-start">
         <div className="flex w-full flex-row justify-evenly gap-2">
           <div className="flex w-[95px] flex-row items-center justify-center gap-[6px]">
-            <span>{likes_count}</span>
+            <span>{likes.count}</span>
             <Button
               variant={'ghost'}
               size={'icon'}
               onClick={handleLike}
               disabled={loading}
             >
-              {false ? (
+              {likes.isLiked ? (
                 <FilledHeart className={'h-6 w-6'} />
               ) : (
                 <Heart className={'h-6 w-6'} />
