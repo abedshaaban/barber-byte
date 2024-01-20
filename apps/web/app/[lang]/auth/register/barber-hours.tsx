@@ -1,4 +1,5 @@
 import { Button } from '@repo/ui/button'
+import { Check, Cross } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
 import { cn } from '@repo/ui/util'
@@ -69,7 +70,7 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
                   handleOpenDay(index)
                 }}
               >
-                y
+                <Check />
               </Button>
 
               <Button
@@ -82,7 +83,7 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
                   handleOpenDay(index)
                 }}
               >
-                x
+                <Cross />
               </Button>
             </div>
           </div>

@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
   const { register } = await getDictionary(params.lang)
 
   return (
-    <section className={'flex min-h-[calc(100vh-60px)] items-center justify-center'}>
+    <section className={'flex min-h-[calc(100vh-60px)] items-center justify-center py-9'}>
       <Logic params={params} register={register} />
     </section>
   )

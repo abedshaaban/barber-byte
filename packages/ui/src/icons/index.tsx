@@ -1,5 +1,7 @@
 import {
+  CheckIcon as Check,
   EyeClosedIcon as ClosedEye,
+  Cross2Icon as Cross,
   HomeIcon as Home,
   DotsHorizontalIcon as HorizontalDots,
   InfoCircledIcon as InfoCircle,
@@ -129,5 +131,7 @@ export {
   Heart,
   FilledHeart,
   ChatBubble,
-  ShareBubble
+  ShareBubble,
+  Check,
+  Cross
 }
