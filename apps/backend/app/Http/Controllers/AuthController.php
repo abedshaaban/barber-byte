@@ -35,7 +35,7 @@ class AuthController extends Controller
 
             $user = auth()->user();
 
-            $userData = [
+            $data = [
                 'handle' => $user->handle,
                 'birth_date' => $user->birth_date,
                 'description' => $user->description,
@@ -52,16 +52,17 @@ class AuthController extends Controller
                     'country' => $user->shop->address->country,
                     'city' => $user->shop->address->city,
                     'street' => $user->shop->address->street,
-                    'location' => json_decode($user->shop->address->location),
+                    'location' => $user->shop->address->location,
+                    'work_days' => $user->shop->work_days
                 ];
     
-                $userData = array_merge($userData, $shopData);
+                $data = array_merge($data, $shopData);
             }
     
             return response()->json([
                 'status' => true,
                 'message' => 'User logged in',
-                'data' => $userData,
+                'data' => $data,
                 'error' => ''
             ]);
 

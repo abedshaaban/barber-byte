@@ -18,4 +18,9 @@ class WorkDay extends Model
         'end_date',
         'is_open',
     ];
+
+    
+    public function shop(){
+        return $this->belongsTo(Shop::class, 'owner_id', 'shop_id');
+    }
 }

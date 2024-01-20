@@ -27,4 +27,8 @@ class Shop extends Model
     public function address(){
         return $this->hasOne(Address::class, 'shop_id', 'owner_id');
     }
+
+    public function work_days(){
+        return $this->hasMany(WorkDay::class, 'shop_id', 'owner_id');
+    }
 }

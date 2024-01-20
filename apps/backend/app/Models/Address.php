@@ -24,7 +24,7 @@ class Address extends Model
         'location' => 'array'
     ];
 
-    public function address(){
+    public function shop(){
         return $this->belongsTo(Shop::class, 'owner_id', 'shop_id');
     }
 }
