@@ -94,10 +94,10 @@ export default function Logic({
     <UserPassword {...credentials} updateFields={updateFields} register={register} />
   ]
   const BarberShopUserForm = [
-    <BarberHours {...credentials} updateFields={updateFields} register={register} />,
     <UserType {...credentials} updateFields={updateFields} register={register} />,
     <BarberForm {...credentials} updateFields={updateFields} register={register} />,
     <UserEmail {...credentials} updateFields={updateFields} register={register} />,
+    <BarberHours {...credentials} updateFields={updateFields} register={register} />,
     <BarberLocation {...credentials} updateFields={updateFields} register={register} />,
     <UserPassword {...credentials} updateFields={updateFields} register={register} />
   ]
@@ -150,7 +150,7 @@ export default function Logic({
 
   return (
     <form onSubmit={onSubmitForm} className={'flex w-full justify-center'}>
-      <Card className={'w-full max-w-[500px] bg-neutral-50 p-3 dark:bg-neutral-900'}>
+      <Card className={'w-full max-w-[450px] bg-neutral-50 p-3 dark:bg-neutral-900'}>
         <CardHeader className="flex w-full items-center">
           <h1 className="text-3xl font-semibold">{register.title}</h1>
           <h2 className="w-full text-center">
