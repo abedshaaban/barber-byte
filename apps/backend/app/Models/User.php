@@ -2,7 +2,7 @@
 
 namespace App\Models;
 use App\Models\Shop;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Gender;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -75,6 +75,10 @@ class User extends Authenticatable implements JWTSubject
             'email'=>$this->email,
             'role_id'=>$this->role_id,
         ];
+    }
+
+    public function gender(){
+        return $this->belongsTo(Gender::class);
     }
 
     public function shop(){
