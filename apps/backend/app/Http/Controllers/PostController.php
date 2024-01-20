@@ -90,7 +90,7 @@ class PostController extends Controller
         }catch(\Exception $exception){
             return response()->json([
                 'status' => false,
-                'message' => 'Cound not get posts.',
+                'message' => 'Could not get posts.',
                 'data' => '',
                 'error' => $exception->getMessage() 
             ]);
