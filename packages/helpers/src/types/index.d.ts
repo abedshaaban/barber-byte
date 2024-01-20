@@ -13,6 +13,13 @@ export type LoginProps = {
   password: string
 }
 
+export type WorkDayType = {
+  name: string
+  startDay: string
+  endDay: string
+  isOpen: boolean
+}
+
 export type RegisterProps = LoginProps & {
   handle: string
   is_barber_shop: boolean
@@ -67,6 +74,7 @@ export type UserType = {
       city: string
       street: string
       location: [number, number]
+      work_days: WorkDayType[]
     }
 )
 

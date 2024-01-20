@@ -16,11 +16,19 @@ import { useToast } from '@repo/ui/use-toast'
 import { cn } from '@repo/ui/util'
 
 import BarberForm from './barber-form'
+import BarberHours from './barber-hours'
 import BarberLocation from './barber-location'
 import UserEmail from './user-email'
 import UserForm from './user-form'
 import UserPassword from './user-password'
 import UserType from './user-type'
+
+type WorkDayType = {
+  name: string
+  startDay: string
+  endDay: string
+  isOpen: boolean
+}
 
 type FormDataType = {
   is_barber_shop: boolean | null
@@ -34,6 +42,7 @@ type FormDataType = {
   country: string
   city: string
   street: string
+  work_days: WorkDayType[]
 }
 
 export default function Logic({
@@ -60,7 +69,16 @@ export default function Logic({
     shop_name: '',
     country: '',
     city: '',
-    street: ''
+    street: '',
+    work_days: [
+      { name: 'Monday', startDay: '', endDay: '', isOpen: false },
+      { name: 'Tuesday', startDay: '', endDay: '', isOpen: true },
+      { name: 'Wednesday', startDay: '', endDay: '', isOpen: true },
+      { name: 'Thursday', startDay: '', endDay: '', isOpen: true },
+      { name: 'Friday', startDay: '', endDay: '', isOpen: true },
+      { name: 'Saturday', startDay: '', endDay: '', isOpen: true },
+      { name: 'Sunday', startDay: '', endDay: '', isOpen: true }
+    ]
   })
 
   function updateFields(fields: Partial<FormDataType>) {
@@ -76,6 +94,7 @@ export default function Logic({
     <UserPassword {...credentials} updateFields={updateFields} register={register} />
   ]
   const BarberShopUserForm = [
+    <BarberHours {...credentials} updateFields={updateFields} register={register} />,
     <UserType {...credentials} updateFields={updateFields} register={register} />,
     <BarberForm {...credentials} updateFields={updateFields} register={register} />,
     <UserEmail {...credentials} updateFields={updateFields} register={register} />,

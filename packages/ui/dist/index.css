@@ -1118,8 +1118,8 @@ body {
   height: 200px;
 }
 
-.h-\[400px\] {
-  height: 400px;
+.h-\[350px\] {
+  height: 350px;
 }
 
 .h-\[70px\] {
@@ -1159,10 +1159,6 @@ body {
   height: 1px;
 }
 
-.h-\[350px\] {
-  height: 350px;
-}
-
 .max-h-96 {
   max-height: 24rem;
 }
@@ -1193,10 +1189,6 @@ body {
 
 .max-h-screen {
   max-height: 100vh;
-}
-
-.max-h-\[0px\] {
-  max-height: 0px;
 }
 
 .min-h-\[60px\] {
@@ -1355,6 +1347,10 @@ body {
   width: 70px;
 }
 
+.w-\[80px\] {
+  width: 80px;
+}
+
 .w-\[95px\] {
   width: 95px;
 }
@@ -1379,6 +1375,14 @@ body {
 
 .w-px {
   width: 1px;
+}
+
+.w-\[120px\] {
+  width: 120px;
+}
+
+.w-\[0px\] {
+  width: 0px;
 }
 
 .min-w-0 {
@@ -1407,6 +1411,22 @@ body {
 
 .min-w-\[var\(--radix-select-trigger-width\)\] {
   min-width: var(--radix-select-trigger-width);
+}
+
+.min-w-\[120px\] {
+  min-width: 120px;
+}
+
+.min-w-\[100px\] {
+  min-width: 100px;
+}
+
+.min-w-\[0px\] {
+  min-width: 0px;
+}
+
+.min-w-\[80px\] {
+  min-width: 80px;
 }
 
 .max-w-56 {
@@ -1460,6 +1480,22 @@ body {
 
 .max-w-sm {
   max-width: 24rem;
+}
+
+.max-w-\[120px\] {
+  max-width: 120px;
+}
+
+.max-w-\[100px\] {
+  max-width: 100px;
+}
+
+.max-w-\[0px\] {
+  max-width: 0px;
+}
+
+.max-w-\[80px\] {
+  max-width: 80px;
 }
 
 .flex-1 {
