@@ -9,7 +9,9 @@ class WorkDay extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
+        'shop_id',
         'order',
         'name',
         'start_date',

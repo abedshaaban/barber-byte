@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::create('work_days', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->integer('order');
             $table->string('name');
-            $table->string('start_date');
-            $table->string('end_date');
+            $table->string('start_date')->nullable();
+            $table->string('end_date')->nullable();
             $table->boolean('is_open');
+            $table->foreignUuid('shop_id')
+                    ->references('owner_id')
+                    ->on('shops');
         });
     }
 

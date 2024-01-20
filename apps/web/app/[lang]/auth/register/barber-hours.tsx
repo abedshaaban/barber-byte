@@ -21,8 +21,13 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
       work_days: work_days.map((day, i) =>
         i === index
           ? work_days[index]?.is_open
-            ? { ...day, isOpen: !work_days[index]?.is_open }
-            : { ...day, isOpen: !work_days[index]?.is_open, endDay: '', startDay: '' }
+            ? { ...day, is_open: !work_days[index]?.is_open }
+            : {
+                ...day,
+                is_open: !work_days[index]?.is_open,
+                end_date: '',
+                start_date: ''
+              }
           : day
       )
     })
@@ -43,7 +48,7 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
               onChange={(e) => {
                 updateFields({
                   work_days: work_days.map((day, i) =>
-                    i === index ? { ...day, startDay: e.target.value } : day
+                    i === index ? { ...day, start_date: e.target.value } : day
                   )
                 })
               }}
@@ -58,7 +63,7 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
               onChange={(e) => {
                 updateFields({
                   work_days: work_days.map((day, i) =>
-                    i === index ? { ...day, endDay: e.target.value } : day
+                    i === index ? { ...day, end_date: e.target.value } : day
                   )
                 })
               }}

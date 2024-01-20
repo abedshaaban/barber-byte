@@ -188,20 +188,21 @@ class AuthController extends Controller
                     'location' => $request->location,
                 ]);
 
+                // return response()->json($request->work_days);
                 $workDaysData = [];
 
                 foreach ($request->work_days as $day) {
                     $workDaysData[] = [
                         'shop_id' => $db_user->uuid,
-                        'order' => $day->order,
-                        'name' => $day->name,
-                        'start_date' => $day->start_date,
-                        'end_date' => $day->end_date,
-                        'is_open' => $day->is_open,
+                        'order' => $day['order'],
+                        'name' => $day['name'],
+                        'start_date' => $day['start_date'],
+                        'end_date' => $day['end_date'],
+                        'is_open' => $day['is_open'],
                     ];
                 }
 
-                WorkDay::createMany($workDaysData);
+                $work_days = WorkDay::insert($workDaysData);
 
                 $shop = User::
                     select(
@@ -241,7 +242,9 @@ class AuthController extends Controller
                             'country' => $shop->country,
                             'city' => $shop->city,
                             'street' => $shop->street,
-                            'location' => $shop->location
+                            'location' => $shop->location,
+                            'work_days' => $work_days,
+
                         ],
                         'error' => '' 
                     ];
