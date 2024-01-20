@@ -44,6 +44,7 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
                 updateFields({ [item?.name]: e.target.value })
               }}
               className={'bg-white dark:bg-neutral-800'}
+              disabled={item.isOpen}
             />
 
             <Input
@@ -54,6 +55,7 @@ export default function Index({ work_days, register, updateFields }: UserFormPro
                 updateFields({ [item?.name]: e.target.value })
               }}
               className={'bg-white dark:bg-neutral-800'}
+              disabled={item.isOpen}
             />
 
             <div className={'flex flex-row'}>
