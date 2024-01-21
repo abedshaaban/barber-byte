@@ -30,7 +30,7 @@ class AuthController extends Controller
                     'message' => 'Invalid credentials',
                     'data' => '',
                     'error' => 'Unauthorized'
-                ]);
+                ], 401);
             }
 
             $user = auth()->user();
@@ -46,7 +46,7 @@ class AuthController extends Controller
                 'account_status' => $user->account_status->name,
             ];
 
-            if ($user->role_id === 2 && $user->shop) {
+            if ($user->role->name === 'shop' && $user->shop) {
                 $shopData = [
                     'shop_name' => $user->shop->name,
                     'country' => $user->shop->address->country,
@@ -64,7 +64,7 @@ class AuthController extends Controller
                 'message' => 'User logged in',
                 'data' => $data,
                 'error' => ''
-            ]);
+            ], 200);
 
         }catch(\Exception $exception){
             return response()->json([
@@ -274,10 +274,10 @@ class AuthController extends Controller
     }
 
     public function refresh(){
-        $current_user = Auth::user();
+        $user = auth()->user();
         
         try{
-            if(!$current_user || !$current_user->email){
+            if(!$user || !$user->email){
                 $res = [
                     'status' => false,
                     'message' => 'Unauthorized',
@@ -287,96 +287,36 @@ class AuthController extends Controller
                 return response()->json($res, 200);
             }
 
-            if($current_user['role_id'] === 1){
-                $db_user = User::
-                select(
-                    'handle',
-                    'first_name',
-                    'last_name',
-                    'birth_date',
-                    'description',
-                    'img_url',
-                    'roles.name as role_name',
-                    'genders.name as gender_name',
-                    'account_statuses.name as account_status'
-                )
-                    ->join('roles', 'users.role_id','=','roles.id')
-                    ->join('genders', 'users.gender_id','=','genders.id')
-                    ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
-                    ->where('email', $current_user['email'])->first();
+            $data = [
+                'handle' => $user->handle,
+                'birth_date' => $user->birth_date,
+                'description' => $user->description,
+                'img_url' => $user->img_url,
+                'token' => Auth::refresh(),
+                'role' => $user->role->name,
+                'gender' => $user->gender->name,
+                'account_status' => $user->account_status->name,
+            ];
 
-                    $res = [
-                        'status' => true,
-                        'message' => 'Got user data',
-                        'data' => [
-                            'first_name' => $db_user->first_name,
-                            'last_name' => $db_user->last_name,
-                            'birth_date' => $db_user->birth_date,
-                            'description' => $db_user->description,
-                            'img_url' => $db_user->img_url,
-                            'token' => Auth::refresh(),
-                            'role' => $db_user->role_name,
-                            'gender' => $db_user->gender_name,
-                            'account_status' => $db_user->account_status,
-                            'handle' => $db_user->handle,
-                        ],
-                        'error' => '' 
-                    ];
-                    return response()->json($res, 200);
-
-            } else if($current_user['role_id'] === 2){
-                $user = User::
-                select(
-                    'handle',
-                    'description',
-                    'img_url',
-                    'birth_date',
-                    'roles.name as role_name',
-                    'genders.name as gender_name',
-                    'account_statuses.name as account_status',
-                    'shops.name as shop_name',
-                    'addresses.country as country',
-                    'addresses.city as city',
-                    'addresses.street as street',
-                    'addresses.location as location',
-                )
-                ->join('roles', 'users.role_id','=','roles.id')
-                ->join('genders', 'users.gender_id','=','genders.id')
-                ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
-                ->join('shops', 'users.uuid','=','shops.owner_id')
-                ->join('addresses', 'shops.owner_id','=','addresses.shop_id')
-                ->where('email', $current_user['email'])->first();
-
-                $res = [
-                    'status' => true,
-                    'message' => 'Got user data',
-                    'data' => [
-                        'handle' => $user->handle,
-                        'birth_date' => $user->birth_date,
-                        'description' => $user->description,
-                        'img_url' => $user->img_url,
-                        'token' => Auth::refresh(),
-                        'role' => $user->role_name,
-                        'gender' => $user->gender_name,
-                        'account_status' => $user->account_status,
-                        'shop_name' => $user->shop_name,
-                        'country' => $user->country,
-                        'city' => $user->city,
-                        'street' => $user->street,
-                        'location' => json_decode($user->location)
-                    ],
-                    'error' => '' 
+            if ($user->role->name === 'shop' && $user->shop) {
+                $shopData = [
+                    'shop_name' => $user->shop->name,
+                    'country' => $user->shop->address->country,
+                    'city' => $user->shop->address->city,
+                    'street' => $user->shop->address->street,
+                    'location' => $user->shop->address->location,
+                    'work_days' => $user->shop->work_days
                 ];
-                return response()->json($res, 200);
-            } else {
-                $res = [
-                    'status' => false,
-                    'message' => 'Unauthorized',
-                    'data' => '',
-                    'error' => 'user not authorized' 
-                ];
-                return response()->json($res, 200);
+    
+                $data = array_merge($data, $shopData);
             }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Got user data',
+                'data' => $data,
+                'error' => ''
+            ], 200);
         }catch(\Exception $exception){
             $res = [
                 'status' => false,
