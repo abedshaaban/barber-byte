@@ -161,15 +161,15 @@ class UserController extends Controller
     }
 
     public function generate_image(Request $request){
-
+        $prompt = "film still, portrait of a human, " . $request->prompt . ", salon photography";
+        
         try{
             $result = OpenAI::images()->create([
                 'model' => 'dall-e-2',
-                // 'prompt' => "film still, portrait of natasha romanoff, bob haircut, salon photography",
-                'prompt' => "film still, portrait of a human, bob hairstyle, salon photography",
-                'size' => "256x256",
+                'prompt' => $prompt,
+                'size' => $request->size,
                 'style' => "vivid",
-                'n' => 4,
+                'n' => $request->n,
                 'user' => $this->user->uuid,
             ]);
 
