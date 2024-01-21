@@ -108,11 +108,6 @@ class AuthController extends Controller
                     'password' => Hash::make($request->password),
                     'birth_date' => $request->birth_date,
                     'account_status_id' => 1,
-                    'shop_name' => $request->shop_name,
-                    'country' => $request->country,
-                    'city' => $request->city,
-                    'street' => $request->street,
-                    'location' => $request->location,
                     'handle' => $request->handle
                 ]);
 
@@ -151,48 +146,21 @@ class AuthController extends Controller
 
                 WorkDay::insert($workDaysData);
 
-                $shop = User::
-                    select(
-                        'handle',
-                        'description',
-                        'img_url',
-                        'birth_date',
-                        'roles.name as role_name',
-                        'genders.name as gender_name',
-                        'account_statuses.name as account_status',
-                        'shops.name as shop_name',
-                        'addresses.country as country',
-                        'addresses.city as city',
-                        'addresses.street as street',
-                        'addresses.location as location',
-                    )
-                    ->join('roles', 'users.role_id','=','roles.id')
-                    ->join('genders', 'users.gender_id','=','genders.id')
-                    ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
-                    ->join('shops', 'users.uuid','=','shops.owner_id')
-                    ->join('addresses', 'shops.owner_id','=','addresses.shop_id')
-                    ->where('email', $token_payload['email'])->first();
-
-                    $res = [
-                        'status' => true,
-                        'message' => 'User created successfully',
-                        'data' => [
-                            'handle' => $shop->handle,
-                            'birth_date' => $shop->birth_date,
-                            'description' => $shop->description,
-                            'img_url' => $shop->img_url,
-                            'token' => $token,
-                            'role' => $shop->role_name,
-                            'gender' => $shop->gender_name,
-                            'account_status' => $shop->account_status,
-                            'shop_name' => $shop->shop_name,
-                            'country' => $shop->country,
-                            'city' => $shop->city,
-                            'street' => $shop->street,
-                            'location' => $shop->location,
-                        ],
-                        'error' => '' 
-                    ];
+                $res = [
+                    'status' => true,
+                    'message' => 'User created successfully',
+                    'data' => [
+                        'handle' => $user->handle,
+                        'birth_date' => $user->birth_date,
+                        'description' => $user->description,
+                        'img_url' => $user->img_url,
+                        'token' => $token,
+                        'role' => $user->role->name,
+                        'gender' => $user->gender->name,
+                        'account_status' => $user->account_status->name,
+                    ],
+                    'error' => '' 
+                ];
             } else {
                 $request->validate([
                     'handle' => 'required|string',
@@ -219,34 +187,20 @@ class AuthController extends Controller
 
                 $token_payload = auth()->payload();
 
-                $db_user = User::
-                select(
-                    'handle',
-                    'description',
-                    'img_url',
-                    'roles.name as role_name',
-                    'genders.name as gender_name',
-                    'account_statuses.name as account_status'
-                )
-                    ->join('roles', 'users.role_id','=','roles.id')
-                    ->join('genders', 'users.gender_id','=','genders.id')
-                    ->join('account_statuses', 'users.account_status_id','=','account_statuses.id')
-                    ->where('email', $token_payload['email'])->first();
-
                 $res = [
                     'status' => true,
                     'message' => 'User created successfully',
                     'data' => [
+                        'handle' => $user->handle,
                         'first_name' => $user->first_name,
                         'last_name' => $user->last_name,
                         'birth_date' => $user->birth_date,
                         'description' => $user->description,
                         'img_url' => $user->img_url,
                         'token' => $token,
-                        'role' => $db_user->role_name,
-                        'gender' => $db_user->gender_name,
-                        'account_status' => $db_user->account_status,
-                        'handle' => $db_user->handle,
+                        'role' => $user->role->name,
+                        'gender' => $user->gender->name,
+                        'account_status' => $user->account_status->name,
                     ],
                     'error' => '' 
                 ];
