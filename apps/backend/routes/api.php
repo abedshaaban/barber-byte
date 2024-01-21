@@ -25,4 +25,5 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/user/update-profile-img', [UserController::class, 'update_profile_image']);
     Route::post('/user/create-post', [PostController::class, 'create_post']);
     Route::post('/post/like/{post_id}', [LikeController::class, 'toggle_like']);
+    Route::post('/user/generate-image', [UserController::class, 'generate_image']);
 });

@@ -7,6 +7,8 @@ use App\Models\Shop;
 use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use OpenAI\Laravel\Facades\OpenAI;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -158,4 +160,32 @@ class UserController extends Controller
         }
     }
 
+    public function generate_image(Request $request){
+
+        try{
+            $result = OpenAI::images()->create([
+                'model' => 'dall-e-2',
+                // 'prompt' => "film still, portrait of natasha romanoff, bob haircut, salon photography",
+                'prompt' => "film still, portrait of a human, bob hairstyle, salon photography",
+                'size' => "256x256",
+                'style' => "vivid",
+                'n' => 4,
+                'user' => $this->user->uuid,
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Image generated successfully',
+                'data' => $result->data,
+                'error' => '' 
+            ]);
+        } catch (\Exception $exception){
+            return response()->json([
+                'status' => false,
+                'message' => 'Error occurred while generating image.',
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ]);
+        }
+    }
 }
