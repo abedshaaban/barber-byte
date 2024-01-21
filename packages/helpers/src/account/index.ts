@@ -229,3 +229,45 @@ export async function togglePostLike({
 
   return res?.data
 }
+
+/**
+ * Generate images with AI
+ * @param prompt text needed to generate the image from
+ * @param n number of images generated 1-10
+ * @param size size of the image
+ */
+export async function generateImage({
+  n,
+  prompt,
+  size
+}: {
+  prompt: string
+  n: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+  size: '256x256' | '512x512' | '1024x1024'
+}): Promise<{ status: boolean; data: any; error: string; message: string }> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/user/generate-image`,
+      {
+        prompt: prompt,
+        n: n,
+        size: size
+      },
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
