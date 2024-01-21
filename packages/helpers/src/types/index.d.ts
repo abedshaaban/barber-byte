@@ -93,3 +93,11 @@ type PostType = {
   name: string
   profile_url: string
 }
+
+export type AppointmentType = {
+  client_id: string
+  client_name: string
+  shop_id: string
+  img_url: string
+  description: string
+}

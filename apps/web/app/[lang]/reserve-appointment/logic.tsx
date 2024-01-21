@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import type { AppointmentType } from '@repo/helpers/types'
 import { RootState } from '@web/provider/store'
 import { useSelector } from 'react-redux'
 
@@ -10,6 +11,12 @@ export default function Logic({
 }: {
   reservationTextTranslation: any
 }) {
+  const [appointmentData, setAppointmentData] = useState<Partial<AppointmentType>>({
+    client_name: '',
+    description: '',
+    shop_id: '',
+    img_url: ''
+  })
   const user = useSelector((state: RootState) => state.user)
   const [loading, setLoading] = useState<boolean>(false)
 
