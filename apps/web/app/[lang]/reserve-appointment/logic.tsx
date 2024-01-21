@@ -14,17 +14,23 @@ import { cn } from '@repo/ui/util'
 import ClientData from './client-data'
 
 export default function Logic({
-  reservationTextTranslation
+  reservationTextTranslation,
+  lang
 }: {
   reservationTextTranslation: any
+  lang: string
 }) {
+  const user = useSelector((state: RootState) => state.user)
   const [appointmentData, setAppointmentData] = useState<Partial<AppointmentType>>({
-    client_name: '',
+    client_name: user?.user
+      ? user?.user.role === 'user'
+        ? `${user?.user?.first_name} ${user?.user?.last_name}`
+        : ''
+      : '',
     description: '',
     shop_id: '',
     img_url: ''
   })
-  const user = useSelector((state: RootState) => state.user)
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -55,20 +61,48 @@ export default function Logic({
     setTimeout(() => setLoading(false), 3000)
   }
 
-  return (
-    <form className={'flex w-full justify-center py-9'} onSubmit={onSubmitForm}>
-      {!user ? (
+  if (!user?.user) {
+    return (
+      <div className={'flex w-full justify-center py-9'}>
         <div className={'flex h-full w-full flex-col items-center justify-center gap-9'}>
-          <h1 className={'text-2xl md:text-5xl'}>( • ᴖ • ｡) Page Not Found</h1>
+          <h1 className={'text-2xl md:text-5xl'}>( • ᴖ • ｡) You are not authenticated</h1>
 
           <p>
-            Page is not found. Go{' '}
-            <Link href={`/`} className={'underline'}>
-              to home
+            Please{' '}
+            <Link href={`/${lang}/auth/login`} className={'underline'}>
+              login
+            </Link>{' '}
+            to view this page or{' '}
+            <Link href={`/${lang}/auth/register`} className={'underline'}>
+              register
+            </Link>{' '}
+            an account.
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  if (user?.user?.role !== 'user') {
+    return (
+      <div className={'flex w-full justify-center py-9'}>
+        <div className={'flex h-full w-full flex-col items-center justify-center gap-9'}>
+          <h1 className={'text-2xl md:text-5xl'}>( • ᴖ • ｡) You are not authorized</h1>
+
+          <p>
+            Go to{' '}
+            <Link href={`/${lang}`} className={'underline'}>
+              home
             </Link>
           </p>
         </div>
-      ) : loading ? (
+      </div>
+    )
+  }
+
+  return (
+    <form className={'flex w-full justify-center py-9'} onSubmit={onSubmitForm}>
+      {loading ? (
         <div className={'pb-3 text-center'}>{reservationTextTranslation.loading}</div>
       ) : (
         <Card className={'w-full max-w-[450px] bg-neutral-50 p-3 dark:bg-neutral-900'}>

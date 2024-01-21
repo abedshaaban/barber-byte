@@ -8,7 +8,7 @@ export default async function page({ params }: { params: { lang: Locale } }) {
 
   return (
     <section className={'flex justify-center py-9'}>
-      <Logic reservationTextTranslation={reservation} />
+      <Logic reservationTextTranslation={reservation} lang={params.lang} />
     </section>
   )
 }
