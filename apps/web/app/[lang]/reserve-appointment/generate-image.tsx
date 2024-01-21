@@ -14,8 +14,14 @@ type UserFormProps = Partial<AppointmentType> & {
   reservation: any
 }
 
-export default function Index({ description, updateFields, reservation }: UserFormProps) {
+export default function Index({
+  description,
+  updateFields,
+  reservation,
+  img_url
+}: UserFormProps) {
   const [errorMessage, setErrorMessage] = useState<string>('')
+  const [selectedImageNumber, setSelectedImageNumber] = useState<null | number>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [AIImages, setAIImages] = useState<
@@ -53,6 +59,7 @@ export default function Index({ description, updateFields, reservation }: UserFo
       setErrorMessage('No prompt entered.')
       return
     }
+    updateFields({ img_url: '' })
 
     setErrorMessage('')
 
@@ -91,13 +98,23 @@ export default function Index({ description, updateFields, reservation }: UserFo
             ? AIImages?.map((item, index) => {
                 return (
                   <div
-                    className={'bg-muted h-[150px] w-[150px] md:h-[180px] md:w-[180px]'}
                     key={index}
+                    className={cn(
+                      'bg-muted h-[150px] w-[150px] md:h-[180px] md:w-[180px]',
+                      'rounded-lg border-4',
+                      selectedImageNumber === index || img_url === item?.url
+                        ? 'border-green-300'
+                        : 'border-transparent'
+                    )}
+                    onClick={() => {
+                      setSelectedImageNumber(index)
+                      updateFields({ img_url: item?.url })
+                    }}
                   >
                     <img
                       src={item?.url}
                       alt={`haircut ${index}`}
-                      className={'h-full w-full object-cover object-center'}
+                      className={'h-full w-full rounded-lg object-cover object-center'}
                     />
                   </div>
                 )
@@ -112,7 +129,6 @@ export default function Index({ description, updateFields, reservation }: UserFo
           id={'prompt'}
           ref={textAreaRef}
           placeholder={reservation.imageGeneration.promptExample}
-          required
           value={description}
           onChange={(e) => {
             updateFields({ description: e.target.value })

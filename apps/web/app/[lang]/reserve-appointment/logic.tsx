@@ -1,6 +1,6 @@
 'use client'
 
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useEffect, useState } from 'react'
 import Link from 'next/link'
 import type { AppointmentType } from '@repo/helpers/types'
 import { RootState } from '@web/provider/store'
@@ -22,6 +22,7 @@ export default function Logic({
   lang: string
 }) {
   const user = useSelector((state: RootState) => state.user)
+  const [nextButton, setNextButton] = useState<'button' | 'submit'>('button')
   const [appointmentData, setAppointmentData] = useState<Partial<AppointmentType>>({
     client_name: user?.user
       ? user?.user.role === 'user'
@@ -63,8 +64,18 @@ export default function Logic({
     if (!isLastStep) return next()
 
     setLoading(true)
+
+    console.log(appointmentData)
     setTimeout(() => setLoading(false), 3000)
   }
+
+  useEffect(() => {
+    if (currentStepIndex === 0) {
+      if (!appointmentData.img_url) {
+        setNextButton('button')
+      } else setNextButton('submit')
+    }
+  }, [appointmentData.img_url])
 
   if (!user?.user) {
     return (
@@ -133,7 +144,7 @@ export default function Logic({
               </Button>
             )}
 
-            <Button type={'submit'}>
+            <Button type={nextButton} disabled={nextButton === 'button'}>
               {isLastStep
                 ? reservationTextTranslation.finish
                 : reservationTextTranslation.next}
