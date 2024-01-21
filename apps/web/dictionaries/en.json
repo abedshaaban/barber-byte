@@ -191,6 +191,10 @@
     "cancel": "Cancel"
   },
   "reservation": {
-    "loading": "Loading ..."
+    "reserveAppointment": "Reserve appointment",
+    "loading": "Loading ...",
+    "back": "Back",
+    "finish": "Finish",
+    "next": "Next"
   }
 }

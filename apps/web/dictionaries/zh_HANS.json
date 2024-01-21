@@ -193,5 +193,11 @@
     "post": "发布",
     "cancel": "取消"
   },
-  "reservation": { "loading": "加载中..." }
+  "reservation": {
+    "reserveAppointment": "预约",
+    "loading": "加载中...",
+    "back": "返回",
+    "finish": "完成",
+    "next": "下一步"
+  }
 }

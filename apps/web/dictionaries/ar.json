@@ -194,6 +194,10 @@
     "cancel": "إلغاء"
   },
   "reservation": {
-    "loading": "جار التحميل ..."
+    "reserveAppointment": "حجز موعد",
+    "loading": "جار التحميل ...",
+    "back": "رجوع",
+    "finish": "انتهاء",
+    "next": "التالي"
   }
 }
