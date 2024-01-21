@@ -189,5 +189,8 @@
     "caption": "Caption",
     "post": "Post",
     "cancel": "Cancel"
+  },
+  "reservation": {
+    "loading": "Loading ..."
   }
 }

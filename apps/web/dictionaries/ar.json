@@ -192,5 +192,8 @@
     "caption": "التسمية",
     "post": "نشر",
     "cancel": "إلغاء"
+  },
+  "reservation": {
+    "loading": "جار التحميل ..."
   }
 }

@@ -192,5 +192,6 @@
     "caption": "标题",
     "post": "发布",
     "cancel": "取消"
-  }
+  },
+  "reservation": { "loading": "加载中..." }
 }
