@@ -49,7 +49,7 @@ export default function Index({
               type={item?.type}
               id={item?.name}
               placeholder={item?.placeholder}
-              required
+              required={item?.name !== 'description'}
               value={item?.value}
               onChange={(e) => {
                 updateFields({ [item?.name]: e.target.value })
