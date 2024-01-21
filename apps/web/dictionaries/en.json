@@ -195,6 +195,11 @@
     "loading": "Loading ...",
     "back": "Back",
     "finish": "Finish",
-    "next": "Next"
+    "next": "Next",
+    "clientData": {
+      "name": "Name",
+      "description": "Description",
+      "descriptionExample": "Short hair on the sides, long on the top, ..."
+    }
   }
 }

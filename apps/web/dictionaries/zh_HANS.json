@@ -198,6 +198,11 @@
     "loading": "加载中...",
     "back": "返回",
     "finish": "完成",
-    "next": "下一步"
+    "next": "下一步",
+    "clientData": {
+      "name": "姓名",
+      "description": "描述",
+      "descriptionExample": "侧面短发，顶部长发，..."
+    }
   }
 }

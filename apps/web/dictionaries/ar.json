@@ -198,6 +198,11 @@
     "loading": "جار التحميل ...",
     "back": "رجوع",
     "finish": "انتهاء",
-    "next": "التالي"
+    "next": "التالي",
+    "clientData": {
+      "name": "الاسم",
+      "description": "الوصف",
+      "descriptionExample": "شعر قصير على الجوانب، طويل في الأعلى، ..."
+    }
   }
 }
