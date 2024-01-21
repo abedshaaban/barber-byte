@@ -200,6 +200,10 @@
       "name": "Name",
       "description": "Description",
       "descriptionExample": "Short hair on the sides, long on the top, ..."
+    },
+    "imageGeneration": {
+      "prompt": "Prompt",
+      "promptExample": "A refined, short haircut with a side part and slightly longer hair on top"
     }
   }
 }
