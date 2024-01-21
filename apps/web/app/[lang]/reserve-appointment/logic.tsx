@@ -11,6 +11,8 @@ import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
 import useMultistepForm from '@repo/ui/multistepForm'
 import { cn } from '@repo/ui/util'
 
+import ClientData from './client-data'
+
 export default function Logic({
   reservationTextTranslation
 }: {
@@ -33,7 +35,16 @@ export default function Logic({
   }
 
   const { step, next, back, isFirstStep, isLastStep, currentStepIndex, steps } =
-    useMultistepForm([<>1</>, <>2</>, <>3</>, <>4</>])
+    useMultistepForm([
+      <ClientData
+        {...appointmentData}
+        reservation={reservationTextTranslation}
+        updateFields={updateFields}
+      />,
+      <>2</>,
+      <>3</>,
+      <>4</>
+    ])
 
   async function onSubmitForm(e: FormEvent) {
     e.preventDefault()
