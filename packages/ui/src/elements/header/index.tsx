@@ -11,8 +11,8 @@ import { Button } from '../../core/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '../../core/dropdown-menu'
@@ -50,6 +50,7 @@ type HeaderProps = {
     login: string
     register: string
     createPost: string
+    reserveAppointment: string
   }
 }
 
@@ -205,10 +206,21 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
                       <Plus />
                     </Button>
                   </DropdownMenuTrigger>
+
                   <DropdownMenuContent>
-                    <DropdownMenuItem>
-                      <Link href={`/${lang}/create-post`}>{authText.createPost}</Link>
-                    </DropdownMenuItem>
+                    <DropdownMenuGroup>
+                      <DropdownMenuItem>
+                        <Link href={`/${lang}/create-post`}>{authText.createPost}</Link>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuSeparator />
+
+                      <DropdownMenuItem>
+                        <Link href={`/${lang}/reserve-appointment`}>
+                          {authText.reserveAppointment}
+                        </Link>
+                      </DropdownMenuItem>
+                    </DropdownMenuGroup>
                   </DropdownMenuContent>
                 </DropdownMenu>
 

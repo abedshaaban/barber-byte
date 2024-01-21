@@ -92,7 +92,8 @@
     "authText": {
       "login": "登录",
       "register": "登记",
-      "createPost": "创建帖子"
+      "createPost": "创建帖子",
+      "reserveAppointment": "预约"
     }
   },
   "footer": {

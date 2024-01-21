@@ -92,7 +92,8 @@
     "authText": {
       "login": "تسجيل الدخول",
       "register": "تسجيل المستخدم",
-      "createPost": "إنشاء منشور"
+      "createPost": "إنشاء منشور",
+      "reserveAppointment": "حجز موعد"
     }
   },
   "footer": {

@@ -91,7 +91,8 @@
     "authText": {
       "login": "Login",
       "register": "Register",
-      "createPost": "Create post"
+      "createPost": "Create post",
+      "reserveAppointment": "Reserve appointment"
     }
   },
   "footer": {
