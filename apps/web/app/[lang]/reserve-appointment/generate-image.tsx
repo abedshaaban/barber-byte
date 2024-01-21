@@ -80,12 +80,20 @@ export default function Index({ description, updateFields, reservation }: UserFo
       <div className={'flex w-full flex-wrap justify-center gap-3'}>
         {loading
           ? Array.from({ length: 4 }).map((_, index) => {
-              return <Skeleton className={'h-[180px] w-[180px]'} key={index} />
+              return (
+                <Skeleton
+                  className={'h-[150px] w-[150px] md:h-[180px] md:w-[180px]'}
+                  key={index}
+                />
+              )
             })
           : AIImages.length > 0
             ? AIImages?.map((item, index) => {
                 return (
-                  <div className={'bg-muted h-[180px] w-[180px]'} key={index}>
+                  <div
+                    className={'bg-muted h-[150px] w-[150px] md:h-[180px] md:w-[180px]'}
+                    key={index}
+                  >
                     <img
                       src={item?.url}
                       alt={`haircut ${index}`}

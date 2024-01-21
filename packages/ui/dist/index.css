@@ -1413,6 +1413,10 @@ body {
   width: 10px;
 }
 
+.w-\[150px\] {
+  width: 150px;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
@@ -3929,6 +3933,14 @@ body {
     display: none;
   }
 
+  .md\:h-\[180px\] {
+    height: 180px;
+  }
+
+  .md\:h-\[150px\] {
+    height: 150px;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -3939,6 +3951,14 @@ body {
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-\[180px\] {
+    width: 180px;
+  }
+
+  .md\:w-\[150px\] {
+    width: 150px;
   }
 
   .md\:max-w-\[420px\] {
