@@ -46,6 +46,15 @@ class AuthController extends Controller
                 'account_status' => $user->account_status->name,
             ];
 
+            if ($user->role->name === 'user') {
+                $shopData = [
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
+                ];
+    
+                $data = array_merge($data, $shopData);
+            }
+
             if ($user->role->name === 'shop' && $user->shop) {
                 $shopData = [
                     'shop_name' => $user->shop->name,
@@ -251,6 +260,15 @@ class AuthController extends Controller
                 'gender' => $user->gender->name,
                 'account_status' => $user->account_status->name,
             ];
+
+            if ($user->role->name === 'user') {
+                $shopData = [
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
+                ];
+    
+                $data = array_merge($data, $shopData);
+            }
 
             if ($user->role->name === 'shop' && $user->shop) {
                 $shopData = [
