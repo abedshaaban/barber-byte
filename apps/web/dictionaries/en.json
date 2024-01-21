@@ -203,7 +203,8 @@
     },
     "imageGeneration": {
       "prompt": "Prompt",
-      "promptExample": "A refined, short haircut with a side part and slightly longer hair on top"
+      "promptExample": "A refined, short haircut with a side part and slightly longer hair on top",
+      "generate": "Generate"
     }
   }
 }

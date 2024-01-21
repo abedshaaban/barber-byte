@@ -112,7 +112,7 @@ export default function Logic({
       ) : (
         <Card className={'w-full max-w-[450px] bg-neutral-50 p-3 dark:bg-neutral-900'}>
           <CardHeader className="flex w-full items-center">
-            <h1 className="text-3xl font-semibold">
+            <h1 className="text-center text-3xl font-semibold">
               {reservationTextTranslation.reserveAppointment}
             </h1>
 

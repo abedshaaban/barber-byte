@@ -206,7 +206,8 @@
     },
     "imageGeneration": {
       "prompt": "提示",
-      "promptExample": "修剪精致的短发，一侧分开，顶部稍微长一些"
+      "promptExample": "修剪精致的短发，一侧分开，顶部稍微长一些",
+      "generate": "生成"
     }
   }
 }
