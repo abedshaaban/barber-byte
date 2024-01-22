@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { AppointmentType } from '@repo/helpers/types'
 import { roundToNearestMinutes } from '@web/helpers'
 import { format, formatISO, isBefore, parse } from 'date-fns'
@@ -12,7 +13,17 @@ type UserFormProps = Partial<AppointmentType> & {
   reservation: any
 }
 
+type CalendarProps = {
+  justDate: Date | null
+  dateTime: Date | null
+}
+
 export default function Index({}: UserFormProps) {
+  const [date, setDate] = useState<CalendarProps>({
+    dateTime: null,
+    justDate: null
+  })
+
   const now = new Date()
   //   const today = days.find((d) => d.dayOfWeek === now.getDay())
   //   const rounded = roundToNearestMinutes(now, 30)
@@ -22,16 +33,19 @@ export default function Index({}: UserFormProps) {
 
   return (
     <div className={cn('flex flex-col gap-6')}>
-      <Calendar
-        minDate={now}
-        className="REACT-CALENDAR p-2"
-        view="month"
-        // tileDisabled={({ date }) => closedDays.includes(formatISO(date))}
-        // onClickDay={(date) => setDate((prev) => ({ ...prev, justDate: date }))}
-        onClickDay={(date) => {
-          console.log(date)
-        }}
-      />
+      {date.justDate ? null : (
+        <Calendar
+          minDate={now}
+          className="REACT-CALENDAR p-2"
+          view="month"
+          // tileDisabled={({ date }) => closedDays.includes(formatISO(date))}
+          onClickDay={(date) => {
+            setDate((prev) => {
+              return { ...prev, justDate: date }
+            })
+          }}
+        />
+      )}
     </div>
   )
 }
