@@ -11,6 +11,7 @@ import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
 import useMultistepForm from '@repo/ui/multistepForm'
 import { cn } from '@repo/ui/util'
 
+import Calendar from './calendar'
 import ChooseBarber from './choose-barber'
 import ClientData from './client-data'
 import GenerateImage from './generate-image'
@@ -56,6 +57,11 @@ export default function Logic({
         updateFields={updateFields}
       />,
       <ChooseBarber
+        {...appointmentData}
+        reservation={reservationTextTranslation}
+        updateFields={updateFields}
+      />,
+      <Calendar
         {...appointmentData}
         reservation={reservationTextTranslation}
         updateFields={updateFields}
