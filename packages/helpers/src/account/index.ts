@@ -282,7 +282,7 @@ export async function searchShop({
   page
 }: {
   query: string
-  page: string
+  page: number
 }): Promise<{ status: boolean; data: any; error: string; message: string }> {
   let res
 
