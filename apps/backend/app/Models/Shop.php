@@ -32,4 +32,8 @@ class Shop extends Model
     public function work_days(){
         return $this->hasMany(WorkDay::class, 'shop_id', 'owner_id');
     }
+
+    public function reservation(){
+        return $this->hasMany(Reservation::class, 'shop_id', 'owner_id');
+    }
 }

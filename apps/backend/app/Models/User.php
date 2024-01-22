@@ -92,4 +92,12 @@ class User extends Authenticatable implements JWTSubject
     public function shop(){
         return $this->hasOne(Shop::class, 'owner_id', 'uuid');
     }
+
+    public function ai_images(){
+        return $this->hasMany(AIImage::class, 'creator_id', 'uuid');
+    }
+
+    public function reservation(){
+        return $this->hasMany(Reservation::class, 'client_id', 'uuid');
+    }
 }
