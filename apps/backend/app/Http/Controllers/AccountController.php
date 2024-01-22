@@ -132,26 +132,41 @@ class AccountController extends Controller
         $page = intval($request->page) ?? 1;
         $query = $request->query('query') ?? '';
 
-        $results = Shop::select(
-            'users.uuid',
-            'users.handle',
-            'shops.name',
-            'addresses.country',
-            'addresses.city',
-            'addresses.street',
-            )
-        ->join('users', 'users.uuid', '=', 'shops.owner_id')
-        ->join('account_statuses', 'users.account_status_id', '=', 'account_statuses.id')
-        ->join('addresses', 'shops.owner_id', '=', 'addresses.shop_id')
-        ->where('account_statuses.name', 'public')
-        ->where(function ($s) use ($query) {
-            $s->where('shops.name', 'like', '%' . $query . '%')
-                ->orWhere('users.handle', 'like', '%' . $query . '%')
-                ->orWhere('addresses.country', 'like', '%' . $query . '%')
-                ->orWhere('addresses.city', 'like', '%' . $query . '%')
-                ->orWhere('addresses.street', 'like', '%' . $query . '%');
-        })
-        ->latest()->paginate(2, ['*'], 'page', $page);
-        return response()->json($results);
+        try{
+            $results = Shop::select(
+                'users.uuid',
+                'users.handle',
+                'shops.name',
+                'addresses.country',
+                'addresses.city',
+                'addresses.street',
+                )
+            ->join('users', 'users.uuid', '=', 'shops.owner_id')
+            ->join('account_statuses', 'users.account_status_id', '=', 'account_statuses.id')
+            ->join('addresses', 'shops.owner_id', '=', 'addresses.shop_id')
+            ->where('account_statuses.name', 'public')
+            ->where(function ($s) use ($query) {
+                $s->where('shops.name', 'like', '%' . $query . '%')
+                    ->orWhere('users.handle', 'like', '%' . $query . '%')
+                    ->orWhere('addresses.country', 'like', '%' . $query . '%')
+                    ->orWhere('addresses.city', 'like', '%' . $query . '%')
+                    ->orWhere('addresses.street', 'like', '%' . $query . '%');
+            })
+            ->latest()->paginate(2, ['*'], 'page', $page);
+            return response()->json([
+                'status' => true,
+                'message' => 'Returned data',
+                'data' => $results,
+                'error' => '' 
+            ]);
+
+        } catch (\Exception $exception){
+            return response()->json([
+                'status' => false,
+                'message' => 'User not found',
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ], 500);
+        }
     }
 }

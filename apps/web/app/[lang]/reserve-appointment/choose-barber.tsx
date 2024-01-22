@@ -48,6 +48,7 @@ export default function Index({ shop_id }: UserFormProps) {
   const debouncedValue = useDebounce(query, 500)
 
   const search = useCallback(async () => {
+    setLoading(true)
     const res = await searchShop({ query: query, page: 1 })
 
     if (res.status === true) {
@@ -57,10 +58,7 @@ export default function Index({ shop_id }: UserFormProps) {
       setErrorMessage(res.message)
     }
 
-    console.log(res)
     setLoading(false)
-
-    console.log(debouncedValue)
   }, [debouncedValue])
 
   useEffect(() => {
@@ -103,11 +101,13 @@ export default function Index({ shop_id }: UserFormProps) {
       </div>
 
       <div className={'flex w-full flex-wrap justify-center gap-3'}>
-        {shops.length > 0
-          ? shops.map((item, index) => {
-              return <div key={index}>{item.handle}</div>
-            })
-          : null}
+        {loading
+          ? 'skeleton'
+          : shops.length > 0
+            ? shops.map((item, index) => {
+                return <div key={index}>{item.handle}</div>
+              })
+            : null}
       </div>
     </div>
   )
