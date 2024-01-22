@@ -271,3 +271,34 @@ export async function generateImage({
 
   return res?.data
 }
+
+/**
+ * Search shops
+ * @param query text to search with across handle, shop name, country, city, and street.
+ * @param page page number for pagination
+ */
+export async function searchShop({
+  query,
+  page
+}: {
+  query: string
+  page: string
+}): Promise<{ status: boolean; data: any; error: string; message: string }> {
+  let res
+
+  try {
+    res = await axios.get(
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/shop?query=${query}&page=${page}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
