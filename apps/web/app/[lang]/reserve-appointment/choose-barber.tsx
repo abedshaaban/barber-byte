@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { searchShop } from '@repo/helpers/account'
 import type { AppointmentType } from '@repo/helpers/types'
 
+import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button } from '@repo/ui/button'
 import { Magnifier } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
@@ -30,7 +31,7 @@ export default function Index({ shop_id }: UserFormProps) {
     | []
   >([])
 
-  const useDebounce = (value, delay = 500) => {
+  const useDebounce = (value: string, delay = 500) => {
     const [debouncedValue, setDebouncedValue] = useState('')
     const timerRef = useRef()
 
@@ -105,7 +106,25 @@ export default function Index({ shop_id }: UserFormProps) {
           ? 'skeleton'
           : shops.length > 0
             ? shops.map((item, index) => {
-                return <div key={index}>{item.handle}</div>
+                return (
+                  <div key={index} className={'flex w-full flex-row items-center gap-3'}>
+                    <Avatar>
+                      <AvatarImage
+                        src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${0}`}
+                        className={'object-cover object-center'}
+                      />
+                      <AvatarFallback>{item.name[0]}</AvatarFallback>
+                    </Avatar>
+
+                    <div className={'flex h-full w-full flex-col items-start text-start'}>
+                      <span className="">{item.name}</span>
+
+                      <span className={'text-xs text-gray-600'}>
+                        @{item.handle} | {`${item.country} ${item.city} ${item.street}`}
+                      </span>
+                    </div>
+                  </div>
+                )
               })
             : null}
       </div>
