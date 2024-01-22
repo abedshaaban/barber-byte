@@ -15,7 +15,7 @@ type UserFormProps = Partial<AppointmentType> & {
   reservation: any
 }
 
-export default function Index({ shop_id }: UserFormProps) {
+export default function Index({ shop_id, updateFields }: UserFormProps) {
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
   const [query, setQuery] = useState<string>('')
@@ -103,31 +103,47 @@ export default function Index({ shop_id }: UserFormProps) {
       </div>
 
       <div className={'flex w-full flex-wrap justify-center gap-3'}>
-        {loading
-          ? 'skeleton'
-          : shops.length > 0
-            ? shops.map((item, index) => {
-                return (
-                  <div key={index} className={'flex w-full flex-row items-center gap-3'}>
-                    <Avatar>
-                      <AvatarImage
-                        src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${item.img_url}`}
-                        className={'object-cover object-center'}
-                      />
-                      <AvatarFallback>{item.name[0]}</AvatarFallback>
-                    </Avatar>
+        {loading ? (
+          <div className={'flex w-full flex-row items-center gap-3 rounded-lg p-2'}>
+            <Skeleton className="h-12 w-12 rounded-full" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[125px]" />
+              <Skeleton className="h-4 w-[200px]" />
+            </div>
+          </div>
+        ) : shops.length > 0 ? (
+          shops.map((item, index) => {
+            return (
+              <div
+                key={index}
+                className={cn(
+                  'flex w-full flex-row items-center gap-3 rounded-lg border-2 p-2',
+                  'cursor-pointer bg-white dark:bg-neutral-800',
+                  shop_id === item?.uuid ? 'border-green-300' : 'border-transparent'
+                )}
+                onClick={() => {
+                  updateFields({ shop_id: item?.uuid })
+                }}
+              >
+                <Avatar>
+                  <AvatarImage
+                    src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${item.img_url}`}
+                    className={'object-cover object-center'}
+                  />
+                  <AvatarFallback>{item.name[0]}</AvatarFallback>
+                </Avatar>
 
-                    <div className={'flex h-full w-full flex-col items-start text-start'}>
-                      <span className="">{item.name}</span>
+                <div className={'flex h-full w-full flex-col items-start text-start'}>
+                  <span className="">{item.name}</span>
 
-                      <span className={'text-xs text-gray-600'}>
-                        @{item.handle} | {`${item.country} ${item.city} ${item.street}`}
-                      </span>
-                    </div>
-                  </div>
-                )
-              })
-            : null}
+                  <span className={'text-xs text-gray-600'}>
+                    @{item.handle} | {`${item.country} ${item.city} ${item.street}`}
+                  </span>
+                </div>
+              </div>
+            )
+          })
+        ) : null}
       </div>
     </div>
   )

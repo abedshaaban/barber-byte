@@ -1381,6 +1381,18 @@ body {
   width: 1px;
 }
 
+.w-\[20px\] {
+  width: 20px;
+}
+
+.w-\[120px\] {
+  width: 120px;
+}
+
+.w-\[125px\] {
+  width: 125px;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
@@ -4058,6 +4070,11 @@ body {
 :is(:where(.dark) .dark\:bg-neutral-900) {
   --tw-bg-opacity: 1;
   background-color: rgb(23 23 23 / var(--tw-bg-opacity));
+}
+
+:is(:where(.dark) .dark\:bg-black) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 :is(:where(.dark) .dark\:fill-white) {
