@@ -6,6 +6,7 @@ import {
   DotsHorizontalIcon as HorizontalDots,
   InfoCircledIcon as InfoCircle,
   LetterCaseLowercaseIcon as LowerCaseLetter,
+  MagnifyingGlassIcon as Magnifier,
   EyeOpenIcon as OpenEye,
   PersonIcon as Person,
   PlusIcon as Plus,
@@ -133,5 +134,6 @@ export {
   ChatBubble,
   ShareBubble,
   Check,
-  Cross
+  Cross,
+  Magnifier
 }
