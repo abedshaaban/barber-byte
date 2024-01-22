@@ -135,6 +135,7 @@ class AccountController extends Controller
         try{
             $results = Shop::select(
                 'users.uuid',
+                'users.img_url',
                 'users.handle',
                 'shops.name',
                 'addresses.country',
