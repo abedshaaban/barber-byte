@@ -66,6 +66,13 @@ export default function Logic({
   async function onSubmitForm(e: FormEvent) {
     e.preventDefault()
 
+    if (currentStepIndex === 2) {
+      if (!appointmentData.shop_id) {
+        setErrorMessage('Select a shop')
+        return
+      } else setErrorMessage('')
+    }
+
     if (!isLastStep) return next()
 
     setLoading(true)
