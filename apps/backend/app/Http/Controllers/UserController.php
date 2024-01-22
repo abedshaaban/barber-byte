@@ -231,4 +231,57 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function create_reservation(Request $request){
+        $rules = [
+            'name' => 'required|string',
+            'time' => 'required|string',
+            'date' => 'required|date',
+            'img_id' => 'required',
+            'shop_id' => 'required|string',
+        ];
+    
+        $validator = Validator::make([
+            'name' => $request->name,
+            'time' => $request->time,
+            'date' => $request->date,
+            'img_id' => $request->img_id,
+            'shop_id' => $request->shop_id
+        ], $rules);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Incomplete form.',
+                'data' => '',
+                'error' => 'more params are required' 
+            ], 400);
+        }
+
+        try{
+            $data = Reservation::create([
+                'client_id' => $this->user->uuid,
+                'name' => $request->name,
+                'description' => $request->description,
+                'time' => $request->time,
+                'date' => $request->date,
+                'img_id' => $request->img_id,
+                'shop_id' => $request->shop_id,
+            ]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Created reservation successfully',
+                'data' => $data,
+                'error' => '' 
+            ]);
+        } catch (\Exception $exception){
+            return response()->json([
+                'status' => false,
+                'message' => 'Error occurred while creating reservation',
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ]);
+        }
+    }
 }
