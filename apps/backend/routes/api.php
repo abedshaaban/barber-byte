@@ -16,7 +16,7 @@ Route::controller(AuthController::class)->group(function(){
 });
 
 Route::controller(AccountController::class)->group(function(){
-    Route::get('/account/{id}', 'get_profile');
+    Route::get('/account/{handle}', 'get_profile');
     Route::get('/shop', 'get_shops');
     Route::get('/shop/work_hours/{shop_id}', 'get_shop_hours');
     Route::get('/post/get', [PostController::class, 'get_posts']);
