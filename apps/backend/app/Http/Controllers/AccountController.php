@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Shop;
 
 class AccountController extends Controller
 {
@@ -124,5 +126,32 @@ class AccountController extends Controller
         }
 
         return response()->json($res, 200);
+    }
+
+    public function get_shops(Request $request){
+        $page = intval($request->page) ?? 1;
+        $query = $request->query('query') ?? '';
+
+        $results = Shop::select(
+            'users.uuid',
+            'users.handle',
+            'shops.name',
+            'addresses.country',
+            'addresses.city',
+            'addresses.street',
+            )
+        ->join('users', 'users.uuid', '=', 'shops.owner_id')
+        ->join('account_statuses', 'users.account_status_id', '=', 'account_statuses.id')
+        ->join('addresses', 'shops.owner_id', '=', 'addresses.shop_id')
+        ->where('account_statuses.name', 'public')
+        ->where(function ($s) use ($query) {
+            $s->where('shops.name', 'like', '%' . $query . '%')
+                ->orWhere('users.handle', 'like', '%' . $query . '%')
+                ->orWhere('addresses.country', 'like', '%' . $query . '%')
+                ->orWhere('addresses.city', 'like', '%' . $query . '%')
+                ->orWhere('addresses.street', 'like', '%' . $query . '%');
+        })
+        ->latest()->paginate(2, ['*'], 'page', $page);
+        return response()->json($results);
     }
 }
