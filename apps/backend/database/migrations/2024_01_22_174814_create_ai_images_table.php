@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ai_images', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('prompt');
+            $table->longText('prompt');
             $table->string('img_url')->unique();
             $table->foreignUuid('creator_id')
                 ->references('uuid')
