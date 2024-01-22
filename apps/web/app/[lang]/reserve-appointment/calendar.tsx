@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { getShopWorkDays } from '@repo/helpers/account'
 import type { AppointmentType } from '@repo/helpers/types'
 import { roundToNearestMinutes } from '@web/helpers'
 import { format, formatISO, isBefore, parse } from 'date-fns'
@@ -18,7 +19,7 @@ type CalendarProps = {
   dateTime: Date | null
 }
 
-export default function Index({}: UserFormProps) {
+export default function Index({ shop_id }: UserFormProps) {
   const [date, setDate] = useState<CalendarProps>({
     dateTime: null,
     justDate: null
@@ -30,6 +31,22 @@ export default function Index({}: UserFormProps) {
   //   const closing = parse(today!.closeTime, 'kk:mm', now)
   //   const tooLate = !isBefore(rounded, closing)
   //   if (tooLate) closedDays.push(formatISO(new Date().setHours(0, 0, 0, 0)))
+
+  async function workDays() {
+    const res = await getShopWorkDays({
+      shop_id: shop_id as string
+    })
+
+    console.log(res)
+  }
+
+  useEffect(() => {
+    async function getDates() {
+      await workDays()
+    }
+
+    getDates()
+  }, [])
 
   return (
     <div className={cn('flex flex-col gap-6')}>

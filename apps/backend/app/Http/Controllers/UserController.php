@@ -85,7 +85,7 @@ class UserController extends Controller
                 'country' => $request->country ?? $address['country'],
                 'city' => $request->city ?? $address['city'],
                 'street' => $request->street ?? $address['street'],
-                'location' => $request->location ?? $address['location'],
+                'location' => json_encode($request->location) ?? json_encode($address['location']),
             ]);
 
             $res = [

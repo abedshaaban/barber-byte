@@ -1,17 +1,21 @@
 import axios from 'axios'
 
 import { Storage } from '../storage'
-import { RegisterProps, UserType } from '../types'
+import { RegisterProps, UserType, WorkDayType } from '../types'
 
-type AccountHnalde = {
+type AccountHandle = {
   handle: string
+}
+
+type ShopID = {
+  shop_id: string
 }
 
 /**
  * Get user profile from handle if the user account status is public.
  * @param handle
  */
-export async function getProfileByHandle({ handle }: AccountHnalde): Promise<{
+export async function getProfileByHandle({ handle }: AccountHandle): Promise<{
   status: boolean
   data: UserType
   error: string
@@ -21,6 +25,32 @@ export async function getProfileByHandle({ handle }: AccountHnalde): Promise<{
 
   try {
     res = await axios.get(`${process.env.NEXT_PUBLIC_DB_URL_APIS}/account/${handle}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+  } catch (error) {
+    // console.error(error)
+  }
+
+  return res?.data
+}
+
+/**
+ * Get shop work days and open work hours.
+ * @param shop_id
+ */
+export async function getShopWorkDays({ shop_id }: ShopID): Promise<{
+  status: boolean
+  data: WorkDayType[]
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    res = await axios.get(`${process.env.NEXT_PUBLIC_DB_URL_APIS}/shop/work_hours/${shop_id}`, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json'
