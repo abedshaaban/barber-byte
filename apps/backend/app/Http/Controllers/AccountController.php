@@ -170,4 +170,40 @@ class AccountController extends Controller
             ], 500);
         }
     }
+
+    public function get_shop_hours($shop_id){
+        $rules = [
+            'shop_id' => 'required|string',
+        ];
+    
+        $validator = Validator::make(['shop_id' => $shop_id], $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'User not found.',
+                'data' => '',
+                'error' => 'incorrect shop_id' 
+            ], 400);
+        }
+
+        try{
+        $shop = Shop::find($shop_id);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Shop work days and time.',
+            'data' => $shop->work_days,
+            'error' => ''
+        ]);
+        
+        } catch (\Exception $exception){
+            return response()->json([
+                'status' => false,
+                'message' => 'User not found',
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ]);
+        }
+    }
 }
