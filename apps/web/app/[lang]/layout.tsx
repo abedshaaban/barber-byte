@@ -1,4 +1,5 @@
 import '@repo/ui/styles.css'
+import '@web/styles/calendar.css'
 
 import { Locale } from '@root/i18n.config'
 import RefreshToken from '@web/components/refresh-token'
