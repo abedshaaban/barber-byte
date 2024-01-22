@@ -1385,6 +1385,18 @@ body {
   width: 1px;
 }
 
+.w-\[px\] {
+  width: px;
+}
+
+.w-\[86px\] {
+  width: 86px;
+}
+
+.w-\[87px\] {
+  width: 87px;
+}
+
 .min-w-0 {
   min-width: 0px;
 }
