@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Shop;
 use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use OpenAI\Laravel\Facades\OpenAI;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -183,6 +184,48 @@ class UserController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Error occurred while generating image.',
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ]);
+        }
+    }
+
+    public function get_reservatione_of_day(Request $request){
+        $rules = [
+            'date' => 'required|date',
+            'shop_id' => 'required|string',
+        ];
+    
+        $validator = Validator::make([
+            'date' => $request->date,
+            'shop_id' => $request->shop_id
+        ], $rules);
+    
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Reservation not found.',
+                'data' => '',
+                'error' => 'date or shop_id are not provided' 
+            ], 400);
+        }
+
+        try{
+            $data = Reservation::select('date')
+                    ->where('shop_id', '=', $request->shop_id)
+                    ->where('date', '=', $request->date)
+                    ->get();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Got reservation successfully',
+                'data' => $data,
+                'error' => '' 
+            ]);
+        } catch (\Exception $exception){
+            return response()->json([
+                'status' => false,
+                'message' => 'Error occurred while getting reservations',
                 'data' => '',
                 'error' => $exception->getMessage() 
             ]);
