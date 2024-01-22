@@ -27,6 +27,7 @@ export default function Index({ shop_id }: UserFormProps) {
         country: string
         city: string
         street: string
+        img_url: string
       }[]
     | []
   >([])
@@ -110,7 +111,7 @@ export default function Index({ shop_id }: UserFormProps) {
                   <div key={index} className={'flex w-full flex-row items-center gap-3'}>
                     <Avatar>
                       <AvatarImage
-                        src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${0}`}
+                        src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${item.img_url}`}
                         className={'object-cover object-center'}
                       />
                       <AvatarFallback>{item.name[0]}</AvatarFallback>
