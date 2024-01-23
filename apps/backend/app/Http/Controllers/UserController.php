@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AIImage;
 use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Shop;
@@ -164,20 +165,50 @@ class UserController extends Controller
     public function generate_image(Request $request){
         $prompt = "film still, portrait of a human, " . $request->prompt . ", salon photography";
         
+        $request->validate([
+            'prompt' => 'required|string',
+            'size' => 'required|string',
+            'n' => 'required|integer',
+        ]);
+
         try{
             $result = OpenAI::images()->create([
                 'model' => 'dall-e-2',
                 'prompt' => $prompt,
                 'size' => $request->size,
                 'style' => "vivid",
-                'n' => $request->n,
+                'n' => intval($request->n),
                 'user' => $this->user->uuid,
             ]);
+
+            if(count($result->data) > 0){
+                $folder_path = 'images/ai-haircut/';
+                if (!file_exists(public_path($folder_path))) {
+                    mkdir(public_path($folder_path), 0755, true);
+                }
+
+                $res = [];
+                
+                foreach ($result->data as $imageData) {
+                    $image_id = AIImage::create([
+                        'prompt' => $prompt,
+                        'creator_id' => $this->user->uuid,
+                    ])->id;
+            
+                    $image_url = $folder_path . time() . rand(3, 9000000000) . '.' . pathinfo($imageData->url, PATHINFO_EXTENSION);
+                    file_put_contents(public_path($image_url), file_get_contents($imageData->url));
+            
+                    $res[] = [
+                        'img_url' => $image_url,
+                        'id' => $image_id,
+                    ];
+                }
+            }
 
             return response()->json([
                 'status' => true,
                 'message' => 'Image generated successfully',
-                'data' => $result->data,
+                'data' => $res,
                 'error' => '' 
             ]);
         } catch (\Exception $exception){
