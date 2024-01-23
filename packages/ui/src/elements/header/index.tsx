@@ -212,14 +212,17 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
                       <DropdownMenuItem>
                         <Link href={`/${lang}/create-post`}>{authText.createPost}</Link>
                       </DropdownMenuItem>
+                      {user?.role === 'user' ? (
+                        <>
+                          <DropdownMenuSeparator />
 
-                      <DropdownMenuSeparator />
-
-                      <DropdownMenuItem>
-                        <Link href={`/${lang}/reserve-appointment`}>
-                          {authText.reserveAppointment}
-                        </Link>
-                      </DropdownMenuItem>
+                          <DropdownMenuItem>
+                            <Link href={`/${lang}/reserve-appointment`}>
+                              {authText.reserveAppointment}
+                            </Link>
+                          </DropdownMenuItem>
+                        </>
+                      ) : null}
                     </DropdownMenuGroup>
                   </DropdownMenuContent>
                 </DropdownMenu>
