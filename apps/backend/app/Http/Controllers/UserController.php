@@ -243,7 +243,7 @@ class UserController extends Controller
         }
 
         try{
-            $data = Reservation::select('date')
+            $data = Reservation::select('time')
                     ->where('shop_id', '=', $request->shop_id)
                     ->where('date', '=', $request->date)
                     ->get();

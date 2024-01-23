@@ -1359,6 +1359,10 @@ body {
   width: 80px;
 }
 
+.w-\[87px\] {
+  width: 87px;
+}
+
 .w-\[95px\] {
   width: 95px;
 }
@@ -1383,18 +1387,6 @@ body {
 
 .w-px {
   width: 1px;
-}
-
-.w-\[px\] {
-  width: px;
-}
-
-.w-\[86px\] {
-  width: 86px;
-}
-
-.w-\[87px\] {
-  width: 87px;
 }
 
 .min-w-0 {
@@ -1607,6 +1599,10 @@ body {
 
 .cursor-default {
   cursor: default;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
 }
 
 .cursor-pointer {

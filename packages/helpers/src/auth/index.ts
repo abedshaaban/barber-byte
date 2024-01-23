@@ -139,7 +139,5 @@ export async function Logout() {
     Storage({ key: 'token', remove: true })
 
     return res?.data
-  } catch (error) {
-    console.log(error)
-  }
+  } catch (error) {}
 }

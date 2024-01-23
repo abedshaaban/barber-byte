@@ -124,8 +124,6 @@ export default function Logic({
 
     setLoading(true)
 
-    console.log(appointmentData)
-
     const res = await createRservations({
       name: appointmentData.client_name as string,
       date: appointmentData.date as string,

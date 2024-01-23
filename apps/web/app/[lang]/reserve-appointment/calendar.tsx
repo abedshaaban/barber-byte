@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getShopRservations, getShopWorkDays } from '@repo/helpers/account'
 import type { AppointmentType, WorkDayType } from '@repo/helpers/types'
-import { getOpeningTimes, roundToNearestMinutes } from '@web/helpers'
 import { add, format } from 'date-fns'
 import Calendar from 'react-calendar'
 
@@ -28,6 +27,7 @@ export default function Index({
   const [closedDays, setClosedDays] = useState<string[] | []>([])
   const [workDays, setWorkDays] = useState<WorkDayType[] | []>([])
   const [times, setTimes] = useState<string[] | []>([])
+  const [openHours, setOpenHours] = useState<string[] | []>([])
 
   async function getWorkDays() {
     const res = await getShopWorkDays({
@@ -100,6 +100,13 @@ export default function Index({
           date: justDate as string,
           shop_id: shop_id as string
         })
+
+        let o: string[] = []
+        for (let i = 0; i < res.data.length; i++) {
+          o.push(res.data[i].time)
+        }
+
+        setOpenHours(o)
       }
 
       getReservationHours()
@@ -113,16 +120,28 @@ export default function Index({
       {justDate ? (
         <div className={'flex flex-wrap justify-center gap-6'}>
           {times.map((time, index) => {
+            const isClosed = openHours.includes(format(time, 'kk:mm'))
             return (
               <Button
                 key={index}
-                className={'w-[87px]'}
-                variant={format(time, 'kk:mm') === dateTime ? 'secondary' : 'outline'}
+                className={cn(
+                  'w-[87px]',
+                  isClosed ? 'cursor-not-allowed' : 'cursor-pointer'
+                )}
+                variant={
+                  isClosed
+                    ? 'ghost'
+                    : format(time, 'kk:mm') === dateTime
+                      ? 'default'
+                      : 'outline'
+                }
                 type={'button'}
                 onClick={() => {
-                  updateFields({
-                    time: format(time, 'kk:mm')
-                  })
+                  if (!isClosed) {
+                    updateFields({
+                      time: format(time, 'kk:mm')
+                    })
+                  }
                 }}
               >
                 {format(time, 'kk:mm')}
