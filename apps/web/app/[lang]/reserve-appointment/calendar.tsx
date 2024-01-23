@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getShopWorkDays } from '@repo/helpers/account'
+import { getShopRservations, getShopWorkDays } from '@repo/helpers/account'
 import type { AppointmentType, WorkDayType } from '@repo/helpers/types'
 import { getOpeningTimes, roundToNearestMinutes } from '@web/helpers'
 import { add, format } from 'date-fns'
@@ -46,8 +46,6 @@ export default function Index({ shop_id }: UserFormProps) {
         return [...days]
       })
     }
-
-    console.log(res)
   }
 
   const getTimes = ({ startTime, endTime }: { startTime: string; endTime: string }) => {
@@ -91,6 +89,17 @@ export default function Index({ shop_id }: UserFormProps) {
     })
 
     if (day[0]?.start_date) {
+      async function getReservationHours() {
+        const res = await getShopRservations({
+          date: format(date.justDate as unknown as string, 'yyyy-MM-dd'),
+          shop_id: shop_id as string
+        })
+
+        console.log('dates', res)
+      }
+
+      getReservationHours()
+
       setTimes(getTimes({ startTime: day[0].start_date, endTime: day[0].end_date }))
     }
   }, [date.justDate])
@@ -101,7 +110,12 @@ export default function Index({ shop_id }: UserFormProps) {
         <div className={'flex flex-wrap justify-center gap-6'}>
           {times.map((time, index) => {
             return (
-              <Button key={index} className={'w-[87px]'} variant={'outline'}>
+              <Button
+                key={index}
+                className={'w-[87px]'}
+                variant={'outline'}
+                type={'button'}
+              >
                 {format(time, 'kk:mm')}
               </Button>
             )

@@ -50,12 +50,15 @@ export async function getShopWorkDays({ shop_id }: ShopID): Promise<{
   let res
 
   try {
-    res = await axios.get(`${process.env.NEXT_PUBLIC_DB_URL_APIS}/shop/work_hours/${shop_id}`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+    res = await axios.get(
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/shop/work_hours/${shop_id}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
       }
-    })
+    )
   } catch (error) {
     // console.error(error)
   }
@@ -323,6 +326,46 @@ export async function searchShop({
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json'
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
+
+/**
+ * Get booked time reservations of a shop on a specific day.
+ * @param shop_id
+ * @param date
+ */
+export async function getShopRservations({
+  shop_id,
+  date
+}: ShopID & { date: string }): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/shop/day-reservations`,
+      {
+        shop_id: shop_id,
+        date: date
+      },
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
         }
       }
     )
