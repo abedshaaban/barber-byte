@@ -8,7 +8,8 @@
       "env": [
         "NEXT_PUBLIC_DB_URL_APIS",
         "NEXT_PUBLIC_PROFILE_IMAGES_URL",
-        "NEXT_PUBLIC_POST_IMAGES_URL"
+        "NEXT_PUBLIC_POST_IMAGES_URL",
+        "NEXT_PUBLIC_AI_IMAGES_URL"
       ]
     },
     "lint": {
@@ -20,7 +21,8 @@
       "env": [
         "NEXT_PUBLIC_DB_URL_APIS",
         "NEXT_PUBLIC_PROFILE_IMAGES_URL",
-        "NEXT_PUBLIC_POST_IMAGES_URL"
+        "NEXT_PUBLIC_POST_IMAGES_URL",
+        "NEXT_PUBLIC_AI_IMAGES_URL"
       ]
     },
     "clean": {

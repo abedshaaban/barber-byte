@@ -73,7 +73,7 @@ export default function Logic({
       <div className={cn('flex flex-col gap-1')}>
         <AspectRatio className={'rounded-lg'}>
           <img
-            src={appointmentData.img_url}
+            src={`${process.env.NEXT_PUBLIC_AI_IMAGES_URL}/${appointmentData.img_url}`}
             alt=""
             className={'h-full w-full rounded-lg object-cover object-center'}
           />

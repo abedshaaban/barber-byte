@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AIImage;
+use App\Models\AiImage;
 use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Shop;
@@ -190,16 +190,17 @@ class UserController extends Controller
                 $res = [];
                 
                 foreach ($result->data as $imageData) {
-                    $image_id = AIImage::create([
+                    $image_url = time() . rand(3, 9000000000) . '.' . 'png';
+                    file_put_contents(public_path($folder_path . $image_url), file_get_contents($imageData->url));
+
+                    $image_id = AiImage::create([
                         'prompt' => $prompt,
                         'creator_id' => $this->user->uuid,
+                        'img_url' => $image_url,
                     ])->id;
             
-                    $image_url = $folder_path . time() . rand(3, 9000000000) . '.' . pathinfo($imageData->url, PATHINFO_EXTENSION);
-                    file_put_contents(public_path($image_url), file_get_contents($imageData->url));
-            
                     $res[] = [
-                        'img_url' => $image_url,
+                        'url' => $image_url,
                         'id' => $image_id,
                     ];
                 }

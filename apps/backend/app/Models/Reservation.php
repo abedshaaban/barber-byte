@@ -18,7 +18,7 @@ class Reservation extends Model
     ];
 
     public function ai_image(){
-        return $this->belongsTo(AIImage::class, 'id', 'img_id');
+        return $this->belongsTo(AiImage::class, 'id', 'img_id');
     }
 
     public function shop(){

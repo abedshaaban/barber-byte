@@ -94,7 +94,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function ai_images(){
-        return $this->hasMany(AIImage::class, 'creator_id', 'uuid');
+        return $this->hasMany(AiImage::class, 'creator_id', 'uuid');
     }
 
     public function reservation(){

@@ -25,22 +25,22 @@ export default function Index({
   const [loading, setLoading] = useState<boolean>(false)
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
   const [AIImages, setAIImages] = useState<{ url: string; id: number }[] | []>([
-    {
-      url: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-cktUSxa7TqUUdFSJgduFJ4a9/user-HXZ6S6Z6vEctBoxnawJhMqro/img-4tSLoAoOnjsFepwc0m0lPARt.png?st=2024-01-21T19%3A20%3A40Z&se=2024-01-21T21%3A20%3A40Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-01-21T19%3A43%3A26Z&ske=2024-01-22T19%3A43%3A26Z&sks=b&skv=2021-08-06&sig=K/2%2BY4KItyUL/w4n7xo3jPX8XTb9E743islvom6Vefw%3D',
-      id: 1
-    },
-    {
-      url: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-cktUSxa7TqUUdFSJgduFJ4a9/user-HXZ6S6Z6vEctBoxnawJhMqro/img-ul4rUGmugmnvIiipnulnXQLk.png?st=2024-01-21T19%3A20%3A39Z&se=2024-01-21T21%3A20%3A39Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-01-21T19%3A43%3A26Z&ske=2024-01-22T19%3A43%3A26Z&sks=b&skv=2021-08-06&sig=PMeQWR7DyK2pqofQXwIYTY5Rs7IuNMZiyXfrFb3er4k%3D',
-      id: 2
-    },
-    {
-      url: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-cktUSxa7TqUUdFSJgduFJ4a9/user-HXZ6S6Z6vEctBoxnawJhMqro/img-MoQtY7ruiHx0BXzt64PMf47V.png?st=2024-01-21T19%3A20%3A40Z&se=2024-01-21T21%3A20%3A40Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-01-21T19%3A43%3A26Z&ske=2024-01-22T19%3A43%3A26Z&sks=b&skv=2021-08-06&sig=rz4pelIJdzrChlmE9w0oMiNUjdPEVOo4c5fyFQZ/aYE%3D',
-      id: 3
-    },
-    {
-      url: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-cktUSxa7TqUUdFSJgduFJ4a9/user-HXZ6S6Z6vEctBoxnawJhMqro/img-5HJXxfA7LCgEIKLJBCeve4BL.png?st=2024-01-21T19%3A20%3A39Z&se=2024-01-21T21%3A20%3A39Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-01-21T19%3A43%3A26Z&ske=2024-01-22T19%3A43%3A26Z&sks=b&skv=2021-08-06&sig=8ANvdbiHjdLNRUVelQxDDVh7FzTXro6DMEiC5UTCmBQ%3D',
-      id: 4
-    }
+    // {
+    //   url: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-cktUSxa7TqUUdFSJgduFJ4a9/user-HXZ6S6Z6vEctBoxnawJhMqro/img-4tSLoAoOnjsFepwc0m0lPARt.png?st=2024-01-21T19%3A20%3A40Z&se=2024-01-21T21%3A20%3A40Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-01-21T19%3A43%3A26Z&ske=2024-01-22T19%3A43%3A26Z&sks=b&skv=2021-08-06&sig=K/2%2BY4KItyUL/w4n7xo3jPX8XTb9E743islvom6Vefw%3D',
+    //   id: 1
+    // },
+    // {
+    //   url: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-cktUSxa7TqUUdFSJgduFJ4a9/user-HXZ6S6Z6vEctBoxnawJhMqro/img-ul4rUGmugmnvIiipnulnXQLk.png?st=2024-01-21T19%3A20%3A39Z&se=2024-01-21T21%3A20%3A39Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-01-21T19%3A43%3A26Z&ske=2024-01-22T19%3A43%3A26Z&sks=b&skv=2021-08-06&sig=PMeQWR7DyK2pqofQXwIYTY5Rs7IuNMZiyXfrFb3er4k%3D',
+    //   id: 2
+    // },
+    // {
+    //   url: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-cktUSxa7TqUUdFSJgduFJ4a9/user-HXZ6S6Z6vEctBoxnawJhMqro/img-MoQtY7ruiHx0BXzt64PMf47V.png?st=2024-01-21T19%3A20%3A40Z&se=2024-01-21T21%3A20%3A40Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-01-21T19%3A43%3A26Z&ske=2024-01-22T19%3A43%3A26Z&sks=b&skv=2021-08-06&sig=rz4pelIJdzrChlmE9w0oMiNUjdPEVOo4c5fyFQZ/aYE%3D',
+    //   id: 3
+    // },
+    // {
+    //   url: 'https://oaidalleapiprodscus.blob.core.windows.net/private/org-cktUSxa7TqUUdFSJgduFJ4a9/user-HXZ6S6Z6vEctBoxnawJhMqro/img-5HJXxfA7LCgEIKLJBCeve4BL.png?st=2024-01-21T19%3A20%3A39Z&se=2024-01-21T21%3A20%3A39Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-01-21T19%3A43%3A26Z&ske=2024-01-22T19%3A43%3A26Z&sks=b&skv=2021-08-06&sig=8ANvdbiHjdLNRUVelQxDDVh7FzTXro6DMEiC5UTCmBQ%3D',
+    //   id: 4
+    // }
   ])
 
   useAutosizeTextArea(textAreaRef.current, description as string)
@@ -70,7 +70,6 @@ export default function Index({
       setErrorMessage(`${res.message} Please wait 1 min and try again.`)
     }
 
-    console.log(res)
     setLoading(false)
   }
 
@@ -106,7 +105,7 @@ export default function Index({
                     }}
                   >
                     <img
-                      src={item?.url}
+                      src={`${process.env.NEXT_PUBLIC_AI_IMAGES_URL}/${item?.url}`}
                       alt={`haircut ${index + 1}`}
                       className={'h-full w-full rounded-lg object-cover object-center'}
                     />
