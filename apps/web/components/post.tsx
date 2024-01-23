@@ -64,7 +64,7 @@ export default function Post({
           <Link href={`/${lang}/@${handle}`}>
             <Avatar>
               <AvatarImage
-                src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${profile_url}`}
+                src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${profile_url}`}
                 className={'object-cover object-center'}
               />
               <AvatarFallback>
@@ -104,7 +104,7 @@ export default function Post({
       <CardContent className="pb-1">
         <div className="max-h-[400px] max-w-[400px]">
           <img
-            src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${img_url}`}
+            src={`${process.env.NEXT_PUBLIC_POST_IMAGES_URL}/${img_url}`}
             alt={caption || 'post'}
             className={'h-[350px] w-full object-cover object-center'}
           />

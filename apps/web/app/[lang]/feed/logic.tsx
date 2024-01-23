@@ -81,7 +81,10 @@ export default function Logic({ lang }: { lang: Locale }) {
     <div className={'flex w-full flex-col items-center justify-center gap-9'}>
       {posts?.map((item, index) => {
         return (
-          <div key={index} className={cn(!user?.user?'blur':'')}>
+          <div
+            key={index}
+            className={cn(!user?.user ? 'blur' : 'flex w-full justify-center')}
+          >
             <Post user={user?.user} key={index} lang={lang} {...item} />
           </div>
         )

@@ -5,7 +5,11 @@
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
-      "env": ["NEXT_PUBLIC_DB_URL_APIS", "NEXT_PUBLIC_IMAGES_URL"]
+      "env": [
+        "NEXT_PUBLIC_DB_URL_APIS",
+        "NEXT_PUBLIC_PROFILE_IMAGES_URL",
+        "NEXT_PUBLIC_POST_IMAGES_URL"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -13,7 +17,11 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "env": ["NEXT_PUBLIC_DB_URL_APIS", "NEXT_PUBLIC_IMAGES_URL"]
+      "env": [
+        "NEXT_PUBLIC_DB_URL_APIS",
+        "NEXT_PUBLIC_PROFILE_IMAGES_URL",
+        "NEXT_PUBLIC_POST_IMAGES_URL"
+      ]
     },
     "clean": {
       "cache": false

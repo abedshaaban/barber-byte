@@ -73,7 +73,7 @@ export default function Logic({
           >
             <Avatar className={'aspect-square h-48 w-48'}>
               <AvatarImage
-                src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${profile?.img_url}`}
+                src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${profile?.img_url}`}
                 alt={'user profile picture'}
                 className={'object-cover object-center'}
               />

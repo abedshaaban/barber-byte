@@ -231,7 +231,7 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
                   <Button variant={'link'} className={'rounded-full p-0'}>
                     <Avatar>
                       <AvatarImage
-                        src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${user?.img_url}`}
+                        src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${user?.img_url}`}
                         alt={'user profile picture'}
                         className={'object-cover object-center'}
                       />

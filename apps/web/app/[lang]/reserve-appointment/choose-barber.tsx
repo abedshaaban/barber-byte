@@ -127,7 +127,7 @@ export default function Index({ shop_id, updateFields }: UserFormProps) {
               >
                 <Avatar>
                   <AvatarImage
-                    src={`${process.env.NEXT_PUBLIC_IMAGES_URL}/${item.img_url}`}
+                    src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${item.img_url}`}
                     className={'object-cover object-center'}
                   />
                   <AvatarFallback>{item.name[0]}</AvatarFallback>
