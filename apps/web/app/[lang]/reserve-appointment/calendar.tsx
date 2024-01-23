@@ -18,15 +18,16 @@ type CalendarProps = {
   dateTime: Date | null
 }
 
-export default function Index({ shop_id }: UserFormProps) {
+export default function Index({
+  shop_id,
+  updateFields,
+  date: justDate,
+  time: dateTime
+}: UserFormProps) {
   const now = new Date()
   const [closedDays, setClosedDays] = useState<string[] | []>([])
   const [workDays, setWorkDays] = useState<WorkDayType[] | []>([])
   const [times, setTimes] = useState<string[] | []>([])
-  const [date, setDate] = useState<CalendarProps>({
-    dateTime: null,
-    justDate: null
-  })
 
   async function getWorkDays() {
     const res = await getShopWorkDays({
@@ -48,11 +49,16 @@ export default function Index({ shop_id }: UserFormProps) {
     }
   }
 
-  const getTimes = ({ startTime, endTime }: { startTime: string; endTime: string }) => {
+  function getTimes({
+    startTime,
+    endTime
+  }: {
+    startTime: string
+    endTime: string
+  }): string[] {
     const startsAt = startTime.split(':')
     const closesAt = endTime.split(':')
-    if (!date.justDate) return
-    const { justDate } = date
+    if (!justDate) return []
     const beginning = add(justDate, {
       hours: parseInt(startsAt[0] as string, 10),
       minutes: parseInt(startsAt[1] as string, 10)
@@ -64,10 +70,10 @@ export default function Index({ shop_id }: UserFormProps) {
     })
     const interval = 30
 
-    const t = []
+    const t: string[] = []
 
     for (let i = beginning; i <= end; i = add(i, { minutes: interval })) {
-      t.push(i)
+      t.push(i as unknown as string)
     }
 
     return t
@@ -83,7 +89,7 @@ export default function Index({ shop_id }: UserFormProps) {
 
   useEffect(() => {
     const day = workDays.filter((item) => {
-      if (item.name === format(date.justDate, 'EEEE')) {
+      if (item.name === format(justDate as string, 'EEEE')) {
         return item
       }
     })
@@ -91,7 +97,7 @@ export default function Index({ shop_id }: UserFormProps) {
     if (day[0]?.start_date) {
       async function getReservationHours() {
         const res = await getShopRservations({
-          date: format(date.justDate as unknown as string, 'yyyy-MM-dd'),
+          date: justDate as string,
           shop_id: shop_id as string
         })
 
@@ -102,19 +108,24 @@ export default function Index({ shop_id }: UserFormProps) {
 
       setTimes(getTimes({ startTime: day[0].start_date, endTime: day[0].end_date }))
     }
-  }, [date.justDate])
+  }, [justDate])
 
   return (
     <div className={cn('flex flex-col gap-6')}>
-      {date.justDate ? (
+      {justDate ? (
         <div className={'flex flex-wrap justify-center gap-6'}>
           {times.map((time, index) => {
             return (
               <Button
                 key={index}
                 className={'w-[87px]'}
-                variant={'outline'}
+                variant={format(time, 'kk:mm') === dateTime ? 'secondary' : 'outline'}
                 type={'button'}
+                onClick={() => {
+                  updateFields({
+                    time: format(time, 'kk:mm')
+                  })
+                }}
               >
                 {format(time, 'kk:mm')}
               </Button>
@@ -128,8 +139,8 @@ export default function Index({ shop_id }: UserFormProps) {
           view="month"
           tileDisabled={({ date: d }) => closedDays.includes(format(d, 'EEEE'))}
           onClickDay={(date) => {
-            setDate((prev) => {
-              return { ...prev, justDate: date }
+            updateFields({
+              date: format(date, 'yyyy-MM-dd')
             })
           }}
         />

@@ -97,7 +97,10 @@ type PostType = {
 export type AppointmentType = {
   client_id: string
   client_name: string
-  shop_id: string
-  img_url: string
   description: string
+  time: string
+  date: string
+  shop_id: string
+  img_id: number | null
+  img_url: string
 }

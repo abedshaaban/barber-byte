@@ -32,8 +32,10 @@ export default function Logic({
         : ''
       : '',
     description: '',
+    date: '',
+    time: '',
     shop_id: '',
-    img_url: ''
+    img_id: null
   })
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
@@ -89,11 +91,11 @@ export default function Logic({
 
   useEffect(() => {
     if (currentStepIndex === 0) {
-      if (!appointmentData.img_url) {
+      if (!appointmentData.img_id) {
         setNextButton('button')
       } else setNextButton('submit')
     }
-  }, [appointmentData.img_url])
+  }, [appointmentData.img_id])
 
   if (!user?.user) {
     return (
