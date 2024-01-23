@@ -6,8 +6,10 @@ import type { AppointmentType } from '@repo/helpers/types'
 import { RootState } from '@web/provider/store'
 import { useSelector } from 'react-redux'
 
+import { AspectRatio } from '@repo/ui/aspect-ratio'
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
+import { Label } from '@repo/ui/label'
 import useMultistepForm from '@repo/ui/multistepForm'
 import { cn } from '@repo/ui/util'
 
@@ -68,7 +70,39 @@ export default function Logic({
         reservation={reservationTextTranslation}
         updateFields={updateFields}
       />,
-      <>3</>
+      <div className={cn('flex flex-col gap-1')}>
+        <AspectRatio className={'rounded-lg'}>
+          <img
+            src={appointmentData.img_url}
+            alt=""
+            className={'h-full w-full rounded-lg object-cover object-center'}
+          />
+        </AspectRatio>
+
+        <div className="space-y-1">
+          <Label>
+            Name:<span className={'font-normal'}> {appointmentData.client_name}</span>
+          </Label>
+        </div>
+
+        {appointmentData.description ? (
+          <div className="space-y-1">
+            <Label>
+              description:{' '}
+              <span className={'font-normal'}>{appointmentData.description}</span>
+            </Label>
+          </div>
+        ) : null}
+
+        <div className="space-y-1">
+          <Label>
+            date:{' '}
+            <span className={'font-normal'}>
+              {appointmentData.date} | {appointmentData.time}
+            </span>
+          </Label>
+        </div>
+      </div>
     ])
 
   async function onSubmitForm(e: FormEvent) {
@@ -159,7 +193,17 @@ export default function Logic({
             )}
           >
             {!isFirstStep && (
-              <Button type={'button'} variant={'secondary'} onClick={back}>
+              <Button
+                type={'button'}
+                variant={'secondary'}
+                onClick={() => {
+                  updateFields({
+                    date: '',
+                    time: ''
+                  })
+                  back()
+                }}
+              >
                 {reservationTextTranslation.back}
               </Button>
             )}
