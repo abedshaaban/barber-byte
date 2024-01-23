@@ -375,3 +375,57 @@ export async function getShopRservations({
 
   return res?.data
 }
+
+/**
+ * Create reservation for user
+ * @param shop_id
+ * @param date
+ */
+export async function createRservations({
+  name,
+  time,
+  date,
+  img_id,
+  shop_id,
+  description
+}: ShopID & {
+  date: string
+  time: string
+  name: string
+  img_id: number
+  description: string
+}): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/user/create-reservations`,
+      {
+        name: name,
+        description: description,
+        time: time,
+        date: date,
+        img_id: img_id,
+        shop_id: shop_id
+      },
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}

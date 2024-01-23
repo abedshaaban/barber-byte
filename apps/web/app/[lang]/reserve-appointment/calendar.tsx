@@ -100,8 +100,6 @@ export default function Index({
           date: justDate as string,
           shop_id: shop_id as string
         })
-
-        console.log('dates', res)
       }
 
       getReservationHours()

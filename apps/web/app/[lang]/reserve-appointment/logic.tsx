@@ -2,6 +2,8 @@
 
 import React, { FormEvent, useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { createRservations } from '@repo/helpers/account'
 import type { AppointmentType } from '@repo/helpers/types'
 import { RootState } from '@web/provider/store'
 import { useSelector } from 'react-redux'
@@ -11,6 +13,7 @@ import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
 import { Label } from '@repo/ui/label'
 import useMultistepForm from '@repo/ui/multistepForm'
+import { useToast } from '@repo/ui/use-toast'
 import { cn } from '@repo/ui/util'
 
 import Calendar from './calendar'
@@ -25,6 +28,8 @@ export default function Logic({
   reservationTextTranslation: any
   lang: string
 }) {
+  const { toast } = useToast()
+  const router = useRouter()
   const user = useSelector((state: RootState) => state.user)
   const [nextButton, setNextButton] = useState<'button' | 'submit'>('button')
   const [appointmentData, setAppointmentData] = useState<Partial<AppointmentType>>({
@@ -120,7 +125,25 @@ export default function Logic({
     setLoading(true)
 
     console.log(appointmentData)
-    setTimeout(() => setLoading(false), 3000)
+
+    const res = await createRservations({
+      name: appointmentData.client_name as string,
+      date: appointmentData.date as string,
+      time: appointmentData.time as string,
+      img_id: appointmentData.img_id as number,
+      shop_id: appointmentData.shop_id as string,
+      description: appointmentData.description as string
+    })
+
+    if (res.status) {
+      toast({
+        title: res.data?.message
+      })
+      router.push(`/${lang}/feed`)
+    } else {
+      setErrorMessage(res.data?.message)
+      setLoading(false)
+    }
   }
 
   useEffect(() => {

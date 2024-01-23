@@ -268,8 +268,8 @@ class UserController extends Controller
         $rules = [
             'name' => 'required|string',
             'time' => 'required|string',
-            'date' => 'required|date',
-            'img_id' => 'required',
+            'date' => 'required|string',
+            'img_id' => 'required|integer',
             'shop_id' => 'required|string',
         ];
     
