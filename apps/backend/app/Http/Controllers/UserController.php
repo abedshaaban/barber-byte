@@ -132,7 +132,7 @@ class UserController extends Controller
                 
                 $request->img_url->move(public_path($folder_path), $image_name);
                 
-                $this->user->update(['img_url' => $folder_path . '/' . $image_name]);
+                $this->user->update(['img_url' => $this->user->uuid . '/' . $image_name]);
 
                 return response()->json([
                     'status'=> true,
