@@ -41,8 +41,6 @@ export default function Post({
     isLiked: false
   })
 
-  console.log(img_url)
-
   async function handleLike() {
     setLoading(true)
     const res = await togglePostLike({ post_id: uuid })
