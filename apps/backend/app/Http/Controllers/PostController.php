@@ -78,7 +78,16 @@ class PostController extends Controller
                 ->where('users.account_status_id', '=', 2);
             })
             ->leftJoin('shops', 'shops.owner_id', '=', 'posts.creator_id')
-            ->latest()->paginate(2, ['*'], 'page', $page);
+            ->latest()->paginate(6, ['*'], 'page', $page);
+
+            // if(auth()->check()){   
+            //     $posts = Post::with(['userLiked', 'creator'])
+            //         ->latest()
+            //         ->paginate(2, ['*'], 'page', $page);
+            // } else {
+            //     $posts = Post::latest()
+            //         ->paginate(2, ['*'], 'page', $page);
+            // }
 
             return response()->json([
                 'status' => true,
