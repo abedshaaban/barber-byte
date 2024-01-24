@@ -2,6 +2,7 @@ import '@repo/ui/dist/index.css'
 
 import StoreProvider from '@desktop/provider/storeProvider'
 
+import { Toaster } from '@repo/ui/src/core/toaster'
 import { cn } from '@repo/ui/src/lib/utils'
 
 export default function RootLayout({
@@ -19,6 +20,7 @@ export default function RootLayout({
             <div className="bg-background relative flex min-h-screen flex-col">
               <main className="container flex-1">{children}</main>
             </div>
+            <Toaster />
           </div>
         </body>
       </html>
