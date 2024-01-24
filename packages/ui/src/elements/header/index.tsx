@@ -233,11 +233,14 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
                 >
                   <Button variant={'link'} className={'rounded-full p-0'}>
                     <Avatar>
-                      <AvatarImage
-                        src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${user?.img_url}`}
-                        alt={'user profile picture'}
-                        className={'object-cover object-center'}
-                      />
+                      {user?.img_url && (
+                        <AvatarImage
+                          src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${user?.img_url}`}
+                          alt={'user profile picture'}
+                          className={'object-cover object-center'}
+                          loading={'lazy'}
+                        />
+                      )}
                       <AvatarFallback
                         className={'flex items-center justify-center text-center'}
                       >

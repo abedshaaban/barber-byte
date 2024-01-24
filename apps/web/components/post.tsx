@@ -63,10 +63,13 @@ export default function Post({
         <div className="flex w-full flex-row items-center gap-3">
           <Link href={`/${lang}/@${handle}`}>
             <Avatar>
-              <AvatarImage
-                src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${profile_url}`}
-                className={'object-cover object-center'}
-              />
+              {profile_url !== null && (
+                <AvatarImage
+                  src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${profile_url}`}
+                  className={'object-cover object-center'}
+                  loading={'lazy'}
+                />
+              )}
               <AvatarFallback>
                 {name ? name[0] : first_name ? first_name[0] : ''}
               </AvatarFallback>
@@ -103,11 +106,14 @@ export default function Post({
       {/* img */}
       <CardContent className="pb-1">
         <div className="max-h-[400px] max-w-[400px]">
-          <img
-            src={`${process.env.NEXT_PUBLIC_POST_IMAGES_URL}/${img_url}`}
-            alt={caption || 'post'}
-            className={'h-[350px] w-full object-cover object-center'}
-          />
+          {img_url && (
+            <img
+              src={`${process.env.NEXT_PUBLIC_POST_IMAGES_URL}/${img_url}`}
+              alt={caption || 'post'}
+              className={'h-[350px] w-full object-cover object-center'}
+              loading={'lazy'}
+            />
+          )}
         </div>
       </CardContent>
 
