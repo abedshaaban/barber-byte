@@ -59,6 +59,12 @@ return new class extends Migration
             [ 
              'name' => 'public',
              ],             
+            [ 
+             'name' => 'banned',
+             ],             
+            [ 
+             'name' => 'deleted',
+             ],             
          ]);
 
         Schema::create('users', function (Blueprint $table) {
