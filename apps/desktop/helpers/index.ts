@@ -13,7 +13,7 @@ export const NEXT_PUBLIC_AI_IMAGES_URL = 'http://localhost:8000/images/ai-haircu
  */
 export async function Login({ email, password }: LoginProps) {
   const res = await axios.post(
-    `${process.env.NEXT_PUBLIC_DB_URL_APIS}/auth/login`,
+    `${NEXT_PUBLIC_DB_URL_APIS}/auth/login`,
     {
       email: email,
       password: password
@@ -48,7 +48,7 @@ export async function Refresh(): Promise<{
     const token = Storage({ key: 'token' })
 
     res = await axios.post(
-      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/auth/refresh`,
+      `${NEXT_PUBLIC_DB_URL_APIS}/auth/refresh`,
       {},
       {
         headers: {
@@ -77,7 +77,7 @@ export async function Logout() {
 
   try {
     const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/auth/logout`,
+      `${NEXT_PUBLIC_DB_URL_APIS}/auth/logout`,
       {},
       {
         headers: {
