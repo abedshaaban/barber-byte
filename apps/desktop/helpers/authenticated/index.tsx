@@ -111,5 +111,13 @@ export default function Index({ children }: { children: React.ReactNode }) {
     )
   }
 
+  if (user.user.role === 'user') {
+    return (
+      <div className={'flex h-screen w-full flex-col items-center justify-center gap-9'}>
+        <h1 className={'text-3xl md:text-5xl'}>( • ᴖ • ｡) User not found on this app</h1>
+      </div>
+    )
+  }
+
   return children
 }

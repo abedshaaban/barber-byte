@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 export default function Home() {
   const user = useSelector((state: RootState) => state.user)
 
-  if (user.user && user.user.role === 'user') {
-    return <div>{user.user === null ? 'no user' : user.user.first_name}</div>
-  }
+  // if (user.user && user.user.role === 'user') {
+  return <div>{user.user === null ? 'no user' : user.user.handle}</div>
+  // }
 }
