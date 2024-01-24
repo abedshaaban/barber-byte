@@ -1,5 +1,6 @@
 import '@repo/ui/dist/index.css'
 
+import SiteHeader from '@desktop/components/site-header'
 import Authnticated from '@desktop/helpers/authenticated'
 import RefreshToken from '@desktop/helpers/refresh-token'
 import StoreProvider from '@desktop/provider/storeProvider'
@@ -22,9 +23,10 @@ export default function RootLayout({
 
           <div vaul-drawer-wrapper="">
             <div className="bg-background relative flex min-h-screen flex-col">
-              <main className="container flex-1">
-                <Authnticated>{children}</Authnticated>
-              </main>
+              <Authnticated>
+                <SiteHeader />
+                <main className="container flex-1">{children}</main>
+              </Authnticated>
             </div>
             <Toaster />
           </div>

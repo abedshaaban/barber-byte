@@ -65,7 +65,7 @@ export type UserType = {
   token: string
 } & (
   | {
-      role: 'user'
+      role: 'user'|'admin'
       first_name: string
       last_name: string
     }
