@@ -1,6 +1,7 @@
 import '@repo/ui/dist/index.css'
 
 import Authnticated from '@desktop/helpers/authenticated'
+import RefreshToken from '@desktop/helpers/refresh-token'
 import StoreProvider from '@desktop/provider/storeProvider'
 
 import { Toaster } from '@repo/ui/src/core/toaster'
@@ -17,6 +18,8 @@ export default function RootLayout({
         <head />
 
         <body className={cn('bg-background min-h-screen font-sans antialiased')}>
+          <RefreshToken />
+
           <div vaul-drawer-wrapper="">
             <div className="bg-background relative flex min-h-screen flex-col">
               <main className="container flex-1">
