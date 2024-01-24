@@ -30,7 +30,7 @@ class AuthController extends Controller
                     'message' => 'Invalid credentials',
                     'data' => '',
                     'error' => 'Unauthorized'
-                ], 401);
+                ]);
             }
 
             $user = auth()->user();
@@ -81,7 +81,7 @@ class AuthController extends Controller
                 'message' => 'Unauthorized',
                 'data' => '',
                 'error' => $exception->getMessage() 
-            ], 403);
+            ]);
         }
     }
 

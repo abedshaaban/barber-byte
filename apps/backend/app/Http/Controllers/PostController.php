@@ -33,7 +33,7 @@ class PostController extends Controller
 
             $post = Post::
                 create([
-                    'img_url' => $folder_path . '/' . $image_name,
+                    'img_url' => $this->user->uuid . '/' . $image_name,
                     'caption' => $request->caption,
                     'creator_id' => $this->user->uuid
                 ]);
