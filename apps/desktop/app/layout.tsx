@@ -1,5 +1,6 @@
 import '@repo/ui/dist/index.css'
 
+import Authnticated from '@desktop/helpers/authenticated'
 import StoreProvider from '@desktop/provider/storeProvider'
 
 import { Toaster } from '@repo/ui/src/core/toaster'
@@ -18,7 +19,9 @@ export default function RootLayout({
         <body className={cn('bg-background min-h-screen font-sans antialiased')}>
           <div vaul-drawer-wrapper="">
             <div className="bg-background relative flex min-h-screen flex-col">
-              <main className="container flex-1">{children}</main>
+              <main className="container flex-1">
+                <Authnticated>{children}</Authnticated>
+              </main>
             </div>
             <Toaster />
           </div>
