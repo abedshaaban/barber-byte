@@ -220,11 +220,13 @@ export default function Logic({
           <div className={cn('flex w-full flex-col items-center justify-center gap-6')}>
             <div className={cn('flex w-full flex-col items-center justify-center gap-6')}>
               <Avatar className={'aspect-square h-48 w-48'}>
-                <AvatarImage
-                  src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${user?.img_url}`}
-                  alt={'user profile picture'}
-                  className={'object-cover object-center'}
-                />
+                {user?.img_url && (
+                  <AvatarImage
+                    src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${user?.img_url}`}
+                    alt={'user profile picture'}
+                    className={'object-cover object-center'}
+                  />
+                )}
 
                 <AvatarFallback>{register.userForm.noImage}</AvatarFallback>
               </Avatar>
