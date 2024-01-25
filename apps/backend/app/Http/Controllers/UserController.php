@@ -316,4 +316,22 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function get_number_of_users(Request $request){
+        $users_data = User::selectRaw('DATE(created_at) as date, COUNT(*) as user_count')
+            ->groupBy('date')
+            ->get();
+        
+        $data = [
+            'date' => $users_data->pluck('date'),
+            'count' => $users_data->pluck('user_count'),
+        ];
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Got user data',
+            'data' => $data,
+            'error' => '',
+        ]);
+    }
 }

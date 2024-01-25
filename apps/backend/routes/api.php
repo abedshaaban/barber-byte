@@ -31,3 +31,7 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/shop/day-reservations', [UserController::class, 'get_reservatione_of_day']);
     Route::post('/user/create-reservations', [UserController::class, 'create_reservation']);
 });
+
+Route::middleware(['auth:api', 'is.admin'])->group(function(){
+    Route::post('/admin/get-number-of-users', [UserController::class, 'get_number_of_users']);
+});
