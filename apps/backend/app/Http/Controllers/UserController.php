@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AiImage;
+use App\Models\Gender;
 use App\Models\Reservation;
 use App\Models\User;
 use App\Models\Shop;
@@ -329,7 +330,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function get_number_of_users(Request $request){
+    public function get_number_of_users(){
         $users_data = User::selectRaw('DATE(created_at) as date, COUNT(*) as user_count')
             ->groupBy('date')
             ->get();
@@ -337,6 +338,24 @@ class UserController extends Controller
         $data = [
             'date' => $users_data->pluck('date'),
             'count' => $users_data->pluck('user_count'),
+        ];
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Got user data',
+            'data' => $data,
+            'error' => '',
+        ]);
+    }
+
+    public function get_user_gender(){
+        $gender_data = User::selectRaw('gender_id, COUNT(*) as gender_count')
+            ->groupBy('gender_id')
+            ->get();
+        
+        $data = [
+            'gender' => $gender_data->pluck('gender_id'),
+            'count' => $gender_data->pluck('gender_count'),
         ];
 
         return response()->json([

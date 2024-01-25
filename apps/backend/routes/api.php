@@ -36,6 +36,7 @@ Route::middleware('auth:api')->group(function(){
 Route::middleware(['auth:api', 'is.admin'])->group(function(){
     Route::post('/admin/get-number-of-users', [UserController::class, 'get_number_of_users']);
     Route::post('/admin/get-number-of-likes', [LikeController::class, 'get_number_of_likes']);
+    Route::post('/admin/get-user-gender', [UserController::class, 'get_user_gender']);
 });
 
 Route::middleware(['auth:api', 'is.shop'])->group(function(){
