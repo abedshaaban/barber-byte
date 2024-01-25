@@ -365,4 +365,15 @@ class UserController extends Controller
             'error' => '',
         ]);
     }
+
+    public function get_ai_images_for_admin(Request $request){
+        $posts = AiImage::with(['creator', 'reservation'])->get();
+
+        return response()->json([
+        'status' => true,
+        'message' => 'Got ai images data',
+        'data' => $posts,
+        'error' => '',
+        ]);
+    }
 }
