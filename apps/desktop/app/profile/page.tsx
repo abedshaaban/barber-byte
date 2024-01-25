@@ -61,7 +61,10 @@ export default function Page() {
 
           {profile?.handle ? (
             <>
-              <Link href={`/profile`} className={buttonVariants({ variant: 'outline' })}>
+              <Link
+                href={`/profile/edit`}
+                className={buttonVariants({ variant: 'outline' })}
+              >
                 Edit profile
               </Link>
             </>
