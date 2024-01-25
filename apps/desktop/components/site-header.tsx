@@ -61,7 +61,7 @@ export default function SiteHeader() {
               <DropdownMenuContent>
                 <DropdownMenuGroup>
                   <DropdownMenuItem className={'cursor-pointer'}>
-                    <Link href={`/`} className={'w-full'}>
+                    <Link href={`/${user?.role}`} className={'w-full'}>
                       Home
                     </Link>
                   </DropdownMenuItem>
@@ -83,11 +83,6 @@ export default function SiteHeader() {
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
-
-            <Link
-              href={`/@${user?.handle}`}
-              className={'flex h-full items-center'}
-            ></Link>
           </nav>
         </div>
       </div>
