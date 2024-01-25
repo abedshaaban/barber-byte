@@ -329,6 +329,17 @@ class UserController extends Controller
             'error' => '',
         ]);
     }
+    
+    public function get_admin_reservations(){
+        $reservations = Reservation::with(['user', 'ai_image'])->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Got user data',
+            'data' => $reservations,
+            'error' => '',
+        ]);
+    }
 
     public function get_number_of_users(){
         $users_data = User::selectRaw('DATE(created_at) as date, COUNT(*) as user_count')

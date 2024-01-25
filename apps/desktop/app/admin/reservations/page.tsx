@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { GetShopReservations, NEXT_PUBLIC_AI_IMAGES_URL } from '@desktop/helpers'
+import { getAdminReservations, NEXT_PUBLIC_AI_IMAGES_URL } from '@desktop/helpers'
 
 import { Button } from '@repo/ui/button'
 import {
@@ -30,8 +30,9 @@ export default function Reservation() {
 
   useEffect(() => {
     async function getReservations() {
-      const res = await GetShopReservations()
+      const res = await getAdminReservations()
 
+      console.log(res)
       setReservations(res.data)
     }
 
@@ -41,7 +42,7 @@ export default function Reservation() {
   return (
     <div className={'py-9'}>
       <Table>
-        <TableCaption>A list of your recent reservation.</TableCaption>
+        <TableCaption>A list of shop reservations.</TableCaption>
         <TableHeader>
           <TableRow>
             <TableHead className="w-[30px]">ID</TableHead>

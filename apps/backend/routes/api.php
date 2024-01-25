@@ -39,6 +39,8 @@ Route::middleware(['auth:api', 'is.admin'])->group(function(){
     Route::post('/admin/get-user-gender', [UserController::class, 'get_user_gender']);
     Route::post('/admin/get-all-posts-for-admin', [PostController::class, 'get_posts_for_admin']);
     Route::post('/admin/get-ai-images', [UserController::class, 'get_ai_images_for_admin']);
+    Route::post('/admin/get-all-reservations', [UserController::class, 'get_admin_reservations']);
+
 });
 
 Route::middleware(['auth:api', 'is.shop'])->group(function(){

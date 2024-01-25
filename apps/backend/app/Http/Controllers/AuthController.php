@@ -46,7 +46,7 @@ class AuthController extends Controller
                 'account_status' => $user->account_status->name,
             ];
 
-            if ($user->role->name === 'user') {
+            if ($user->role->name === 'user' || $user->role->name === 'admin') {
                 $shopData = [
                     'first_name' => $user->first_name,
                     'last_name' => $user->last_name,
@@ -261,7 +261,7 @@ class AuthController extends Controller
                 'account_status' => $user->account_status->name,
             ];
 
-            if ($user->role->name === 'user') {
+            if ($user->role->name === 'user' || $user->role->name === 'admin') {
                 $shopData = [
                     'first_name' => $user->first_name,
                     'last_name' => $user->last_name,
