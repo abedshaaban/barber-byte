@@ -225,7 +225,6 @@ export async function GetShopReservations(): Promise<{
 
 /**
  * Get shop reservations
- * @param image
  */
 export async function getAdminReservations(): Promise<{
   status: boolean
@@ -240,6 +239,69 @@ export async function getAdminReservations(): Promise<{
 
     res = await axios.post(
       `${NEXT_PUBLIC_DB_URL_APIS}/admin/get-all-reservations`,
+      {},
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
+
+/**
+ * Get shop posts
+ */
+export async function GetShopPosts(): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${NEXT_PUBLIC_DB_URL_APIS}/shop/get-all-posts`,
+      {},
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
+/**
+ * Get user posts
+ */
+export async function GetAdminPosts(): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${NEXT_PUBLIC_DB_URL_APIS}/admin/get-all-posts-for-admin`,
       {},
       {
         headers: {

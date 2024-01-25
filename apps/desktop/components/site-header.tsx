@@ -17,7 +17,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from '@repo/ui/dropdown-menu'
-import { Cross } from '@repo/ui/icons'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -37,37 +36,31 @@ export default function SiteHeader() {
     dispatch(logoutUser())
     await Logout()
   }
+
   function NavigationMenuDemo() {
     return (
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger>Posts</NavigationMenuTrigger>
+            <NavigationMenuTrigger>User attributes</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-3">
-                  <NavigationMenuLink asChild>
-                    <a
-                      className="from-muted/50 to-muted flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b p-6 no-underline outline-none focus:shadow-md"
-                      href="/"
+                <ListItem href={`/${user?.role}/posts`} title="Posts">
+                  Check your post stats, likes, and more.
+                </ListItem>
+                {user.role === 'admin' ? (
+                  <>
+                    <ListItem
+                      href={`/${user?.role}/demographic`}
+                      title="Demographic details"
                     >
-                      <div className="mb-2 mt-4 text-lg font-medium">shadcn/ui</div>
-                      <p className="text-muted-foreground text-sm leading-tight">
-                        Beautifully designed components built with Radix UI and Tailwind
-                        CSS.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-                <ListItem href="/docs" title="Introduction">
-                  Re-usable components built using Radix UI and Tailwind CSS.
-                </ListItem>
-                <ListItem href="/docs/installation" title="Installation">
-                  How to install dependencies and structure your app.
-                </ListItem>
-                <ListItem href="/docs/primitives/typography" title="Typography">
-                  Styles for headings, paragraphs, lists...etc
-                </ListItem>
+                      See your users genders, locations, and ages.
+                    </ListItem>
+                    <ListItem href={`/${user?.role}/users`} title="Users">
+                      Check users signup, active users, banned, and more.
+                    </ListItem>
+                  </>
+                ) : null}
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
