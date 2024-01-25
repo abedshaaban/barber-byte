@@ -106,6 +106,17 @@ class PostController extends Controller
         }
     }
 
+    public function get_user_posts(Request $request){
+        $posts = Post::select()
+                ->where('creator_id', '=', $this->user->uuid)->get();
+
+        return response()->json([
+        'status' => true,
+        'message' => 'Got posts data',
+        'data' => $posts,
+        'error' => '',
+        ]);
+    }
     public function get_shop_posts(Request $request){
         $posts = Post::select()
                 ->where('creator_id', '=', $this->user->uuid)->get();
