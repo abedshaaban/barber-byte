@@ -946,6 +946,10 @@ body {
   margin-top: auto;
 }
 
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
 .line-clamp-2 {
   overflow: hidden;
   display: -webkit-box;
@@ -1178,6 +1182,10 @@ body {
   height: 100vh;
 }
 
+.h-\[270px\] {
+  height: 270px;
+}
+
 .max-h-96 {
   max-height: 24rem;
 }
@@ -1406,6 +1414,14 @@ body {
 
 .w-px {
   width: 1px;
+}
+
+.w-\[30px\] {
+  width: 30px;
+}
+
+.w-\[270px\] {
+  width: 270px;
 }
 
 .min-w-0 {
@@ -2449,6 +2465,14 @@ body {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
 }
 
 .text-left {
@@ -3954,6 +3978,14 @@ body {
     height: 180px;
   }
 
+  .md\:h-\[3000px\] {
+    height: 3000px;
+  }
+
+  .md\:h-\[300px\] {
+    height: 300px;
+  }
+
   .md\:w-1\/2 {
     width: 50%;
   }
@@ -3976,6 +4008,14 @@ body {
 
   .md\:w-\[500px\] {
     width: 500px;
+  }
+
+  .md\:w-\[3000px\] {
+    width: 3000px;
+  }
+
+  .md\:w-\[300px\] {
+    width: 300px;
   }
 
   .md\:max-w-\[420px\] {
