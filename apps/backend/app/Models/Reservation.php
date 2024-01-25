@@ -20,7 +20,7 @@ class Reservation extends Model
     ];
 
     public function ai_image(){
-        return $this->belongsTo(AiImage::class, 'id', 'img_id');
+        return $this->belongsTo(AiImage::class, 'img_id', 'id');
     }
 
     public function shop(){
@@ -28,6 +28,6 @@ class Reservation extends Model
     }
 
     public function user(){
-        return $this->belongsTo(User::class, 'uuid', 'client_id');
+        return $this->belongsTo(User::class, 'client_id', 'uuid');
     }
 }

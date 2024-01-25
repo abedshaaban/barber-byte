@@ -317,6 +317,18 @@ class UserController extends Controller
         }
     }
 
+    public function get_shop_reservations(){
+        $reservations = Reservation::with(['user', 'ai_image'])
+                    ->where('shop_id', '=', $this->user->uuid)->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Got user data',
+            'data' => $reservations,
+            'error' => '',
+        ]);
+    }
+
     public function get_number_of_users(Request $request){
         $users_data = User::selectRaw('DATE(created_at) as date, COUNT(*) as user_count')
             ->groupBy('date')

@@ -35,3 +35,7 @@ Route::middleware('auth:api')->group(function(){
 Route::middleware(['auth:api', 'is.admin'])->group(function(){
     Route::post('/admin/get-number-of-users', [UserController::class, 'get_number_of_users']);
 });
+
+Route::middleware(['auth:api', 'is.shop'])->group(function(){
+    Route::post('/shop/get-all-reservations', [UserController::class, 'get_shop_reservations']);
+});
