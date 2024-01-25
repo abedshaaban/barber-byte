@@ -65,4 +65,22 @@ class LikeController extends Controller
             'error' => 'post id does not exist.' 
         ]);
     }
+
+    public function get_number_of_likes(){
+        $likes_data = Like::selectRaw('DATE(created_at) as date, COUNT(*) as like_count')
+        ->groupBy('date')
+        ->get();
+    
+        $data = [
+            'date' => $likes_data->pluck('date'),
+            'count' => $likes_data->pluck('like_count'),
+        ];
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Got likes data',
+            'data' => $data,
+            'error' => '',
+        ]);
+    }
 }
