@@ -128,4 +128,15 @@ class PostController extends Controller
         'error' => '',
         ]);
     }
+
+    public function get_posts_for_admin(Request $request){
+        $posts = Post::with(['creator'])->get();
+
+        return response()->json([
+        'status' => true,
+        'message' => 'Got posts data',
+        'data' => $posts,
+        'error' => '',
+        ]);
+    }
 }
