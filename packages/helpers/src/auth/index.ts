@@ -141,3 +141,24 @@ export async function Logout() {
     return res?.data
   } catch (error) {}
 }
+
+/**
+ * Check if the email is already in use
+ * @param email
+ */
+export async function CheckEmail({ email }: { email: string }) {
+  try {
+    const res = await axios.post(
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/auth/check-email`,
+      { email: email },
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+
+    return res?.data
+  } catch (error) {}
+}
