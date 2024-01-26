@@ -146,8 +146,8 @@ export default function Logic({
       router.push(`/${params.lang}/auth/login`)
     } else {
       setErrorMessage(data?.message)
-      setLoading(false)
     }
+    setLoading(false)
   }
 
   return (
