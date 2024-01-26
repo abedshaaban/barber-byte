@@ -63,12 +63,12 @@ export default function Logic({
     street: '',
     work_days: [
       { order: 1, name: 'Monday', start_date: '', end_date: '', is_open: false },
-      { order: 2, name: 'Tuesday', start_date: '', end_date: '', is_open: true },
-      { order: 3, name: 'Wednesday', start_date: '', end_date: '', is_open: true },
-      { order: 4, name: 'Thursday', start_date: '', end_date: '', is_open: true },
-      { order: 5, name: 'Friday', start_date: '', end_date: '', is_open: true },
-      { order: 6, name: 'Saturday', start_date: '', end_date: '', is_open: true },
-      { order: 7, name: 'Sunday', start_date: '', end_date: '', is_open: true }
+      { order: 2, name: 'Tuesday', start_date: '', end_date: '', is_open: false },
+      { order: 3, name: 'Wednesday', start_date: '', end_date: '', is_open: false },
+      { order: 4, name: 'Thursday', start_date: '', end_date: '', is_open: false },
+      { order: 5, name: 'Friday', start_date: '', end_date: '', is_open: false },
+      { order: 6, name: 'Saturday', start_date: '', end_date: '', is_open: false },
+      { order: 7, name: 'Sunday', start_date: '', end_date: '', is_open: false }
     ]
   })
 
