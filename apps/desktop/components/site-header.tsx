@@ -2,6 +2,7 @@
 
 import * as React from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Logout, NEXT_PUBLIC_PROFILE_IMAGES_URL } from '@desktop/helpers'
 import { RootState } from '@desktop/provider/store'
 import { logoutUser } from '@desktop/provider/userSlice'
@@ -31,10 +32,13 @@ import { cn } from '@repo/ui/util'
 export default function SiteHeader() {
   const { user } = useSelector((state: RootState) => state.user)
   const dispatch = useDispatch()
+  const router = useRouter()
 
   async function handleLogout() {
     dispatch(logoutUser())
     await Logout()
+
+    router.push(`/`)
   }
 
   function NavigationMenuDemo() {

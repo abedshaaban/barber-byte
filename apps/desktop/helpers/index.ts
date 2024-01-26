@@ -317,3 +317,35 @@ export async function GetAdminPosts(): Promise<{
 
   return res?.data
 }
+
+/**
+ * Get number of users
+ */
+export async function GetNumberOfUsers(): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${NEXT_PUBLIC_DB_URL_APIS}/admin/get-number-of-users`,
+      {},
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
