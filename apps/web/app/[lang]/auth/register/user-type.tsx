@@ -15,8 +15,8 @@ type UserTypeProps = UserData & {
 
 export default function Index({ updateFields, register }: UserTypeProps) {
   const userTypes: { name: string; icon: ReactElement; label: string }[] = [
-    { label: register.user, name: 'User', icon: <Person className={'h-32 w-32'} /> },
-    { label: register.barberShop, name: 'Barber', icon: <Home className={'h-32 w-32'} /> }
+    { label: register.user, name: 'User', icon: <Person className={'h-20 w-20'} /> },
+    { label: register.barberShop, name: 'Barber', icon: <Home className={'h-20 w-20'} /> }
   ]
 
   function handleClick(name: string) {
@@ -32,7 +32,7 @@ export default function Index({ updateFields, register }: UserTypeProps) {
             key={index}
             variant={'outline'}
             className={cn(
-              'relative h-fit w-fit hover:text-amber-900 ',
+              'min-h-40 min-w-36 hover:text-amber-900',
               'flex flex-col gap-1 rounded-xl'
             )}
             onClick={() => {
