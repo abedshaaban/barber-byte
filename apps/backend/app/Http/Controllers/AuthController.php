@@ -16,7 +16,7 @@ class AuthController extends Controller
 {
 
     public function __construct(){
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'check_email']]);
     }
 
     public function login(Request $request){
@@ -79,6 +79,38 @@ class AuthController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Unauthorized',
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ]);
+        }
+    }
+    
+    public function check_email(Request $request){
+        try{
+            $email = $request->only('email');   
+
+            $email_used = User::where('email', '=', $email)->first();
+    
+            if($email_used === null){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'No user found',
+                    'data' => '',
+                    'error' => ''
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'User already exists',
+                    'data' => '',
+                    'error' => ''
+                ]);
+            }
+
+        }catch(\Exception $exception){
+            return response()->json([
+                'status' => false,
+                'message' => 'Error occurred while checking email',
                 'data' => '',
                 'error' => $exception->getMessage() 
             ]);
