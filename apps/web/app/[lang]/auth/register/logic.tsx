@@ -3,7 +3,7 @@
 import React, { FormEvent, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { Register } from '@repo/helpers/auth'
+import { CheckEmail, Register } from '@repo/helpers/auth'
 import type { WorkDayType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 import { checkEmailFormat } from '@web/helpers'
@@ -115,6 +115,18 @@ export default function Logic({
     if (currentStepIndex === 2) {
       if (checkEmailFormat(credentials?.email)) {
         setErrorMessage(null)
+        setLoading(true)
+
+        const res = await CheckEmail({ email: credentials?.email })
+
+        if (res.status === true) {
+        } else {
+          setErrorMessage(res.message)
+          setLoading(false)
+          return
+        }
+
+        setLoading(false)
       } else {
         setErrorMessage('incorrect email format')
         return
