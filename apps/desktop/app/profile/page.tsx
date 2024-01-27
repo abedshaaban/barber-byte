@@ -7,15 +7,17 @@ import { useSelector } from 'react-redux'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { buttonVariants } from '@repo/ui/button'
+import Map from '@repo/ui/map'
 
 export default function Page() {
   const { user: profile } = useSelector((state: RootState) => state.user)
+  function emptyFunc(_: any) {}
 
   return (
     <section className={'flex flex-col gap-9 py-9'}>
       <div
         className={
-          'flex flex-col items-center justify-start gap-9 border-b-2 pb-9 sm:flex-row'
+          'flex flex-wrap items-center justify-evenly gap-9 border-b-2 pb-9 lg:flex-row'
         }
       >
         <Avatar className={'aspect-square h-48 w-48'}>
@@ -70,6 +72,12 @@ export default function Page() {
             </>
           ) : null}
         </div>
+
+        {profile && profile.role === 'shop' && (
+          <div className={'w-full max-w-sm'}>
+            <Map updateState={emptyFunc} location={profile.location} defaultZoom={18} />
+          </div>
+        )}
       </div>
     </section>
   )
