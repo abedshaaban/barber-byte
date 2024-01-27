@@ -4,6 +4,7 @@ import {
   Cross2Icon as Cross,
   HomeIcon as Home,
   DotsHorizontalIcon as HorizontalDots,
+  ImageIcon as Image,
   InfoCircledIcon as InfoCircle,
   LetterCaseLowercaseIcon as LowerCaseLetter,
   MagnifyingGlassIcon as Magnifier,
@@ -135,5 +136,6 @@ export {
   ShareBubble,
   Check,
   Cross,
-  Magnifier
+  Magnifier,
+  Image
 }
