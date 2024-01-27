@@ -42,13 +42,6 @@ export default function Index({
 }: UserLocationProps) {
   const formData: formDataProps[] = [
     {
-      name: 'country',
-      label: register.barberLocation.country,
-      type: 'text',
-      placeholder: register.barberLocation.country,
-      value: country
-    },
-    {
       name: 'city',
       label: register.barberLocation.city,
       type: 'text',
