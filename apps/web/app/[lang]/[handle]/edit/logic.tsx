@@ -4,6 +4,7 @@ import { ChangeEvent, FormEvent, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { updateProfile, updateProfileImage } from '@repo/helpers/account'
+import { Countries } from '@repo/helpers/data'
 import type { AccountStatusType } from '@repo/helpers/types'
 import { RootState } from '@web/provider/store'
 import { setUser } from '@web/provider/userSlice'
@@ -11,9 +12,17 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button } from '@repo/ui/button'
+import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
 import { AtMark } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@repo/ui/select'
 import { Switch } from '@repo/ui/switch'
 import { useToast } from '@repo/ui/use-toast'
 import { cn } from '@repo/ui/util'
@@ -217,130 +226,176 @@ export default function Logic({
         <>Saving ...</>
       ) : (
         <>
-          <div className={cn('flex w-full flex-col items-center justify-center gap-6')}>
-            <div className={cn('flex w-full flex-col items-center justify-center gap-6')}>
-              <Avatar className={'aspect-square h-48 w-48'}>
-                {user?.img_url && (
-                  <AvatarImage
-                    src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${user?.img_url}`}
-                    alt={'user profile picture'}
-                    className={'object-cover object-center'}
-                  />
-                )}
-
-                <AvatarFallback>{register.userForm.noImage}</AvatarFallback>
-              </Avatar>
-
-              <Input
-                type="file"
-                className={cn(
-                  'w-full max-w-56 cursor-pointer bg-white dark:bg-neutral-800'
-                )}
-                accept=".jpg, .jpeg, .png, .webp"
-                onChange={handleProfileImageUpload}
-              />
-            </div>
-            <div className={'w-full text-center text-red-600'}>{errorMessage}</div>
-
-            <div className="grid w-full max-w-[400px] items-center gap-1.5">
-              <Label htmlFor={'handle'}>{register.handle}</Label>
-              <div className="flex w-full">
-                <Button
-                  variant={'outline'}
-                  size={'icon'}
-                  className={cn('rounded-r-none border-r-0')}
-                  type={'button'}
-                >
-                  <AtMark className={'dark:fill-white'} />
-                </Button>
-
-                <Input
-                  type={'text'}
-                  id={'handle'}
-                  min={1}
-                  minLength={1}
-                  placeholder={'example'}
-                  required
-                  value={credentials.handle}
-                  onChange={(e) => {
-                    const inputValue = e.target.value
-
-                    if (inputValue.length > 1 && !/^[a-zA-Z0-9-]+$/.test(inputValue)) {
-                      return
-                    }
-
-                    updateFields({ handle: inputValue })
-                  }}
-                  className={cn(
-                    'rounded-l-none border-l-0 outline-none focus-visible:ring-0',
-                    'bg-white dark:bg-neutral-800'
-                  )}
-                />
-              </div>
-            </div>
-            <div className="grid w-full max-w-[400px] items-center gap-1.5">
-              <Label htmlFor={'description'}>{register.userForm.description}</Label>
-
-              <Input
-                type={'text'}
-                id={'description'}
-                max={240}
-                maxLength={240}
-                required
-                value={
-                  credentials.description === null ||
-                  credentials.description === undefined
-                    ? ''
-                    : credentials.description
-                }
-                onChange={(e) => {
-                  updateFields({ description: e.target.value })
-                }}
-                className={cn('bg-white dark:bg-neutral-800')}
-              />
-            </div>
-            <div className="flex w-full max-w-[400px] justify-start">
-              <div className="flex items-center space-x-2">
-                <Switch
-                  id="account-status"
-                  checked={credentials?.account_status === 'public' ? true : false}
-                  onCheckedChange={(val) => {
-                    updateFields({ account_status: val ? 'public' : 'private' })
-                  }}
-                />
-                <Label htmlFor="account-status">{register.userForm.publicAccount}</Label>
-              </div>
-            </div>
-
-            {normalUserData?.map((item, index) => {
-              return (
+          <Card className={'w-full max-w-[400px] bg-neutral-50 p-3 dark:bg-neutral-900'}>
+            <CardContent className={'flex flex-col gap-6'}>
+              <div
+                className={cn('flex w-full flex-col items-center justify-center gap-6')}
+              >
                 <div
-                  className="grid w-full max-w-[400px] items-center gap-1.5"
-                  key={index}
+                  className={cn(
+                    'flex w-full flex-col items-center justify-center gap-6 pt-6'
+                  )}
                 >
-                  <Label htmlFor={item?.name}>{item?.label}</Label>
+                  <Avatar className={'aspect-square h-48 w-48'}>
+                    {user?.img_url && (
+                      <AvatarImage
+                        src={`${process.env.NEXT_PUBLIC_PROFILE_IMAGES_URL}/${user?.img_url}`}
+                        alt={'user profile picture'}
+                        className={'object-cover object-center'}
+                      />
+                    )}
+
+                    <AvatarFallback>{register.userForm.noImage}</AvatarFallback>
+                  </Avatar>
+
                   <Input
-                    type={item?.type}
-                    id={item?.name}
-                    placeholder={item?.placeholder}
-                    required
-                    value={item?.value}
-                    onChange={(e) => {
-                      updateFields({ [item?.name]: e.target.value })
-                    }}
-                    className={'bg-white dark:bg-neutral-800'}
+                    type="file"
+                    className={cn(
+                      'w-full max-w-56 cursor-pointer bg-white dark:bg-neutral-800'
+                    )}
+                    accept=".jpg, .jpeg, .png, .webp"
+                    onChange={handleProfileImageUpload}
                   />
                 </div>
-              )
-            })}
-          </div>
-          <div className={'flex w-full flex-row items-center justify-between'}>
-            <Link href={`/${lang}`}>
-              <Button variant={'secondary'}>{register.cancel}</Button>
-            </Link>
+                <div className={'w-full text-center text-red-600'}>{errorMessage}</div>
 
-            <Button type={'submit'}>{register.save}</Button>
-          </div>
+                <div className="grid w-full max-w-[400px] items-center gap-1.5">
+                  <Label htmlFor={'handle'}>{register.handle}</Label>
+                  <div className="flex w-full">
+                    <Button
+                      variant={'outline'}
+                      size={'icon'}
+                      className={cn('rounded-r-none border-r-0')}
+                      type={'button'}
+                    >
+                      <AtMark className={'dark:fill-white'} />
+                    </Button>
+
+                    <Input
+                      type={'text'}
+                      id={'handle'}
+                      min={1}
+                      minLength={1}
+                      placeholder={'example'}
+                      required
+                      value={credentials.handle}
+                      onChange={(e) => {
+                        const inputValue = e.target.value
+
+                        if (
+                          inputValue.length > 1 &&
+                          !/^[a-zA-Z0-9-]+$/.test(inputValue)
+                        ) {
+                          return
+                        }
+
+                        updateFields({ handle: inputValue })
+                      }}
+                      className={cn(
+                        'rounded-l-none border-l-0 outline-none focus-visible:ring-0',
+                        'bg-white dark:bg-neutral-800'
+                      )}
+                    />
+                  </div>
+                </div>
+                <div className="grid w-full max-w-[400px] items-center gap-1.5">
+                  <Label htmlFor={'description'}>{register.userForm.description}</Label>
+
+                  <Input
+                    type={'text'}
+                    id={'description'}
+                    max={240}
+                    maxLength={240}
+                    required
+                    value={
+                      credentials.description === null ||
+                      credentials.description === undefined
+                        ? ''
+                        : credentials.description
+                    }
+                    onChange={(e) => {
+                      updateFields({ description: e.target.value })
+                    }}
+                    className={cn('bg-white dark:bg-neutral-800')}
+                  />
+                </div>
+                <div className="flex w-full max-w-[400px] justify-start">
+                  <div className="flex items-center space-x-2">
+                    <Switch
+                      id="account-status"
+                      checked={credentials?.account_status === 'public' ? true : false}
+                      onCheckedChange={(val) => {
+                        updateFields({ account_status: val ? 'public' : 'private' })
+                      }}
+                    />
+                    <Label htmlFor="account-status">
+                      {register.userForm.publicAccount}
+                    </Label>
+                  </div>
+                </div>
+
+                {normalUserData?.map((item, index) => {
+                  if (item.name === 'country') {
+                    return (
+                      <div className="grid w-full items-center gap-1.5">
+                        <Label htmlFor={'country'}>{item.label}</Label>
+                        <Select
+                          onValueChange={(val) => {
+                            updateFields({ country: val })
+                          }}
+                          value={item.value as string}
+                        >
+                          <SelectTrigger
+                            className={'w-full bg-white dark:bg-neutral-800'}
+                          >
+                            <SelectValue placeholder={item.placeholder} />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Countries.map((n) => {
+                              return (
+                                <SelectItem value={n.name} key={n.id}>
+                                  {n.name}
+                                </SelectItem>
+                              )
+                            })}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )
+                  }
+                  return (
+                    <div
+                      className="grid w-full max-w-[400px] items-center gap-1.5"
+                      key={index}
+                    >
+                      <Label htmlFor={item?.name}>{item?.label}</Label>
+                      <Input
+                        type={item?.type}
+                        id={item?.name}
+                        placeholder={item?.placeholder}
+                        required
+                        value={item?.value}
+                        onChange={(e) => {
+                          updateFields({ [item?.name]: e.target.value })
+                        }}
+                        className={'bg-white dark:bg-neutral-800'}
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+            </CardContent>
+
+            <CardFooter
+              className={cn('flex w-full flex-row items-center justify-between')}
+            >
+              <Link href={`/${lang}/feed`}>
+                <Button variant={'secondary'}>{register.cancel}</Button>
+              </Link>
+
+              <Button type={'submit'}>{register.save}</Button>
+            </CardFooter>
+          </Card>
         </>
       )}
     </form>
