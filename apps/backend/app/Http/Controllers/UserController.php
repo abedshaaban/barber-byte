@@ -88,7 +88,7 @@ class UserController extends Controller
                 'country' => $request->country ?? $address['country'],
                 'city' => $request->city ?? $address['city'],
                 'street' => $request->street ?? $address['street'],
-                'location' => json_encode($request->location) ?? json_encode($address['location']),
+                'location' => $request->location ?? $address['location'],
             ]);
 
             $res = [
@@ -106,7 +106,7 @@ class UserController extends Controller
                     'country' => $this->user->shop->address->country,
                     'city' => $this->user->shop->address->city,
                     'street' => $this->user->shop->address->street,
-                    'location' => json_decode($this->user->shop->address->location),
+                    'location' => $this->user->shop->address->location,
                     'work_days' => $this->user->shop->work_days
                 ],
                 'error' => '' ,
