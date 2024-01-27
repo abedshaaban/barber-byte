@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { getUserPostsByHandle } from '@repo/helpers/account'
+import { getUserPostsByHandle, getUserReservations } from '@repo/helpers/account'
 import { Logout } from '@repo/helpers/auth'
-import type { PostType, UserType } from '@repo/helpers/types'
+import type { UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 import Post from '@web/components/post'
 import type { RootState } from '@web/provider/store'
@@ -22,7 +22,17 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@repo/ui/dialog'
+import { HorizontalDots } from '@repo/ui/icons'
 import Map from '@repo/ui/map'
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@repo/ui/table'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/tabs'
 
 export default function Logic({
@@ -41,6 +51,9 @@ export default function Logic({
   const [profile, setProfile] = useState<UserType | null>(initial_profile)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [posts, setPosts] = useState<any[] | []>([])
+  const [reservations, setReservations] = useState<any[] | []>([])
+  const [isTableDialogOpen, setIsTableDialogOpen] = useState(false)
+
   function emptyFunc(_: any) {}
 
   useEffect(() => {
@@ -56,6 +69,14 @@ export default function Logic({
       if (res.status === true) {
         setPosts(res.data)
       }
+
+      if (user) {
+        const resReservations = await getUserReservations()
+
+        if (resReservations?.status === true) {
+          setReservations(resReservations.data)
+        }
+      }
     }
 
     getPosts()
@@ -70,7 +91,7 @@ export default function Logic({
 
   const DisplayPosts: React.FC = () => {
     return (
-      <div className={'flex w-full flex-wrap items-center justify-evenly gap-1'}>
+      <div className={'flex w-full flex-wrap items-start justify-evenly gap-1'}>
         {posts?.map((item, index) => {
           return (
             <Post
@@ -91,6 +112,93 @@ export default function Logic({
             />
           )
         })}
+      </div>
+    )
+  }
+
+  const DisplayReservations: React.FC = () => {
+    return (
+      <div className={''}>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[30px]">ID</TableHead>
+              <TableHead>Client Name</TableHead>
+              <TableHead>Description</TableHead>
+              <TableHead>Date</TableHead>
+              <TableHead>Time</TableHead>
+              <TableHead>Gender</TableHead>
+              <TableHead className="text-right">Ai Image</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {reservations?.map((item, index) => {
+              return (
+                <TableRow key={index}>
+                  <TableCell className="font-medium">{item?.id}</TableCell>
+                  <TableCell>{item.name}</TableCell>
+                  <TableCell>{item.description}</TableCell>
+                  <TableCell>{item.date}</TableCell>
+                  <TableCell>{item.time}</TableCell>
+                  <TableCell>
+                    {item.user.gender_id === 1
+                      ? 'male'
+                      : item.uesr.gender_id === 2
+                        ? 'female'
+                        : 'null'}
+                  </TableCell>
+                  <TableCell className={'flex w-full justify-end'}>
+                    <Dialog open={isTableDialogOpen}>
+                      <DialogTrigger
+                        asChild
+                        onClick={() => {
+                          setIsTableDialogOpen(!isTableDialogOpen)
+                        }}
+                        className={'flex w-full justify-end'}
+                      >
+                        <HorizontalDots className={'h-6 w-6 cursor-pointer'} />
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-md">
+                        <DialogHeader>
+                          <DialogTitle>AI Generated Image</DialogTitle>
+                          <DialogDescription>
+                            <div
+                              key={index}
+                              className={
+                                'flex h-full w-full cursor-pointer items-center justify-center rounded-lg pt-6'
+                              }
+                            >
+                              <img
+                                src={`${process.env.NEXT_PUBLIC_AI_IMAGES_URL}/${item?.ai_image.img_url}`}
+                                alt={`haircut ${index + 1}`}
+                                className={
+                                  'h-full w-full rounded-lg object-cover object-center'
+                                }
+                              />
+                            </div>
+                            <div></div>
+                          </DialogDescription>
+                        </DialogHeader>
+
+                        <DialogFooter className={'flex w-full flex-row justify-between'}>
+                          <Button
+                            type="button"
+                            variant={'secondary'}
+                            onClick={() => {
+                              setIsTableDialogOpen(false)
+                            }}
+                          >
+                            Close
+                          </Button>
+                        </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
+                  </TableCell>
+                </TableRow>
+              )
+            })}
+          </TableBody>
+        </Table>
       </div>
     )
   }
@@ -230,7 +338,7 @@ export default function Logic({
                 Posts
               </TabsTrigger>
 
-              {profile.role === 'user' ? (
+              {user && user.role === 'user' ? (
                 <TabsTrigger value="reservations" className={'w-full'}>
                   Reservations
                 </TabsTrigger>
@@ -242,7 +350,9 @@ export default function Logic({
             </TabsContent>
 
             {profile.role === 'user' ? (
-              <TabsContent value="reservations">2</TabsContent>
+              <TabsContent value="reservations">
+                <DisplayReservations />
+              </TabsContent>
             ) : null}
           </Tabs>
         </section>

@@ -519,9 +519,7 @@ export async function getUserReservations(): Promise<{
         }
       }
     )
-  } catch (error) {
-    console.error(error)
-  }
+  } catch (error) {}
 
   return res?.data
 }
