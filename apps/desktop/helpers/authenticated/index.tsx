@@ -41,6 +41,11 @@ export default function Index({ children }: { children: React.ReactNode }) {
         const res = await Login({ ...credentials })
 
         if (res?.status) {
+          if (res?.data?.role === 'user') {
+            setErrorMessage('( • ᴖ • ｡) User not found on this app')
+            setLoading(false)
+            return
+          }
           dispatch(setUser(await res?.data))
           toast({
             title: res?.message

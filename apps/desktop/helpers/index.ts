@@ -26,8 +26,10 @@ export async function Login({ email, password }: LoginProps) {
     }
   )
 
-  if (res?.data?.data) {
-    Storage({ key: 'token', value: res?.data?.data?.token })
+  if (res?.data?.status === true && res?.data?.data?.role !== 'user') {
+    if (res?.data?.data) {
+      Storage({ key: 'token', value: res?.data?.data?.token })
+    }
   }
 
   return res?.data
