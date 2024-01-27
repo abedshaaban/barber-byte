@@ -139,15 +139,15 @@ export default function Logic({
 
     const data = await Register({ ...credentials } as any)
 
-    if (data?.status) {
+    if (data?.status === true) {
       toast({
         title: data?.message
       })
       router.push(`/${params.lang}/auth/login`)
     } else {
       setErrorMessage(data?.message)
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   return (

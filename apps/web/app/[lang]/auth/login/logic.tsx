@@ -70,10 +70,11 @@ export default function Logic({
     e.preventDefault()
 
     setLoading(true)
+    setErrorMessage('')
 
     const data = await Login({ ...credentials })
 
-    if (data?.status) {
+    if (data?.status === true) {
       dispatch(setUser(await data?.data))
       toast({
         title: data?.message
@@ -81,8 +82,12 @@ export default function Logic({
       router.push(`/${params.lang}/feed`)
     } else {
       setErrorMessage(data?.message)
+      updateFields({
+        email: '',
+        password: ''
+      })
+      setLoading(false)
     }
-    setLoading(false)
   }
 
   return (
