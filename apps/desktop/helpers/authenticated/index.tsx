@@ -37,16 +37,24 @@ export default function Index({ children }: { children: React.ReactNode }) {
 
       setLoading(true)
 
-      const res = await Login({ ...credentials })
+      try {
+        const res = await Login({ ...credentials })
 
-      console.log(res)
-      if (res?.status) {
-        dispatch(setUser(await res?.data))
-        toast({
-          title: res?.message
+        if (res?.status) {
+          dispatch(setUser(await res?.data))
+          toast({
+            title: res?.message
+          })
+        } else {
+          setErrorMessage(res?.message)
+          setLoading(false)
+        }
+      } catch (error) {
+        setErrorMessage('Network error')
+        setCredentials({
+          email: '',
+          password: ''
         })
-      } else {
-        setErrorMessage(res?.message)
         setLoading(false)
       }
     }
