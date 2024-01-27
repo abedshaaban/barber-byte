@@ -231,6 +231,35 @@ export async function getPosts({ page }: { page: number }): Promise<{
 }
 
 /**
+ * Get user posts
+ */
+export async function getUserPosts(): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    res = await axios.get(
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/user/get-user-posts`,
+
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
+
+/**
  * Like or unlike a post
  * @param post id
  * @param user id
