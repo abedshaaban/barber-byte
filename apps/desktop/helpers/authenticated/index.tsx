@@ -45,15 +45,27 @@ export default function Index({ children }: { children: React.ReactNode }) {
           if (res?.data?.role === 'user') {
             setErrorMessage('( • ᴖ • ｡) User not found on this app')
             setLoading(false)
+            setCredentials({
+              email: '',
+              password: ''
+            })
             return
           }
           dispatch(setUser(await res?.data))
           toast({
             title: res?.message
           })
+          setCredentials({
+            email: '',
+            password: ''
+          })
           setLoading(false)
         } else {
           setErrorMessage(res?.message)
+          setCredentials({
+            email: '',
+            password: ''
+          })
           setLoading(false)
         }
       } catch (error) {
