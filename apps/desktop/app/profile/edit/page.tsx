@@ -20,6 +20,7 @@ import { Card, CardContent, CardFooter } from '@repo/ui/card'
 import { AtMark } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
+import Map from '@repo/ui/map'
 import {
   Select,
   SelectContent,
@@ -357,6 +358,16 @@ export default function Logic() {
                     </div>
                   )
                 })}
+
+                {user && user.role === 'shop' && (
+                  <div className={'grid w-full items-center gap-1.5'}>
+                    <Map
+                      updateState={updateFields}
+                      location={credentials.location}
+                      defaultZoom={18}
+                    />
+                  </div>
+                )}
               </div>
             </CardContent>
 
