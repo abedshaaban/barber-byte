@@ -31,8 +31,9 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/user/get-user-posts', [PostController::class, 'get_user_posts']);
     Route::post('/post/like/{post_id}', [LikeController::class, 'toggle_like']);
     Route::post('/user/generate-image', [UserController::class, 'generate_image']);
-    Route::post('/shop/day-reservations', [UserController::class, 'get_reservatione_of_day']);
+    Route::post('/shop/day-reservations', [UserController::class, 'get_reservation_of_day']);
     Route::post('/user/create-reservations', [UserController::class, 'create_reservation']);
+    Route::post('/user/get-reservations', [UserController::class, 'get_user_reservations']);
 });
 
 Route::middleware(['auth:api', 'is.admin'])->group(function(){

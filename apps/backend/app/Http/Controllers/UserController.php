@@ -223,7 +223,7 @@ class UserController extends Controller
         }
     }
 
-    public function get_reservatione_of_day(Request $request){
+    public function get_reservation_of_day(Request $request){
         $rules = [
             'date' => 'required|date',
             'shop_id' => 'required|string',
@@ -316,6 +316,18 @@ class UserController extends Controller
                 'error' => $exception->getMessage() 
             ]);
         }
+    }
+
+    public function get_user_reservations(){
+        $reservations = Reservation::with(['user', 'ai_image'])
+                    ->where('client_id', '=', $this->user->uuid)->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Got user data',
+            'data' => $reservations,
+            'error' => '',
+        ]);
     }
 
     public function get_shop_reservations(){
