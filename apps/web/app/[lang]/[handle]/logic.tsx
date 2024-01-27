@@ -21,6 +21,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@repo/ui/dialog'
+import Map from '@repo/ui/map'
 
 export default function Logic({
   handle,
@@ -37,6 +38,7 @@ export default function Logic({
   const user = useSelector((state: RootState) => state.user.user)
   const [profile, setProfile] = useState<UserType | null>(initial_profile)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  function emptyFunc(_: any) {}
 
   useEffect(() => {
     if (user?.handle === handle) {
@@ -68,7 +70,7 @@ export default function Logic({
         <section className={'flex flex-col gap-9'}>
           <div
             className={
-              'flex flex-col items-center justify-start gap-9 border-b-2 pb-9 sm:flex-row'
+              'flex flex-wrap items-center justify-evenly gap-9 border-b-2 pb-9 lg:flex-row'
             }
           >
             <Avatar className={'aspect-square h-48 w-48'}>
@@ -168,18 +170,17 @@ export default function Logic({
                 </>
               ) : null}
             </div>
-          </div>
 
-          {profile?.role === 'shop' && (
-            <div className={'flex w-full flex-wrap items-center justify-evenly'}>
-              <Link href={`/${lang}/@${handle}/location`}>
-                <CardImage
-                  title={navigationText.location}
-                  img_url={'/images/assets/map.jpg'}
+            {profile.role === 'shop' && (
+              <div className={'w-full max-w-sm'}>
+                <Map
+                  updateState={emptyFunc}
+                  location={profile.location}
+                  defaultZoom={18}
                 />
-              </Link>
-            </div>
-          )}
+              </div>
+            )}
+          </div>
         </section>
       )}
     </>

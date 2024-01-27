@@ -4,9 +4,10 @@ import { Map, Marker, ZoomControl } from 'pigeon-maps'
 type MapProps = {
   updateState: any
   location: [number, number]
+  defaultZoom?: number
 }
 
-export default function MyMap({ updateState, location }: MapProps) {
+export default function MyMap({ updateState, location, defaultZoom = 1 }: MapProps) {
   function handleMarkOnMap({ latLng }: { latLng: [number, number] }) {
     updateState({ location: latLng })
   }
@@ -14,8 +15,8 @@ export default function MyMap({ updateState, location }: MapProps) {
   return (
     <Map
       height={300}
-      defaultCenter={[50.879, 4.6997]}
-      defaultZoom={1}
+      defaultCenter={location}
+      defaultZoom={defaultZoom}
       onClick={handleMarkOnMap}
     >
       <ZoomControl />
