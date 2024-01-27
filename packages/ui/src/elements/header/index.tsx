@@ -3,8 +3,9 @@
 import React from 'react'
 import Link, { LinkProps } from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { HamburgerMenuIcon } from '@radix-ui/react-icons'
+import { HamburgerMenuIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons'
 import { UserType } from '@repo/helpers/types'
+import { useTheme } from 'next-themes'
 
 import { Avatar, AvatarFallback, AvatarImage } from '../../core/avatar'
 import { Button } from '../../core/button'
@@ -179,6 +180,13 @@ function MainNav({ name, img_url, links, lang }: MainNavProps) {
 }
 
 export default function Index({ user, metaData, lang, authText }: HeaderProps) {
+  const { theme, setTheme } = useTheme()
+
+  const toggleTheme = () => {
+    if (theme === 'dark') setTheme('light')
+    else setTheme('dark')
+  }
+
   return (
     <header className="supports-backdrop-blur:bg-background/60 bg-background/95 sticky top-0 z-40 w-full border-b backdrop-blur">
       <div className="container flex h-14 items-center">
@@ -226,6 +234,12 @@ export default function Index({ user, metaData, lang, authText }: HeaderProps) {
                     </DropdownMenuGroup>
                   </DropdownMenuContent>
                 </DropdownMenu>
+
+                <Button variant={'outline'} className="w-9 px-0" onClick={toggleTheme}>
+                  <MoonIcon className="h-0 w-0 rotate-90 scale-0 transition-all dark:h-[1.2rem] dark:w-[1.2rem] dark:rotate-0 dark:scale-100" />
+                  <SunIcon className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:h-0 dark:w-0 dark:-rotate-90 dark:scale-0" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
 
                 <Link
                   href={`/${lang}/@${user?.handle}`}
