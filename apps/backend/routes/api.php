@@ -46,5 +46,4 @@ Route::middleware(['auth:api', 'is.admin'])->group(function(){
 
 Route::middleware(['auth:api', 'is.shop'])->group(function(){
     Route::post('/shop/get-all-reservations', [UserController::class, 'get_shop_reservations']);
-    Route::post('/shop/get-all-posts', [PostController::class, 'get_shop_posts']);
 });
