@@ -1,6 +1,15 @@
+import { Countries } from '@repo/helpers/data'
+
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
 import Map from '@repo/ui/map'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@repo/ui/select'
 import { cn } from '@repo/ui/util'
 
 type UserData = {
@@ -58,6 +67,28 @@ export default function Index({
   return (
     <div className={'flex h-full w-full flex-col gap-6'}>
       <div className={cn('flex flex-col gap-6')}>
+        <div className="grid w-full max-w-sm items-center gap-1.5">
+          <Label htmlFor={'country'}>{register.barberLocation.country}</Label>
+          <Select
+            onValueChange={(val) => {
+              updateFields({ country: val })
+            }}
+          >
+            <SelectTrigger className={'w-full bg-white dark:bg-neutral-800'}>
+              <SelectValue placeholder={register.barberLocation.country} />
+            </SelectTrigger>
+            <SelectContent>
+              {Countries.map((item) => {
+                return (
+                  <SelectItem value={item.name} key={item.id}>
+                    {item.name}
+                  </SelectItem>
+                )
+              })}
+            </SelectContent>
+          </Select>
+        </div>
+
         {formData?.map((item, index) => {
           return (
             <div className="grid w-full max-w-sm items-center gap-1.5" key={index}>

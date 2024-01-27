@@ -6,7 +6,8 @@
     "./types": "./src/types/index.d.ts",
     "./auth": "./src/auth/index.ts",
     "./storage": "./src/storage/index.ts",
-    "./account": "./src/account/index.ts"
+    "./account": "./src/account/index.ts",
+    "./data": "./src/data/index.ts"
   },
   "scripts": {
     "dev": "tsup src/index.ts --watch",
