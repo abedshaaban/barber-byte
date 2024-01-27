@@ -11,6 +11,7 @@ export default function Posts() {
     async function getReservations() {
       const res = await GetShopPosts()
 
+      console.log(res)
       setPosts(res.data)
     }
 

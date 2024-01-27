@@ -272,7 +272,7 @@ export async function GetShopPosts(): Promise<{
     const token = Storage({ key: 'token' })
 
     res = await axios.post(
-      `${NEXT_PUBLIC_DB_URL_APIS}/shop/get-all-posts`,
+      `${NEXT_PUBLIC_DB_URL_APIS}/user/get-user-posts`,
       {},
       {
         headers: {

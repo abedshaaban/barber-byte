@@ -107,8 +107,12 @@ class PostController extends Controller
     }
 
     public function get_user_posts(Request $request){
-        $posts = Post::select()
-                ->where('creator_id', '=', $this->user->uuid)->get();
+        $user = $this->user;
+
+        $posts = Post::with(['creator'])
+                ->whereHas('creator', function ($query) use ($user) {
+                    $query->where('uuid', '=', $user->uuid);
+                })->get();
 
         return response()->json([
         'status' => true,
