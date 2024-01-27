@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button } from '@repo/ui/button'
-import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
+import { Card, CardContent, CardFooter } from '@repo/ui/card'
 import { AtMark } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
@@ -308,6 +308,35 @@ export default function Logic() {
                 </div>
 
                 {normalUserData?.map((item, index) => {
+                  if (item.name === 'country') {
+                    return (
+                      <div className="grid w-full items-center gap-1.5">
+                        <Label htmlFor={'country'}>{item.label}</Label>
+                        <Select
+                          onValueChange={(val) => {
+                            updateFields({ country: val })
+                          }}
+                          value={item.value as string}
+                        >
+                          <SelectTrigger
+                            className={'w-full bg-white dark:bg-neutral-800'}
+                          >
+                            <SelectValue placeholder={item.placeholder} />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {Countries.map((n) => {
+                              return (
+                                <SelectItem value={n.name} key={n.id}>
+                                  {n.name}
+                                </SelectItem>
+                              )
+                            })}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    )
+                  }
+
                   return (
                     <div
                       className="grid w-full max-w-[400px] items-center gap-1.5"
