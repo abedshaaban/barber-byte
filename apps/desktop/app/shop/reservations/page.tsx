@@ -13,7 +13,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@repo/ui/dialog'
-import { HorizontalDots } from '@repo/ui/icons'
+import { Image } from '@repo/ui/icons'
 import {
   Table,
   TableBody,
@@ -50,11 +50,11 @@ export default function Reservation() {
             <TableHead>Date</TableHead>
             <TableHead>Time</TableHead>
             <TableHead>Gender</TableHead>
-            <TableHead className="text-right">Ai Image</TableHead>
+            <TableHead>Ai Image</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {reservations?.map((item, index) => {
+          {reservations?.map((item: any, index) => {
             return (
               <TableRow key={index}>
                 <TableCell className="font-medium">{item?.id}</TableCell>
@@ -69,16 +69,17 @@ export default function Reservation() {
                       ? 'female'
                       : 'null'}
                 </TableCell>
-                <TableCell className={'flex w-full justify-end'}>
+                <TableCell className={'flex w-full justify-start'}>
                   <Dialog open={isDialogOpen}>
                     <DialogTrigger
                       asChild
                       onClick={() => {
                         setIsDialogOpen(!isDialogOpen)
                       }}
-                      className={'flex w-full justify-end'}
                     >
-                      <HorizontalDots className={'h-6 w-6 cursor-pointer'} />
+                      <Button variant={'outline'} size={'icon'} className={'w-fit p-1'}>
+                        <Image className={'h-6 w-6 cursor-pointer'} />
+                      </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-md">
                       <DialogHeader>
