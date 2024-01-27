@@ -36,6 +36,7 @@ export default function Index({ children }: { children: React.ReactNode }) {
       e.preventDefault()
 
       setLoading(true)
+      setErrorMessage('')
 
       try {
         const res = await Login({ ...credentials })
@@ -50,6 +51,7 @@ export default function Index({ children }: { children: React.ReactNode }) {
           toast({
             title: res?.message
           })
+          setLoading(false)
         } else {
           setErrorMessage(res?.message)
           setLoading(false)
