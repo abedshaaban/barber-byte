@@ -781,6 +781,14 @@ body {
   top: 100%;
 }
 
+.top-9 {
+  top: 2.25rem;
+}
+
+.top-20 {
+  top: 5rem;
+}
+
 .isolate {
   isolation: isolate;
 }

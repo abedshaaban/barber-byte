@@ -79,6 +79,17 @@ export default function Logic({ lang }: { lang: Locale }) {
 
   return (
     <div className={'flex w-full flex-col items-center justify-center gap-9'}>
+      {loading ? null : !user?.user ? (
+        <Link
+          href={`/${lang}/auth/login`}
+          className={cn(
+            buttonVariants({ variant: 'default' }),
+            'fixed top-20 z-20 w-full min-w-80 max-w-96'
+          )}
+        >
+          Login to see more
+        </Link>
+      ) : null}
       {posts?.map((item, index) => {
         return (
           <div
@@ -92,17 +103,7 @@ export default function Logic({ lang }: { lang: Locale }) {
 
       {loading ? (
         'loading ...'
-      ) : !user?.user ? (
-        <Link
-          href={`/${lang}/auth/login`}
-          className={cn(
-            buttonVariants({ variant: 'default' }),
-            'w-full min-w-80 max-w-96'
-          )}
-        >
-          Login to see more
-        </Link>
-      ) : (
+      ) : !user?.user ? null : (
         <div id={'trigger-new-fetch'} className={'h-1 w-full'}></div>
       )}
     </div>
