@@ -118,6 +118,20 @@ class PostController extends Controller
         ]);
     }
 
+    public function get_user_posts_by_handle(Request $request){
+        $posts = Post::with(['creator'])
+                ->whereHas('creator', function ($query) use ($request) {
+                    $query->where('handle', $request->handle);
+                })->get();
+
+        return response()->json([
+        'status' => true,
+        'message' => 'Got posts data',
+        'data' => $posts,
+        'error' => '',
+        ]);
+    }
+
     public function get_posts_for_admin(Request $request){
         $posts = Post::with(['creator'])->get();
 

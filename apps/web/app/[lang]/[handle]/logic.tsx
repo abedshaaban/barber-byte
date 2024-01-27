@@ -2,16 +2,17 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { getUserPostsByHandle } from '@repo/helpers/account'
 import { Logout } from '@repo/helpers/auth'
-import type { UserType } from '@repo/helpers/types'
+import type { PostType, UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
+import Post from '@web/components/post'
 import type { RootState } from '@web/provider/store'
 import { logoutUser } from '@web/provider/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button, buttonVariants } from '@repo/ui/button'
-import CardImage from '@repo/ui/cardImage'
 import {
   Dialog,
   DialogContent,
@@ -38,12 +39,27 @@ export default function Logic({
   const user = useSelector((state: RootState) => state.user.user)
   const [profile, setProfile] = useState<UserType | null>(initial_profile)
   const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [posts, setPosts] = useState<any[] | []>([])
   function emptyFunc(_: any) {}
 
   useEffect(() => {
     if (user?.handle === handle) {
       setProfile(user)
     }
+
+    async function getPosts() {
+      const res = await getUserPostsByHandle({
+        handle: handle
+      })
+
+      if (res.status === true) {
+        setPosts(res.data)
+      }
+
+      console.log(res)
+    }
+
+    getPosts()
   }, [user])
 
   async function handleLogout() {
@@ -180,6 +196,31 @@ export default function Logic({
                 />
               </div>
             )}
+          </div>
+
+          <div className={'flex w-full flex-col items-center justify-center gap-9'}>
+            {posts?.map((item, index) => {
+              return (
+                <div key={index} className={'flex w-full justify-center'}>
+                  <Post
+                    user={user}
+                    key={index}
+                    lang={lang}
+                    caption={item.caption}
+                    created_at={item.created_at}
+                    creator_id={item.creator_id}
+                    first_name={item.creator.first_name}
+                    handle={item.creator.handle}
+                    img_url={item.img_url}
+                    last_name={item.creator.last_name}
+                    likes_count={item.likes_count}
+                    name={profile.role === 'shop' ? profile.shop_name : ''}
+                    profile_url={item.creator.img_url}
+                    uuid={item.creator.uuid}
+                  />
+                </div>
+              )
+            })}
           </div>
         </section>
       )}

@@ -21,6 +21,7 @@ Route::controller(AccountController::class)->group(function(){
     Route::get('/shop', 'get_shops');
     Route::get('/shop/work_hours/{shop_id}', 'get_shop_hours');
     Route::get('/post/get', [PostController::class, 'get_posts']);
+    Route::post('/post/get-by-handle', [PostController::class, 'get_user_posts_by_handle']);
 });
 
 Route::middleware('auth:api')->group(function(){
