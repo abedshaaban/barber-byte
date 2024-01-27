@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { getUserPostsByHandle } from '@repo/helpers/account'
 import { Logout } from '@repo/helpers/auth'
@@ -23,6 +23,7 @@ import {
   DialogTrigger
 } from '@repo/ui/dialog'
 import Map from '@repo/ui/map'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@repo/ui/tabs'
 
 export default function Logic({
   handle,
@@ -55,8 +56,6 @@ export default function Logic({
       if (res.status === true) {
         setPosts(res.data)
       }
-
-      console.log(res)
     }
 
     getPosts()
@@ -67,6 +66,33 @@ export default function Logic({
     await Logout()
 
     setIsDialogOpen(false)
+  }
+
+  const DisplayPosts: React.FC = () => {
+    return (
+      <div className={'flex w-full flex-wrap items-center justify-evenly gap-1'}>
+        {posts?.map((item, index) => {
+          return (
+            <Post
+              key={index}
+              user={user}
+              lang={lang}
+              caption={item.caption}
+              created_at={item.created_at}
+              creator_id={item.creator_id}
+              first_name={item.creator.first_name}
+              handle={item.creator.handle}
+              img_url={item.img_url}
+              last_name={item.creator.last_name}
+              likes_count={item.likes_count}
+              name={profile && profile.role === 'shop' ? profile.shop_name : ''}
+              profile_url={item.creator.img_url}
+              uuid={item.creator.uuid}
+            />
+          )
+        })}
+      </div>
+    )
   }
 
   return (
@@ -198,30 +224,27 @@ export default function Logic({
             )}
           </div>
 
-          <div className={'flex w-full flex-col items-center justify-center gap-9'}>
-            {posts?.map((item, index) => {
-              return (
-                <div key={index} className={'flex w-full justify-center'}>
-                  <Post
-                    user={user}
-                    key={index}
-                    lang={lang}
-                    caption={item.caption}
-                    created_at={item.created_at}
-                    creator_id={item.creator_id}
-                    first_name={item.creator.first_name}
-                    handle={item.creator.handle}
-                    img_url={item.img_url}
-                    last_name={item.creator.last_name}
-                    likes_count={item.likes_count}
-                    name={profile.role === 'shop' ? profile.shop_name : ''}
-                    profile_url={item.creator.img_url}
-                    uuid={item.creator.uuid}
-                  />
-                </div>
-              )
-            })}
-          </div>
+          <Tabs defaultValue="posts" className="w-full">
+            <TabsList className="flex w-full flex-row">
+              <TabsTrigger value="posts" className={'w-full'}>
+                Posts
+              </TabsTrigger>
+
+              {profile.role === 'user' ? (
+                <TabsTrigger value="reservations" className={'w-full'}>
+                  Reservations
+                </TabsTrigger>
+              ) : null}
+            </TabsList>
+
+            <TabsContent value="posts">
+              <DisplayPosts />
+            </TabsContent>
+
+            {profile.role === 'user' ? (
+              <TabsContent value="reservations">2</TabsContent>
+            ) : null}
+          </Tabs>
         </section>
       )}
     </>

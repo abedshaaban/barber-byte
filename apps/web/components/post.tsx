@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { togglePostLike } from '@repo/helpers/account'
 import type { PostType, UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
@@ -9,13 +10,7 @@ import { Locale } from '@root/i18n.config'
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
-import {
-  ChatBubble,
-  FilledHeart,
-  Heart,
-  HorizontalDots,
-  ShareBubble
-} from '@repo/ui/icons'
+import { FilledHeart, Heart, HorizontalDots, ShareBubble } from '@repo/ui/icons'
 
 export default function Post({
   user,
@@ -32,6 +27,7 @@ export default function Post({
   profile_url,
   lang
 }: PostType & { lang: Locale; user: UserType | null }) {
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [likes, setLikes] = useState<{
     count: number
@@ -42,9 +38,14 @@ export default function Post({
   })
 
   async function handleLike() {
+    if (!user) {
+      router.push(`/${lang}/auth/login`)
+      return
+    }
+
     setLoading(true)
     const res = await togglePostLike({ post_id: uuid })
-    console.log(res)
+
     if (res.status === true) {
       setLikes((prev) => {
         return {
@@ -135,13 +136,6 @@ export default function Post({
               )}
             </Button>
           </div>
-
-          {/* <div className="flex w-[95px] flex-row items-center justify-center gap-[6px]">
-            <span>0</span>
-            <Button variant={'ghost'} size={'icon'}>
-              <ChatBubble className={'h-6 w-6'} />
-            </Button>
-          </div> */}
 
           <div className="flex w-[95px] flex-row items-center justify-center gap-[6px]">
             <span>0</span>

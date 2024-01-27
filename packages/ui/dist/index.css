@@ -1209,10 +1209,6 @@ body {
   min-height: 60px;
 }
 
-.min-h-\[80vh\] {
-  min-height: 80vh;
-}
-
 .min-h-\[calc\(100vh-60px\)\] {
   min-height: calc(100vh - 60px);
 }
@@ -2332,11 +2328,6 @@ body {
   padding-right: 1rem;
 }
 
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
 .px-8 {
   padding-left: 2rem;
   padding-right: 2rem;
@@ -2385,11 +2376,6 @@ body {
 .py-9 {
   padding-top: 2.25rem;
   padding-bottom: 2.25rem;
-}
-
-.px-9 {
-  padding-left: 2.25rem;
-  padding-right: 2.25rem;
 }
 
 .pb-1 {
@@ -2470,10 +2456,6 @@ body {
 
 .pt-6 {
   padding-top: 1.5rem;
-}
-
-.pt-3 {
-  padding-top: 0.75rem;
 }
 
 .text-left {
