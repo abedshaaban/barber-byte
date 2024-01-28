@@ -141,7 +141,7 @@ images exactly as we want them to, tailored to specific instructions and user ne
   performance, we ensure that AI applications powered by these models deliver robust and
   responsive solutions for diverse use cases.
 
-  By following this article, we deployed the backend to Amazon Linux 2023.
+  By following these steps, we deployed the backend to Amazon Linux 2023.
 
   1. Update Amazon Linux 2023 Packages
   2. Install LAMP Stack
@@ -171,32 +171,70 @@ images exactly as we want them to, tailored to specific instructions and user ne
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 
-> To set up Coffee Express locally, follow these steps:
+> To set up Barber Byte locally, follow these steps:
 
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install
 them.
 
-- npm
+- pnpm
   ```sh
-  npm install npm@latest -g
+  npm install -g pnpm
   ```
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up
-your app. This template doesn't rely on any external dependencies or services._
+1. Get an API Key at [OpenAI](https://openai.com/)
+2. Clone the repo
 
-1. Get a free API Key at [example](https://example.com)
-2. Clone the repo git clone [github](https://github.com/your_username_/Project-Name.git)
-3. Install NPM packages
    ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API'
+   git clone https://github.com/abedshaaban/barber-byte.git
+
    ```
 
-Now, you should be able to run Coffee Express locally and explore its features.
+3. Install PNPM packages
+
+   ```sh
+   pnpm install
+   ```
+
+4. Setup the backend
+
+   - Change directory to the backend folder
+     ```sh
+     cd apps/backend
+     ```
+   - Install the required packages for Laravel
+     ```sh
+     composer install
+     ```
+   - Add Laravel environment variable for JWT via
+     ```sh
+     php artisan jwt:secret
+     ```
+     Enter the required environment variables in `/apps/backend.env`
+   - Migrate the database (make sure xamp is runing)
+     ```sh
+     php artisan migarte
+     ```
+   - Run the server
+     ```sh
+     php artisan serve
+     ```
+
+   Now the server is running
+
+5. Setup the frontend
+
+   Enter the required environment variables in `.env` (root folder)
+
+   - Run the app
+
+   ```sh
+   pnpm dev --filter=web
+   ```
+
+   Now the web app is running
+
+Now, you should be able to run Barber Byte locally and explore its features.
