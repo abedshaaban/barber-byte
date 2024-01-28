@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { togglePostLike } from '@repo/helpers/account'
+import { SharePost, togglePostLike } from '@repo/helpers/account'
 import type { PostType, UserType } from '@repo/helpers/types'
 import { Locale } from '@root/i18n.config'
 
@@ -62,6 +62,26 @@ export default function Post({
           isLiked: res?.data?.is_liked
         }
       })
+    }
+    setLoading(false)
+  }
+
+  async function handleShare(platform: string) {
+    if (!user) {
+      router.push(`/${lang}/auth/login`)
+      return
+    }
+
+    setLoading(true)
+    const res = await SharePost({ post_id: uuid, platform })
+
+    console.log(res)
+    if (res.status === true) {
+      // setLikes((prev) => {
+      //   return {
+      //     // count: res?.data?.is_liked ? prev.count + 1 : prev.count - 1,
+      //   }
+      // })
     }
     setLoading(false)
   }
@@ -185,6 +205,9 @@ export default function Post({
                           data-action={item.dataAction}
                           key={index}
                           target="_blank"
+                          onClick={() => {
+                            handleShare(item.name)
+                          }}
                         >
                           <div className={'h-14 w-14'}>
                             <img

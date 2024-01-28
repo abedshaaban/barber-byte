@@ -326,6 +326,41 @@ export async function togglePostLike({
 }
 
 /**
+ * Like or unlike a post
+ * @param post id
+ * @param user id
+ */
+export async function SharePost({
+  post_id,
+  platform
+}: {
+  post_id: string
+  platform: string
+}): Promise<{ status: boolean; data: any; error: string; message: string }> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${process.env.NEXT_PUBLIC_DB_URL_APIS}/post/share/${post_id}`,
+      { platform: platform },
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
+
+/**
  * Generate images with AI
  * @param prompt text needed to generate the image from
  * @param n number of images generated 1-10

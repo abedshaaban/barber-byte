@@ -65,6 +65,7 @@ class PostController extends Controller
                 'posts.caption',
                 'posts.img_url',
                 'posts.likes_count',
+                'posts.shares_count',
                 'posts.creator_id',
                 'posts.created_at',
                 'users.handle',
