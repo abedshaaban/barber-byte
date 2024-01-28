@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ShareController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
@@ -30,6 +31,7 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/user/create-post', [PostController::class, 'create_post']);
     Route::post('/user/get-user-posts', [PostController::class, 'get_user_posts']);
     Route::post('/post/like/{post_id}', [LikeController::class, 'toggle_like']);
+    Route::post('/post/share/{post_id}', [ShareController::class, 'share_post']);
     Route::post('/user/generate-image', [UserController::class, 'generate_image']);
     Route::post('/shop/day-reservations', [UserController::class, 'get_reservation_of_day']);
     Route::post('/user/create-reservations', [UserController::class, 'create_reservation']);
