@@ -65,7 +65,7 @@ export type UserType = {
   token: string
 } & (
   | {
-      role: 'user'|'admin'
+      role: 'user' | 'admin'
       first_name: string
       last_name: string
     }
@@ -85,6 +85,7 @@ type PostType = {
   caption: string | null
   img_url: string
   likes_count: number
+  shares_count: number
   creator_id: string
   created_at: string
   handle: string | null

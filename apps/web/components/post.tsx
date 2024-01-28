@@ -31,6 +31,7 @@ export default function Post({
   img_url,
   last_name,
   likes_count,
+  shares_count,
   name,
   uuid,
   profile_url,
@@ -38,6 +39,7 @@ export default function Post({
 }: PostType & { lang: Locale; user: UserType | null }) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
+  const [sharesCount, setSharesCount] = useState<number>(shares_count || 0)
   const [likes, setLikes] = useState<{
     count: number
     isLiked: boolean
@@ -77,11 +79,7 @@ export default function Post({
 
     console.log(res)
     if (res.status === true) {
-      // setLikes((prev) => {
-      //   return {
-      //     // count: res?.data?.is_liked ? prev.count + 1 : prev.count - 1,
-      //   }
-      // })
+      setSharesCount(sharesCount + 1)
     }
     setLoading(false)
   }
@@ -183,7 +181,7 @@ export default function Post({
           </div>
 
           <div className="flex w-[95px] flex-row items-center justify-center gap-[6px]">
-            <span>0</span>
+            <span>{sharesCount}</span>
 
             <Drawer>
               <DrawerTrigger asChild>
