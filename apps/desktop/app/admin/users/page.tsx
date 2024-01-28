@@ -57,8 +57,12 @@ export default function Posts() {
   }, [])
 
   return (
-    <div className={'py-9'}>
-      <GenderChart data={users} />
-    </div>
+    <section className={'flex w-full flex-col justify-start pt-6'}>
+      <h1 className={'text-2xl font-semibold'}>Users</h1>
+
+      <div className={'py-9'}>
+        <GenderChart data={users} />
+      </div>
+    </section>
   )
 }

@@ -761,6 +761,10 @@ body {
   top: 50%;
 }
 
+.top-20 {
+  top: 5rem;
+}
+
 .top-4 {
   top: 1rem;
 }
@@ -779,14 +783,6 @@ body {
 
 .top-full {
   top: 100%;
-}
-
-.top-9 {
-  top: 2.25rem;
-}
-
-.top-20 {
-  top: 5rem;
 }
 
 .isolate {
@@ -2458,12 +2454,20 @@ body {
   padding-top: 0.25rem;
 }
 
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
 .pt-4 {
   padding-top: 1rem;
 }
 
 .pt-6 {
   padding-top: 1.5rem;
+}
+
+.pt-9 {
+  padding-top: 2.25rem;
 }
 
 .text-left {
