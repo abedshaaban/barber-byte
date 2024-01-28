@@ -16,50 +16,79 @@
 
 ### Admin Users:
 
-- As an admin, I want to verify and deny upcoming barber shop owners.
-- As an admin, I need to see the project's performance, data, and activity of users.
+- As an admin, I need to monitor the project's performance closely to ensure its success.
+- As an admin, I track user activity for effective management to allow me to address user
+  needs and enhance overall performance.
+- As an admin, I want to analyze data to make informed decisions and optimize project
+  outcomes.
 
 ### Manager Users:
 
-- As a manager, I would like to show my barber shop location so clients know where i am.
-- As a manager, I want to display the products and services I offer.
-- As a manager, I want to manage the clients in an online way.
+- As the manager, I aim to showcase my barber shop's location, ensuring clients easily
+  find us.
+- As a manager, I strive to establish an online presence and grow a dedicated fan base.
+- As a manager, my goal is to efficiently handle client management through online
+  platforms.
 
 ### client Users:
 
-- As a client, I want to search for close and good barber shops around me.
-- As a client, I want to look for upcoming trends to style my hair and get hair cut
-  suggestions.
-- As a client, I want to book appointments at barber shops rather than waiting for a bunch
-  of clients before me.
+- As a client, I want to easily find nearby and high-quality barber shops.
+- As a client, I'm seeking the latest trends for hairstyling and haircut suggestions.
+- As a client, I prefer booking appointments online at barber shops to avoid long waits
+  among a crowd of clients.
 
 <br><br>
 
-<!-- Prototyping -->
+<!-- Tech stack -->
 <img src="./readme/title3.svg"/>
 
-> We designed Coffee Express using wireframes and mockups, iterating on the design until
-> we reached the ideal layout for easy navigation and a seamless user experience.
+### Barber Byte is built using the following technologies:
 
-### Wireframes
+- This project uses [Turbo Repo](https://turbo.build/repo). Turborepo is a
+  high-performance build system for JavaScript and TypeScript codebases.
+- For the frontend, the web app uses the [Next.JS app router](https://nextjs.org/).
+  Next.js is a React framework that supports server-side rendering.
+- For the backend, [Laravel API](https://laravel.com/) is used. Leveraging the MVC model,
+  Laravel ensures app security through well-structured routes, middleware, and
+  authentication mechanisms.
+- The foundation of this project is built upon [Tauri](https://tauri.app/), a framework
+  for creating desktop applications. Building an optimized, secure, and
+  frontend-independent application for multi-platform deployment.
+- The app uses [OpenAI API](https://openai.com/) as an endpoint to request AI image
+  generated haircuts with [DALL·E](https://platform.openai.com/docs/models/dall-e) as
+  recommended haircuts and showcase for clients.
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+<br><br>
+
+<!-- UI UX -->
+<img src="./readme/title4.svg"/>
+
+> Barber Byte's design journey involved crafting wireframes and mockups. Through iterative
+> design processes, we refined the layout to achieve an optimal structure, ensuring easy
+> navigation and a seamless user experience.
+
+- Project Figma design
+  [figma](https://www.figma.com/file/Y15px4lYuSGMpmcux5A4VM/Final-Project?type=design&node-id=4%3A20&mode=design&t=XOBtYuopoTlFSXEw-1)
 
 ### Mockups
 
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Home screen                     | Menu Screen                     | Order Screen                             |
+| ------------------------------- | ------------------------------- | ---------------------------------------- |
+| ![Home](./readme/demo/home.png) | ![Menu](./readme/demo/feed.png) | ![Order](./readme/demo/create-image.png) |
+
+<br><br>
+
+<!-- Database Design -->
+<img src="./readme/title5.svg"/>
+
+### Architecting Data Excellence: Innovative Database Design Strategies:
+
+- Insert ER Diagram here
 
 <br><br>
 
 <!-- Implementation -->
-<img src="./readme/title4.svg"/>
-
-> Using the wireframes and mockups as a guide, we implemented the Coffee Express app with
-> the following features:
+<img src="./readme/title6.svg"/>
 
 ### User Screens (Mobile)
 
@@ -79,28 +108,44 @@
 
 <br><br>
 
-<!-- Tech stack -->
-<img src="./readme/title5.svg"/>
+<!-- Prompt Engineering -->
+<img src="./readme/title7.svg"/>
 
-### Coffee Express is built using the following technologies:
+### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
-- This project uses the [Flutter app development framework](https://flutter.dev/). Flutter
-  is a cross-platform hybrid app development platform which allows us to use a single
-  codebase for apps on mobile, desktop, and the web.
-- For persistent storage (database), the app uses the [Hive](https://hivedb.dev/) package
-  which allows the app to create a custom storage schema and save it to a local database.
-- To send local push notifications, the app uses the
-  [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
-  package which supports Android, iOS, and macOS.
-  - 🚨 Currently, notifications aren't working on macOS. This is a known issue that we are
-    working to resolve!
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its
-  main font, and the design of the app adheres to the material design guidelines.
+- This project uses advanced prompt engineering techniques to optimize the interaction
+  with natural language processing models. By skillfully crafting input instructions, we
+  tailor the behavior of the models to achieve precise and efficient language
+  understanding and generation for various tasks and preferences.
+
+<br><br>
+
+<!-- AWS Deployment -->
+<img src="./readme/title8.svg"/>
+
+### Efficient AI Deployment: Unleashing the Potential with AWS Integration:
+
+- This project leverages AWS deployment strategies to seamlessly integrate and deploy
+  natural language processing models. With a focus on scalability, reliability, and
+  performance, we ensure that AI applications powered by these models deliver robust and
+  responsive solutions for diverse use cases.
+
+<br><br>
+
+<!-- Unit Testing -->
+<img src="./readme/title9.svg"/>
+
+### Precision in Development: Harnessing the Power of Unit Testing:
+
+- This project employs rigorous unit testing methodologies to ensure the reliability and
+  accuracy of code components. By systematically evaluating individual units of the
+  software, we guarantee a robust foundation, identifying and addressing potential issues
+  early in the development process.
 
 <br><br>
 
 <!-- How to run -->
-<img src="./readme/title6.svg"/>
+<img src="./readme/title10.svg"/>
 
 > To set up Coffee Express locally, follow these steps:
 
@@ -119,11 +164,8 @@ them.
 _Below is an example of how you can instruct your audience on installing and setting up
 your app. This template doesn't rely on any external dependencies or services._
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
+1. Get a free API Key at [example](https://example.com)
+2. Clone the repo git clone [github](https://github.com/your_username_/Project-Name.git)
 3. Install NPM packages
    ```sh
    npm install
