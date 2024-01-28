@@ -107,6 +107,47 @@ class PostController extends Controller
         }
     }
 
+    public function get_posts_by_id($post_id){
+        try{            
+            $posts = Post::
+            select(
+                'posts.uuid',
+                'posts.caption',
+                'posts.img_url',
+                'posts.likes_count',
+                'posts.shares_count',
+                'posts.creator_id',
+                'posts.created_at',
+                'users.handle',
+                'users.first_name',
+                'users.last_name',
+                'users.img_url as profile_url',
+                'shops.name',
+            )
+            ->join('users', function ($join) {
+                $join->on('users.uuid', '=', 'posts.creator_id')
+                ->where('users.account_status_id', '=', 2);
+            })
+            ->leftJoin('shops', 'shops.owner_id', '=', 'posts.creator_id')
+            ->where('uuid', $post_id)->first();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Getting post.',
+                'data' => $posts,
+                'error' => ''
+            ]);
+
+        }catch(\Exception $exception){
+            return response()->json([
+                'status' => false,
+                'message' => 'Could not get posts.',
+                'data' => '',
+                'error' => $exception->getMessage() 
+            ]);
+        }
+    }
+
     public function get_user_posts(Request $request){
         $user = $this->user;
 
