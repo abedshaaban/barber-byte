@@ -10,6 +10,15 @@ import { Locale } from '@root/i18n.config'
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger
+} from '@repo/ui/drawer'
 import { FilledHeart, Heart, HorizontalDots, ShareBubble } from '@repo/ui/icons'
 
 export default function Post({
@@ -56,6 +65,22 @@ export default function Post({
     }
     setLoading(false)
   }
+
+  const sharePost = [
+    {
+      name: 'whatsapp',
+      link: `https://wa.me/?text=${process.env.NEXT_PUBLIC_DOMAIN_NAME}/post/${uuid}`,
+      // link: `whatsapp://send?text=${process.env.NEXT_PUBLIC_DOMAIN_NAME}/post/${uuid}`,
+      dataAction: 'share/whatsapp/share',
+      img_url: '/images/assets/wa.png'
+    },
+    {
+      name: 'facebook',
+      link: `https://www.facebook.com/sharer/sharer.php?u=${process.env.NEXT_PUBLIC_DOMAIN_NAME}/post/${uuid}`,
+      dataAction: 'share/whatsapp/share',
+      img_url: '/images/assets/fb.png'
+    }
+  ]
 
   return (
     <Card className="w-full max-w-[400px]">
@@ -139,9 +164,48 @@ export default function Post({
 
           <div className="flex w-[95px] flex-row items-center justify-center gap-[6px]">
             <span>0</span>
-            <Button variant={'ghost'} size={'icon'}>
-              <ShareBubble className={'h-6 w-6'} />
-            </Button>
+
+            <Drawer>
+              <DrawerTrigger asChild>
+                <Button variant={'ghost'} size={'icon'}>
+                  <ShareBubble className={'h-6 w-6'} />
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <div className="mx-auto w-full max-w-sm">
+                  <DrawerHeader>
+                    <DrawerTitle>Share post to:</DrawerTitle>
+                  </DrawerHeader>
+
+                  <div className="mx-auto flex w-full max-w-[300px] flex-row gap-3">
+                    {sharePost?.map((item, index) => {
+                      return (
+                        <a
+                          href={item.link}
+                          data-action={item.dataAction}
+                          key={index}
+                          target="_blank"
+                        >
+                          <div className={'h-14 w-14'}>
+                            <img
+                              src={item.img_url}
+                              alt={item.name}
+                              className={'h-full w-full'}
+                            />
+                          </div>
+                        </a>
+                      )
+                    })}
+                  </div>
+
+                  <DrawerFooter>
+                    <DrawerClose asChild>
+                      <Button variant="outline">Cancel</Button>
+                    </DrawerClose>
+                  </DrawerFooter>
+                </div>
+              </DrawerContent>
+            </Drawer>
           </div>
         </div>
 
