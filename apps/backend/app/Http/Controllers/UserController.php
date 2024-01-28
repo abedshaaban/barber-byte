@@ -402,7 +402,7 @@ class UserController extends Controller
 
     public function get_user_recent_updates_for_admin(Request $request){
         try {
-            $users = User::orderBy('updated_at', 'desc')
+            $users = User::with(['shop'])->orderBy('updated_at', 'desc')
                 ->take(5)
                 ->get();
     
