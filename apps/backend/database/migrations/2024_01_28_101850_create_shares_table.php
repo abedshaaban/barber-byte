@@ -11,20 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->uuid()->default(DB::raw('(UUID())'))->primary();
-            $table->string('caption', 255)->nullable();
-            $table->string('img_url');
-            $table->timestamps();
-            $table->integer('likes_count')->default(0);
-            $table->integer('shares_count')->default(0);
-            $table->foreignUuid('creator_id')
-                    ->references('uuid')
-                    ->on('users');
-        });
-
-        Schema::create('likes', function (Blueprint $table) {
+        Schema::create('shares', function (Blueprint $table) {
             $table->id();
+            $table->string('shared_to');
             $table->foreignUuid('post_id')
                     ->references('uuid')
                     ->on('posts');
@@ -40,7 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
-        Schema::dropIfExists('likes');
+        Schema::dropIfExists('shares');
     }
 };

@@ -110,4 +110,8 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Like::class, 'user_id', 'uuid');
     }
+    public function shares()
+    {
+        return $this->hasMany(Share::class, 'user_id', 'uuid');
+    }
 }
