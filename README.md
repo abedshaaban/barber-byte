@@ -72,9 +72,9 @@
 
 ### Mockups
 
-| Home screen                     | Menu Screen                     | Order Screen                             |
+| Home screen                     | Feed Screen                     | Order Screen                             |
 | ------------------------------- | ------------------------------- | ---------------------------------------- |
-| ![Home](./readme/demo/home.png) | ![Menu](./readme/demo/feed.png) | ![Order](./readme/demo/create-image.png) |
+| ![Home](./readme/demo/home.png) | ![Feed](./readme/demo/feed.png) | ![Order](./readme/demo/create-image.png) |
 
 <br><br>
 
@@ -83,7 +83,7 @@
 
 ### Architecting Data Excellence: Innovative Database Design Strategies:
 
-- Insert ER Diagram here
+![database](./readme/demo/db.png)
 
 <br><br>
 
@@ -92,11 +92,13 @@
 
 ### User Screens (Mobile)
 
-| Login screen                              | Register screen                         | Landing screen                          | Loading screen                          |
-| ----------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen                               | Menu Screen                             | Order Screen                            | Checkout Screen                         |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+| Login screen                                           | Register screen                                    | Landing screen                                     | Loading screen                                   |
+| ------------------------------------------------------ | -------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------ |
+| ![register](./readme/demo/register-password.png)       | ![login](./readme/demo/login.png)                  | ![home](./readme/demo/home-mobile.png)             | ![fsdaf](./readme/demo/reservation-loading.png)  |
+| Generate Image screen                                  | Choose Shop screen                                 | Select Time screen                                 | Checkout Screen                                  |
+| ![Generate Image](./readme/demo/reservation-image.png) | ![choose shop](./readme/demo/reservation-shop.png) | ![select time](./readme/demo/reservation-time.png) | ![checkout](./readme/demo/reservation-final.png) |
+| Generate Image screen                                  | Choose Shop screen                                 |
+| ![share](./readme/demo/share.png)                      | ![edit](./readme/demo/user-edit.png)               |
 
 ### Admin Screens (Web)
 
@@ -113,10 +115,19 @@
 
 ### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
-- This project uses advanced prompt engineering techniques to optimize the interaction
-  with natural language processing models. By skillfully crafting input instructions, we
-  tailor the behavior of the models to achieve precise and efficient language
-  understanding and generation for various tasks and preferences.
+- In this project, we leverage advanced prompt engineering techniques to enhance the
+  interaction with natural language processing models. We carefully tell these models what
+  to do by giving them specific instructions. The snippet below is an example of how we do
+  it. By doing this, we make sure these models understand and create exactly what we want,
+  making the whole process work smoothly and accurately for different tasks and
+  preferences.
+
+```php
+$prompt = "film still, portrait of a human, " . $request->prompt . ", salon photography";
+```
+
+This piece of code is a small example of how we make sure the computer models create
+images exactly as we want them to, tailored to specific instructions and user needs.
 
 <br><br>
 
@@ -129,6 +140,19 @@
   natural language processing models. With a focus on scalability, reliability, and
   performance, we ensure that AI applications powered by these models deliver robust and
   responsive solutions for diverse use cases.
+
+  By following this article, we deployed the backend to Amazon Linux 2023.
+
+  1. Update Amazon Linux 2023 Packages
+  2. Install LAMP Stack
+  3. Start and enable the Apache and MariaDB services
+  4. Create Database
+  5. Install PHP Composer for Laravel on on.Linux 2023
+  6. Download the Laravel framework project
+  7. Install Laravel on Amazon Linux 2023
+  8. Create the Laravel environment configuration file
+  9. Apache Configuration for PHP Laravel App
+  10. Get the Laravel demo page
 
 <br><br>
 
