@@ -399,4 +399,26 @@ class UserController extends Controller
         'error' => '',
         ]);
     }
+
+    public function get_user_recent_updates_for_admin(Request $request){
+        try {
+            $users = User::orderBy('updated_at', 'desc')
+                ->take(5)
+                ->get();
+    
+            return response()->json([
+                'status' => true,
+                'message' => 'Got user data',
+                'data' => $users,
+                'error' => '',
+            ]);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Error getting user data',
+                'data' => '',
+                'error' => $exception->getMessage(),
+            ]);
+        }
+    }
 }
