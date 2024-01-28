@@ -77,7 +77,6 @@ export default function Post({
     setLoading(true)
     const res = await SharePost({ post_id: uuid, platform })
 
-    console.log(res)
     if (res.status === true) {
       setSharesCount(sharesCount + 1)
     }
@@ -88,7 +87,6 @@ export default function Post({
     {
       name: 'whatsapp',
       link: `https://wa.me/?text=${process.env.NEXT_PUBLIC_DOMAIN_NAME}/post/${uuid}`,
-      // link: `whatsapp://send?text=${process.env.NEXT_PUBLIC_DOMAIN_NAME}/post/${uuid}`,
       dataAction: 'share/whatsapp/share',
       img_url: '/images/assets/wa.png'
     },
@@ -149,16 +147,18 @@ export default function Post({
 
       {/* img */}
       <CardContent className="pb-1">
-        <div className="max-h-[400px] max-w-[400px]">
-          {img_url && (
-            <img
-              src={`${process.env.NEXT_PUBLIC_POST_IMAGES_URL}/${img_url}`}
-              alt={caption || 'post'}
-              className={'h-[350px] w-full object-cover object-center'}
-              loading={'lazy'}
-            />
-          )}
-        </div>
+        <Link href={`/${lang}/post/${uuid}`}>
+          <div className="max-h-[400px] max-w-[400px]">
+            {img_url && (
+              <img
+                src={`${process.env.NEXT_PUBLIC_POST_IMAGES_URL}/${img_url}`}
+                alt={caption || 'post'}
+                className={'h-[350px] w-full object-cover object-center'}
+                loading={'lazy'}
+              />
+            )}
+          </div>
+        </Link>
       </CardContent>
 
       {/* caption, likes, ... */}

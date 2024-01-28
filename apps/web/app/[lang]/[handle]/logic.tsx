@@ -108,7 +108,7 @@ export default function Logic({
               likes_count={item.likes_count}
               name={profile && profile.role === 'shop' ? profile.shop_name : ''}
               profile_url={item.creator.img_url}
-              uuid={item.creator.uuid}
+              uuid={item.uuid}
               shares_count={item.shares_count}
             />
           )

@@ -231,6 +231,32 @@ export async function getPosts({ page }: { page: number }): Promise<{
 }
 
 /**
+ * Get a post by id
+ * @param uuid
+ */
+export async function getPostById({ uuid }: { uuid: string }): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    res = await axios.get(`${process.env.NEXT_PUBLIC_DB_URL_APIS}/post/${uuid}`, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
+
+/**
  * Get user posts by handle
  * @param handle iser handle
  */

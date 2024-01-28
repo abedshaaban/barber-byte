@@ -129,7 +129,7 @@ class PostController extends Controller
                 ->where('users.account_status_id', '=', 2);
             })
             ->leftJoin('shops', 'shops.owner_id', '=', 'posts.creator_id')
-            ->where('uuid', $post_id)->first();
+            ->where('posts.uuid', '=', $post_id)->get()[0];
 
             return response()->json([
                 'status' => true,
