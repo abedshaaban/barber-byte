@@ -5,6 +5,8 @@ import { GetNumberOfUsers } from '@desktop/helpers'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui/card'
 
+import RecentUpdates from './components/recent-updates'
+
 export default function Page() {
   const [users, setUsers] = useState<{ total_users: number; deleted_users: number }>({
     total_users: 0,
@@ -33,7 +35,7 @@ export default function Page() {
     <section className={'flex w-full flex-col justify-start pt-6'}>
       <h1 className={'text-2xl font-semibold'}>Home</h1>
 
-      <div className={'py-9'}>
+      <div className={'flex flex-col gap-9 py-9'}>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -56,6 +58,18 @@ export default function Page() {
             <CardContent>
               <div className="text-2xl font-bold">{users?.total_users}</div>
               <p className="text-muted-foreground text-xs">All time</p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div>
+          <Card className="flex w-full max-w-md flex-col">
+            <CardHeader>
+              <CardTitle>Recent Updates</CardTitle>
+              <CardDescription>Updates user changed recently.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <RecentUpdates />
             </CardContent>
           </Card>
         </div>
