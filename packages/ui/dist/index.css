@@ -1173,10 +1173,6 @@ body {
   height: 100vh;
 }
 
-.h-16 {
-  height: 4rem;
-}
-
 .max-h-96 {
   max-height: 24rem;
 }
@@ -1235,6 +1231,10 @@ body {
 
 .w-12 {
   width: 3rem;
+}
+
+.w-14 {
+  width: 3.5rem;
 }
 
 .w-2 {
@@ -1413,14 +1413,6 @@ body {
 
 .w-px {
   width: 1px;
-}
-
-.w-16 {
-  width: 4rem;
-}
-
-.w-14 {
-  width: 3.5rem;
 }
 
 .min-w-0 {
@@ -1811,6 +1803,12 @@ body {
   --tw-space-x-reverse: 0;
   margin-right: calc(1.5rem * var(--tw-space-x-reverse));
   margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.space-y-0 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0px * var(--tw-space-y-reverse));
 }
 
 .space-y-1 > :not([hidden]) ~ :not([hidden]) {
@@ -2733,6 +2731,11 @@ body {
 
 .text-primary-foreground {
   color: hsl(var(--primary-foreground));
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .text-red-600 {
@@ -4013,6 +4016,10 @@ body {
     flex-basis: 50%;
   }
 
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
@@ -4069,6 +4076,10 @@ body {
 
   .lg\:basis-1\/3 {
     flex-basis: 33.333333%;
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .lg\:grid-cols-\[\.75fr_1fr\] {
