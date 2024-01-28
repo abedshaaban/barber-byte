@@ -36,6 +36,7 @@ export default function Posts() {
               last_name={item.creator.last_name}
               name={item.creator.name}
               profile_url={item.creator.img_url}
+              shares_count={item.shares_count}
             />
           )
         })}

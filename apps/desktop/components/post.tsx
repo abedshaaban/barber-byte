@@ -22,7 +22,8 @@ export default function Post({
   likes_count,
   name,
   uuid,
-  profile_url
+  profile_url,
+  shares_count
 }: PostType) {
   return (
     <Card className="w-full max-w-[400px]">
@@ -87,7 +88,7 @@ export default function Post({
           </div>
 
           <div className="flex w-[95px] flex-row items-center justify-center gap-[6px]">
-            <span>0</span>
+            <span>{shares_count || 0}</span>
             <Button variant={'ghost'} size={'icon'}>
               <ShareBubble className={'h-6 w-6'} />
             </Button>
