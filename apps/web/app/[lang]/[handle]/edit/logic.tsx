@@ -9,6 +9,7 @@ import type { AccountStatusType } from '@repo/helpers/types'
 import { RootState } from '@web/provider/store'
 import { setUser } from '@web/provider/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@repo/ui/card'
@@ -134,7 +135,7 @@ export default function Logic({
         title: res?.message
       })
 
-      router.push(`/${lang}/@${res?.data?.handle}`)
+      router.push(`/${lang}/@${user?.handle}`)
     }
   }
 
