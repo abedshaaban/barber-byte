@@ -14,13 +14,12 @@
 
 # User Stories
 
-### Admin Users:
+### client Users:
 
-- As an admin, I need to monitor the project's performance closely to ensure its success.
-- As an admin, I track user activity for effective management to allow me to address user
-  needs and enhance overall performance.
-- As an admin, I want to analyze data to make informed decisions and optimize project
-  outcomes.
+- As a client, I want to easily find nearby and high-quality barber shops.
+- As a client, I'm seeking the latest trends for hairstyling and haircut suggestions.
+- As a client, I prefer booking appointments online at barber shops to avoid long waits
+  among a crowd of clients.
 
 ### Manager Users:
 
@@ -30,12 +29,13 @@
 - As a manager, my goal is to efficiently handle client management through online
   platforms.
 
-### client Users:
+### Admin Users:
 
-- As a client, I want to easily find nearby and high-quality barber shops.
-- As a client, I'm seeking the latest trends for hairstyling and haircut suggestions.
-- As a client, I prefer booking appointments online at barber shops to avoid long waits
-  among a crowd of clients.
+- As an admin, I need to monitor the project's performance closely to ensure its success.
+- As an admin, I track user activity for effective management to allow me to address user
+  needs and enhance overall performance.
+- As an admin, I want to analyze data to make informed decisions and optimize project
+  outcomes.
 
 <br><br>
 
@@ -97,7 +97,7 @@
 | ![register](./readme/demo/register-password.png)       | ![login](./readme/demo/login.png)                  | ![home](./readme/demo/home-mobile.png)             | ![fsdaf](./readme/demo/reservation-loading.png)  |
 | Generate Image screen                                  | Choose Shop screen                                 | Select Time screen                                 | Checkout Screen                                  |
 | ![Generate Image](./readme/demo/reservation-image.png) | ![choose shop](./readme/demo/reservation-shop.png) | ![select time](./readme/demo/reservation-time.png) | ![checkout](./readme/demo/reservation-final.png) |
-| Generate Image screen                                  | Choose Shop screen                                 |
+| Generate Image screen                                  | Edit Profile screen                                |
 | ![share](./readme/demo/share.png)                      | ![edit](./readme/demo/user-edit.png)               |
 
 ### Admin Screens (Web)
