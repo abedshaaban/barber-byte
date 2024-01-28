@@ -11,13 +11,13 @@ import {
 import { RootState } from '@desktop/provider/store'
 import { setUser } from '@desktop/provider/userSlice'
 import { Countries } from '@repo/helpers/data'
-import type { AccountStatusType } from '@repo/helpers/types'
+import type { AccountStatusType, WorkDayType } from '@repo/helpers/types'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@repo/ui/avatar'
 import { Button } from '@repo/ui/button'
 import { Card, CardContent, CardFooter } from '@repo/ui/card'
-import { AtMark } from '@repo/ui/icons'
+import { AtMark, Check, Cross } from '@repo/ui/icons'
 import { Input } from '@repo/ui/input'
 import { Label } from '@repo/ui/label'
 import Map from '@repo/ui/map'
@@ -53,6 +53,7 @@ type UserCredentials = {
   street: string
   description: null | string
   account_status: AccountStatusType | undefined
+  work_days: WorkDayType[]
 }
 
 export default function Logic() {
@@ -73,9 +74,64 @@ export default function Logic() {
     country: user?.role === 'shop' ? user?.country : '',
     city: user?.role === 'shop' ? user?.city : '',
     street: user?.role === 'shop' ? user?.street : '',
-    account_status: user?.account_status
+    account_status: user?.account_status,
+    work_days:
+      user?.role === 'shop'
+        ? [
+            {
+              order: 1,
+              name: 'Monday',
+              start_date: user.work_days[0]?.start_date,
+              end_date: user.work_days[0]?.end_date,
+              is_open: user.work_days[0]?.is_open
+            },
+            {
+              order: 2,
+              name: 'Tuesday',
+              start_date: user.work_days[0]?.start_date,
+              end_date: user.work_days[0]?.end_date,
+              is_open: user.work_days[0]?.is_open
+            },
+            {
+              order: 3,
+              name: 'Wednesday',
+              start_date: user.work_days[0]?.start_date,
+              end_date: user.work_days[0]?.end_date,
+              is_open: user.work_days[0]?.is_open
+            },
+            {
+              order: 4,
+              name: 'Thursday',
+              start_date: user.work_days[0]?.start_date,
+              end_date: user.work_days[0]?.end_date,
+              is_open: user.work_days[0]?.is_open
+            },
+            {
+              order: 5,
+              name: 'Friday',
+              start_date: user.work_days[0]?.start_date,
+              end_date: user.work_days[0]?.end_date,
+              is_open: user.work_days[0]?.is_open
+            },
+            {
+              order: 6,
+              name: 'Saturday',
+              start_date: user.work_days[0]?.start_date,
+              end_date: user.work_days[0]?.end_date,
+              is_open: user.work_days[0]?.is_open
+            },
+            {
+              order: 7,
+              name: 'Sunday',
+              start_date: user.work_days[0]?.start_date,
+              end_date: user.work_days[0]?.end_date,
+              is_open: user.work_days[0]?.is_open
+            }
+          ]
+        : []
   })
 
+  console.log(user)
   function updateFields(fields: Partial<UserCredentials>) {
     setCredentials((prev) => {
       return { ...prev, ...fields }
@@ -193,6 +249,23 @@ export default function Logic() {
           ]
         : []
 
+  function handleOpenDay(index: number) {
+    updateFields({
+      work_days: credentials.work_days.map((day, i) =>
+        i === index
+          ? credentials.work_days[index]?.is_open
+            ? { ...day, is_open: !credentials.work_days[index]?.is_open }
+            : {
+                ...day,
+                is_open: !credentials.work_days[index]?.is_open,
+                end_date: '',
+                start_date: ''
+              }
+          : day
+      )
+    })
+  }
+
   return (
     <form
       onSubmit={handleUpdateProfile}
@@ -204,7 +277,7 @@ export default function Logic() {
         <>Saving ...</>
       ) : (
         <>
-          <Card className={'w-full max-w-[400px] bg-neutral-50 p-3 dark:bg-neutral-900'}>
+          <Card className={'w-full max-w-[400px] bg-neutral-50 p-9 dark:bg-neutral-900'}>
             <CardContent className={'flex flex-col gap-6'}>
               <div
                 className={cn('flex w-full flex-col items-center justify-center gap-6')}
@@ -360,13 +433,104 @@ export default function Logic() {
                 })}
 
                 {user && user.role === 'shop' && (
-                  <div className={'grid w-full items-center gap-1.5'}>
-                    <Map
-                      updateState={updateFields}
-                      location={credentials.location}
-                      defaultZoom={18}
-                    />
-                  </div>
+                  <>
+                    <div className={'grid w-full items-center gap-1.5'}>
+                      <Label htmlFor={'location'}>Location</Label>
+
+                      <Map
+                        updateState={updateFields}
+                        location={credentials.location}
+                        defaultZoom={18}
+                      />
+                    </div>
+
+                    <div className={cn('flex flex-col gap-6')}>
+                      <Label htmlFor={'work-days'}>Work Days</Label>
+
+                      {credentials.work_days?.map((item, index) => {
+                        return (
+                          <div
+                            className="flex w-full max-w-sm items-center gap-1.5"
+                            key={index}
+                          >
+                            <Label
+                              htmlFor={item?.name}
+                              className={'w-[80px] min-w-[80px] max-w-[80px]'}
+                            >
+                              {item?.name}
+                            </Label>
+                            <Input
+                              type={'time'}
+                              required
+                              value={item?.start_date}
+                              onChange={(e) => {
+                                updateFields({
+                                  work_days: credentials.work_days.map((day, i) =>
+                                    i === index
+                                      ? { ...day, start_date: e.target.value }
+                                      : day
+                                  )
+                                })
+                              }}
+                              className={'bg-white dark:bg-neutral-800'}
+                              disabled={item.is_open}
+                            />
+
+                            <Input
+                              type={'time'}
+                              required
+                              value={item?.end_date}
+                              onChange={(e) => {
+                                updateFields({
+                                  work_days: credentials.work_days.map((day, i) =>
+                                    i === index
+                                      ? { ...day, end_date: e.target.value }
+                                      : day
+                                  )
+                                })
+                              }}
+                              className={'bg-white dark:bg-neutral-800'}
+                              disabled={item.is_open}
+                            />
+
+                            <div className={'flex flex-row'}>
+                              <Button
+                                className={cn(
+                                  'rounded-r-none border-r-0',
+                                  item.is_open ? '' : ''
+                                )}
+                                size={'icon'}
+                                variant={'outline'}
+                                type={'button'}
+                                disabled={item.is_open ? false : true}
+                                onClick={() => {
+                                  handleOpenDay(index)
+                                }}
+                              >
+                                <Check />
+                              </Button>
+
+                              <Button
+                                className={cn(
+                                  'rounded-l-none border-l-0',
+                                  item.is_open ? '' : ''
+                                )}
+                                size={'icon'}
+                                variant={'outline'}
+                                type={'button'}
+                                disabled={item.is_open ? true : false}
+                                onClick={() => {
+                                  handleOpenDay(index)
+                                }}
+                              >
+                                <Cross />
+                              </Button>
+                            </div>
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </>
                 )}
               </div>
             </CardContent>
