@@ -22,7 +22,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@repo/ui/dialog'
-import { HorizontalDots } from '@repo/ui/icons'
+import { Image } from '@repo/ui/icons'
 import Map from '@repo/ui/map'
 import {
   Table,
@@ -129,7 +129,7 @@ export default function Logic({
               <TableHead>Date</TableHead>
               <TableHead>Time</TableHead>
               <TableHead>Gender</TableHead>
-              <TableHead className="text-right">Ai Image</TableHead>
+              <TableHead className="text-center">Ai Image</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -142,9 +142,9 @@ export default function Logic({
                   <TableCell>{item.date}</TableCell>
                   <TableCell>{item.time}</TableCell>
                   <TableCell>
-                    {item.user.gender_id === 1
+                    {item?.user?.gender_id === 1
                       ? 'male'
-                      : item.uesr.gender_id === 2
+                      : item?.uesr?.gender_id === 2
                         ? 'female'
                         : 'null'}
                   </TableCell>
@@ -157,7 +157,7 @@ export default function Logic({
                         }}
                         className={'flex w-full justify-end'}
                       >
-                        <HorizontalDots className={'h-6 w-6 cursor-pointer'} />
+                        <Image className={'h-6 w-6 cursor-pointer'} />
                       </DialogTrigger>
                       <DialogContent className="sm:max-w-md">
                         <DialogHeader>

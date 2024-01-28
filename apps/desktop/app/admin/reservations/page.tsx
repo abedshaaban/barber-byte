@@ -67,9 +67,9 @@ export default function Reservation() {
                   <TableCell>{item.date}</TableCell>
                   <TableCell>{item.time}</TableCell>
                   <TableCell>
-                    {item.user.gender_id === 1
+                    {item?.user?.gender_id === 1
                       ? 'male'
-                      : item.uesr.gender_id === 2
+                      : item?.uesr?.gender_id === 2
                         ? 'female'
                         : 'null'}
                   </TableCell>
