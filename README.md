@@ -92,7 +92,7 @@
 
 ### User Screens (Mobile)
 
-| Login screen                                           | Register screen                                    | Landing screen                                     | Loading screen                                   |
+| Register screen                                        | Login screen                                       | Landing screen                                     | Loading screen                                   |
 | ------------------------------------------------------ | -------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------ |
 | ![register](./readme/demo/register-password.png)       | ![login](./readme/demo/login.png)                  | ![home](./readme/demo/home-mobile.png)             | ![fsdaf](./readme/demo/reservation-loading.png)  |
 | Generate Image screen                                  | Choose Shop screen                                 | Select Time screen                                 | Checkout Screen                                  |
