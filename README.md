@@ -67,10 +67,10 @@
 > design processes, we refined the layout to achieve an optimal structure, ensuring easy
 > navigation and a seamless user experience.
 
-- Project Figma design
-  [figma](https://www.figma.com/file/Y15px4lYuSGMpmcux5A4VM/Final-Project?type=design&node-id=4%3A20&mode=design&t=XOBtYuopoTlFSXEw-1)
+### Mockups Examples
 
-### Mockups
+Check the project's wireframes and mockups on
+[figma](https://www.figma.com/file/Y15px4lYuSGMpmcux5A4VM/Final-Project?type=design&node-id=4%3A20&mode=design&t=XOBtYuopoTlFSXEw-1)
 
 | Home screen                     | Feed Screen                     | Order Screen                             |
 | ------------------------------- | ------------------------------- | ---------------------------------------- |
@@ -81,7 +81,26 @@
 <!-- Database Design -->
 <img src="./readme/title5.svg"/>
 
-### Architecting Data Excellence: Innovative Database Design Strategies:
+The database is designed to facilitate the collection and management of user data within a
+comprehensive platform. Each table plays a crucial role in capturing various aspects of
+user interactions, preferences, and engagements.
+
+### Tables
+
+- users:
+
+  Collects and stores detailed information about registered individuals, serving as the
+  primary source of user data.
+
+- shares:
+
+  Captures data when users share posts, providing insights into content shares and user
+  interactions.
+
+- ai_images:
+
+  Stores images generated using artificial intelligence, contributing to the collection of
+  unique user-generated content.
 
 ![database](./readme/demo/db.png)
 
@@ -113,17 +132,88 @@
 <!-- Prompt Engineering -->
 <img src="./readme/title7.svg"/>
 
-### Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
-
-- In this project, we leverage advanced prompt engineering techniques to enhance the
-  interaction with natural language processing models. We carefully tell these models what
-  to do by giving them specific instructions. The snippet below is an example of how we do
-  it. By doing this, we make sure these models understand and create exactly what we want,
-  making the whole process work smoothly and accurately for different tasks and
-  preferences.
+In this project, we supports advanced prompt engineering techniques to enhance the
+interaction with natural language processing models. We carefully tell these models what
+to do by giving them specific instructions. The snippet below is an example of how we do
+it. By doing this, we make sure these models understand and create exactly what we want,
+making the whole process work smoothly and accurately for different tasks and preferences.
 
 ```php
-$prompt = "film still, portrait of a human, " . $request->prompt . ", salon photography";
+public function generate_image(Request $request){
+  $request->validate([
+    'prompt' => 'required|string',
+    'size' => 'required|string',
+    'n' => 'required|integer',
+  ]);
+
+  // create the prompt
+  $prompt = "film still, portrait of a human, " . $request->prompt . ", salon photography";
+
+
+  try{
+    // generate the images with openai
+    $result = OpenAI::images()->create([
+      'model' => 'dall-e-2',
+      'prompt' => $prompt,
+      'size' => $request->size,
+      'style' => "vivid",
+      'n' => intval($request->n),
+      'user' => $this->user->uuid,
+    ]);
+
+    // check if the images are generated
+    if(count($result->data) > 0){
+      // make a folder for the images if their is not one
+      $folder_path = 'images/ai-haircut/';
+      if (!file_exists(public_path($folder_path))) {
+        mkdir(public_path($folder_path), 0755, true);
+      }
+
+      $res = [];
+
+      // insert the images in the ai_images table
+      foreach ($result->data as $imageData) {
+        $image_url = time() . rand(3, 9000000000) . '.' . 'png';
+        file_put_contents(public_path($folder_path . $image_url), file_get_contents($imageData->url));
+
+        $image_id = AiImage::create([
+          'prompt' => $prompt,
+          'creator_id' => $this->user->uuid,
+          'img_url' => $image_url,
+        ])->id;
+
+        // add images to the response
+        $res[] = [
+          'url' => $image_url,
+          'id' => $image_id,
+        ];
+      }
+
+      return response()->json([
+        'status' => true,
+        'message' => 'Image generated successfully',
+        'data' => $res,
+        'error' => ''
+      ], 200);
+    } else {
+      // handle error of zero images
+      return response()->json([
+        'status' => false,
+        'message' => 'Image not generated',
+        'data' => '',
+        'error' => 'zero images returned after generating'
+      ], 500);
+    }
+  } catch (\Exception $exception){
+    // catch any error while generating images
+    return response()->json([
+      'status' => false,
+      'message' => 'Error occurred while generating image.',
+      'data' => '',
+      'error' => $exception->getMessage()
+    ], 500);
+  }
+}
 ```
 
 This piece of code is a small example of how we make sure the computer models create
@@ -134,37 +224,35 @@ images exactly as we want them to, tailored to specific instructions and user ne
 <!-- AWS Deployment -->
 <img src="./readme/title8.svg"/>
 
-### Efficient AI Deployment: Unleashing the Potential with AWS Integration:
+This project leverages AWS deployment strategies to seamlessly integrate and deploy
+natural language processing models. With a focus on scalability, reliability, and
+performance, we ensure that AI applications powered by these models deliver robust and
+responsive solutions for diverse use cases.
 
-- This project leverages AWS deployment strategies to seamlessly integrate and deploy
-  natural language processing models. With a focus on scalability, reliability, and
-  performance, we ensure that AI applications powered by these models deliver robust and
-  responsive solutions for diverse use cases.
+By following these steps, we deployed the backend to Amazon Linux 2023.
 
-  By following these steps, we deployed the backend to Amazon Linux 2023.
+1. Update Amazon Linux 2023 Packages
+2. Install LAMP Stack
+3. Start and enable the Apache and MariaDB services
+4. Create Database
+5. Install PHP Composer for Laravel on Linux 2023
+6. Download the Laravel framework project
+7. Install Laravel on Amazon Linux 2023
+8. Create the Laravel environment configuration file
+9. Apache Configuration for PHP Laravel App
+10. Get the Laravel demo page
 
-  1. Update Amazon Linux 2023 Packages
-  2. Install LAMP Stack
-  3. Start and enable the Apache and MariaDB services
-  4. Create Database
-  5. Install PHP Composer for Laravel on Linux 2023
-  6. Download the Laravel framework project
-  7. Install Laravel on Amazon Linux 2023
-  8. Create the Laravel environment configuration file
-  9. Apache Configuration for PHP Laravel App
-  10. Get the Laravel demo page
+> Commands are available in the [backend folder](./apps/backend/deploy-to-aws.md)
 
 <br><br>
 
 <!-- Unit Testing -->
 <img src="./readme/title9.svg"/>
 
-### Precision in Development: Harnessing the Power of Unit Testing:
-
-- This project employs rigorous unit testing methodologies to ensure the reliability and
-  accuracy of code components. By systematically evaluating individual units of the
-  software, we guarantee a robust foundation, identifying and addressing potential issues
-  early in the development process.
+This project employs rigorous unit testing methodologies to ensure the reliability and
+accuracy of code components. By systematically evaluating individual units of the
+software, we guarantee a robust foundation, identifying and addressing potential issues
+early in the development process.
 
 <br><br>
 
