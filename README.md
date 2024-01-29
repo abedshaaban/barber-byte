@@ -72,9 +72,18 @@
 Check the project's wireframes and mockups on
 [figma](https://www.figma.com/file/Y15px4lYuSGMpmcux5A4VM/Final-Project?type=design&node-id=4%3A20&mode=design&t=XOBtYuopoTlFSXEw-1)
 
-| Home screen                     | Feed Screen                     | Order Screen                             |
-| ------------------------------- | ------------------------------- | ---------------------------------------- |
-| ![Home](./readme/demo/home.png) | ![Feed](./readme/demo/feed.png) | ![Order](./readme/demo/create-image.png) |
+<div align="center">
+
+|                                Home screen                                 |                                    Order Screen                                    |
+| :------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
+| <img src="./readme/demo/home.png" alt="register" style="max-width: 450px"> | <img src="./readme/demo/create-image.png" alt="register" style="max-width: 450px"> |
+|                                                                            |                                                                                    |
+
+|                                                     Feed screen                                                      |
+| :------------------------------------------------------------------------------------------------------------------: |
+| <img src="./readme/demo/feed.png" alt="register" style="max-width: 450px; width: 100%; display: block; margin:auto"> |
+
+</div>
 
 <br><br>
 
@@ -249,11 +258,15 @@ By following these steps, we deployed the backend to Amazon Linux 2023.
 <!-- Unit Testing -->
 <img src="./readme/title9.svg"/>
 
-Barber Byte uses testing to make sure each piece of code works reliably and accurately. By checking individual units of the software in a systematic way, we ensure a strong foundation. This helps us find and fix potential issues early in the development process.
+Barber Byte uses testing to make sure each piece of code works reliably and accurately. By
+checking individual units of the software in a systematic way, we ensure a strong
+foundation. This helps us find and fix potential issues early in the development process.
 
 ![tests](./readme/demo/tests.PNG)
 
-These tests check different parts of the application, like user registration, shop creation, login, profile updates, post creation, and more. Each test makes sure a specific part of the system works correctly, making the overall software strong and dependable.
+These tests check different parts of the application, like user registration, shop
+creation, login, profile updates, post creation, and more. Each test makes sure a specific
+part of the system works correctly, making the overall software strong and dependable.
 
 <br><br>
 
