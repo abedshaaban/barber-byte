@@ -111,21 +111,21 @@ user interactions, preferences, and engagements.
 
 ### User Screens (Mobile)
 
-| Register screen                                        | Login screen                                       | Landing screen                                     | Loading screen                                   |
-| ------------------------------------------------------ | -------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------ |
-| ![register](./readme/demo/register-password.png)       | ![login](./readme/demo/login.png)                  | ![home](./readme/demo/home-mobile.png)             | ![fsdaf](./readme/demo/reservation-loading.png)  |
-| Generate Image screen                                  | Choose Shop screen                                 | Select Time screen                                 | Checkout Screen                                  |
-| ![Generate Image](./readme/demo/reservation-image.png) | ![choose shop](./readme/demo/reservation-shop.png) | ![select time](./readme/demo/reservation-time.png) | ![checkout](./readme/demo/reservation-final.png) |
-| Generate Image screen                                  | Edit Profile screen                                |
-| ![share](./readme/demo/share.png)                      | ![edit](./readme/demo/user-edit.png)               |
+| Register screen                                   | Login screen                                       | Landing screen                                     | Loading screen                                            |
+| ------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | --------------------------------------------------------- |
+| ![register](./readme/demo/password.gif)           | ![login](./readme/demo/login.png)                  | ![home](./readme/demo/home-mobile.png)             | ![fsdaf](./readme/demo/reservation-loading.png)           |
+| Generate Image screen                             | Choose Shop screen                                 | Select Time screen                                 | Checkout Screen                                           |
+| ![Generate Image](./readme/demo/ai-generated.gif) | ![choose shop](./readme/demo/reservation-shop.png) | ![select time](./readme/demo/reservation-time.png) | ![checkout](./readme/demo/reservation-final.png)          |
+| Generate Image screen                             | Edit Profile screen                                | Create Post screen                                 | User Reservations screen                                  |
+| ![share](./readme/demo/share-post.gif)            | ![edit](./readme/demo/user-edit.png)               | ![create post](./readme/demo/create-post.png)      | ![user reservations](./readme/demo/user-reservations.png) |
 
 ### Admin Screens (Web)
 
-| Login screen                                                        | Home screen                                 | Reservations screen                                      |
-| ------------------------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------- |
-| ![Landing](./readme/demo/dashboard-login.PNG)                       | ![home](./readme/demo/dashboard-home.PNG)   | ![reservations](./readme/demo/dashboard-reservation.PNG) |
-| Reservation Image screen                                            | Users Analytics Screen                      |
-| ![reservation image](./readme/demo/dashboard-reservation-image.PNG) | ![users](./readme/demo/dashboard-users.PNG) |
+| Home screen                                                         | Reservations screen                                      |
+| ------------------------------------------------------------------- | -------------------------------------------------------- |
+| ![home](./readme/demo/dashboard-home.PNG)                           | ![reservations](./readme/demo/dashboard-reservation.PNG) |
+| Reservation Image screen                                            | Users Analytics Screen                                   |
+| ![reservation image](./readme/demo/dashboard-reservation-image.PNG) | ![users](./readme/demo/dashboard-users.PNG)              |
 
 <br><br>
 
