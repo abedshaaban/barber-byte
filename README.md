@@ -74,14 +74,14 @@ Check the project's wireframes and mockups on
 
 <div align="center">
 
-|                                Home screen                                 |                                    Order Screen                                    |
-| :------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
-| <img src="./readme/demo/home.png" alt="register" style="max-width: 450px"> | <img src="./readme/demo/create-image.png" alt="register" style="max-width: 450px"> |
-|                                                                            |                                                                                    |
+|                                      Home screen                                       |                                          Order Screen                                          |
+| :------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: |
+| <img src="./readme/demo/home.png" alt="register" style="width:100%; max-width: 450px"> | <img src="./readme/demo/create-image.png" alt="register" style="width:100%; max-width: 450px"> |
+|                                                                                        |                                                                                                |
 
-|                                                     Feed screen                                                      |
-| :------------------------------------------------------------------------------------------------------------------: |
-| <img src="./readme/demo/feed.png" alt="register" style="max-width: 450px; width: 100%; display: block; margin:auto"> |
+|                                                              Feed screen                                                               |
+| :------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="./readme/demo/feed-posts.png" alt="register" style="width:100%; max-width: 450px; width: 100%; display: block; margin:auto"> |
 
 </div>
 
