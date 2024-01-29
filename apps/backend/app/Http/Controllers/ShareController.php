@@ -45,14 +45,18 @@ class ShareController extends Controller
     }
 
     public function get_shared_platform(){
-        $users_data = Share::selectRaw('shared_to, COUNT(*) as shared_count')
-            ->groupBy('shared_to')
-            ->get();
-        
-        $data = [
-            'platform' => $users_data->pluck('shared_to'),
-            'count' => $users_data->pluck('shared_count'),
-        ];
+        $users_data = Share::selectRaw('shared_to, DATE(created_at) as share_date, COUNT(*) as shared_count')
+        ->groupBy('shared_to', 'share_date')
+        ->orderBy('share_date') 
+        ->get();
+    
+        $data = $users_data->groupBy('shared_to')->map(function ($item) {
+            return [
+                'platform' => $item->first()->shared_to,
+                'date' => $item->pluck('share_date'),
+                'count' => $item->pluck('shared_count'),
+            ];
+        })->values();
 
         return response()->json([
             'status' => true,

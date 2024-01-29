@@ -383,3 +383,99 @@ export async function GetRecentUpdatedUsers(): Promise<{
 
   return res?.data
 }
+
+/**
+ * Get users age
+ */
+export async function GetUsersAge(): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${NEXT_PUBLIC_DB_URL_APIS}/admin/get-age-of-users`,
+      {},
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
+
+/**
+ * Get users age
+ */
+export async function GetCountryOfShops(): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${NEXT_PUBLIC_DB_URL_APIS}/admin/get-country-of-shops`,
+      {},
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
+
+/**
+ * Get users age
+ */
+export async function GetSharedToPlatform(): Promise<{
+  status: boolean
+  data: any
+  error: string
+  message: string
+}> {
+  let res
+
+  try {
+    const token = Storage({ key: 'token' })
+
+    res = await axios.post(
+      `${NEXT_PUBLIC_DB_URL_APIS}/admin/get-shared-platform`,
+      {},
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: `bearer ${token}`
+        }
+      }
+    )
+  } catch (error) {
+    console.error(error)
+  }
+
+  return res?.data
+}
