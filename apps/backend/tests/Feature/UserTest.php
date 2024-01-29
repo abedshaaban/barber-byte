@@ -22,7 +22,7 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function test_user_can_register(){
+    public function test_create_user(){
         $user = [
             'role_id' => 1,
             'gender_id' => 3,
@@ -45,6 +45,58 @@ class UserTest extends TestCase
             'description' => null,
             'img_url' => null,
             'role_id' => 1,
+            'gender_id' => 3,
+            'account_status_id' => 1,
+        ]);
+    }
+    
+    public function test_create_shop(){
+        $user = [
+            'role_id' => 2,
+            'gender_id' => 3,
+            'email' => 'abed@gmail.com',
+            'password' => Hash::make('P@ssword123'),
+            'birth_date' => '2000-01-01',
+            'account_status_id' => 1,
+            'handle' => 'awu6h-gub',
+            'shop_name' => 'hair salon',
+            'country' => 'Lebanon',
+            'city' => 'Aramoon',
+            'street' => 'khalde',
+            'location' => [50.31, 45.92],
+            'work_days' => []
+        ];
+
+        $response = $this->post('/auth/register', $user);
+
+        $this->assertDatabaseHas('shop', [
+            'name' => 'hair salon',
+        ]);
+    }
+ 
+    public function test_create_admin(){
+        $user = [
+            'role_id' => 3,
+            'gender_id' => 3,
+            'email' => 'abed@gmail.com',
+            'password' => Hash::make('P@ssword123'),
+            'birth_date' => '2000-01-01',
+            'account_status_id' => 1,
+            'handle' => 'awu6h-gub',
+            'first_name' => 'Abed',
+            'last_name' => 'Shaaban',
+        ];
+
+        $response = $this->post('/auth/register', $user);
+
+        $this->assertDatabaseHas('users', [
+            'handle' => 'awu6h-gub',
+            'first_name' => 'Abed',
+            'last_name' => 'Shaaban',
+            'birth_date' => '2000-01-01',
+            'description' => null,
+            'img_url' => null,
+            'role_id' => 3,
             'gender_id' => 3,
             'account_status_id' => 1,
         ]);
@@ -91,6 +143,27 @@ class UserTest extends TestCase
         ]);
     }
     
+    public function test_create_post(){
+        $user = [
+            'uuid' => 'abkjcdhaudbaKSHK',
+            'handle' => 'awu6h-gub',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'john@example.com',
+            'password' => Hash::make('P@ssword123'),
+        ];
+
+        $response = $this->post('/user/create-post', [
+            'img_url' => 'path.png',
+            'caption' => 'no cap',
+            'creator_id' => $user['uuid'],
+        ]);
+
+        $this->assertDatabaseHas('posts', [
+            'uuid' => $response->uuid,
+        ]);
+    }
+
     public function test_get_user_by_uuid(){
         $user = User::create([
             'handle' => 'awu6h-gub',
@@ -137,6 +210,55 @@ class UserTest extends TestCase
         ]);
     }
 
+    public function test_like_post(){
+        $user = User::create([
+            'uuid' => 'abkjcdhaudbaKSHK',
+            'handle' => 'awu6h-gub',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'john@example.com',
+            'password' => Hash::make('P@ssword123'),
+        ]);
 
+        $post = Post::
+            create([
+                'img_url' => 'path.png',
+                'caption' => 'no cap',
+                'creator_id' => $user['uuid'],
+            ]);
+
+        $response = $this->post('/post/like' . $post->uuid);
+
+        $this->assertDatabaseHas('likes', [
+            'post_id' => $post->uuid,
+            'user_id' => $user->uuid,
+        ]);
+    }
+
+    public function test_share_post(){
+        $user = User::create([
+            'uuid' => 'abkjcdhaudbaKSHK',
+            'handle' => 'awu6h-gub',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'john@example.com',
+            'password' => Hash::make('P@ssword123'),
+        ]);
+
+        $post = Post::
+            create([
+                'img_url' => 'path.png',
+                'caption' => 'no cap',
+                'creator_id' => $user['uuid'],
+            ]);
+
+        $response = $this->post('/post/share' . $post->uuid, ['platform' => 'facebook']);
+
+
+        $this->assertDatabaseHas('shares', [
+            'post_id' => $post->uuid,
+            'user_id' => $user->uuid,
+        ]);
+    }
 
 }
