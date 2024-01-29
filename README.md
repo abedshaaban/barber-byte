@@ -102,11 +102,11 @@
 
 ### Admin Screens (Web)
 
-| Login screen                            | Register screen                       | Landing screen                        |
-| --------------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
-| Home screen                             | Menu Screen                           | Order Screen                          |
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| Login screen                                                        | Home screen                                 | Reservations screen                                      |
+| ------------------------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------- |
+| ![Landing](./readme/demo/dashboard-login.PNG)                       | ![home](./readme/demo/dashboard-home.PNG)   | ![reservations](./readme/demo/dashboard-reservation.PNG) |
+| Reservation Image screen                                            | Users Analytics Screen                      |
+| ![reservation image](./readme/demo/dashboard-reservation-image.PNG) | ![users](./readme/demo/dashboard-users.PNG) |
 
 <br><br>
 
