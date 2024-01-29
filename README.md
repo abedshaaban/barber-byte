@@ -14,7 +14,7 @@
 
 # User Stories
 
-### client Users:
+### Client Users:
 
 - As a client, I want to easily find nearby and high-quality barber shops.
 - As a client, I'm seeking the latest trends for hairstyling and haircut suggestions.
@@ -54,9 +54,9 @@
 - The foundation of this project is built upon [Tauri](https://tauri.app/), a framework
   for creating desktop applications. Building an optimized, secure, and
   frontend-independent application for multi-platform deployment.
-- The app uses [OpenAI API](https://openai.com/) as an endpoint to request AI image
-  generated haircuts with [DALL·E](https://platform.openai.com/docs/models/dall-e) as
-  recommended haircuts and showcase for clients.
+- The app uses [OpenAI API](https://openai.com/) as an endpoint to request AI
+  image-generated haircuts with [DALL·E](https://platform.openai.com/docs/models/dall-e)
+  as recommended haircuts and showcase for clients.
 
 <br><br>
 
@@ -147,7 +147,7 @@ images exactly as we want them to, tailored to specific instructions and user ne
   2. Install LAMP Stack
   3. Start and enable the Apache and MariaDB services
   4. Create Database
-  5. Install PHP Composer for Laravel on on.Linux 2023
+  5. Install PHP Composer for Laravel on Linux 2023
   6. Download the Laravel framework project
   7. Install Laravel on Amazon Linux 2023
   8. Create the Laravel environment configuration file
@@ -201,7 +201,7 @@ them.
 
 4. Setup the backend
 
-   - Change directory to the backend folder
+   - Change the directory to the backend folder
      ```sh
      cd apps/backend
      ```
@@ -214,9 +214,9 @@ them.
      php artisan jwt:secret
      ```
      Enter the required environment variables in `/apps/backend.env`
-   - Migrate the database (make sure xamp is runing)
+   - Migrate the database (make sure xamp is running)
      ```sh
-     php artisan migarte
+     php artisan migrate
      ```
    - Run the server
      ```sh
