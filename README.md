@@ -56,7 +56,7 @@
   frontend-independent application for multi-platform deployment.
 - The app uses [OpenAI API](https://openai.com/) as an endpoint to request AI
   image-generated haircuts with [DALL·E](https://platform.openai.com/docs/models/dall-e)
-  as recommended haircuts and showcase for clients.
+  as recommended haircuts and showcases for clients.
 
 <br><br>
 
