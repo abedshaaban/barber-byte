@@ -371,6 +371,42 @@ class UserController extends Controller
         ]);
     }
 
+    public function get_age_of_users(){
+        $users_data = User::selectRaw('DATE(birth_date) as date, COUNT(*) as age_count')
+            ->groupBy('date')
+            ->get();
+        
+        $data = [
+            'date' => $users_data->pluck('date'),
+            'count' => $users_data->pluck('age_count'),
+        ];
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Got user data',
+            'data' => $data,
+            'error' => '',
+        ]);
+    }
+
+    public function get_country_of_shops(){
+        $users_data = Address::selectRaw('country, COUNT(*) as country_count')
+            ->groupBy('country')
+            ->get();
+        
+        $data = [
+            'country' => $users_data->pluck('country'),
+            'count' => $users_data->pluck('country_count'),
+        ];
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Got shop data',
+            'data' => $data,
+            'error' => '',
+        ]);
+    }
+
     public function get_user_gender(){
         $gender_data = User::selectRaw('gender_id, COUNT(*) as gender_count')
             ->groupBy('gender_id')

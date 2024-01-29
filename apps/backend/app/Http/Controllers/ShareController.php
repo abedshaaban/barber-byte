@@ -43,4 +43,22 @@ class ShareController extends Controller
             ]);
         }
     }
+
+    public function get_shared_platform(){
+        $users_data = Share::selectRaw('shared_to, COUNT(*) as shared_count')
+            ->groupBy('shared_to')
+            ->get();
+        
+        $data = [
+            'platform' => $users_data->pluck('shared_to'),
+            'count' => $users_data->pluck('shared_count'),
+        ];
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Got shares data',
+            'data' => $data,
+            'error' => '',
+        ]);
+    }
 }

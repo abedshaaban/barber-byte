@@ -47,6 +47,9 @@ Route::middleware(['auth:api', 'is.admin'])->group(function(){
     Route::post('/admin/get-all-posts-for-admin', [PostController::class, 'get_posts_for_admin']);
     Route::post('/admin/get-ai-images', [UserController::class, 'get_ai_images_for_admin']);
     Route::post('/admin/get-all-reservations', [UserController::class, 'get_admin_reservations']);
+    Route::post('/admin/get-age-of-users', [UserController::class, 'get_age_of_users']);
+    Route::post('/admin/get-country-of-shops', [UserController::class, 'get_country_of_shops']);
+    Route::post('/admin/get-shared-platform', [ShareController::class, 'get_shared_platform']);
 
 });
 
