@@ -16,24 +16,15 @@
 
 ### Client Users:
 
-- As a client, I want to easily find nearby and high-quality barber shops.
+- As a client, I want to easily find nearby and high-quality barber shops and book
+  appointments online to avoid long waits among a crowd of clients.
 - As a client, I'm seeking the latest trends for hairstyling and haircut suggestions.
-- As a client, I prefer booking appointments online at barber shops to avoid long waits
-  among a crowd of clients.
-
-### Manager Users:
-
-- As the manager, I aim to showcase my barber shop's location, ensuring clients easily
-  find us.
-- As a manager, I strive to establish an online presence and grow a dedicated fan base.
-- As a manager, my goal is to efficiently handle client management through online
-  platforms.
 
 ### Admin Users:
 
-- As an admin, I need to monitor the project's performance closely to ensure its success.
-- As an admin, I track user activity for effective management to allow me to address user
-  needs and enhance overall performance.
+- As an admin, I need to monitor the project's performance closely to ensure its success
+  and track user activity for effective management, allowing me to address user needs and
+  enhance overall performance.
 - As an admin, I want to analyze data to make informed decisions and optimize project
   outcomes.
 
@@ -76,12 +67,12 @@ Check the project's wireframes and mockups on
 
 |                                      Home screen                                       |                                          Order Screen                                          |
 | :------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: |
-| <img src="./readme/demo/home.png" alt="register" style="width:100%; max-width: 450px"> | <img src="./readme/demo/create-image.png" alt="register" style="width:100%; max-width: 450px"> |
+| <img src="./readme/demo/home.png" alt="register" style="width:100%; max-width: 390px"> | <img src="./readme/demo/create-image.png" alt="register" style="width:100%; max-width: 390px"> |
 |                                                                                        |                                                                                                |
 
 |                                                              Feed screen                                                               |
 | :------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="./readme/demo/feed-posts.png" alt="register" style="width:100%; max-width: 450px; width: 100%; display: block; margin:auto"> |
+| <img src="./readme/demo/feed-posts.png" alt="register" style="width:100%; max-width: 390px; width: 100%; display: block; margin:auto"> |
 
 </div>
 
