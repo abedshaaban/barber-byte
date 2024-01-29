@@ -6,6 +6,7 @@ import { GetNumberOfUsers } from '@desktop/helpers'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@repo/ui/card'
 
 import RecentUpdates from './components/recent-updates'
+import UserRegistrations from './components/user-registration'
 
 export default function Page() {
   const [users, setUsers] = useState<{ total_users: number; deleted_users: number }>({
@@ -62,11 +63,21 @@ export default function Page() {
           </Card>
         </div>
 
-        <div>
+        <div className={'wrap flex flex gap-9'}>
+          <Card className="flex w-full max-w-md flex-col">
+            <CardHeader>
+              <CardTitle>Users Created</CardTitle>
+              <CardDescription>Users registered as a function of time.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <UserRegistrations />
+            </CardContent>
+          </Card>
+
           <Card className="flex w-full max-w-md flex-col">
             <CardHeader>
               <CardTitle>Recent Updates</CardTitle>
-              <CardDescription>Updates user changed recently.</CardDescription>
+              <CardDescription>Recently updated users.</CardDescription>
             </CardHeader>
             <CardContent>
               <RecentUpdates />
