@@ -249,10 +249,11 @@ By following these steps, we deployed the backend to Amazon Linux 2023.
 <!-- Unit Testing -->
 <img src="./readme/title9.svg"/>
 
-This project employs rigorous unit testing methodologies to ensure the reliability and
-accuracy of code components. By systematically evaluating individual units of the
-software, we guarantee a robust foundation, identifying and addressing potential issues
-early in the development process.
+Barber Byte uses testing to make sure each piece of code works reliably and accurately. By checking individual units of the software in a systematic way, we ensure a strong foundation. This helps us find and fix potential issues early in the development process.
+
+![tests](./readme/demo/tests.PNG)
+
+These tests check different parts of the application, like user registration, shop creation, login, profile updates, post creation, and more. Each test makes sure a specific part of the system works correctly, making the overall software strong and dependable.
 
 <br><br>
 
