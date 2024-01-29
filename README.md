@@ -132,10 +132,10 @@ user interactions, preferences, and engagements.
 <!-- Prompt Engineering -->
 <img src="./readme/title7.svg"/>
 
-In this project, we supports advanced prompt engineering techniques to enhance the
+In this project, we support advanced prompt engineering techniques to enhance the
 interaction with natural language processing models. We carefully tell these models what
 to do by giving them specific instructions. The snippet below is an example of how we do
-it. By doing this, we make sure these models understand and create exactly what we want,
+it. By doing this, we ensure these models understand and create exactly what we want,
 making the whole process work smoothly and accurately for different tasks and preferences.
 
 ```php
@@ -250,7 +250,7 @@ By following these steps, we deployed the backend to Amazon Linux 2023.
 <img src="./readme/title9.svg"/>
 
 Barber Byte uses testing to make sure each piece of code works reliably and accurately. By
-checking individual units of the software in a systematic way, we ensure a strong
+checking individual units of the software systematically, we ensure a strong
 foundation. This helps us find and fix potential issues early in the development process.
 
 ![tests](./readme/demo/tests.PNG)
