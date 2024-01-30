@@ -39,7 +39,7 @@
   high-performance build system for JavaScript and TypeScript codebases.
 - For the frontend, the web app uses the [Next.JS app router](https://nextjs.org/).
   Next.js is a React framework that supports server-side rendering.
-- For the backend, [Laravel API](https://laravel.com/) is used. Leveraging the MVC model,
+- For the backend, [Laravel](https://laravel.com/) is used. Leveraging the MVC model,
   Laravel ensures app security through well-structured routes, middleware, and
   authentication mechanisms.
 - The foundation of this project is built upon [Tauri](https://tauri.app/), a framework
@@ -65,14 +65,9 @@ Check the project's wireframes and mockups on
 
 <div align="center">
 
-|                                      Home screen                                       |                                          Order Screen                                          |
-| :------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------: |
-| <img src="./readme/demo/home.png" alt="register" style="width:100%; max-width: 390px"> | <img src="./readme/demo/create-image.png" alt="register" style="width:100%; max-width: 390px"> |
-|                                                                                        |                                                                                                |
-
-|                                                              Feed screen                                                               |
-| :------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="./readme/demo/feed-posts.png" alt="register" style="width:100%; max-width: 390px; width: 100%; display: block; margin:auto"> |
+|                                  Home screen                                  |                                     Order Screen                                      |                                     Feed screen                                     |
+| :---------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
+| <img src="./readme/demo/home.png" alt="register" style="max-height: 400px" /> | <img src="./readme/demo/create-image.png" alt="register"  style="max-height: 400px"/> | <img src="./readme/demo/feed-posts.png" alt="register"  style="max-height: 400px"/> |
 
 </div>
 
@@ -84,23 +79,6 @@ Check the project's wireframes and mockups on
 The database is designed to facilitate the collection and management of user data within a
 comprehensive platform. Each table plays a crucial role in capturing various aspects of
 user interactions, preferences, and engagements.
-
-### Tables
-
-- users:
-
-  Collects and stores detailed information about registered individuals, serving as the
-  primary source of user data.
-
-- shares:
-
-  Captures data when users share posts, providing insights into content shares and user
-  interactions.
-
-- ai_images:
-
-  Stores images generated using artificial intelligence, contributing to the collection of
-  unique user-generated content.
 
 ![database](./readme/demo/db.png)
 
@@ -250,8 +228,8 @@ By following these steps, we deployed the backend to Amazon Linux 2023.
 <img src="./readme/title9.svg"/>
 
 Barber Byte uses testing to make sure each piece of code works reliably and accurately. By
-checking individual units of the software systematically, we ensure a strong
-foundation. This helps us find and fix potential issues early in the development process.
+checking individual units of the software systematically, we ensure a strong foundation.
+This helps us find and fix potential issues early in the development process.
 
 ![tests](./readme/demo/tests.PNG)
 
